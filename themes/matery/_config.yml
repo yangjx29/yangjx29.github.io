@@ -42,10 +42,10 @@ menu:
 # Website start time.
 # 站点运行开始时间.
 time:
-  enable: false
-  year: 2019 # 年份
-  month: 06 # 月份
-  date: 28 # 日期
+  enable: true
+  year: 2023 # 年份
+  month: 04 # 月份
+  date: 29 # 日期
   hour: 00 # 小时
   minute: 00 # 分钟
   second: 00 # 秒
@@ -181,17 +181,17 @@ toc:
 
 # 代码块相关
 code:
-  lang: true # 代码块是否显示名称
+  lang: false # 代码块是否显示名称
   copy: true # 代码块是否可复制
   shrink: true # 代码块是否可以收缩
-  break: false # 代码是否折行
+  break: true # 代码是否折行
 
 # 是否激活文章末尾的打赏功能，默认激活（你替换为的你自己的微信、支付宝二维码图片、或者使用网络图片也可以）.
 reward:
   enable: true
   title: 你的赏识是我前进的动力
   wechat: /medias/reward/wechat.png
-  alipay: /medias/reward/alipay.jpg
+  alipay: /medias/reward/alipay.png
 
 # Whether to activate the copyright information of the blog and author when copying the post content.
 # minCharNumber: Approve copyright information by copying at least how many characters.
@@ -218,10 +218,10 @@ mathjax:
 postInfo:
   date: true # 发布日期
   update: false # 更新日期
-  wordCount: false # 文章字数统计
-  totalCount: false # 站点总文章字数
-  min2read: false # 文章阅读时长
-  readCount: false # 文章阅读次数
+  wordCount: true # 文章字数统计
+  totalCount: true # 站点总文章字数
+  min2read: true # 文章阅读时长
+  readCount: true # 文章阅读次数
 
 # Whether to activate the 'love' effect of clicking on the page.
 # 是否激活点击页面的'爱心'效果，默认激活.
@@ -249,7 +249,7 @@ mouseStar:
 
   # 是否激活页面飘雪效果, 只在桌面版网页启用特效
 snowdown:
-  enable: false
+  enable: true
 
 # profile in about page, including avatars, career, and personal introductions.
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
@@ -645,7 +645,7 @@ instantpage:
 # banner 是否每日切换.
 # 若为 false, 则 banner 默认为 /medias/banner/0.jpg
 banner:
-  enable: true
+  enable: false
   # 开启随机 featureimages 图片
   random: true
 
@@ -674,8 +674,9 @@ jsDelivr:
   
 # 网站背景图
 background:
-  enable: false
-  url: "https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/res/site/medias/background.jpg"
+  enable: true
+
+  url: "/medias/banner/9.jpg"
 
 # 说说 https://artitalk.js.org/
 artitalk:
