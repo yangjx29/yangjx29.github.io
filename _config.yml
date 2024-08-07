@@ -109,7 +109,7 @@ deploy:
 
 #Live2D动画
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   pluginRootPath: live2dw/
   pluginJsPath: lib/
