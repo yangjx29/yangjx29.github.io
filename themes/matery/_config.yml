@@ -4,9 +4,9 @@ menu:
   Index:
     url: /
     icon: fas fa-home
-  Tags:
-    url: /tags
-    icon: fas fa-tags
+  # Tags:
+  #   url: /tags
+  #   icon: fas fa-tags
   Categories:
     url: /categories
     icon: fas fa-bookmark
@@ -576,7 +576,7 @@ reprint:
 
 # DaoVoice online contact
 daovoice:
-  enable: false
+  enable: true
   app_id:
 
 # Tidio online contact
