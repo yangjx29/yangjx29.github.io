@@ -6,11 +6,11 @@ date: 2024-08-06 14:36:45
 <meta name="referrer" content="no-referrer"/>
 
 ## Biography
-![myself](myself.png "I look like this")
+<img src="https://img-blog.csdnimg.cn/direct/4a6bf912c60749c99a277eee69b7b27f.png" alt="I look like this" style="zoom: 33%;" />    
 
 I am an undergraduate at University of Electronic Science and Technology of China ([UESTC](https://en.uestc.edu.cn/)), majoring in Software Engineering. From January to July 2024, I worked as an intern at [ByteDance](https://www.bytedance.com/).Before that,I learned c++ related content.
 
-Now I am studying on my own the fields related to artificial intelligence large models to lay the foundation for my graduate studies.
+Now I am studying on my own with the fields related to artificial intelligence large models to lay the foundation for my graduate studies.
 
 ## Education
 
