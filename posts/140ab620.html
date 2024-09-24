@@ -4,8 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="科研工具tips, JacksonYang的博客">
+    <meta name="description" content="
+
+工具用法总结Online Essay
+pytorch篇
+torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算，包括两个2D矩阵的乘法，以及高维矩阵的乘法（批量矩阵乘法）
+
+该行为取决于张量的维数
+
+如果两个张量都是一维，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +25,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于 | JacksonYang的博客</title>
+    <title>科研工具tips | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -260,12 +268,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于</h1>
+                    <h1 class="description center-align post-title">科研工具tips</h1>
                 </div>
             </div>
         </div>
@@ -301,7 +309,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-06
+                    2024-09-24
                 </div>
                 
 
@@ -310,14 +318,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    111
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    9 分
                 </div>
                 
 
@@ -344,19 +352,180 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h2 id="Biography"><a href="#Biography" class="headerlink" title="Biography"></a>Biography</h2><img src="https://img-blog.csdnimg.cn/direct/4a6bf912c60749c99a277eee69b7b27f.png" alt="I look like this" style="zoom: 33%;" />    
+<h1 id="工具用法总结"><a href="#工具用法总结" class="headerlink" title="工具用法总结"></a>工具用法总结</h1><p><a target="_blank" rel="noopener" href="https://uestc.feishu.cn/docx/Hi3Vdo5cTorMXdxk2DTcA48Gnoe"><strong>Online Essay</strong></a></p>
+<h1 id="pytorch篇"><a href="#pytorch篇" class="headerlink" title="pytorch篇"></a><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html">pytorch篇</a></h1><ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.matmul.html#torch-matmul">torch.matmul</a>：用于执行矩阵乘法。它支持多种维度的矩阵运算，包括两个2D矩阵的乘法，以及高维矩阵的乘法（批量矩阵乘法）</li>
+</ul>
+<p>该行为取决于张量的维数</p>
+<ul>
+<li>如果两个张量都是一维，则返回点积（标量）。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># vector x vector</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor1 = torch.randn(<span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor2 = torch.randn(<span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.matmul(tensor1, tensor2).size()</span><br></pre></td></tr></table></figure>
 
-<p>I am an undergraduate at University of Electronic Science and Technology of China (<a target="_blank" rel="noopener" href="https://en.uestc.edu.cn/">UESTC</a>), majoring in Software Engineering. From January to July 2024, I worked as an intern at <a target="_blank" rel="noopener" href="https://www.bytedance.com/">ByteDance</a>.Before that,I learned c++ related content.</p>
-<p>Now I am studying on my own with the fields related to artificial intelligence large models to lay the foundation for my graduate studies.</p>
-<h2 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h2><ul>
-<li>Sept. 2021 - July 2025 (expected), Bachelor in School of Information and Software</li>
-<li>GPA:  <strong>3.90 &#x2F; 4.00</strong>, Rank: <strong>18 &#x2F; 151</strong></li>
+<p><img src="https://img-blog.csdnimg.cn/direct/555ef7118002466cb1a3a5de46470e1a.png" alt="image.png"></p>
+<ul>
+<li>如果两个参数都是二维的，则返回矩阵-矩阵乘积。</li>
 </ul>
-<h2 id="Selected-Honors-and-Awards"><a href="#Selected-Honors-and-Awards" class="headerlink" title="Selected Honors and Awards"></a>Selected Honors and Awards</h2><ul>
-<li>Outstanding Student Scholarship Of UESTC 2022</li>
-<li>Outstanding Student Scholarship Of UESTC 2023</li>
-<li>The National Grand Prize of Chinese Collegiate Computing Competition(<strong>4C</strong>)</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># batched matrix x batched matrix</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor1 = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor2 = torch.randn(<span class="number">10</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.matmul(tensor1, tensor2).size()</span><br><span class="line">torch.Size([<span class="number">10</span>, <span class="number">3</span>, <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果第一个参数是一维，第二个参数是二维，则为了矩阵乘法的目的，在其维度前添加 1。矩阵相乘后，前面的维度将被删除。</li>
+<li>如果第一个参数是二维的，第二个参数是一维的，则返回矩阵向量乘积。</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># matrix x vector</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor1 = torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor2 = torch.randn(<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.matmul(tensor1, tensor2).size()</span><br><span class="line">torch.Size([<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>每一行分别与向量相乘</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/dde55b0d499d4936be314694346646d5.png" alt="image.png"></p>
+<ul>
+<li>如果两个参数至少为一维且至少一个参数为 N 维（其中 N &gt; 2），则返回批量矩阵乘法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># batched matrix x broadcasted vector</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor1 = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor2 = torch.randn(<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.matmul(tensor1, tensor2).size()</span><br><span class="line">torch.Size([<span class="number">10</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># batched matrix x broadcasted matrix</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor1 = torch.randn(<span class="number">10</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tensor2 = torch.randn(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.matmul(tensor1, tensor2).size()</span><br><span class="line">torch.Size([<span class="number">10</span>, <span class="number">3</span>, <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html">nn.Linear</a> :线性层</li>
+</ul>
+<p><strong>Parameters</strong></p>
+<p>• in_features (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – size of each input sample<br>• out_features (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – size of each output sample<br>• bias (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a>) – If set to <code>False</code>, the layer will not learn an additive bias. Default: <code>True</code></p>
+<ul>
+<li>• <strong>in_features (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – size of each input sample</strong></li>
+<li>• <strong>out_features (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#int"><em>int</em></a>) – size of each output sample</strong></li>
+<li>• <strong>bias (<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/functions.html#bool"><em>bool</em></a>) – If set to <code>False</code>, the layer will not learn an additive bias. Default: <code>True</code></strong></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/eca4186e3343419a9c9440d7c2912ad7.png" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = nn.Linear(<span class="number">20</span>, <span class="number">30</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">input</span> = torch.randn(<span class="number">128</span>, <span class="number">20</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>output = m(<span class="built_in">input</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(output.size())</span><br><span class="line">torch.Size([<span class="number">128</span>, <span class="number">30</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensor_view.html#tensor-views"><strong>Tensor Views</strong></a></li>
+</ul>
+<p>PyTorch 允许张量成为现有张量的视图。视图张量与其基本张量共享相同的基础数据。支持视图避免了显式数据复制，从而使我们能够进行快速且内存高效的重塑、切片和逐元素操作</p>
+<p>例如，要获取现有张量 t 的视图，可以调用 t.view(…)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t = torch.rand(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">b = t.view(<span class="number">2</span>, <span class="number">8</span>)</span><br><span class="line">t.storage().data_ptr() == b.storage().data_ptr()  <span class="comment"># `t` and `b` share the same underlying data.</span></span><br><span class="line">b[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">3.14</span></span><br><span class="line">t[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>tensor transpose 转置行和列</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">base = torch.tensor([[<span class="number">0</span>, <span class="number">1</span>,<span class="number">4</span>],[<span class="number">2</span>, <span class="number">3</span>,<span class="number">5</span>]])</span><br><span class="line">base.is_contiguous()</span><br><span class="line">t = base.transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(t)</span><br><span class="line"></span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html">nn.embedding</a></li>
+</ul>
+<h1 id="np篇"><a href="#np篇" class="headerlink" title="np篇"></a><a target="_blank" rel="noopener" href="https://numpy.org/doc/2.0/reference/generated/numpy.sin.html">np</a>篇</h1><ul>
+<li>np.array：用于创建一个数组。这个数组可以是一维的，也可以是多维的，并且可以包含任何数据类型，如整数、浮点数、字符串等。数组中的所有元素必须是相同的数据类型。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>np.power(x, y):  这里x可以是数组</li>
+</ul>
+<p>$$<br>np.power(x, y) &#x3D; x^y<br>$$</p>
+<ul>
+<li>np.sin()  sp.cos():</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.sin(np.pi/<span class="number">2.</span>)</span><br><span class="line">》》 <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>np.zero(x):补充x位的0</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">6</span>).reshape((<span class="number">3</span>, <span class="number">2</span>))</span><br><span class="line">a</span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>] -&gt; </span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>, <span class="number">5</span>]])</span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">np.reshape(a, (<span class="number">2</span>, <span class="number">3</span>)) <span class="comment"># C-like index ordering</span></span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]])</span><br><span class="line">np.reshape(np.ravel(a), (<span class="number">2</span>, <span class="number">3</span>)) <span class="comment"># equivalent to C ravel then C reshape</span></span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]])</span><br><span class="line">np.reshape(a, (<span class="number">2</span>, <span class="number">3</span>), order=<span class="string">&#x27;F&#x27;</span>) <span class="comment"># Fortran-like index ordering</span></span><br><span class="line">array([[<span class="number">0</span>, <span class="number">4</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>]])</span><br><span class="line">np.reshape(np.ravel(a, order=<span class="string">&#x27;F&#x27;</span>), (<span class="number">2</span>, <span class="number">3</span>), order=<span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">4</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>]])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/generated/numpy.triu.html#numpy-triu"><strong>numpy.triu</strong></a></li>
+</ul>
+<p>数组的上三角形。<br>返回一个数组的副本，其中第 k 个对角线下方的元素已为零。对于 ndim 超过 2 的数组，triu 将应用于最后两个轴</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># k = 0,对角线以下全为0, k &gt; 1向右上平移,k &lt; 0向坐下平移</span></span><br><span class="line">np.triu([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]],<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">array([[<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>, <span class="number">6</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]])</span><br><span class="line">       </span><br><span class="line">np.triu(np.arange(<span class="number">3</span>*<span class="number">4</span>*<span class="number">5</span>).reshape(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line">array([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>, <span class="number">18</span>, <span class="number">19</span>]],</span><br><span class="line">       [[<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>],</span><br><span class="line">        [ <span class="number">0</span>, <span class="number">26</span>, <span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>, <span class="number">32</span>, <span class="number">33</span>, <span class="number">34</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>, <span class="number">38</span>, <span class="number">39</span>]],</span><br><span class="line">       [[<span class="number">40</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>, <span class="number">44</span>],</span><br><span class="line">        [ <span class="number">0</span>, <span class="number">46</span>, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>, <span class="number">52</span>, <span class="number">53</span>, <span class="number">54</span>],</span><br><span class="line">        [ <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>, <span class="number">58</span>, <span class="number">59</span>]]])</span><br></pre></td></tr></table></figure>
+
+<h1 id="Latex篇"><a href="#Latex篇" class="headerlink" title="Latex篇"></a><a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes#Writing_your_first_piece_of_LaTeX">Latex篇</a></h1><h2 id="论文轮廓"><a href="#论文轮廓" class="headerlink" title="论文轮廓"></a>论文轮廓</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[twocolumn]&#123;article&#125;</span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;hyperref&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="keyword">\geometry</span>&#123;a4paper, margin=1in&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\title</span>&#123;your paper&#x27;s name&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;jingxiao yang&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\maketitle</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;abstract&#125;</span><br><span class="line">The abstract is written here</span><br><span class="line"><span class="keyword">\end</span>&#123;abstract&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;Introduction&#125;</span><br><span class="line"><span class="comment">% Introduction content goes here...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;Related Work&#125;</span><br><span class="line"><span class="comment">% Related Work content goes here...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;Methodology&#125;</span><br><span class="line"><span class="comment">% Methodology content goes here...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;Experiments and Results&#125;</span><br><span class="line"><span class="comment">% Experiments and Results content goes here...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;Conclusion&#125;</span><br><span class="line"><span class="comment">% Conclusion content goes here...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\bibliographystyle</span>&#123;plain&#125;</span><br><span class="line"><span class="keyword">\bibliography</span>&#123;references&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="图片插入"><a href="#图片插入" class="headerlink" title="图片插入"></a>图片插入</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;  <span class="comment">% 在导言区引入graphicx包</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[h]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[width=<span class="keyword">\textwidth</span>]&#123;图片路径&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;图片说明&#125;</span><br><span class="line">    <span class="keyword">\label</span>&#123;fig:example&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[h]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[width=0.8<span class="keyword">\textwidth</span>]&#123;self-examination.png&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;The potentially harmful response generated from an LLM is inserted into a predefined prompt format and provided to a harm filter. The filter classifies the response as either “harmful” or “harmless.”&#125;</span><br><span class="line">    <span class="keyword">\label</span>&#123;fig:self-examination&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文献引用"><a href="#文献引用" class="headerlink" title="文献引用"></a>文献引用</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">latex</span><br><span class="line">复制代码</span><br><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;99&#125;</span><br><span class="line">  <span class="keyword">\bibitem</span>&#123;引用标记&#125; 作者. 文章标题. 期刊名, 年份.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>• 使用 <code>\cite&#123;引用标记&#125;</code> 在正文中引用参考文献。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\cite</span>&#123;ref1&#125;</span><br><span class="line"><span class="keyword">\bibitem</span>&#123;ref1&#125; Reference 1 Title. Journal Name, Year.</span><br></pre></td></tr></table></figure>
+
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="切片操作"><a href="#切片操作" class="headerlink" title="切片操作"></a><a target="_blank" rel="noopener" href="https://liaoxuefeng.com/books/python/advanced/slice/index.html">切片操作</a></h2><p><code>L[-1]</code>取倒数第一个元素，那么它同样支持倒数切片</p>
+<ul>
+<li>L[-2:]  取最后两个元素</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">L = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">100</span>))</span><br><span class="line">L[:<span class="number">10</span>] <span class="comment">#取出前十个数</span></span><br><span class="line">L[-<span class="number">10</span>:] <span class="comment">#取出后十个数</span></span><br><span class="line"><span class="comment">#前10个数，每两个取一个</span></span><br><span class="line">L[:<span class="number">10</span>:<span class="number">2</span>]</span><br><span class="line"><span class="comment">#所有数，每5个取一个</span></span><br><span class="line">L[::<span class="number">5</span>]</span><br><span class="line"><span class="comment">#复制</span></span><br><span class="line">L[:]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>[1:, 0::2]</code></p>
+<ol>
+<li>**<code>1:</code>**：<ul>
+<li>这部分表示选择索引从1到数组末尾的所有行。在Python中，索引是从0开始的，所以<code>1:</code>意味着从第二行开始，一直到数组的最后一行。</li>
+</ul>
+</li>
+<li>**<code>0::2</code>**：<ul>
+<li>这部分表示选择列。这里的<code>0</code>表示从第一列开始，<code>2</code>表示步长，即每隔一列选择一列。因此，<code>0::2</code>意味着选择所有行的第一列、第三列、第五列等，也就是所有偶数列（如果从1开始计数的话）。</li>
+</ul>
+</li>
+</ol>
+<p>扩充 <code>[]</code> 中的用法</p>
+<p>切片操作可以通过不同的参数来灵活选择数组的一部分。以下是一些常见的用法：</p>
+<ol>
+<li>**<code>start:</code>**：<ul>
+<li>选择从<code>start</code>索引到数组末尾的所有元素。</li>
+<li>例如，<code>3:</code>会选择从索引3开始的所有元素。</li>
+</ul>
+</li>
+<li>**<code>:start</code>**：<ul>
+<li>选择从第一个元素到<code>start-1</code>索引的所有元素。</li>
+<li>例如，<code>:3</code>会选择从索引0到2的元素。</li>
+</ul>
+</li>
+<li>**<code>start:stop</code>**：<ul>
+<li>选择从<code>start</code>索引到<code>stop-1</code>索引的所有元素。</li>
+<li>例如，<code>1:4</code>会选择从索引1到3的元素。</li>
+</ul>
+</li>
+<li>**<code>start:stop:step</code>**：<ul>
+<li>选择从<code>start</code>索引到<code>stop-1</code>索引之间，每隔<code>step</code>个元素选择一个元素。</li>
+<li>例如，<code>1:5:2</code>会选择索引1、3的元素。</li>
+</ul>
+</li>
+<li>**<code>::step</code>**：<ul>
+<li>选择所有元素，每隔<code>step</code>个元素选择一个元素。</li>
+<li>例如，<code>::2</code>会选择索引0、2、4等的元素。</li>
+</ul>
+</li>
+<li>**<code>start::step</code>**：<ul>
+<li>选择从<code>start</code>索引开始的所有元素，每隔<code>step</code>个元素选择一个元素。</li>
+<li>例如，<code>2::2</code>会选择索引2、4、6等的元素。</li>
+</ul>
+</li>
+<li>**<code>:stop:step</code>**：<ul>
+<li>选择从第一个元素到<code>stop-1</code>索引之间，每隔<code>step</code>个元素选择一个元素。</li>
+<li>例如，<code>:4:2</code>会选择索引0、2的元素。</li>
+</ul>
+</li>
+</ol>
+<p><strong>具体例子</strong></p>
+<p>假设有一个数组如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plaintext</span><br><span class="line">[[ 0,  1,  2,  3],</span><br><span class="line"> [ 4,  5,  6,  7],</span><br><span class="line"> [ 8,  9, 10, 11],</span><br><span class="line"> [12, 13, 14, 15]]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>**<code>1:, 0::2</code>**：<ul>
+<li>结果：<code>[[ 4, 6], [ 8, 10], [12, 14]]</code></li>
+</ul>
+</li>
+<li>**<code>:3, :2</code>**：<ul>
+<li>结果：<code>[[ 0, 1], [ 4, 5], [ 8, 9]]</code></li>
+</ul>
+</li>
+<li>**<code>:, 1:3</code>**：<ul>
+<li>结果：<code>[[ 1, 2], [ 5, 6], [ 9, 10], [13, 14]]</code></li>
+</ul>
+</li>
+<li>**<code>2:, ::2</code>**：<ul>
+<li>结果：<code>[[ 8, 9, 10, 11], [12, 13, 14, 15]]</code></li>
+</ul>
+</li>
+<li>**<code>:, 0:3:2</code>**：<ul>
+<li>结果：<code>[[ 0, 2], [ 4, 6], [ 8, 10], [12, 14]]</code></li>
+</ul>
+</li>
+</ol>
+<p>通过这些切片操作，你可以灵活地选择和操作数组的特定部分。</p>
 
                 
             </div>
@@ -383,7 +552,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/about/index.html">https://yangjx29.github.io/about/index.html</a>
+                    <a href="https://yangjx29.github.io/posts/140ab620.html">https://yangjx29.github.io/posts/140ab620.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -496,7 +665,7 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-08-06T14-36-45',
+        id: '2024-09-24T15-36-12',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -529,13 +698,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/140ab620.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="科研工具tips">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">科研工具tips</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -546,7 +715,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
                             </span>
                         <span class="publish-author">
                             
@@ -564,16 +733,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/d04bd5bc.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="操作系统">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">操作系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -584,17 +753,20 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BE%E5%86%85%E8%B5%84%E6%96%99/" class="post-category">
+                                    课内资料
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
