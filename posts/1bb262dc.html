@@ -4,8 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="friends, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="bert精读, JacksonYang的博客">
+    <meta name="description" content="
+
+
+BERT: Pre-training of Deep Bidirectional Transformers for Language UnderstandingPaper | Talk
+Part1. 标题&amp;amp;作者Pre-trai">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>friends | JacksonYang的博客</title>
+    <title>bert精读 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -256,285 +260,372 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                day day up
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">bert精读</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
-</script>
 
 
-    </div>
-</div>
-<style>
-    .friends-container {
-        margin-top: -100px;
-        margin-bottom: 30px;
-    }
+<main class="post-container content">
 
-    .friends-container .tag-title {
-        margin-bottom: 10px;
-        color: #3C4858;
-        font-size: 1.75rem;
-        font-weight: 400;
-    }
-
-    .frind-ship img {
-        border-radius: 50%;
-    }
-
-    /* 一下是按钮样式 */
-
-    .frind-ship {
-        padding: 10px 20px;
-    }
-
-    .frind-ship .title {
-        display: flex;
-        align-items: center;
-    }
-
-    .frind-ship .title div {
-        color: #fff;
-        padding-left: 10px;
-    }
-
-    .frind-ship .title img {
-        width: 100px;
-        height: 100px;
-        flex-shrink: 0;
-    }
-
-    .frind-ship .title h1 {
-        padding-bottom: 5px;
-        border-bottom: 2px solid #fff;
-        position: relative;
-        top:-15px;
-        left: 3px;
-    }
-
-    .friend-button {
-        display: flex;
-        justify-content: center;
-        margin-bottom: -27px;
-    }
-
-    .friend-button a {
-        border-radius: 40px;
-    }
-
-    .friend-all .tag-post {
-        margin-bottom: 30px;
-    }
-
-    .button-caution {
-        background-color: #FF4351;
-        border-color: #FF4351;
-        color: #FFF;
-    }
-
-    .button {
-        font-weight: 300;
-        font-size: 16px;
-        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        text-decoration: none;
-        text-align: center;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 40px;
-        margin: 0;
-        display: inline-block;
-        appearance: none;
-        cursor: pointer;
-        border: none;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: .3s;
-        transition-duration: .3s;
-    }
-
-    .title {
-        margin-bottom: 0rem !important;
-    }
-
-    .card {
-        margin: 3rem 0 1rem 0 !important;
-    }
-
-    .button-glow.button-caution {
-        -webkit-animation-name: glowing-caution;
-        animation-name: glowing-caution;
-    }
-
-    @-webkit-keyframes glowing-caution {
-        from {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-
-        50% {
-            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-        }
-
-        to {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-    }
-
-    @keyframes glowing-caution {
-        from {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-
-        50% {
-            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-        }
-
-        to {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-    }
-
-    .button-caution:hover {
-        background-color: #ff7680;
-        border-color: #ff7680;
-        color: #FFF;
-        text-decoration: none;
-    }
-
-    .frind-card1 {
-        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .frind-card2 {
-        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .frind-card3 {
-        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
-    }
-
-    .frind-card4 {
-        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-    }
-
-    .frind-card5 {
-        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
-    }
-
-    .frind-card6 {
-        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-    }
-
-    .frind-card7 {
-        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-    }
-
-    .frind-card8 {
-        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
-    }
-
-    .frind-card9 {
-        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
-    }
-
-    .frind-card10 {
-        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
-    }
-
-    article .card {
-        overflow: visible !important;
-    }
-</style>
-
-<main class="content">
-    <div class="container friends-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="tag-title center-align">
-                    <i class="fas fa-address-book"></i>&nbsp;&nbsp;友情链接
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
                 </div>
-                <article id="friends-link">
+                <div class="col s5 right-align">
                     
-                    
-                    <div class="row tags-posts friend-all">
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                        
-                        <div class="col s12 m6 l4 friend-div" data-aos="zoom-in-up">
-                            <div class="card frind-card1">
-                                <div class="frind-ship">
-                                    <div class="title">
-                                        <img src="https://blog.davidingplus.cn/assets/android-chrome-512x512.webp" alt="img">
-                                        <div>
-                                            <h1 class="friend-name">DavidingPlus</h1>
-                                            <p style="position: relative;top: -35px;">Self-discipline is key in life.</p>
-                                        </div>
-                                    </div>
-                                    <div class="friend-button">
-                                        <a href="https://davidingplus.cn" target="_blank"
-                                            class="button button-glow button-rounded button-caution">
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
+                            </a>
                         
                     </div>
                     
-                </article>
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-09-25
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
+        <hr class="clearfix">
 
         
 
-        <div class="card">
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <meta name="referrer" content="no-referrer"/>
+
+
+<h1 id="BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><a href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding" class="headerlink" title="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></a>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.04805.pdf">Paper</a> | <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PL411M7eQ">Talk</a></p>
+<h2 id="Part1-标题-作者"><a href="#Part1-标题-作者" class="headerlink" title="Part1. 标题&amp;作者"></a>Part1. 标题&amp;作者</h2><p>Pre-training: 用来做预训练的</p>
+<p>Bidirectional Transformers: 双向的transformer</p>
+<p>Language Understanding: transformer主要用于机器翻译，bert将其扩展为语言理解任务，更加广泛</p>
+<p><strong>BERT</strong>：它是一个深的双向的transformer，是用来做预训练的，面向的是一般的语言理解任务</p>
+<h2 id="Part2-摘要"><a href="#Part2-摘要" class="headerlink" title="Part2. 摘要"></a>Part2. 摘要</h2><p><strong>BERT名字来由</strong>：<strong>B</strong>idirectional <strong>E</strong>ncoder <strong>R</strong>epresentations from <strong>T</strong>ransformers</p>
+<blockquote>
+<p>ELMo, BERT, ERNIE均是美国著名儿童教育节目《芝麻街》中的人物</p>
+</blockquote>
+<p><strong>BERT与GPT和ELMo的区别</strong>：</p>
+<ul>
+<li>BERT: 使用未标注数据，联合左右的上下文信息，训练得到深的双向的表示；得益于此设计，针对不用的下游语言（问答、推理等）任务，只需要对预训练好的BERT模型另加一个额外的输出层即可</li>
+<li>GPT: 是一个单向过程，使用左边的上下文信息去预测未来，而BERT同时使用左侧和右侧信息（Bidirectional双向的由来）</li>
+<li>ELMo: 基于RNN架构，BERT是基于transformer；ELMo在用到一些下游任务上时通常需要对架构做一些调整，而BERT只需要改最上层即可</li>
+</ul>
+<h2 id="Part3-导言"><a href="#Part3-导言" class="headerlink" title="Part3. 导言"></a>Part3. 导言</h2><p><strong>NLP任务可分为两类</strong>:</p>
+<ul>
+<li>sentence-level tasks: 句子层面的任务，主要用来建模句子之间的关系，比如句子情绪识别、两个句子之间的关系等</li>
+<li>token-level tasks: 词元层面的任务，比如实体命名识别（NER）等</li>
+</ul>
+<p><strong>在使用预训练模型做特征表示时，一般用两类策略</strong>：</p>
+<ul>
+<li>feature-based:对每一个下游任务，构造一个与该任务相关的神经网络（比如RNN结构），而预训练好的表示（可理解为预训练模型的输出）作为额外的特征和已有输入一起送给模型，代表作ELMo</li>
+<li>fine-tuning:在预训练模型用于下游任务时，只需要针对任务修改头部结构即可，模型预训练好的参数会在下游任务的数据上再进行微调一下（即所有的权重都会进行微调，对比feature-based来看由于输入的是特征相当于预训练模型的参数是固定的），代表作GPT</li>
+</ul>
+<p><strong>当前预训练模型技术的局限性</strong>：</p>
+<ul>
+<li>标准的语言模型是一个单向的任务，导致选架构时有一些局限性，比如GPT使用的是一个从左到右的架构；但一些任务无论从左到右或者从右到左结构应该是一样的，比如句子情绪识别</li>
+</ul>
+<p><strong>BERT是如何突破以上局限性的？</strong></p>
+<ul>
+<li>“masked language model”(MLM)：带掩码的语言模型，对句子随机掩盖部分词汇，然后预测这些词（完形填空），允许同时看左右的信息（与从左到右不同）</li>
+<li>“next sentence prediction”: 给定两个句子，判断这两个句子在原文中是否相邻，希望可以学习到句子层面的一些信息<blockquote>
+<p>我理解以上两种方式分别想针对token-level与sentence-level任务</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Part4-结论"><a href="#Part4-结论" class="headerlink" title="Part4. 结论"></a>Part4. 结论</h2><ul>
+<li>BERT将之前基于单向结构的预训练模型拓展到双向结构，使得同样的一个预训练模型能够处理不同的NLP任务</li>
+<li>BERT是ELMo使用双向信息（但基于比较旧的RNN架构）与GPT使用新架构transformer（但只能处理单项信息）两者的结合</li>
+</ul>
+<h2 id="Part5-相关工作"><a href="#Part5-相关工作" class="headerlink" title="Part5. 相关工作"></a>Part5. 相关工作</h2><ul>
+<li>Unsupervised Feature-based Approaches: 代表作ELMo</li>
+<li>Unsupervised Fine-tuning Approaches: 代表作GPT</li>
+<li>Transfer Learning from Supervised Data: 在有标注的数据上，针对下游任务进行迁移学习</li>
+</ul>
+<h2 id="Part6-BERT模型"><a href="#Part6-BERT模型" class="headerlink" title="Part6. BERT模型"></a>Part6. BERT模型</h2><p><strong>BERT中的两个步骤</strong>：pre-training和fine-tuning</p>
+<img src="https://user-images.githubusercontent.com/22740819/145942921-7ed8cde2-d193-45bd-b169-dfed380de035.png" width=600>
+
+<ul>
+<li>首先pre-training阶段使用无标注数据进行训练得到预训练模型，然后fine-tuning阶段使用标注数据对模型进行微调</li>
+<li>fine-tuning时每一个下游任务都会有一个自己特定的bert模型，由预训练好的模型进行参数初始化（输出层除外），然后在自己任务的标注数据上进行微调，期间所有参数都会参与训练</li>
+</ul>
+<h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><p>BERT模型是一个多层的双向的transformer的编码器</p>
+<p><strong>模型的三个可调整参数</strong>：</p>
+<ul>
+<li>L：transformer block的个数</li>
+<li>H：隐藏层大小</li>
+<li>A：self-attention head的个数</li>
+</ul>
+<blockquote>
+<p>BERT_base（L&#x3D;12, H&#x3D;768, A&#x3D;12, Total Parameters&#x3D;110M），BERT_large（L&#x3D;24, H&#x3D;1024, A&#x3D;16, Total Parameters&#x3D;340M）</p>
+</blockquote>
+<p><strong>可学习参数量的计算</strong></p>
+<p>BERT模型里的可学习参数主要来自两部分：嵌入层与Transformer Block</p>
+<img src="https://user-images.githubusercontent.com/22740819/145948712-57dd1b13-596a-464f-a216-c2a39fb12ad6.png" width=400>
+
+<p><em><strong>嵌入层</strong></em>：实际是一个矩阵，输入为字典的大小30k，输出为隐层单元的个数H；</p>
+<blockquote>
+<p>参数量&#x3D;30k（字典大小）* H（hidden size）</p>
+</blockquote>
+<p><em><strong>Transformer块</strong></em>：包括multi head self-attention与MLP两部分中的参数，self-attention本身不包含参数，但是multi head self-attention中会把所有进入的Q、K、V分别做一次投影，每次投影的维度为64（<code>A * 64=H</code>）；MLP包含两个全连接层（第一个全连接层输入是<code>H</code>，输出是<code>4 * H</code>，参数量<code>H^2 * 4</code>；第二个全连接层输入是<code>4 * H</code>，输出是<code>H</code>，参数量<code>H^2 * 4</code>）</p>
+<blockquote>
+<p>Multi head self-attention参数量&#x3D;<code>H^2 * 4</code>，MLP参数量&#x3D;<code>H^2 * 4 + H^2 * 4 = H^2 * 8</code>，整个transformer block的参数量为<code>H^2 * 4 + H^2 * 8 = H^2 * 12</code>，L 个 blocks的参数量&#x3D;<code>L * H^2 * 12</code></p>
+</blockquote>
+<p>BERT总参数量&#x3D;<code>30k * H</code>（嵌入层）+ <code>L * H^2 * 12</code>（L个transformer块），以BERT_base为例<code>H=768</code>，<code>L=12</code>，总参数量&#x3D;1.1亿（即<code>110M</code>）</p>
+<p>（该部分建议看视频更直观，视频于23:22处）</p>
+<p><strong>BERT的输入和输出</strong></p>
+<p>为了处理不同的下游任务，BERT的输入即可以是一个句子（一段连续的文字，不一定是真正的语义上的一段句子），也可以是一个句子对；无论是一个句子还是句子对，它们最终都是构成一个序列（sequence）作为输入；</p>
+<blockquote>
+<p>BERT输入与Transformer输入的区别：transformer的输入是一个序列对，编码器和解码器分别会输入一个序列；而BERT只有一个编码器，为了使BERT能处理两个句子的情况，需要把两个句子并成一个序列。</p>
+</blockquote>
+<p><strong>BERT输入的序列是如何构成的</strong></p>
+<p><em><strong>切词</strong></em></p>
+<p>假设按照空格切词，每个词作为一个token，如果数据量比较大，会导致切出的词典特别大，可能是百万级别，由之前计算模型参数的方法可知，若是百万级别就会导致模型的整个可学习参数都在嵌入层上。</p>
+<p>WordPiece，如果一个词出现的频率比较低，则应该把它切开，然后只保留一个词频率较高的子序列。这样的话，可以把一个相对来说比较长的文本，切成很多片段，而且这些片段是经常出现的，进而可以用一个相对来说比较小的词典（30k）就可以表示一个比较大的文本了。</p>
+<p><em><strong>序列构成</strong></em></p>
+<p>BERT的输入序列，第一个词永远是[CLS]（classification），其输出代表整个序列的信息</p>
+<blockquote>
+<p>[CLS]：BERT希望它代表的是整个序列的信息，因为transformer中的self-attention机制使得输入的每一个token都会去看其它所有的token信息，就算[CLS]放在序列的第一个位置，它也是有办法看到之后所有的词</p>
+</blockquote>
+<p>将两个句子合成一个序列之后，为了区分开两个句子，所采用了两种方式：</p>
+<ul>
+<li>在每一个句子后面放一个特殊词[SEP]（separate）；</li>
+<li>添加一个可学习的嵌入层，来表示当前句子到底是第一个句子还是第二个句子。</li>
+</ul>
+<blockquote>
+<p>[SEP]：用于区分两个句子的连接符</p>
+</blockquote>
+<p>最终所构成的序列：<code>[CLS][Token1]...[TokenN][SEP][Token1&#39;]...[TokenN&#39;]</code></p>
+<p><em><strong>输入-输出向量化表示</strong></em></p>
+<img src="https://user-images.githubusercontent.com/22740819/145942921-7ed8cde2-d193-45bd-b169-dfed380de035.png" width=600>
+
+<p>在将句子切词、序列化之后，送入transformer之前，是需要对输入序列（每个token）进行向量化表示的（上图中黄色部分）；每个token被embedding之后送入transformer，然后输出该token新的embedding表示（上图中绿色部分）。所以，BERT是一个序列到序列的模型。针对下游任务，添加额外的输出层，将由bert得到的token embedding映射为想要的结果。</p>
+<img src="https://user-images.githubusercontent.com/22740819/145993078-ef5cc313-f930-4e0f-8f20-d716499e28b3.png" width=600>
+
+<p>对于每个词元token进入BERT的向量表示（token embedding），是由token、segment以及position embedding三者相加获得。</p>
+<ul>
+<li>token embedding: token本身的embedding</li>
+<li>segment embedding: 该token是属于第一个句子还是第二个句子的embedding</li>
+<li>position embedding: 该token在句子中位置的embedding</li>
+</ul>
+<h3 id="BERT-Pre-training部分"><a href="#BERT-Pre-training部分" class="headerlink" title="BERT Pre-training部分"></a>BERT Pre-training部分</h3><p>预训练阶段两个关键部分：目标任务和预训练的数据</p>
+<p><strong>目标任务1: Masked LM</strong></p>
+<p>Masked LM实际是一个<strong>完形填空</strong>任务。对于一个输入BERT的词元序列，如果一个token是有WordPiece生成的，那么它有15%的的概率被替换成一个掩码，但是对于特殊的token不做替换（[ CLS ]和[SEP]）。假如输入序列是1000个token，那么该任务需要预测其中的150个被mask掉的词。 </p>
+<p>Masked LM存在的问题：在做掩码时，会将词元替换成特殊符号[MASK]，所以在pre-training阶段会看到输入中有15%的[MASK]，但是在fine-tuning阶段是没有[MASK]这个东西的（因为微调时不用Masked LM这个目标任务）</p>
+<blockquote>
+<p>解决方法：对于被选中的15%去做掩码的token，有80%的概率真的将其替换成[MASK]，10%的概率将其替换成一个随机的token，还有10%的概率该token保持不变，但是让它用于预测使用。</p>
+</blockquote>
+<p><strong>目标任务2: Next Sentence Prediction(NSP)</strong></p>
+<p>一个给定的序列包含两个句子a和b，其中有50%的概率在原文之中句子b确实是在句子a之后，还有50%的概率句子b是从另外一个地方随机选取出来的一个句子（其实就是50%的样本为正例，50%的样本为负例），该任务就是预测句子b是否为句子a的下一句。</p>
+<p>该预训练任务对QA、推理等下游任务有明显的增益。</p>
+<p><strong>Pre-training data</strong></p>
+<ul>
+<li>BooksCorpus：具有8亿个词</li>
+<li>Englishi Wikipedia：25亿个词</li>
+</ul>
+<p>预训练时应该使用文本级别（document-level）的预料，即送进去的时一篇一篇的文章，而不是一些随机打乱的句子。因为Transformer本身可以处理比较长的序列，输入整体的文本效果会更好一些。</p>
+<h3 id="BERT-Fine-tuning部分"><a href="#BERT-Fine-tuning部分" class="headerlink" title="BERT Fine-tuning部分"></a>BERT Fine-tuning部分</h3><p><strong>BERT与一些基于encoder-decoder架构的模型（如transformer）的区别？</strong></p>
+<ul>
+<li>BERT预训练时的输入是整个文章或者一些句子对，由于self-attention机制导致可以在两端之间相互看到，但是基于encoder-decoder的结构里，一般encoder是看不到decoder的东西的，这里BERT会更好一些（不太理解），所付出的代价是BERT不能像Transformer那样来做机器翻译任务了。</li>
+</ul>
+<p><strong>下游任务</strong></p>
+<p>针对下游任务，只需要设计输入和输出，模型架构不需要变。即只需考虑你的输入如何改造成BERT所需要的句子对：</p>
+<ul>
+<li>如果你的下游任务也有两个句子作为输入，那就是句子A和B</li>
+<li>如果你的下游任务也有一个句子作为输入（比如句子分类），那么相当于句子B是省略的</li>
+</ul>
+<h2 id="Part7-实验"><a href="#Part7-实验" class="headerlink" title="Part7. 实验"></a>Part7. 实验</h2><p><strong>任务1:GLUE (General Language Understanding Evaluation)</strong></p>
+<p>这是一个句子层面的分类任务，[CLS]的BERT输出加一个输出映射就可以得到最终的输出。</p>
+<p><strong>任务2:SQuAD (Stanford Question Answering Dataset)</strong></p>
+<p>这是斯坦福的一个QA数据集，QA任务就是给定一段话，然后问你一个问题，需要你把答案找出来。答案已经在给定的那段话中，只需要把答案对应的那个片段找出来就可以（片段的开始和结尾），实际操作时就是对每一个token，来判断一下它是不是答案的开头或者结尾，具体的就是对每个token学习得到两个向量S和E，分别代表其作为答案的开始和结尾的概率。</p>
+<p><strong>任务3: SQuAD 2.0</strong></p>
+<p>同上</p>
+<p><strong>任务4:SWAG</strong></p>
+<p>这是一个用来判断两个句子之间关系的任务。</p>
+<h2 id="Part8-评论"><a href="#Part8-评论" class="headerlink" title="Part8. 评论"></a>Part8. 评论</h2><p>略。</p>
+
+                
+            </div>
+            <hr/>
 
             
-            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">jingxiaoyang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangjx29.github.io/posts/1bb262dc.html">https://yangjx29.github.io/posts/1bb262dc.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">jingxiaoyang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -553,38 +644,228 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-09-24T11-14-46',
+        id: '2024-09-25T21-45-41',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/1bb262dc.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="bert精读">
+                        
+                        <span class="card-title">bert精读</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/674e3c36.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="transfomer精读">
+                        
+                        <span class="card-title">transfomer精读</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
-</main>
+</div>
 
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
 <script>
     $(function () {
-        $('#friends-link').masonry({
-            itemSelector: '.friend-div'
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
         });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
     });
 </script>
+
+    
+
+</main>
+
+
 
 
     <footer class="page-footer bg-color">

@@ -4,8 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="friends, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="transfomer精读, JacksonYang的博客">
+    <meta name="description" content="
+
+Attention Is All You NeedPaper | Talk
+Part1. 标题&amp;amp;作者Transformer开创了继MLP、CNN和RNN之后的第四大类模型。
+xxx is all you need
+Part2. ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>friends | JacksonYang的博客</title>
+    <title>transfomer精读 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -256,285 +261,383 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                day day up
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">transfomer精读</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
-</script>
 
 
-    </div>
-</div>
-<style>
-    .friends-container {
-        margin-top: -100px;
-        margin-bottom: 30px;
-    }
+<main class="post-container content">
 
-    .friends-container .tag-title {
-        margin-bottom: 10px;
-        color: #3C4858;
-        font-size: 1.75rem;
-        font-weight: 400;
-    }
-
-    .frind-ship img {
-        border-radius: 50%;
-    }
-
-    /* 一下是按钮样式 */
-
-    .frind-ship {
-        padding: 10px 20px;
-    }
-
-    .frind-ship .title {
-        display: flex;
-        align-items: center;
-    }
-
-    .frind-ship .title div {
-        color: #fff;
-        padding-left: 10px;
-    }
-
-    .frind-ship .title img {
-        width: 100px;
-        height: 100px;
-        flex-shrink: 0;
-    }
-
-    .frind-ship .title h1 {
-        padding-bottom: 5px;
-        border-bottom: 2px solid #fff;
-        position: relative;
-        top:-15px;
-        left: 3px;
-    }
-
-    .friend-button {
-        display: flex;
-        justify-content: center;
-        margin-bottom: -27px;
-    }
-
-    .friend-button a {
-        border-radius: 40px;
-    }
-
-    .friend-all .tag-post {
-        margin-bottom: 30px;
-    }
-
-    .button-caution {
-        background-color: #FF4351;
-        border-color: #FF4351;
-        color: #FFF;
-    }
-
-    .button {
-        font-weight: 300;
-        font-size: 16px;
-        font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        text-decoration: none;
-        text-align: center;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 40px;
-        margin: 0;
-        display: inline-block;
-        appearance: none;
-        cursor: pointer;
-        border: none;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: .3s;
-        transition-duration: .3s;
-    }
-
-    .title {
-        margin-bottom: 0rem !important;
-    }
-
-    .card {
-        margin: 3rem 0 1rem 0 !important;
-    }
-
-    .button-glow.button-caution {
-        -webkit-animation-name: glowing-caution;
-        animation-name: glowing-caution;
-    }
-
-    @-webkit-keyframes glowing-caution {
-        from {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-
-        50% {
-            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-        }
-
-        to {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-    }
-
-    @keyframes glowing-caution {
-        from {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-
-        50% {
-            -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
-        }
-
-        to {
-            -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
-        }
-    }
-
-    .button-caution:hover {
-        background-color: #ff7680;
-        border-color: #ff7680;
-        color: #FFF;
-        text-decoration: none;
-    }
-
-    .frind-card1 {
-        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .frind-card2 {
-        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .frind-card3 {
-        background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
-    }
-
-    .frind-card4 {
-        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-    }
-
-    .frind-card5 {
-        background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
-    }
-
-    .frind-card6 {
-        background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-    }
-
-    .frind-card7 {
-        background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-    }
-
-    .frind-card8 {
-        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
-    }
-
-    .frind-card9 {
-        background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
-    }
-
-    .frind-card10 {
-        background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
-    }
-
-    article .card {
-        overflow: visible !important;
-    }
-</style>
-
-<main class="content">
-    <div class="container friends-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="tag-title center-align">
-                    <i class="fas fa-address-book"></i>&nbsp;&nbsp;友情链接
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
                 </div>
-                <article id="friends-link">
+                <div class="col s5 right-align">
                     
-                    
-                    <div class="row tags-posts friend-all">
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                        
-                        <div class="col s12 m6 l4 friend-div" data-aos="zoom-in-up">
-                            <div class="card frind-card1">
-                                <div class="frind-ship">
-                                    <div class="title">
-                                        <img src="https://blog.davidingplus.cn/assets/android-chrome-512x512.webp" alt="img">
-                                        <div>
-                                            <h1 class="friend-name">DavidingPlus</h1>
-                                            <p style="position: relative;top: -35px;">Self-discipline is key in life.</p>
-                                        </div>
-                                    </div>
-                                    <div class="friend-button">
-                                        <a href="https://davidingplus.cn" target="_blank"
-                                            class="button button-glow button-rounded button-caution">
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
+                            </a>
                         
                     </div>
                     
-                </article>
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-09-24
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
+        <hr class="clearfix">
 
         
 
-        <div class="card">
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <meta name="referrer" content="no-referrer"/>
+
+<h1 id="Attention-Is-All-You-Need"><a href="#Attention-Is-All-You-Need" class="headerlink" title="Attention Is All You Need"></a>Attention Is All You Need</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Paper</a> | <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pu411o7BE/">Talk</a></p>
+<h2 id="Part1-标题-作者"><a href="#Part1-标题-作者" class="headerlink" title="Part1. 标题&amp;作者"></a>Part1. 标题&amp;作者</h2><p>Transformer开创了继MLP、CNN和RNN之后的第四大类模型。</p>
+<p>xxx is all you need</p>
+<h2 id="Part2-摘要"><a href="#Part2-摘要" class="headerlink" title="Part2. 摘要"></a>Part2. 摘要</h2><p><strong>sequence transduction models: 序列转录模型</strong></p>
+<ul>
+<li><p>序列转录模型是说给定一个序列，生成另外一个序列。以机器翻译为例，给定一句英文，生成一句中文。</p>
+</li>
+<li><p>序列转录模型通常是基于RNN或CNN，包含encoder-decoder的架构，encoder与decoder之间通过attention连接。</p>
+</li>
+</ul>
+<p><strong>Transformer</strong>: 仅依赖attention机制，不包含RNN和CNN结构。</p>
+<h2 id="Part3-结论"><a href="#Part3-结论" class="headerlink" title="Part3. 结论"></a>Part3. 结论</h2><ul>
+<li>Transformer是第一个仅使用attention来做序列转录任务的模型，同样基于encoder-decoder架构，但是将其中的RNN或CNN替换成了multi-head self-attention</li>
+<li>在机器翻译任务上，Transformer的训练速度相对于其它结构更快、效果更好</li>
+<li>纯attention模型可以用于其它领域，图片、音频、视频等</li>
+</ul>
+<h2 id="Part4-导言"><a href="#Part4-导言" class="headerlink" title="Part4. 导言"></a>Part4. 导言</h2><p><strong>基于RNN的序列模型的缺点</strong></p>
+<ul>
+<li>在RNN中，给定一个序列，必须从左往右的计算，即计算第t个词的输出<code>h_t</code>时，是由第t-1个词的输出<code>h_t-1</code>和当前词t共同计算的，导致很难并行</li>
+<li>由于时序信息是逐步向后传递，假如序列很长，容易导致早期的时序信息在后面被丢失，如果不想丢掉需要<code>h_t</code>比较大，内存开销就会变大</li>
+</ul>
+<p><strong>attention在RNN中的应用</strong></p>
+<ul>
+<li>attention在RNN中的应用主要体现在它如何把encoder的信息有效的传递给decoder</li>
+</ul>
+<h2 id="Part5-相关工作"><a href="#Part5-相关工作" class="headerlink" title="Part5. 相关工作"></a>Part5. 相关工作</h2><p><strong>基于CNN的序列模型的缺点</strong></p>
+<ul>
+<li>卷积神经网络对比较长的序列难以建模，受限于局部窗口操作，想提升感受野必须增加卷积层数</li>
+<li>Transformer中的自注意力机制可以使一层就可以看到整个序列的信息</li>
+</ul>
+<p><strong>multi-head self-attention的由来</strong></p>
+<ul>
+<li>卷积操作的一个优点是可以多通道输出，一个输出通道其实可以它可以去识别不一样的模式，为了模拟此效果，transformer引入了multi-head-attention概念，每一个head可以当作一个channel</li>
+</ul>
+<h2 id="Part6-模型"><a href="#Part6-模型" class="headerlink" title="Part6. 模型"></a>Part6. 模型</h2><h3 id="基于encoder-decoder结构的序列转录模型"><a href="#基于encoder-decoder结构的序列转录模型" class="headerlink" title="基于encoder-decoder结构的序列转录模型"></a>基于encoder-decoder结构的序列转录模型</h3><ul>
+<li>对于encoder而言，假设输入为<code>(x_1, ..., x_n)</code>, <code>x_n</code>为第n个输入的向量表示，编码器会将其映射为新的表示<code>(z_1, ..., z_n)</code>，序列长度仍然为n</li>
+<li>对于decoder而言，拿到encoder的输出<code>(z_1, ..., z_n)</code>，然后生成一个长度为m的序列<code>(y_1, ..., y_m)</code>，这里输出序列长度可能与输入序列长度可能不同, n-&gt;m</li>
+<li>decoder与encoder最大的不同是，解码器里的词是一个一个生成的，此过程被称为<strong>自回归auto-regressive</strong>，比如说要得到<code>y_t</code>时，前面已经得到的<code>y_1</code>~&#96;y_t-1&#96;可作为当前的输入，这个过程就是自回归。</li>
+</ul>
+<h3 id="Transformer结构"><a href="#Transformer结构" class="headerlink" title="Transformer结构"></a>Transformer结构</h3><p>Transformer也是基于encoder-decoder架构，encoder与decoder均是由self-attention、point-wise、fully-connected layers组成</p>
+<img src="https://user-images.githubusercontent.com/22740819/146134838-6eb2864f-9667-487e-8df3-4a705029f7eb.png" width = "300">
+
+<p>图上，左侧部分为encoder，右侧部分为解码器。以中译英为例，encoder的输入inputs就是中文句子，在做预测的时候，decoder是没有外部输入的，实际上是之前encoder的输出来作为decoder的输入。</p>
+<p><em><strong>1.嵌入层Input Embedding</strong></em></p>
+<ul>
+<li>input embedding: 模型输入inputs为一个一个的词，首先需要将其表示为一个向量</li>
+<li>position encoding:</li>
+</ul>
+<p><em><strong>2.Encoder</strong></em></p>
+<ul>
+<li>Multi-Head self-attention: 多头注意力机制</li>
+<li>Add &amp; Norm: 残差连接 + LayerNorm归一化</li>
+<li>Feed Forward: 其实就是MLP</li>
+</ul>
+<p>以上三个操作组成transformer的block，然后N个block堆叠组成encoder，encoder的输出作为decoder的输入使用</p>
+<p>在encoder中，由于残差连接要求特征维度一致，简单起见，固定每一层的输出维度均为512</p>
+<blockquote>
+<p><strong>LayerNorm与BatchNorm的对比</strong></p>
+</blockquote>
+<img src="https://user-images.githubusercontent.com/22740819/146143314-5d6127c4-7992-47c8-ac41-3097242137a9.png" width=300>
+
+<ul>
+<li>BatchNorm：是在batch内在样本间做归一化，均值为0，方差为1；假如n本书，每本书的第一页拿出来，根据n本书的第一页的字数均值做Norm</li>
+<li>LayerNorm：是对每一个样本内做归一化；假如n本书，针对某一本书，这本书的每一页拿出来，根据次数每页的字数均值，自己做Norm</li>
+</ul>
+<p>一般的，如果模型的输入是变长的，不使用BatchNorm</p>
+<p>（建议这部分直接看视频，视频25:40处）</p>
+<p><em><strong>3.Decoder</strong></em></p>
+<ul>
+<li>Masked Multi-Head Self-Attention：在multi-head self-attention上加了mask</li>
+<li>Add &amp; Norm</li>
+<li>Encoder Block: 该部分和encoder相同</li>
+</ul>
+<p>以上三种操作堆叠重复N次，组成decoder</p>
+<blockquote>
+<p><strong>Decoder中masked multi-head self-attention的由来</strong></p>
+</blockquote>
+<ul>
+<li>因为decoder做的是自回归任务，也就是说当前输出的input是上面一些时刻的输出，意味着当你做预测的时候你不能看到之后那些时刻的输出，但是在自注意力机制里，每一次都能看到整个完整的输入，为了避免这种情况发生，在decoder训练时，在预测第t个时刻的输出时，不应该看到t时刻以后的那些输入，所以引入了mask</li>
+</ul>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><img src="https://user-images.githubusercontent.com/22740819/146146897-0b84ee49-f30f-4a2b-a043-98032e069396.png" width=100>
+
+<ul>
+<li>attention模块的输入为query, key, value，其中key-value成对，三者均为向量</li>
+<li>query与key计算相似度得到权重，然后value通过得到的权重加权得到新的输出output</li>
+</ul>
+<p><em><strong>1.Scaled Dot-Product Attention</strong></em></p>
+<img src="https://user-images.githubusercontent.com/22740819/146154573-005a7d8f-b2b9-4b1b-b6a3-4b4ba47e50a0.png" width=200>
+
+<img src="https://user-images.githubusercontent.com/22740819/146150223-c5ad5d6e-b7ae-454b-8f45-96371924bc7a.png" width=250>
+
+<p>其中，query和key维度相同<code>d_k</code>，value维度为’d_v’，query与key计算内积，作为相似度，然后除以<code>sqrt(d_k)</code>，然后再通过一个<code>softmax</code>得到权重</p>
+<blockquote>
+<p><strong>为什么要做scaled(除以sqrt(d_k))?</strong></p>
+</blockquote>
+<ul>
+<li>当d_k不是很大时，其实做不做scaled影响不大；当d_k比较大时，所得到的点积结果可能会比较大，当值的范围比较大时，值与值之间的相对差距就会比较明显，经softmax处理之后，较大的值会趋向于1，较小的的值趋向于0，导致有点两极分化，进而会导致在计算梯度时梯度会比较小，收敛困难，paper中的d_k&#x3D;512，算比较大</li>
+</ul>
+<blockquote>
+<p><strong>attention中的mask如何做？</strong></p>
+</blockquote>
+<ul>
+<li>mask主要是为了避免你在第t时间看到以后时间的信息。假设query与key等长都为n，对于第t时间的<code>q_t</code>，在做计算时，应该只能看到<code>k_1</code>～<code>k_t-1</code>，但是注意力机制的性质导致<code>q_t</code>会和所有的<code>k</code>做计算。解决方法：在query与key计算之后，将<code>q_t</code>与<code>k_t</code>～<code>k_n</code>的计算结果置为一个极小值（如-1e-11），这样在softmax之后这部分权重基本趋向于0，这样在和value计算加权时相当于只用了<code>v_1</code>～<code>v_t-1</code>的信息（这部分建议看视频，42:00处）</li>
+</ul>
+<p><em><strong>2.Multi-Head Attention</strong></em></p>
+<img src="https://user-images.githubusercontent.com/22740819/146154695-92091fa7-cdf5-456a-8b10-18a1100723bb.png" width=200>
+
+<ul>
+<li>multi-head attention：先通过线性层分别把q, k, v投影到低维，然后把低维空间的q、k、v分别送入h个attention模块计算得到h个输入，然后将H个输出concat起来，再投影回来得到最终输出</li>
+<li><strong>意义</strong>：基于dot-product的attention中其实是没有可学习参数的，但是为了识别不同的模式，希望有一些不一样的计算相似度的方法；每一次计算attention之前都先投影到低维空间，其中投影矩阵w是可学的，也就是说给你h次机会，希望可以学到不同的投影方法，使得在那个投影进去的度量空间能够去匹配不同的模式它需要的一些相似函数，类似于CNN中的channle</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：由于残差连接的存在，multi-head attention的输入与输出维度需要是一致的。所以，h个低维向量concat起来需要和输入维度一致，一般都会将低维空间的维度设置为<code>d_in // h</code></p>
+</blockquote>
+<p><em><strong>3.multi-head attention在transformer中的应用</strong></em></p>
+<p>Transformer中分别有三处用到了multi-head attention，其作用分别如下:</p>
+<ul>
+<li>Encoder中的multi-head attention: 这里的q、k、v是相同的值copy三份，所以是self-attention</li>
+<li>Decoder中的masked multi-head attention: 这里的输入同样q、k、v是相同的，也是self-attention，与encoder中不同的是用了mask</li>
+<li>Decoder中的multi-head attention: 这里的key-value来自于encoder的输出，query来自于decoder的masked multi-head attention，可以理解为通过这里的query将encoder的输出中感兴趣的信息提取出来</li>
+</ul>
+<p>（建议看视频理解，48:00处）</p>
+<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>其实就是一个单隐层的MLP，维度从512-&gt;2048-&gt;512</p>
+<ul>
+<li>point-wise: 指对输入的每一个词过一次MLP，或者说MLP只作用在最后一个维度</li>
+</ul>
+<p><em><strong>1.Transformer与RNN传递时序信息方式的对比</strong></em></p>
+<img src="https://user-images.githubusercontent.com/22740819/146162754-12e7588e-7ec3-477e-99cf-454937648684.png" width=250>
+
+<ul>
+<li>transformer中的attention已经汇聚了序列信息，所以MLP只针对单点计算即可（每个词单独过MLP）</li>
+<li>RNN中的序列信息是逐步由前向后传递，将上一时刻的信息作为下一个时刻的输入</li>
+</ul>
+<h3 id="Embeddings-and-Softmax"><a href="#Embeddings-and-Softmax" class="headerlink" title="Embeddings and Softmax"></a>Embeddings and Softmax</h3><ul>
+<li>embedding: 将输入的词token映射为向量表示，向量维度为<code>d_model</code>，paper中为512</li>
+<li>编码器、解码器、最后softmax之前的3个embedding共享权重，使得训练更简单</li>
+</ul>
+<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><p>attention本身是不具备时序信息的，query和key计算相似度后与value加权所得到的结果和value在序列中的位置没有关系，也就是说给定一个序列，如果将序列的顺序打乱，所得到的结果是一致的，这显然是不合理的。一个句子把词的顺序打乱可能语义会发生变化，所以需要把时序信息加进来</p>
+<ul>
+<li>RNN中，当前时刻的输入是上一时刻的输出，是按时刻逐步计算的，本身含有时序信息</li>
+<li>Transformer的做法是在输入里加入时序信息，假设某个词所在序列中的位置是i，把i映射为向量加到输入里（position encoding）</li>
+</ul>
+<h3 id="self-attention与rnn-cnn复杂度等的对比"><a href="#self-attention与rnn-cnn复杂度等的对比" class="headerlink" title="self-attention与rnn, cnn复杂度等的对比"></a>self-attention与rnn, cnn复杂度等的对比</h3><p><em><strong>1.复杂度对比</strong></em></p>
+<img src="https://user-images.githubusercontent.com/22740819/145567402-7799b78f-756b-452b-9dd0-30527c237bd2.png" width=500>
+
+<ul>
+<li>Complexity per Layer: 模型计算复杂度，越小越好</li>
+<li>Sequential Operations: 顺序的计算，或者说你下一步的计算需要等前面多少步计算完成，影响并行度</li>
+<li>Maximum Path Length: 一个信息点走到另一个信息点要走多远（可以理解为时序信息的传递效率）</li>
+</ul>
+<p>表中，n为序列长度，d为向量长度；当序列比较长时，self-attention计算复杂度就会变高</p>
+<p><em><strong>2.归纳偏置</strong></em></p>
+<ul>
+<li>CNN中的inductive bias: locality和spatial invariance，即空间相近的像素有联系而远的没有，和空间不变性（kernel权重共享）</li>
+<li>RNN中的inductive bias: sequentiality和time invariance，即序列顺序上的timesteps有联系，和时间变换的不变性（rnn权重共享）</li>
+<li>attention缺少归纳偏置，对整个模型的先验假设更少，导致需要更多的数据和更大的模型才能训练出来和RNN、CNN同样的效果。所以，现在基于transformer的模型一般比较大，而且对数据量要求高</li>
+</ul>
+<h2 id="Part7-实验"><a href="#Part7-实验" class="headerlink" title="Part7. 实验"></a>Part7. 实验</h2><p><strong>WMT 2014数据集</strong>：英语翻德语数据集，包含4.5w个句子对</p>
+<h2 id="Part8-评论"><a href="#Part8-评论" class="headerlink" title="Part8. 评论"></a>Part8. 评论</h2><p>略。</p>
+
+                
+            </div>
+            <hr/>
 
             
-            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">jingxiaoyang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangjx29.github.io/posts/674e3c36.html">https://yangjx29.github.io/posts/674e3c36.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">jingxiaoyang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -553,38 +656,226 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-09-24T11-14-46',
+        id: '2024-09-24T19-07-56',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
-            
+    
 
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/1bb262dc.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="bert精读">
+                        
+                        <span class="card-title">bert精读</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/140ab620.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="科研工具tips">
+                        
+                        <span class="card-title">科研工具tips</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
-</main>
+</div>
 
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
 <script>
     $(function () {
-        $('#friends-link').masonry({
-            itemSelector: '.friend-div'
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
         });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
     });
 </script>
+
+    
+
+</main>
+
+
 
 
     <footer class="page-footer bg-color">
