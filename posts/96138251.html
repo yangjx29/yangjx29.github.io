@@ -4,8 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="404 Not Found, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="ML-based-knowledge, JacksonYang的博客">
+    <meta name="description" content="
+
+ML知识点汇总1.LSTM
+原理分析
+
+2.预训练思想有了图像领域预训练的引入，我们在此给出预训练的思想：任务 A 对应的模型 A 的参数不再是随机初始化的，而是通过任务 B 进行预先训练得到模型 B，然后利用模型 B 的参数对模型 A">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>404 Not Found | JacksonYang的博客</title>
+    <title>ML-based-knowledge | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -260,12 +265,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">404 Not Found</h1>
+                    <h1 class="description center-align post-title">ML-based-knowledge</h1>
                 </div>
             </div>
         </div>
@@ -294,6 +299,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/ML/" class="post-category">
+                                ML
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -310,14 +324,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    35
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -342,12 +356,142 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>好巧啊，在这里能遇到您！</p>
-<p>您似乎找到了不存在的页面，您可能需要：</p>
+                <meta name="referrer" content="no-referrer"/>
+
+<h1 id="ML知识点汇总"><a href="#ML知识点汇总" class="headerlink" title="ML知识点汇总"></a>ML知识点汇总</h1><h2 id="1-LSTM"><a href="#1-LSTM" class="headerlink" title="1.LSTM"></a>1.LSTM</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38147421/article/details/107692418">原理分析</a></li>
+</ol>
+<h2 id="2-预训练思想"><a href="#2-预训练思想" class="headerlink" title="2.预训练思想"></a>2.预训练思想</h2><p>有了图像领域预训练的引入，我们在此给出预训练的思想：任务 A 对应的模型 A 的参数不再是随机初始化的，而是通过任务 B 进行预先训练得到模型 B，然后利用模型 B 的参数对模型 A 进行初始化，再通过任务 A 的数据对模型 A 进行训练。注：模型 B 的参数是随机初始化的。</p>
+<h2 id="3-神经网络语言模型NNLM"><a href="#3-神经网络语言模型NNLM" class="headerlink" title="3.神经网络语言模型NNLM"></a>3.神经网络语言模型NNLM</h2><p>神经网络语言模型则引入神经网络架构来估计单词的分布，<strong>并且通过词向量的距离衡量单词之间的相似度，因此，对于未登录单词，也可以通过相似词进行估计，进而避免出现数据稀疏问题</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/4063e81a2a4f47569b2231ca4e19822a.png" alt="image-20240925143535796"></p>
+<p>上图所示有一个 $V×m $ 的矩阵 $Q$，这个矩阵$Q$包含 $V$ 行，$V$ 代表词典大小，每一行的内容代表对应单词的 Word Embedding 值。</p>
+<p>只不过  $Q$ 的内容也是网络参数，需要学习获得，训练刚开始用随机值初始化矩阵  $Q$，当这个网络训练好之后，矩阵  $Q$ 的内容被正确赋值，每一行代表一个单词对应的 Word embedding 值</p>
+<p>上图为神经网络语言模型结构图，它的学习任务是输入某个句中单词 $w_t$&#x3D;bert 前的 t−1 个单词，要求网络正确预测单词 “bert”，即最大化：</p>
+<p>$P(w_t&#x3D;bert|w1,w2,⋯,wt−1;θ)$</p>
+<p>上图所示的神经网络语言模型分为三层，接下来我们详细讲解这三层的作用：</p>
+<ol>
+<li>神经网络语言模型的第一层，为输入层。首先将前 n−1 个单词用 Onehot 编码（例如：0001000）作为原始单词输入，之后乘以一个随机初始化的矩阵 Q 后获得词向量 $C(w_i)$，对这 n−1个词向量处理后得到输入 x，记作 $x&#x3D;(C(w_1),C(w_2),⋯,C(w_{t−1}))$</li>
+<li>神经网络语言模型的第二层，为隐层，包含 h 个隐变量，H 代表权重矩阵，因此隐层的输出为 $H_x+ d$，其中 d 为偏置项。并且在此之后使用 tanh 作为激活函数。</li>
+<li>神经网络语言模型的第三层，为输出层，一共有 $|V|$ 个输出节点（字典大小），直观上讲，每个输出节点$yi$是词典中每一个单词概率值。最终得到的计算公式为：$y&#x3D;softmax(b+W_x+Utanh⁡(d+H_x))$，其中 W 是直接从输入层到输出层的权重矩阵，U 是隐层到输出层的参数矩阵。</li>
+</ol>
 <ul>
-<li><a href="/">回到首页 ←</a></li>
-<li><a href="/archives/">所有文章 ←</a></li>
+<li>Word Embedding 其实就是<strong>标准的预训练过程</strong></li>
 </ul>
+<h2 id="3-词向量"><a href="#3-词向量" class="headerlink" title="3.词向量"></a>3.词向量</h2><h3 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h3><p><strong>把单词用向量表示，是把深度神经网络语言模型引入自然语言处理领域的一个核心技术。</strong></p>
+<p>在自然语言处理任务中，训练集大多为一个字或者一个词，把他们转化为计算机适合处理的数值类数据非常重要。</p>
+<p>早期，人们想到的方法是使用独热（Onehot）编码，如下图所示<img src="https://img-blog.csdnimg.cn/direct/5b002586caa9442ca55946e3e5433dab.png" alt="image-20240925145525155"></p>
+<p>但是，对于独热表示的向量，如果采用余弦相似度计算向量间的相似度，<strong>可以明显的发现任意两者向量的相似度结果都为 0</strong>，即任意二者都不相关，也就是说独热表示无法解决词之间的相似性问题</p>
+<h3 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h3><p>在神经网络语言模型中出现的一个词向量 C(wi)，对的，<strong>这个 C(wi) 其实就是单词对应的 Word Embedding 值，也就是我们这节的核心——词向量。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/4063e81a2a4f47569b2231ca4e19822a.png" alt="image-20240925143535796"></p>
+<p>上图所示有一个 $V×m $ 的矩阵 $Q$，这个矩阵$Q$包含 $V$ 行，$V$ 代表词典大小，每一行的内容代表对应单词的 Word Embedding 值。</p>
+<p>只不过  $Q$ 的内容也是网络参数，需要学习获得，训练刚开始用随机值初始化矩阵  $Q$，当这个网络训练好之后，矩阵  $Q$ 的内容被正确赋值，每一行代表一个单词对应的 Word embedding 值</p>
+<p>但是这个词向量有没有解决词之间的相似度问题呢？为了回答这个问题，我们可以看看词向量的计算过程：</p>
+<p>$[0&amp;0&amp;0&amp;1&amp;0] \begin{matrix}7&amp;24&amp;1\23&amp;5&amp;7\4&amp;6&amp;13\10&amp;12&amp;19&amp;\11&amp;18&amp;25 \end{matrix} &#x3D; [10&amp;12&amp;19]$</p>
+<p>通过上述词向量的计算，可以发现第 4 个词的词向量表示为 [10 12 19]。</p>
+<p>如果再次采用<strong>余弦相似度计算两个词之间的相似度，结果不再是 0</strong> ，既可以一定程度上描述两个词之间的相似度</p>
+<h3 id="Word2Vec模型"><a href="#Word2Vec模型" class="headerlink" title="Word2Vec模型"></a>Word2Vec模型</h3><ul>
+<li>Word2Vec工作原理</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/e3ce8be556be47b596df3d82c1f4a734.png" alt="image-20240925151659106"></p>
+<p>Word2Vec 的网络结构其实和神经网络语言模型（NNLM）是基本类似的，不过这里需要指出：尽管网络结构相近，而且都是做语言模型任务，但是<strong>他们训练方法不太一样</strong>。</p>
+<p>Word2Vec 有两种训练方法：</p>
+<ol>
+<li>第一种叫 <strong>CBOW</strong>，<strong>核心思想是从一个句子里面把一个词抠掉</strong>，用这个词的上文和下文去预测被抠掉的这个词；</li>
+<li>第二种叫做 <strong>Skip-gram</strong>，和 CBOW 正好反过来，输入某个单词，要求网络预测它的上下文单词。</li>
+</ol>
+<p>而NNLM的训练方法是<strong>输入一个单词的上文，去预测这个单词</strong></p>
+<p>为什么 Word2Vec 这么处理？原因很简单，因为 Word2Vec 和 NNLM 不一样，NNLM 的主要任务是要学习一个解决语言模型任务的网络结构，语言模型就是要看到上文预测下文，而 Word Embedding只是 NNLM 无心插柳的一个副产品；但是 Word2Vec 目标不一样，它单纯就是要 Word Embedding 的，这是主产品，所以它完全可以随性地这么去训练网络。</p>
+<h3 id="EMLO"><a href="#EMLO" class="headerlink" title="EMLO"></a>EMLO</h3><p>word embedding无法区分多义词。</p>
+<p>ELMo 的本质思想是：先用语言模型学好一个单词的 Word Embedding，此时多义词无法区分，不过这没关系。在实际使用 Word Embedding 的时候，单词已经具备了特定的上下文了，这个时候我可以根据上下文单词的语义再去调整单词的 Word Embedding 表示，这样经过调整后的 Word Embedding 更能表达在这个上下文中的具体含义，自然也就解决了多义词的问题了。所以 ELMo 本身是个<strong>根据当前上下文对 Word Embedding 动态调整的思路。</strong></p>
+<p>ELMo 采用了典型的两阶段过程：</p>
+<ol>
+<li>第一个阶段是利用语言模型进行<strong>预训练</strong>；</li>
+<li>第二个阶段是在做<strong>下游任务</strong>时<strong>，从预训练网络中提取对应单词的网络各层的 Word Embedding 作为新特征补充到下游任务中。</strong></li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/direct/5aa3f88d24e546edac02bcabf59f17e7.png" alt="image-20240925164420747"></p>
+<p>上图展示的是其<strong>第一阶段预训练过程</strong>，它的网络结构采用了双层双向 LSTM，目前语言模型训练的任务目标是根据单词 $w_i$ 的上下文去正确预测单词 $w_i$ ，$w_i$ 之前的单词序列 Context-before 称为上文，之后的单词序列 Context-after 称为下文。</p>
+<p>图中左端的前向双层 LSTM 代表正方向编码器，输入的是从左到右顺序的除了预测单词外$w_i$的上文 Context-before；右端的逆向双层 LSTM 代表反方向编码器，输入的是从右到左的逆序的句子下文Context-after；每个编码器的深度都是两层 LSTM 叠加。</p>
+<p>使用这个网络结构利用大量语料做语言模型任务就能预先训练好这个网络，如果训练好这个网络后，输入一个新句子 $s_{new}$ ，句子中每个单词都能得到对应的三个 Embedding：</p>
+<ul>
+<li>最底层是单词的 Word Embedding；</li>
+<li>往上走是第一层双向 LSTM 中对应单词位置的 Embedding，这层编码单词的<strong>句法信息</strong>更多一些；</li>
+<li>再往上走是第二层 LSTM 中对应单词位置的 Embedding，这层编码单词的<strong>语义信息</strong>更多一些</li>
+</ul>
+<p>也就是说，ELMo 的预训练过程不仅仅学会单词的 Word Embedding，还学会了一个双层双向的 LSTM 网络结构，而这两者后面都有用。</p>
+<h4 id="ELMo-的-Feature-based-Pre-Training"><a href="#ELMo-的-Feature-based-Pre-Training" class="headerlink" title="ELMo 的 Feature-based Pre-Training"></a>ELMo 的 Feature-based Pre-Training</h4><p>预训练好之后，elmo如何给下游任务使用呢？</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/be676db332e64faba09f2333dd5e1b42.png" alt="image-20240925165426685"></p>
+<p>上图展示了下游任务的使用过程，比如我们的下游任务仍然是 QA 问题，此时对于问句 X：</p>
+<ol>
+<li>我们可以先将句子 X 作为预训练好的 ELMo 网络的输入，这样句子 X 中每个单词在 ELMO 网络中都能获得对应的三个 Embedding；</li>
+<li>之后给予这三个 Embedding 中的每一个 Embedding 一个权重 a，这个权重可以学习得来，根据各自权重累加求和，将三个 Embedding 整合成一个；</li>
+<li>然后将整合后的这个 Embedding 作为 X 句在自己任务的那个网络结构中对应单词的输入，以此作为补充的新特征给下游任务使用。</li>
+<li>对于上图所示下游任务 QA 中的回答句子 Y 来说也是如此处理。</li>
+</ol>
+<p><strong>因为 ELMo 给下游提供的是每个单词的特征形式，所以这一类预训练的方法被称为 “Feature-based Pre-Training”。</strong></p>
+<p>至于为何这么做能够达到区分多义词的效果，原因在于在训练好 ELMo 后，<strong>在特征提取的时候，每个单词在两层 LSTM 上都会有对应的节点，这两个节点会编码单词的一些句法特征和语义特征，并且它们的 Embedding 编码是动态改变的</strong>，会受到上下文单词的影响，周围单词的上下文不同应该会强化某种语义，弱化其它语义，进而就解决了多义词的问题。</p>
+<h2 id="RNN和LSTM"><a href="#RNN和LSTM" class="headerlink" title="RNN和LSTM"></a>RNN和LSTM</h2><p>RNN（Recurrent Neural Network） 和 LSTM（Long Short-Term Memory）</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><ul>
+<li>传统的神经网络无法获取时序信息，然而<strong>时序信息在自然语言处理任务中非常重要</strong></li>
+<li>RNN 的基本单元结构如下图所示<img src="https://img-blog.csdnimg.cn/direct/c2ce040182ce479d9047347cc4fc23f4.png" alt="image-20240925152242019"></li>
+</ul>
+<p>上图左边部分称作 RNN 的一个 timestep，在这个 timestep 中可以看到，在 $t$ 时刻，输入变量 $x_t$，通过 RNN 的一个基础模块 A，输出变量 $h_t$，而 $t$ 时刻的信息，将会传递到下一个时刻 $t+1$</p>
+<p>如果把模块按照时序展开，则会如上图右边部分所示，<strong>由此可以看到 RNN 为多个基础模块 A 的互连，每一个模块都会把当前信息传递给下一个模块</strong>。</p>
+<p>RNN 解决了时序依赖问题，但这里的时序一般指的是<strong>短距离</strong>的，首先我们先介绍下短距离依赖和长距离依赖的区别：</p>
+<ul>
+<li>短距离依赖：对于这个填空题 “我想看一场篮球____”，我们很容易就判断出 “篮球” 后面跟的是 “比赛”，这种短距离依赖问题非常适合 RNN。</li>
+<li>长距离依赖：对于这个填空题 “我出生在中国的瓷都景德镇，小学和中学离家都很近，……，我的母语是____”，对于短距离依赖，“我的母语是” 后面可以紧跟着 “汉语”、“英语”、“法语”，但是如果我们想精确答案，则必须回到上文中很长距离之前的表述 “我出生在中国的瓷都景德镇”，进而判断答案为 “汉语”，而 RNN 是很难学习到这些信息的。</li>
+</ul>
+<h4 id="RNN梯度消失问题"><a href="#RNN梯度消失问题" class="headerlink" title="RNN梯度消失问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaojc1995/article/details/114649486">RNN梯度消失问题</a></h4><ul>
+<li>为什么<strong>RNN不适合长距离依赖问题</strong></li>
+</ul>
+<img src="https://img-blog.csdnimg.cn/direct/14b5df8af70c486d8d0851038a4fee26.png" alt="image-20240925153100124" style="zoom:70%;" />
+
+<p>如上图所示，为RNN模型结构，前向传播过程包括：</p>
+<ul>
+<li><p>隐藏状态: $h^{t}&#x3D;\sigma({z^{(t)}}) &#x3D; \sigma(Ux^{t}+Wh^{(t-1)}+b)$,此处激活函数一般为 tanh</p>
+</li>
+<li><p>模型输出：$o^{(t)}&#x3D;Vh^{(t)}+c$</p>
+</li>
+<li><p>预测输出：$\hat{y}^2&#x3D;\sigma(o^{(t)})$,此处激活函数一般为softmax。</p>
+</li>
+<li><p>模型损失：$L &#x3D;\sum_{t&#x3D;1}^NL^{(t)}$</p>
+<p>RNN 所有的 timestep 共享一套参数 U,V,W，在 RNN 反向传播过程中，需要计算 U,V,W等参数的梯度，以 W 的梯度表达式为例（假设 RNN 模型的损失函数为 L）：</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/6774cdb7aea643be947368f7f3f9d350.png" alt="image-20240925154324891"></p>
+<p>需要注意的是，RNN和DNN梯度消失和梯度爆炸含义并不相同</p>
+<p>RNN中权重在各时间步内共享，最终的梯度是各个时间步的梯度和，梯度和会越来越大。因此，RNN中总的梯度是不会消失的，即使梯度越传越弱，也只是远距离的梯度消失。 从公式（9）中的$(\prod_{k&#x3D;t+1}^Ttanh^\prime{(z^{(k)}W)}$可以看到，<strong>RNN所谓梯度消失的真正含义是，梯度被近距离（$t+1趋向于T$）梯度主导，远距离（$t+1远离T$）梯度很小，导致模型难以学到远距离的信息。</strong></p>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>为了解决 RNN 缺乏的序列长距离依赖问题，LSTM 被提了出来</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/ee36d17132d54828b2bdd229f3f1fda1.png" alt="image-20240925155356045"></p>
+<p>如上图所示，为 LSTM 的 RNN 门控结构（LSTM 的 timestep），LSTM 前向传播过程包括</p>
+<ul>
+<li><p>遗忘门：</p>
+<p><strong>决定了丢弃哪些信息，</strong>遗忘门接收$t−1$时刻的状态$h_{t−1}$，以及当前的输入$x_t$，经过 Sigmoid 函数后输出一个 0 到 1 之间的值$f_t$</p>
+<ul>
+<li>输出：$i_t&#x3D;σ(W^ih_{t−1}+U_ix_t+b_i), \widehat{C}<em>t&#x3D;tanhW_ah</em>{t−1}+U_ax_t+b_a$</li>
+</ul>
+</li>
+<li><p>输入门：<strong>决定了哪些新信息被保留</strong>，并更新cell状态，输入门的取值由 $h_{t−1}$ 和 ${x_t}$决定，通过 Sigmoid 函数得到一个 0 到 1 之间的值 $i_t$，而 $tanh$ 函数则创造了一个当前cell状态的候选 $a_t$</p>
+<ul>
+<li>输出：$i_t&#x3D;\sigma(W_ih_{t-1}+U_ix_t+b_i) , \tilde{C}<em>t&#x3D;tanhW_ah</em>{t-1}+U_ax_t+b_a$</li>
+</ul>
+</li>
+<li><p>cell状态：旧cell状态 $C_{t−1}$ 被更新到新的cell状态 $C_t$ 上</p>
+<ul>
+<li>输出：$C_t&#x3D;C_{t-1}\odot f_t+i_t\odot\tilde{C_t}$</li>
+</ul>
+</li>
+<li><p>输出门：决定了最后输出的信息，输出门取值由$h_{t−1}$ 和$x_{t}$决定，通过 Sigmoid 函数得到一个 0 到 1 之间的值 $o_t$，最后通过 $tanh$ 函数决定最后输出的信息</p>
+<ul>
+<li>输出$o_t&#x3D;\sigma(W_oh_{t-1}+U_ox_t+b_o) , h_t&#x3D;o_t\odot tanhC_t$</li>
+</ul>
+</li>
+<li><p>预测输出：$\hat{y}_t&#x3D;\sigma(Vh_t+c)$</p>
+</li>
+</ul>
+<h4 id="LSTM解决RNN梯度消失问题"><a href="#LSTM解决RNN梯度消失问题" class="headerlink" title="LSTM解决RNN梯度消失问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaojc1995/article/details/114649486">LSTM解决RNN梯度消失问题</a></h4><p> 1、cell state传播函数中的“加法”结构确实起了一定作用，它使得导数有可能大于1；<br>2、LSTM中逻辑门的参数可以一定程度控制不同时间步梯度消失的程度。</p>
+<p>最后，LSTM依然不能完全解决梯度消失这个问题，有文献表示序列长度一般到了三百多仍然会出现梯度消失现象。如果想彻底规避这个问题，还是transformer好用</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nickchen121/p/16470569.html#tid-EEyxQf">click here</a></p>
 
                 
             </div>
@@ -374,7 +518,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/404.html">https://yangjx29.github.io/404.html</a>
+                    <a href="https://yangjx29.github.io/posts/96138251.html">https://yangjx29.github.io/posts/96138251.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -487,7 +631,7 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-09-25T09-10-50',
+        id: '2024-09-25T16-58-41',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -515,18 +659,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/posts/1bb262dc.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="404 Not Found">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="bert精读">
                         
-                        <span class="card-title">404 Not Found</span>
+                        <span class="card-title">bert精读</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -536,18 +679,21 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -555,16 +701,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/posts/674e3c36.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="404 Not Found">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="transfomer精读">
                         
-                        <span class="card-title">404 Not Found</span>
+                        <span class="card-title">transfomer精读</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -575,17 +721,20 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -703,6 +852,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
