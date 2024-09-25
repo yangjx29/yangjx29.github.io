@@ -5,6 +5,8 @@ abbrlink: 674e3c36
 date: 2024-09-24 19:07:56
 updated: 2024-09-24 19:07:56
 tags:
+mathjax: true
+toc: true
 ---
 <meta name="referrer" content="no-referrer"/>
 
