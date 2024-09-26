@@ -216,6 +216,107 @@ RNN中权重在各时间步内共享，最终的梯度是各个时间步的梯�
 
 最后，LSTM依然不能完全解决梯度消失这个问题，有文献表示序列长度一般到了三百多仍然会出现梯度消失现象。如果想彻底规避这个问题，还是transformer好用
 
+## 5.Attention
+
+### 本质思想
+
+虽然 LSTM 解决了序列长距离依赖问题，但是单词超过 200 的时候就会失效。**而 Attention 机制可以更加好的解决序列长距离依赖问题，并且具有并行计算能力**
+
+首先我们得明确一个点，注意力模型从大量信息 Values 中筛选出少量重要信息，**这些重要信息一定是相对于另外一个信息 Query 而言是重要的**。也就是说，我们要搭建一个注意力模型，我们必须得要有一个 Query 和一个 Values，然后通过 Query 这个信息从 Values 中筛选出重要信息。简单点说，**就是计算 Query 和 Values 中每个信息的相关程度。**
+
+![image-20240926141606010](https://img-blog.csdnimg.cn/direct/79464bde78ad46baabef1ab09061cbbc.png)
+
+通过上图，Attention 通常可以进行如下描述，表示为将 Query(Q) 和 key-value pairs（**把 Values 拆分成了键值对的形式**） 映射到输出上，其中 query、每个 key、每个 value 都是向量，输出是 V 中所有 values 的加权，其中权重是由 Query 和每个 key 计算出来的，计算方法分为三步：
+
+* 第一步：计算比较 Q 和 K 的相似度，用 f 来表示：$f(Q,K_i)\quad i=1,2,\cdots,m$,一般第一步计算方法包括四种
+  * 点乘(**Transformer使用**):$f(Q,K_i)=Q^TK_i$
+  * 权重：$f(Q,K_i)=Q^TWK_i$
+  * 拼接权重：$: f(Q,K_i)=W[Q^T;K_i]$
+  * 感知器：$f(Q,K_i)=V^T\tanh(WQ+UK_i)$
+* 第二步：将得到的相似度进行 softmax 操作，进行归一化：$$\alpha_{i}=softmax(\frac{f(Q,K_{i})}{\sqrt{d}_{k}})$$
+  * 为什么除以$\sqrt{d}_{k}$: 假设 Q , K 里的元素的均值为0，方差为 1，那么 $A^T=Q^TK$中元素的均值为 0，方差为 d。当 d 变得很大时， A 中的元素的方差也会变得很大，如果 A 中的元素方差很大(分布的方差大，分布集中在绝对值大的区域)，**在数量级较大时， softmax 将几乎全部的概率分布都分配给了最大值对应的标签**，由于某一维度的数量级较大，进而会导致 softmax 未来求梯度时会消失。
+  * 总结一下就是 $softmax⁡(A)$ 的分布会和d有关。因此 AA中每一个元素乘上 $\frac{1}{\sqrt{d}_{k}}$ 后，**方差又变为 1，**并且 A 的数量级也将会变小。
+* 第三步：针对计算出来的权重 αi，对 V 中的所有 values 进行加权求和计算，得到 Attention 向量:$Attention=\sum_{i=1}^m\alpha_iV_i$
+
+### self-attention
+
+![image-20240926144716980](https://img-blog.csdnimg.cn/direct/365497885a4f4919aaa45ed880a51b68.png)
+
+首先可以看到 Self Attention 有三个输入 Q、K、V：**对于 Self Attention，Q、K、V 来自句子 X 的 词向量 x 的线性转化，即对于词向量 x，给定三个可学习的矩阵参数 $W_Q,W_k,W_v$，x 分别右乘上述矩阵得到 Q、K、V**。
+
+**计算流程**
+
+* 第一步，Q、K、V 的获取![image-20240926144847487](https://img-blog.csdnimg.cn/direct/516cbfebb23d42c69ac4584dc1707987.png)
+
+上图操作：两个单词 Thinking 和 Machines。通过线性变换，即$x_1 和 x_2$两个向量分别与$W_Q,W_k,W_v$ 三个矩阵点乘得到 $q_1,q_2,k_1,k_2,v_1,v_2 共 6 个向量。矩阵 Q 则是向量$ $q_1,q_2$ 的拼接，K、V 同理。
+
+* 第二步，MatMul![image-20240926145106372](https://img-blog.csdnimg.cn/direct/bc227fa5da5b46709d2715dd405cd409.png)
+
+上图操作：向量 $q_1,k_1$做点乘得到得分 112， $q_1,k_2$ 做点乘得到得分96。注意：**这里是通过 $q_1$这个信息找到 $x_1,x_2$ 中的重要信息。**
+
+* 第三步和第四步，Scale + Softmax
+
+![image-20240926145325955](https://img-blog.csdnimg.cn/direct/e6e5f5b56c994593926e2b559325baa2.png)
+
+对该得分进行规范，除以 $\sqrt{d_k}=8$
+
+* 第五步，MatMul
+
+![image-20240926145542828](https://img-blog.csdnimg.cn/direct/489f71f3ec2c40b8945d1ae89dbdd633.png)
+
+用得分比例 [0.88，0.12] 乘以 $[v_1,v_2]$ 值得到一个加权后的值，将这些值加起来得到 $z_1$
+
+上述所说就是 Self Attention 模型所做的事，仔细感受一下，用$q_1$、$K=[k_1,k_2]$去计算一个 Thinking 相对于 Thinking 和 Machine 的权重，再用权重乘以 Thinking 和 Machine 的$V=[v_1,v_2]$ 得到加权后的 Thinking 和 Machine 的$V=[v_1,v_2]$,最后求和得到针对各单词的输出$z_{1}$
+同理可以计算出 Machine 相对于 Thinking 和 Machine 的加权输出$z_2$,拼接$z_1$和$z_2$即可得到 Attention 值$Z=[z_1,z_2]$,这就是 Self
+Attention 的矩阵计算，如下所示。
+之前的例子是单个向量的运算例子。这张图展示的是矩阵运算的例子，输入是一个[2x4]的矩阵(句子中每个单词的词向量的拼接),每
+个运算是[4x3]的矩阵，求得Q、K、V。
+
+![image-20240926145931157](https://img-blog.csdnimg.cn/direct/eee5f81a1cde499494b5c588a5820ba7.png)
+
+Q对K转制做点乘，除以$\sqrt{d}_k$,做一个 softmax 得到合为 1 的比例，对V做点乘得到输出 Z。那么这个 Z 就是一个考虑过Thinking 周围单词Machine 的输出。
+
+![image-20240926150145483](https://img-blog.csdnimg.cn/direct/f4fffeb6e49a49ccadae84154f05c3d3.png)
+
+
+
+**Self Attention 和 RNN、LSTM 的区别**
+
+- RNN、LSTM：如果是 RNN 或者 LSTM，需要依次序列计算，对于远距离的相互依赖的特征，**要经过若干时间步步骤的信息累积才能将两者联系起来，而距离越远，有效捕获的可能性越小**。
+- Self Attention：
+  - 引入 Self Attention 后会更容易捕获句子中长距离的相互依赖的特征，**因为 Self Attention 在计算过程中会直接将句子中任意两个单词的联系通过一个计算步骤直接联系起来，所以远距离依赖特征之间的距离被极大缩短，有利于有效地利用这些特征**；
+  - 除此之外，Self Attention 对于**一句话中的每个单词都可以单独的进行 Attention 值的计算**，也就是说 Self Attention 对计算的并行性也有直接帮助作用，而对于必须得依次序列计算的 RNN 而言，是无法做到并行计算的。
+
+#### Masked Self Attention 模型
+
+![image-20240926150727812](https://img-blog.csdnimg.cn/direct/7b91122adc5e465aaee55afc24a9b737.png)
+
+我们已经通过 scale 之前的步骤得到了一个 attention map，**而 mask 就是沿着对角线把灰色的区域用0覆盖掉，不给模型看到未来的信息**，如下图所示![image-20240926150747585](https://img-blog.csdnimg.cn/direct/9fb4f7d68ec24fc4ba50ed23044bc593.png)
+
+在做完 softmax 之后，横轴结果合为 1
+
+#### Multi-head Self Attention 模型
+
+$\text{Multi-Head Attention 就是把 Self Attention 得到的注意力值}Z\text{切分成}\text{n个}Z_1,Z_2,\cdots,Z_n\\\text{,然后通过全连接层获得新的 }Z^{\prime}$
+
+<img src="https://img-blog.csdnimg.cn/direct/3eda42531c8c48f995195263c07c4655.png" alt="image-20240926151121502" style="zoom:50%;" />
+
+我们对 $Z$ 进行 8 等份的切分得到 8 个 $Z_i$ 矩阵
+
+<img src="https://img-blog.csdnimg.cn/direct/7123375216ab466183021b21fbf8b98e.png" alt="image-20240926151206524" style="zoom:67%;" />
+
+为了使得输出与输入结构相同，拼接矩阵  $Z_i$  后乘以一个线性  $W_o$ 得到最终的 $Z$ 
+
+<img src="https://img-blog.csdnimg.cn/direct/f7d3b1813e1746709aff99ca2b79cc94.png" alt="image-20240926151303986" style="zoom:50%;" />
+
+
+
+整个流程：<img src="https://img-blog.csdnimg.cn/direct/088bb4ea3ee14572871cff4b21a1ea17.png" alt="image-20240926151344964" style="zoom:67%;" />
+
+**多头相当于把原始信息 Source 放入了多个子空间中，也就是捕捉了多个信息，对于使用 multi-head（多头） attention 的简单回答就是，多头保证了 attention 可以注意到不同子空间的信息，捕捉到更加丰富的特征信息**
+
+
+
 
 
 

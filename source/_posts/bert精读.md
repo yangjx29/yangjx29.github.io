@@ -4,6 +4,8 @@ abbrlink: 1bb262dc
 date: 2024-09-25 21:45:41
 updated: 2024-09-25 10:14:12
 categories: paper reading
+mathjax: true
+toc: true
 ---
 <meta name="referrer" content="no-referrer"/>
 
