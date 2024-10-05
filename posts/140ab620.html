@@ -327,14 +327,14 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    14 分
                 </div>
                 
 
@@ -574,6 +574,17 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
 </li>
 </ol>
 <p>通过这些切片操作，你可以灵活地选择和操作数组的特定部分。</p>
+<h3 id="分布式训练DP和DDP"><a href="#分布式训练DP和DDP" class="headerlink" title="分布式训练DP和DDP"></a>分布式训练DP和DDP</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chentiao/p/17666330.html">blog</a></p>
+<p>使用 DDP 进行多卡并行加速模型的重点：</p>
+<ul>
+<li>init_process_group 函数管理进程组</li>
+<li>在创建 Dataloader 的过程中，需要使用 DistributedSampler 采样器</li>
+<li>正反向传播之前需要将数据以及模型移动到对应 GPU，通过参数 rank 进行索引，还要将模型使用 DistributedDataParallel 进行包装</li>
+<li>在每个 epoch 开始之前，需要使用 train_sampler.set_epoch（epoch）为 train_sampler 指定 epoch，这样做可以使每个 epoch 划分给不同进程的 minibatch 不同，从而在整个训练过程中，不同的进程有机会接触到更多的训练数据</li>
+<li>使用启动器进行启动。不同启动器对应不同的代码。torch.distributed.launch 通过命令行的方法执行，torch.multiprocessing.spawn 则可以直接运行程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import torch</span><br><span class="line">import torch.distributed as dist</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.optim as optim</span><br><span class="line">import torch.multiprocessing as mp</span><br><span class="line"> </span><br><span class="line">from torch.nn.parallel import DistributedDataParallel as DDP</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">def setup(rank, world_size):</span><br><span class="line">    os.environ[&#x27;MASTER_ADDR&#x27;] = &#x27;localhost&#x27;</span><br><span class="line">    os.environ[&#x27;MASTER_PORT&#x27;] = &#x27;12355&#x27;</span><br><span class="line"> </span><br><span class="line">    # initialize the process group</span><br><span class="line">    dist.init_process_group(&quot;nccl&quot;, rank=rank, world_size=world_size)</span><br><span class="line"> </span><br><span class="line">def run(demo_fn, world_size):</span><br><span class="line">    setup(rank, world_size)</span><br><span class="line"> </span><br><span class="line">    torch.manual_seed(18)</span><br><span class="line">    torch.cuda.manual_seed_all(18)</span><br><span class="line">    torch.backends.cudnn.deterministic = True</span><br><span class="line">    torch.cuda.set_device(rank) # 这里设置 device ，后面可以直接使用 data.cuda(),否则需要指定 rank</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    train_dataset = ...</span><br><span class="line">    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)</span><br><span class="line">    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=..., sampler=train_sampler)</span><br><span class="line"> </span><br><span class="line">    model = ...</span><br><span class="line">    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[rank])</span><br><span class="line"> </span><br><span class="line">    optimizer = optim.SGD(model.parameters())</span><br><span class="line"> </span><br><span class="line">    for epoch in range(100):</span><br><span class="line">       train_sampler.set_epoch(epoch)</span><br><span class="line">       for batch_idx, (data, target) in enumerate(train_loader):</span><br><span class="line">          data = data.cuda()</span><br><span class="line">          target = target.cuda()</span><br><span class="line">          ...</span><br><span class="line">          output = model(images)</span><br><span class="line">          loss = criterion(output, target)</span><br><span class="line">          ...</span><br><span class="line">          optimizer.zero_grad()</span><br><span class="line">          loss.backward()</span><br><span class="line">          optimizer.step()</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    n_gpus = torch.cuda.device_count()</span><br><span class="line">    assert n_gpus &gt;= 2, f&quot;Requires at least 2 GPUs to run, but got &#123;n_gpus&#125;&quot;</span><br><span class="line">    world_size = n_gpus</span><br><span class="line"> </span><br><span class="line">    mp.spawn(run,</span><br><span class="line">             args=(world_size,),</span><br><span class="line">             nprocs=world_size,</span><br><span class="line">             join=True)</span><br></pre></td></tr></table></figure>
+
 <h3 id="useful-blogs"><a href="#useful-blogs" class="headerlink" title="useful blogs"></a>useful blogs</h3><ol>
 <li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/">阮一峰的日志</a></li>
 </ol>
@@ -1040,7 +1051,7 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        194.8k
+                                                        195.2k
                                                     </span>
                                                     
                                                         

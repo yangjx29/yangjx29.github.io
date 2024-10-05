@@ -377,7 +377,7 @@ ML知识点汇总1.LSTM
 <ul>
 <li>Word Embedding 其实就是<strong>标准的预训练过程</strong></li>
 </ul>
-<h2 id="3-词向量"><a href="#3-词向量" class="headerlink" title="3.词向量"></a>3.词向量</h2><h3 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h3><p><strong>把单词用向量表示，是把深度神经网络语言模型引入自然语言处理领域的一个核心技术。</strong></p>
+<h2 id="4-词向量"><a href="#4-词向量" class="headerlink" title="4.词向量"></a>4.词向量</h2><h3 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h3><p><strong>把单词用向量表示，是把深度神经网络语言模型引入自然语言处理领域的一个核心技术。</strong></p>
 <p>在自然语言处理任务中，训练集大多为一个字或者一个词，把他们转化为计算机适合处理的数值类数据非常重要。</p>
 <p>早期，人们想到的方法是使用独热（Onehot）编码，如下图所示<img src="https://img-blog.csdnimg.cn/direct/5b002586caa9442ca55946e3e5433dab.png" alt="image-20240925145525155"></p>
 <p>但是，对于独热表示的向量，如果采用余弦相似度计算向量间的相似度，<strong>可以明显的发现任意两者向量的相似度结果都为 0</strong>，即任意二者都不相关，也就是说独热表示无法解决词之间的相似性问题</p>
@@ -429,7 +429,7 @@ ML知识点汇总1.LSTM
 </ol>
 <p><strong>因为 ELMo 给下游提供的是每个单词的特征形式，所以这一类预训练的方法被称为 “Feature-based Pre-Training”。</strong></p>
 <p>至于为何这么做能够达到区分多义词的效果，原因在于在训练好 ELMo 后，<strong>在特征提取的时候，每个单词在两层 LSTM 上都会有对应的节点，这两个节点会编码单词的一些句法特征和语义特征，并且它们的 Embedding 编码是动态改变的</strong>，会受到上下文单词的影响，周围单词的上下文不同应该会强化某种语义，弱化其它语义，进而就解决了多义词的问题。</p>
-<h2 id="RNN和LSTM"><a href="#RNN和LSTM" class="headerlink" title="RNN和LSTM"></a>RNN和LSTM</h2><p>RNN（Recurrent Neural Network） 和 LSTM（Long Short-Term Memory）</p>
+<h2 id="5-RNN和LSTM"><a href="#5-RNN和LSTM" class="headerlink" title="5.RNN和LSTM"></a>5.RNN和LSTM</h2><p>RNN（Recurrent Neural Network） 和 LSTM（Long Short-Term Memory）</p>
 <h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><ul>
 <li>传统的神经网络无法获取时序信息，然而<strong>时序信息在自然语言处理任务中非常重要</strong></li>
 <li>RNN 的基本单元结构如下图所示<img src="https://img-blog.csdnimg.cn/direct/c2ce040182ce479d9047347cc4fc23f4.png" alt="image-20240925152242019"></li>
@@ -491,7 +491,7 @@ ML知识点汇总1.LSTM
 </ul>
 <h4 id="LSTM解决RNN梯度消失问题"><a href="#LSTM解决RNN梯度消失问题" class="headerlink" title="LSTM解决RNN梯度消失问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaojc1995/article/details/114649486">LSTM解决RNN梯度消失问题</a></h4><p> 1、cell state传播函数中的“加法”结构确实起了一定作用，它使得导数有可能大于1；<br>2、LSTM中逻辑门的参数可以一定程度控制不同时间步梯度消失的程度。</p>
 <p>最后，LSTM依然不能完全解决梯度消失这个问题，有文献表示序列长度一般到了三百多仍然会出现梯度消失现象。如果想彻底规避这个问题，还是transformer好用</p>
-<h2 id="5-Attention"><a href="#5-Attention" class="headerlink" title="5.Attention"></a>5.Attention</h2><h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p>虽然 LSTM 解决了序列长距离依赖问题，但是单词超过 200 的时候就会失效。<strong>而 Attention 机制可以更加好的解决序列长距离依赖问题，并且具有并行计算能力</strong></p>
+<h2 id="6-Attention"><a href="#6-Attention" class="headerlink" title="6.Attention"></a>6.Attention</h2><h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p>虽然 LSTM 解决了序列长距离依赖问题，但是单词超过 200 的时候就会失效。<strong>而 Attention 机制可以更加好的解决序列长距离依赖问题，并且具有并行计算能力</strong></p>
 <p>首先我们得明确一个点，注意力模型从大量信息 Values 中筛选出少量重要信息，<strong>这些重要信息一定是相对于另外一个信息 Query 而言是重要的</strong>。也就是说，我们要搭建一个注意力模型，我们必须得要有一个 Query 和一个 Values，然后通过 Query 这个信息从 Values 中筛选出重要信息。简单点说，<strong>就是计算 Query 和 Values 中每个信息的相关程度。</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/direct/79464bde78ad46baabef1ab09061cbbc.png" alt="image-20240926141606010"></p>
 <p>通过上图，Attention 通常可以进行如下描述，表示为将 Query(Q) 和 key-value pairs（<strong>把 Values 拆分成了键值对的形式</strong>） 映射到输出上，其中 query、每个 key、每个 value 都是向量，输出是 V 中所有 values 的加权，其中权重是由 Query 和每个 key 计算出来的，计算方法分为三步：</p>
@@ -1003,7 +1003,7 @@ ML知识点汇总1.LSTM
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        194.8k
+                                                        195.2k
                                                     </span>
                                                     
                                                         
