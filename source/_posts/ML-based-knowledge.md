@@ -44,7 +44,7 @@ $P(w_t=bert|w1,w2,⋯,wt−1;θ)$
 
 * Word Embedding 其实就是**标准的预训练过程**
 
-## 3.词向量
+## 4.词向量
 
 ### 独热编码
 
@@ -139,7 +139,7 @@ ELMo 采用了典型的两阶段过程：
 
 
 
-## RNN和LSTM
+## 5.RNN和LSTM
 
 RNN（Recurrent Neural Network） 和 LSTM（Long Short-Term Memory）
 
@@ -216,7 +216,7 @@ RNN中权重在各时间步内共享，最终的梯度是各个时间步的梯�
 
 最后，LSTM依然不能完全解决梯度消失这个问题，有文献表示序列长度一般到了三百多仍然会出现梯度消失现象。如果想彻底规避这个问题，还是transformer好用
 
-## 5.Attention
+## 6.Attention
 
 ### 本质思想
 
