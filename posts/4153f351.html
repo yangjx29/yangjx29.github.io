@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="transfomer, JacksonYang的博客">
+    <meta name="keywords" content="LLMs for Code Analysis-Do LLMs Really Do Their Job, JacksonYang的博客">
     <meta name="description" content="
 
-Attention Is All You NeedPaper | Talk
-Part1. 标题&amp;amp;作者Transformer开创了继MLP、CNN和RNN之后的第四大类模型。
-xxx is all you need
-Part2. ">
+
+Large Language Models for Code Analysis: Do LLMs Really Do Their Job?
+The paper evaluates the effectiveness of large ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@ Part2. ">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>transfomer | JacksonYang的博客</title>
+    <title>LLMs for Code Analysis-Do LLMs Really Do Their Job | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -265,12 +264,12 @@ Part2. ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">transfomer</h1>
+                    <h1 class="description center-align post-title">LLMs for Code Analysis-Do LLMs Really Do Their Job</h1>
                 </div>
             </div>
         </div>
@@ -315,7 +314,7 @@ Part2. ">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-09-24
+                    2024-10-09
                 </div>
                 
 
@@ -324,7 +323,7 @@ Part2. ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.4k
                 </div>
                 
 
@@ -358,166 +357,175 @@ Part2. ">
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="Attention-Is-All-You-Need"><a href="#Attention-Is-All-You-Need" class="headerlink" title="Attention Is All You Need"></a>Attention Is All You Need</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Paper</a> | <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pu411o7BE/">Talk</a></p>
-<h2 id="Part1-标题-作者"><a href="#Part1-标题-作者" class="headerlink" title="Part1. 标题&amp;作者"></a>Part1. 标题&amp;作者</h2><p>Transformer开创了继MLP、CNN和RNN之后的第四大类模型。</p>
-<p>xxx is all you need</p>
-<h2 id="Part2-摘要"><a href="#Part2-摘要" class="headerlink" title="Part2. 摘要"></a>Part2. 摘要</h2><p><strong>sequence transduction models: 序列转录模型</strong></p>
+
+<h2 id="Large-Language-Models-for-Code-Analysis-Do-LLMs-Really-Do-Their-Job"><a href="#Large-Language-Models-for-Code-Analysis-Do-LLMs-Really-Do-Their-Job" class="headerlink" title="Large Language Models for Code Analysis: Do LLMs Really Do Their Job?"></a>Large Language Models for Code Analysis: Do LLMs Really Do Their Job?</h2><ul>
+<li>The paper evaluates the effectiveness of large language models (LLMs) in analyzing code, particularly obfuscated code.</li>
+<li>It develops a systematic analysis through a custom dataset and case studies involving real-world code.</li>
+<li>The study highlights both the potential and limitations of LLMs, especially in handling obfuscated code and generating de-obfuscated versions.</li>
+</ul>
+<h3 id="Paper-Summary-What"><a href="#Paper-Summary-What" class="headerlink" title="Paper Summary (What)"></a>Paper Summary (What)</h3><p><strong>TLDR</strong>:</p>
 <ul>
-<li><p>序列转录模型是说给定一个序列，生成另外一个序列。以机器翻译为例，给定一句英文，生成一句中文。</p>
+<li>The paper examines how well large language models (LLMs) can analyze source code and obfuscated code.</li>
+<li>It provides a systematic evaluation using both non-obfuscated and obfuscated datasets.</li>
+<li>The paper tests popular LLMs, including GPT-4, GPT-3.5, LLaMA, and StarChat-Beta, to assess their effectiveness in real-world code analysis scenarios.</li>
+</ul>
+<p><strong>Algorithmic Structure</strong>:</p>
+<ul>
+<li>The analysis uses transformer-based LLMs like GPT-3.5, GPT-4, and LLaMA, focusing on their ability to analyze and generate code explanations.</li>
+<li>A dataset with a mix of JavaScript, Python, and C code, both obfuscated and non-obfuscated, was used to evaluate model performance.</li>
+<li>The analysis employed both natural language processing techniques (cosine similarity, semantic similarity, etc.) and manual validation by experts to assess the accuracy of the LLM-generated results.</li>
+</ul>
+<h3 id="Issues-or-Targets-Addressed-by-the-Paper-Why"><a href="#Issues-or-Targets-Addressed-by-the-Paper-Why" class="headerlink" title="Issues or Targets Addressed by the Paper (Why)"></a>Issues or Targets Addressed by the Paper (Why)</h3><ul>
+<li>The primary issue is the lack of a comprehensive evaluation of LLMs’ ability to analyze obfuscated code, a key security-related task in software engineering.</li>
+<li>The paper aims to fill this gap by systematically assessing how well current LLMs understand both regular and obfuscated code, particularly for defensive tasks like malware detection and reverse engineering.</li>
+</ul>
+<h3 id="Detailed-Information-How"><a href="#Detailed-Information-How" class="headerlink" title="Detailed Information (How)"></a>Detailed Information (How)</h3><h4 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h4><ul>
+<li>The study involves regression and classification tasks related to code comprehension and code obfuscation.</li>
+<li>LLMs are prompted to analyze both original and obfuscated versions of JavaScript, Python, and C code. The evaluation considers if the LLMs can provide meaningful insights into code functionality and detect security vulnerabilities.</li>
+</ul>
+<h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><ul>
+<li>A custom dataset was created with both non-obfuscated and obfuscated code. For obfuscation, JavaScript code was transformed using tools like JavaScript Obfuscator and Wobfuscator.</li>
+<li>The LLMs were tested on their ability to explain and de-obfuscate code, using prompts that mimicked real-world usage, like analyzing snippets of malware and benign programs.</li>
+<li>Manual validation was used to ensure the accuracy of generated results, with a focus on whether the LLMs could generate accurate code summaries and detect malicious behaviors.</li>
+</ul>
+<h4 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h4><ul>
+<li>LLMs are expected to generalize their natural language capabilities to code analysis, leveraging contextual understanding of code syntax and patterns.</li>
+<li>The study assumes that larger models like GPT-4 are more effective due to their vast training data and advanced architectures.</li>
+</ul>
+<h4 id="Prominent-Formulas-or-Structure"><a href="#Prominent-Formulas-or-Structure" class="headerlink" title="Prominent Formulas or Structure"></a>Prominent Formulas or Structure</h4><ul>
+<li>N&#x2F;A (The paper focuses on empirical analysis rather than theoretical formula development.)</li>
+</ul>
+<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><ul>
+<li><strong>Non-obfuscated Code</strong>: GPT-4 achieved an accuracy of 97.4% in explaining source code, demonstrating strong capabilities in analyzing code, recognizing patterns, and providing correct function summaries.</li>
+<li><strong>Obfuscated Code</strong>: GPT-4 outperformed GPT-3.5 in handling obfuscated code, but both struggled with more advanced obfuscation techniques like control flow flattening and WebAssembly insertion.</li>
+<li><strong>De-obfuscation</strong>: Both GPT-3.5 and GPT-4 showed limited success in generating de-obfuscated code, with GPT-4 being more cautious and accurate in identifying potential issues but less successful in producing functional code.</li>
+</ul>
+<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><ul>
+<li>LLMs showed significant drops in accuracy when analyzing code with complex obfuscation techniques.</li>
+<li>Models like LLaMA and StarChat-Beta performed poorly in comparison to GPT models, particularly in generating consistent and meaningful code explanations.</li>
+<li>De-obfuscation capabilities were limited, with most models failing to generate compilable code in more complex cases.</li>
+</ul>
+<h4 id="Confusing-Aspects-of-the-Paper"><a href="#Confusing-Aspects-of-the-Paper" class="headerlink" title="Confusing Aspects of the Paper"></a>Confusing Aspects of the Paper</h4><ul>
+<li>Some parts of the analysis, particularly related to how LLMs handle specific obfuscation techniques, could benefit from more detailed examples and clearer explanations of failure cases.</li>
+</ul>
+<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><h4 id="The-Author’s-Conclusions"><a href="#The-Author’s-Conclusions" class="headerlink" title="The Author’s Conclusions"></a>The Author’s Conclusions</h4><ul>
+<li>LLMs like GPT-4 can serve as useful tools for code analysis, but their effectiveness drops significantly when handling obfuscated code.</li>
+<li>While LLMs can generate accurate explanations for non-obfuscated code, their ability to de-obfuscate code or fully understand complex obfuscation techniques is limited.</li>
+<li>The study highlights the potential of LLMs but also underscores the need for further optimization, particularly in handling security-sensitive tasks like malware analysis.</li>
+</ul>
+<h3 id="Possible-Future-Work-Improvements"><a href="#Possible-Future-Work-Improvements" class="headerlink" title="Possible Future Work &#x2F; Improvements"></a>Possible Future Work &#x2F; Improvements</h3><ul>
+<li>Fine-tuning LLMs specifically for code analysis, with a focus on handling obfuscated code, could improve their performance.</li>
+<li>Expanding the dataset to include more diverse and complex obfuscation techniques would provide a more rigorous test of LLM capabilities.</li>
+<li>Developing better de-obfuscation models or integrating external tools to assist LLMs in generating functional code from obfuscated inputs could be a valuable area of future research.</li>
+</ul>
+<hr>
+<h2 id="Part-1-Title-Authors"><a href="#Part-1-Title-Authors" class="headerlink" title="Part 1. Title &amp; Authors"></a>Part 1. Title &amp; Authors</h2><p><strong>Title</strong>: Large Language Models for Code Analysis: Do LLMs Really Do Their Job?<br><strong>Authors</strong>: Chongzhou Fang, Ning Miao, Shaurya Srivastav, et al.</p>
+<h2 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h2><p><span style="color: rgb(31, 31, 31)"><span style="background-color: rgb(248, 249, 250)">本文探讨了LLMs在自动化代码分析任务方面的潜力，特别关注混淆代码</span></span>.<span style="color: rgb(31, 31, 31)"><span style="background-color: rgb(248, 249, 250)">它使用常规代码和混淆代码的数据集对 LLM 性能进行了系统评估，并展示了这些模型的前景</span></span>,尽管在某些领域（例如反混淆）仍然存在限制.</p>
+<h2 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h2><p>LLM通过 GitHub Copilot 等工具彻底改变了自然语言处理和代码生成等领域。然而，它们在代码分析（尤其是混淆代码）方面的有效性研究较少。 本文通过评估LLM的代码理解和反混淆任务来解决这一差距，其中重点评估LLMs分析输入代码样本的能力，并测试LLMs是否可以用于防御性分析任务。</p>
+<p>本文旨在通过系统的分析来回答两个关键的研究问题：</p>
+<ul>
+<li>LLMs是否理解源代码</li>
+<li>LLMs能否理解混淆代码或可读性低的代码</li>
+</ul>
+<p>贡献包括：</p>
+<ul>
+<li>构建了两个数据集，包括来自流行编程语言的代码样本和来自这些语言的混淆样本，用于评估；</li>
+<li>我们系统地评估了公开可用的最先进的LLMs的性能，包括在我们的数据集上最常用的GPT和LLaMA家族，并展示了我们的发现</li>
+<li>我们使用LLMs进行案例研究，分析真实世界的恶意软件，以显示LLMs在这些任务中的能力和局限性</li>
+</ul>
+<h2 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h2><ul>
+<li><p>较大的LLMs，特别是来自GPT系列的LLMs，在代码分析任务中能力较为突出</p>
 </li>
-<li><p>序列转录模型通常是基于RNN或CNN，包含encoder-decoder的架构，encoder与decoder之间通过attention连接。</p>
+<li><p>另一方面，LLaMA家族的较小模型在这些相同的任务中表现出不令人满意的性能。</p>
+</li>
+<li><p>在分析混淆代码时，GPT系列的LLMs对于解释相关的任务仍然可以产生合理有用的结果，但可能不会提供反混淆代码</p>
 </li>
 </ul>
-<p><strong>Transformer</strong>: 仅依赖attention机制，不包含RNN和CNN结构。</p>
-<h2 id="Part3-结论"><a href="#Part3-结论" class="headerlink" title="Part3. 结论"></a>Part3. 结论</h2><ul>
-<li>Transformer是第一个仅使用attention来做序列转录任务的模型，同样基于encoder-decoder架构，但是将其中的RNN或CNN替换成了multi-head self-attention</li>
-<li>在机器翻译任务上，Transformer的训练速度相对于其它结构更快、效果更好</li>
-<li>纯attention模型可以用于其它领域，图片、音频、视频等</li>
-</ul>
-<h2 id="Part4-导言"><a href="#Part4-导言" class="headerlink" title="Part4. 导言"></a>Part4. 导言</h2><p><strong>基于RNN的序列模型的缺点</strong></p>
+<h2 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h2><p>The paper reviews existing literature on LLMs in code generation and analysis, including the use of models like GPT for tasks such as vulnerability detection and code summarization.</p>
+<h2 id="Part-6-Models"><a href="#Part-6-Models" class="headerlink" title="Part 6. Models"></a>Part 6. Models</h2><p>采用<strong>人工验证</strong>。</p>
+<p><strong>ground truth：</strong></p>
+<p>首先验证gpt4，将标记为正确的描述当做基本事实，用于其他的模型之间的比较</p>
+<p><strong>Comparison Metrics：</strong></p>
+<p>用以下指标评估模型的生成的解释：</p>
 <ul>
-<li>在RNN中，给定一个序列，必须从左往右的计算，即计算第t个词的输出<code>h_t</code>时，是由第t-1个词的输出<code>h_t-1</code>和当前词t共同计算的，导致很难并行</li>
-<li>由于时序信息是逐步向后传递，假如序列很长，容易导致早期的时序信息在后面被丢失，如果不想丢掉需要<code>h_t</code>比较大，内存开销就会变大</li>
+<li>余弦相似度，作为粗粒度指标</li>
+<li>基于bert的语义相似度评分</li>
+<li>基于ChatGPT的评估，用于二分类回答上</li>
 </ul>
-<p><strong>attention在RNN中的应用</strong></p>
+<h2 id="Part-7-Experiments-Result"><a href="#Part-7-Experiments-Result" class="headerlink" title="Part 7. Experiments&amp;&amp;Result"></a>Part 7. Experiments&amp;&amp;Result</h2><p><strong>LLM Selection</strong></p>
 <ul>
-<li>attention在RNN中的应用主要体现在它如何把encoder的信息有效的传递给decoder</li>
+<li>使用了包括GPT-3.5-turbo、GPT-4、LLaMA-2-13B、Code-LLaMA-2-13B-Instruct和StarChat-Beta作为模型</li>
 </ul>
-<h2 id="Part5-相关工作"><a href="#Part5-相关工作" class="headerlink" title="Part5. 相关工作"></a>Part5. 相关工作</h2><p><strong>基于CNN的序列模型的缺点</strong></p>
+<p><strong>Prompt构建</strong></p>
 <ul>
-<li>卷积神经网络对比较长的序列难以建模，受限于局部窗口操作，想提升感受野必须增加卷积层数</li>
-<li>Transformer中的自注意力机制可以使一层就可以看到整个序列的信息</li>
+<li>在实验中通过不同的步骤与选定的LLM进行交互，包括指导LLM分析代码和其他测量过程</li>
 </ul>
-<p><strong>multi-head self-attention的由来</strong></p>
+<p><strong>构建非混淆代码数据集</strong></p>
 <ul>
-<li>卷积操作的一个优点是可以多通道输出，一个输出通道其实可以它可以去识别不一样的模式，为了模拟此效果，transformer引入了multi-head-attention概念，每一个head可以当作一个channel</li>
-</ul>
-<h2 id="Part6-模型"><a href="#Part6-模型" class="headerlink" title="Part6. 模型"></a>Part6. 模型</h2><h3 id="基于encoder-decoder结构的序列转录模型"><a href="#基于encoder-decoder结构的序列转录模型" class="headerlink" title="基于encoder-decoder结构的序列转录模型"></a>基于encoder-decoder结构的序列转录模型</h3><ul>
-<li>对于encoder而言，假设输入为<code>(x_1, ..., x_n)</code>, <code>x_n</code>为第n个输入的向量表示，编码器会将其映射为新的表示<code>(z_1, ..., z_n)</code>，序列长度仍然为n</li>
-<li>对于decoder而言，拿到encoder的输出<code>(z_1, ..., z_n)</code>，然后生成一个长度为m的序列<code>(y_1, ..., y_m)</code>，这里输出序列长度可能与输入序列长度可能不同, n-&gt;m</li>
-<li>decoder与encoder最大的不同是，解码器里的词是一个一个生成的，此过程被称为<strong>自回归auto-regressive</strong>，比如说要得到<code>y_t</code>时，前面已经得到的<code>y_1</code>~&#96;y_t-1&#96;可作为当前的输入，这个过程就是自回归。</li>
-</ul>
-<h3 id="Transformer结构"><a href="#Transformer结构" class="headerlink" title="Transformer结构"></a>Transformer结构</h3><p>Transformer也是基于encoder-decoder架构，encoder与decoder均是由self-attention、point-wise、fully-connected layers组成</p>
-<img src="https://user-images.githubusercontent.com/22740819/146134838-6eb2864f-9667-487e-8df3-4a705029f7eb.png" width = "300">
-
-<p>图上，左侧部分为encoder，右侧部分为解码器。以中译英为例，encoder的输入inputs就是中文句子，在做预测的时候，decoder是没有外部输入的，实际上是之前encoder的输出来作为decoder的输入。</p>
-<p><em><strong>1.嵌入层Input Embedding</strong></em></p>
+<li><p>选择了三种语言：JavaScript，Python和C</p>
 <ul>
-<li>input embedding: 模型输入inputs为一个一个的词，首先需要将其表示为一个向量</li>
-<li>position encoding:</li>
+<li>不同的语言有不同的基准进行判断</li>
 </ul>
-<p><em><strong>2.Encoder</strong></em></p>
+</li>
+</ul>
+<p><strong>构建混淆代码数据集</strong></p>
 <ul>
-<li>Multi-Head self-attention: 多头注意力机制</li>
-<li>Add &amp; Norm: 残差连接 + LayerNorm归一化</li>
-<li>Feed Forward: 其实就是MLP</li>
-</ul>
-<p>以上三个操作组成transformer的block，然后N个block堆叠组成encoder，encoder的输出作为decoder的输入使用</p>
-<p>在encoder中，由于残差连接要求特征维度一致，简单起见，固定每一层的输出维度均为512</p>
-<blockquote>
-<p><strong>LayerNorm与BatchNorm的对比</strong></p>
-</blockquote>
-<img src="https://user-images.githubusercontent.com/22740819/146143314-5d6127c4-7992-47c8-ac41-3097242137a9.png" width=300>
-
+<li><p>在非混淆代码数据集的JavaScript分支上进行混淆。因为JavaScript代码通常对Web用户是可见的，这使得额外的混淆保护成为必要。</p>
 <ul>
-<li>BatchNorm：是在batch内在样本间做归一化，均值为0，方差为1；假如n本书，每本书的第一页拿出来，根据n本书的第一页的字数均值做Norm</li>
-<li>LayerNorm：是对每一个样本内做归一化；假如n本书，针对某一本书，这本书的每一页拿出来，根据次数每页的字数均值，自己做Norm</li>
+<li>作者使用了两种JavaScript混淆器</li>
 </ul>
-<p>一般的，如果模型的输入是变长的，不使用BatchNorm</p>
-<p>（建议这部分直接看视频，视频25:40处）</p>
-<p><em><strong>3.Decoder</strong></em></p>
+</li>
+<li><p>混淆方法：</p>
 <ul>
-<li>Masked Multi-Head Self-Attention：在multi-head self-attention上加了mask</li>
-<li>Add &amp; Norm</li>
-<li>Encoder Block: 该部分和encoder相同</li>
+<li>Default Obfuscation DE：将标识符名称替换为无意义的随机生成的字符串，简化源代码以降低可读性，将字符串放在单独的数组中等、</li>
+<li>dead code injection DCI：在默认方案的基础上，在源代码中插入随机无关的代码块</li>
+<li>Control flow flattening (CFF)：在默认方案的基础上，改变程序的结构，隐藏控制流信息</li>
+<li>Split string，SS：在默认方案的基础上将长字符串拆分为更短的块，以缓解嵌入文本的信息泄露</li>
+<li>Wobfuscator ( WSM )：对提供的代码进行跨语言混淆</li>
 </ul>
-<p>以上三种操作堆叠重复N次，组成decoder</p>
-<blockquote>
-<p><strong>Decoder中masked multi-head self-attention的由来</strong></p>
-</blockquote>
+</li>
+</ul>
+<p><strong>结果</strong></p>
 <ul>
-<li>因为decoder做的是自回归任务，也就是说当前输出的input是上面一些时刻的输出，意味着当你做预测的时候你不能看到之后那些时刻的输出，但是在自注意力机制里，每一次都能看到整个完整的输入，为了避免这种情况发生，在decoder训练时，在预测第t个时刻的输出时，不应该看到t时刻以后的那些输入，所以引入了mask</li>
-</ul>
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><img src="https://user-images.githubusercontent.com/22740819/146146897-0b84ee49-f30f-4a2b-a043-98032e069396.png" width=100>
-
+<li><p>Results on Non-Obfuscated Code Dataset</p>
 <ul>
-<li>attention模块的输入为query, key, value，其中key-value成对，三者均为向量</li>
-<li>query与key计算相似度得到权重，然后value通过得到的权重加权得到新的输出output</li>
+<li>GPT-4在三种语言上的整体准确率是97.4%表明GPT-4能够从流行的开源软件库中识别代码片段</li>
+<li>LLMs可能泄露在会话期间从训练中获得的记忆信息，但是这在分析代码时可能是有帮助的</li>
+<li>GPT - 4偶尔会做出错误的联想，因为部分代码块在训练记忆中曾出现过</li>
+<li>GPT利用标识符名称中提供的信息来辅助代码分析</li>
+<li>其他模型的准确率如下，小模型不能准确分析代码结果</li>
 </ul>
-<p><em><strong>1.Scaled Dot-Product Attention</strong></em></p>
-<img src="https://user-images.githubusercontent.com/22740819/146154573-005a7d8f-b2b9-4b1b-b6a3-4b4ba47e50a0.png" width=200>
-
-<img src="https://user-images.githubusercontent.com/22740819/146150223-c5ad5d6e-b7ae-454b-8f45-96371924bc7a.png" width=250>
-
-<p>其中，query和key维度相同<code>d_k</code>，value维度为’d_v’，query与key计算内积，作为相似度，然后除以<code>sqrt(d_k)</code>，然后再通过一个<code>softmax</code>得到权重</p>
-<blockquote>
-<p><strong>为什么要做scaled(除以sqrt(d_k))?</strong></p>
-</blockquote>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/0896896de95e4652bcd1498b12ee7178.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UI8S9TJY&quot; width=&quot;545&quot; height=&quot;434&quot; src=&quot;attachments/UI8S9TJY.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/ffa3751c7996456bb6aa5ed21f5067e6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;I3F9JKYW&quot; width=&quot;629&quot; height=&quot;395&quot; src=&quot;attachments/I3F9JKYW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/d997d62c7f054994a3766e2b8594593f.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;5GPIKM4L&quot; width=&quot;549&quot; height=&quot;418&quot; src=&quot;attachments/5GPIKM4L.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>Answer to RQ1:对于非混淆代码，<strong>较大的模型</strong>(如GPT - 3.5或GPT - 4 )有很高的概率对输入的代码片段产生正确和详细的解释，而较小的模型，即使在代码数据上进行微调，也不能产生正确的输出</p>
 <ul>
-<li>当d_k不是很大时，其实做不做scaled影响不大；当d_k比较大时，所得到的点积结果可能会比较大，当值的范围比较大时，值与值之间的相对差距就会比较明显，经softmax处理之后，较大的值会趋向于1，较小的的值趋向于0，导致有点两极分化，进而会导致在计算梯度时梯度会比较小，收敛困难，paper中的d_k&#x3D;512，算比较大</li>
-</ul>
-<blockquote>
-<p><strong>attention中的mask如何做？</strong></p>
-</blockquote>
+<li><p>Results on Obfuscated Code Dataset</p>
 <ul>
-<li>mask主要是为了避免你在第t时间看到以后时间的信息。假设query与key等长都为n，对于第t时间的<code>q_t</code>，在做计算时，应该只能看到<code>k_1</code>～<code>k_t-1</code>，但是注意力机制的性质导致<code>q_t</code>会和所有的<code>k</code>做计算。解决方法：在query与key计算之后，将<code>q_t</code>与<code>k_t</code>～<code>k_n</code>的计算结果置为一个极小值（如-1e-11），这样在softmax之后这部分权重基本趋向于0，这样在和value计算加权时相当于只用了<code>v_1</code>～<code>v_t-1</code>的信息（这部分建议看视频，42:00处）</li>
+<li>衡量方法同非混淆，GPT - 4是始终优于GPT - 3.5</li>
+<li>LLaMA - 2 - 13B、Code - LLaMA - 2 - 13BInstruct和StarChat - Beta在使用混淆技术后无法生成有意义的解释。</li>
+<li>基本的混淆技术(如DE)对GPT模型执行代码分析的能力影响很小</li>
+<li>LLMs不能破译Wobfuscator生成的混淆代码。</li>
+<li>GPT模型对更长、更复杂的混淆代码的破译能力有限。</li>
+<li>两个GPT模型去模糊化代码生成能力都不足以应用</li>
+<li>GPT - 4拒绝执行代码生成任务的概率较高，但是生成的代买质量也更高<img src="https://img-blog.csdnimg.cn/direct/f61e2517fff74cc2908d0877fed02756.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;8TYMLCLM&quot; width=&quot;586&quot; height=&quot;403&quot; src=&quot;attachments/8TYMLCLM.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
+<li>文本层面的混淆并不影响LLM执行反混淆的能力。</li>
 </ul>
-<p><em><strong>2.Multi-Head Attention</strong></em></p>
-<img src="https://user-images.githubusercontent.com/22740819/146154695-92091fa7-cdf5-456a-8b10-18a1100723bb.png" width=200>
-
+</li>
+</ul>
+<p>Answer to RQ2:</p>
+<p>混淆技术会影响LLMs生成解释的能力。较小的模型无法处理混淆代码。GPT - 3.5和GPT - 4在分析精度上都有所下降，尤其是在面对Wobfuscator时，尽管GPT - 4在经典混淆方法上仍然具有可接受的较好的精度。但在没有针对去模糊代码生成进行专门优化的情况下，LLMs生成功能性去模糊代码的能力较差。</p>
+<h2 id="Part-8-Discussion-Futher-Work"><a href="#Part-8-Discussion-Futher-Work" class="headerlink" title="Part 8. Discussion &amp; Futher Work"></a>Part 8. Discussion &amp; Futher Work</h2><ul>
+<li><p>Using LLMs for Code Analysis</p>
 <ul>
-<li>multi-head attention：先通过线性层分别把q, k, v投影到低维，然后把低维空间的q、k、v分别送入h个attention模块计算得到h个输入，然后将H个输出concat起来，再投影回来得到最终输出</li>
-<li><strong>意义</strong>：基于dot-product的attention中其实是没有可学习参数的，但是为了识别不同的模式，希望有一些不一样的计算相似度的方法；每一次计算attention之前都先投影到低维空间，其中投影矩阵w是可学的，也就是说给你h次机会，希望可以学到不同的投影方法，使得在那个投影进去的度量空间能够去匹配不同的模式它需要的一些相似函数，类似于CNN中的channle</li>
+<li>尽量选用较大的模型</li>
 </ul>
-<blockquote>
-<p><strong>注意</strong>：由于残差连接的存在，multi-head attention的输入与输出维度需要是一致的。所以，h个低维向量concat起来需要和输入维度一致，一般都会将低维空间的维度设置为<code>d_in // h</code></p>
-</blockquote>
-<p><em><strong>3.multi-head attention在transformer中的应用</strong></em></p>
-<p>Transformer中分别有三处用到了multi-head attention，其作用分别如下:</p>
-<ul>
-<li>Encoder中的multi-head attention: 这里的q、k、v是相同的值copy三份，所以是self-attention</li>
-<li>Decoder中的masked multi-head attention: 这里的输入同样q、k、v是相同的，也是self-attention，与encoder中不同的是用了mask</li>
-<li>Decoder中的multi-head attention: 这里的key-value来自于encoder的输出，query来自于decoder的masked multi-head attention，可以理解为通过这里的query将encoder的输出中感兴趣的信息提取出来</li>
+</li>
+<li><p>目前捕捉相似性度量的相关方法还不是很可靠，特别是当代码片段和自然语言结合作为输入时，所以构造一个更加精细的metrics是一个潜在的研究方向</p>
+</li>
 </ul>
-<p>（建议看视频理解，48:00处）</p>
-<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>其实就是一个单隐层的MLP，维度从512-&gt;2048-&gt;512</p>
-<ul>
-<li>point-wise: 指对输入的每一个词过一次MLP，或者说MLP只作用在最后一个维度</li>
-</ul>
-<p><em><strong>1.Transformer与RNN传递时序信息方式的对比</strong></em></p>
-<img src="https://user-images.githubusercontent.com/22740819/146162754-12e7588e-7ec3-477e-99cf-454937648684.png" width=250>
-
-<ul>
-<li>transformer中的attention已经汇聚了序列信息，所以MLP只针对单点计算即可（每个词单独过MLP）</li>
-<li>RNN中的序列信息是逐步由前向后传递，将上一时刻的信息作为下一个时刻的输入</li>
-</ul>
-<h3 id="Embeddings-and-Softmax"><a href="#Embeddings-and-Softmax" class="headerlink" title="Embeddings and Softmax"></a>Embeddings and Softmax</h3><ul>
-<li>embedding: 将输入的词token映射为向量表示，向量维度为<code>d_model</code>，paper中为512</li>
-<li>编码器、解码器、最后softmax之前的3个embedding共享权重，使得训练更简单</li>
-</ul>
-<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><p>attention本身是不具备时序信息的，query和key计算相似度后与value加权所得到的结果和value在序列中的位置没有关系，也就是说给定一个序列，如果将序列的顺序打乱，所得到的结果是一致的，这显然是不合理的。一个句子把词的顺序打乱可能语义会发生变化，所以需要把时序信息加进来</p>
-<ul>
-<li>RNN中，当前时刻的输入是上一时刻的输出，是按时刻逐步计算的，本身含有时序信息</li>
-<li>Transformer的做法是在输入里加入时序信息，假设某个词所在序列中的位置是i，把i映射为向量加到输入里（position encoding）</li>
-</ul>
-<h3 id="self-attention与rnn-cnn复杂度等的对比"><a href="#self-attention与rnn-cnn复杂度等的对比" class="headerlink" title="self-attention与rnn, cnn复杂度等的对比"></a>self-attention与rnn, cnn复杂度等的对比</h3><p><em><strong>1.复杂度对比</strong></em></p>
-<img src="https://user-images.githubusercontent.com/22740819/145567402-7799b78f-756b-452b-9dd0-30527c237bd2.png" width=500>
-
-<ul>
-<li>Complexity per Layer: 模型计算复杂度，越小越好</li>
-<li>Sequential Operations: 顺序的计算，或者说你下一步的计算需要等前面多少步计算完成，影响并行度</li>
-<li>Maximum Path Length: 一个信息点走到另一个信息点要走多远（可以理解为时序信息的传递效率）</li>
-</ul>
-<p>表中，n为序列长度，d为向量长度；当序列比较长时，self-attention计算复杂度就会变高</p>
-<p><em><strong>2.归纳偏置</strong></em></p>
-<ul>
-<li>CNN中的inductive bias: locality和spatial invariance，即空间相近的像素有联系而远的没有，和空间不变性（kernel权重共享）</li>
-<li>RNN中的inductive bias: sequentiality和time invariance，即序列顺序上的timesteps有联系，和时间变换的不变性（rnn权重共享）</li>
-<li>attention缺少归纳偏置，对整个模型的先验假设更少，导致需要更多的数据和更大的模型才能训练出来和RNN、CNN同样的效果。所以，现在基于transformer的模型一般比较大，而且对数据量要求高</li>
-</ul>
-<h2 id="Part7-实验"><a href="#Part7-实验" class="headerlink" title="Part7. 实验"></a>Part7. 实验</h2><p><strong>WMT 2014数据集</strong>：英语翻德语数据集，包含4.5w个句子对</p>
-<h2 id="Part8-评论"><a href="#Part8-评论" class="headerlink" title="Part8. 评论"></a>Part8. 评论</h2><p>略。</p>
-<h2 id="八股相关问题"><a href="#八股相关问题" class="headerlink" title="八股相关问题"></a>八股相关问题</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/496012402?utm_medium=social&utm_oi=629375409599549440">click here</a></p>
 
                 
             </div>
@@ -544,7 +552,7 @@ Part2. ">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/674e3c36.html">https://yangjx29.github.io/posts/674e3c36.html</a>
+                    <a href="https://yangjx29.github.io/posts/4153f351.html">https://yangjx29.github.io/posts/4153f351.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,7 +665,7 @@ Part2. ">
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-09-24T19-07-56',
+        id: '2024-10-09T16-15-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -685,58 +693,18 @@ Part2. ">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/96138251.html">
+                <a href="/posts/4153f351.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="ML-based-knowledge">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs for Code Analysis-Do LLMs Really Do Their Job">
                         
-                        <span class="card-title">ML-based-knowledge</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/ML/" class="post-category">
-                                    ML
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/140ab620.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="科研工具tips">
-                        
-                        <span class="card-title">科研工具tips</span>
+                        <span class="card-title">LLMs for Code Analysis-Do LLMs Really Do Their Job</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -747,14 +715,56 @@ Part2. ">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ML/" class="post-category">
-                                    ML
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/95ea4264.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection and Repair">
+                        
+                        <span class="card-title">Large Language Model for Vulnerability Detection and Repair</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
                                 </a>
                             
                             
@@ -878,13 +888,6 @@ Part2. ">
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
