@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ML-based-knowledge, JacksonYang的博客">
+    <meta name="keywords" content="LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities, JacksonYang的博客">
     <meta name="description" content="
 
-ML知识点汇总1.LSTM
-原理分析
-
-2.预训练思想有了图像领域预训练的引入，我们在此给出预训练的思想：任务 A 对应的模型 A 的参数不再是随机初始化的，而是通过任务 B 进行预先训练得到模型 B，然后利用模型 B 的参数对模型 A">
+[LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@ ML知识点汇总1.LSTM
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ML-based-knowledge | JacksonYang的博客</title>
+    <title>LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -265,12 +262,12 @@ ML知识点汇总1.LSTM
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ML-based-knowledge</h1>
+                    <h1 class="description center-align post-title">LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities</h1>
                 </div>
             </div>
         </div>
@@ -302,8 +299,8 @@ ML知识点汇总1.LSTM
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ML/" class="post-category">
-                                ML
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
                             </a>
                         
                     </div>
@@ -315,7 +312,7 @@ ML知识点汇总1.LSTM
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-09-25
+                    2024-10-09
                 </div>
                 
 
@@ -324,14 +321,14 @@ ML知识点汇总1.LSTM
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.4k
+                    3.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    13 分
                 </div>
                 
 
@@ -358,209 +355,216 @@ ML知识点汇总1.LSTM
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="ML知识点汇总"><a href="#ML知识点汇总" class="headerlink" title="ML知识点汇总"></a>ML知识点汇总</h1><h2 id="1-LSTM"><a href="#1-LSTM" class="headerlink" title="1.LSTM"></a>1.LSTM</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38147421/article/details/107692418">原理分析</a></li>
-</ol>
-<h2 id="2-预训练思想"><a href="#2-预训练思想" class="headerlink" title="2.预训练思想"></a>2.预训练思想</h2><p>有了图像领域预训练的引入，我们在此给出预训练的思想：任务 A 对应的模型 A 的参数不再是随机初始化的，而是通过任务 B 进行预先训练得到模型 B，然后利用模型 B 的参数对模型 A 进行初始化，再通过任务 A 的数据对模型 A 进行训练。注：模型 B 的参数是随机初始化的。</p>
-<h2 id="3-神经网络语言模型NNLM"><a href="#3-神经网络语言模型NNLM" class="headerlink" title="3.神经网络语言模型NNLM"></a>3.神经网络语言模型NNLM</h2><p>神经网络语言模型则引入神经网络架构来估计单词的分布，<strong>并且通过词向量的距离衡量单词之间的相似度，因此，对于未登录单词，也可以通过相似词进行估计，进而避免出现数据稀疏问题</strong>。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/4063e81a2a4f47569b2231ca4e19822a.png" alt="image-20240925143535796"></p>
-<p>上图所示有一个 $V×m $ 的矩阵 $Q$，这个矩阵$Q$包含 $V$ 行，$V$ 代表词典大小，每一行的内容代表对应单词的 Word Embedding 值。</p>
-<p>只不过  $Q$ 的内容也是网络参数，需要学习获得，训练刚开始用随机值初始化矩阵  $Q$，当这个网络训练好之后，矩阵  $Q$ 的内容被正确赋值，每一行代表一个单词对应的 Word embedding 值</p>
-<p>上图为神经网络语言模型结构图，它的学习任务是输入某个句中单词 $w_t$&#x3D;bert 前的 t−1 个单词，要求网络正确预测单词 “bert”，即最大化：</p>
-<p>$P(w_t&#x3D;bert|w1,w2,⋯,wt−1;θ)$</p>
-<p>上图所示的神经网络语言模型分为三层，接下来我们详细讲解这三层的作用：</p>
-<ol>
-<li>神经网络语言模型的第一层，为输入层。首先将前 n−1 个单词用 Onehot 编码（例如：0001000）作为原始单词输入，之后乘以一个随机初始化的矩阵 Q 后获得词向量 $C(w_i)$，对这 n−1个词向量处理后得到输入 x，记作 $x&#x3D;(C(w_1),C(w_2),⋯,C(w_{t−1}))$</li>
-<li>神经网络语言模型的第二层，为隐层，包含 h 个隐变量，H 代表权重矩阵，因此隐层的输出为 $H_x+ d$，其中 d 为偏置项。并且在此之后使用 tanh 作为激活函数。</li>
-<li>神经网络语言模型的第三层，为输出层，一共有 $|V|$ 个输出节点（字典大小），直观上讲，每个输出节点$yi$是词典中每一个单词概率值。最终得到的计算公式为：$y&#x3D;softmax(b+W_x+Utanh⁡(d+H_x))$，其中 W 是直接从输入层到输出层的权重矩阵，U 是隐层到输出层的参数矩阵。</li>
-</ol>
+<h2 id="LLMs-Cannot-Reliably-Identify-and-Reason-About-Security-Vulnerabilities-Yet-A-Comprehensive-Evaluation-Framework-and-Benchmarks"><a href="#LLMs-Cannot-Reliably-Identify-and-Reason-About-Security-Vulnerabilities-Yet-A-Comprehensive-Evaluation-Framework-and-Benchmarks" class="headerlink" title="[LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks]"></a>[LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks]</h2><h3 id="Paper-summary-what"><a href="#Paper-summary-what" class="headerlink" title="Paper summary (what)"></a>Paper summary (what)</h3><p><strong>TLDR:</strong></p>
 <ul>
-<li>Word Embedding 其实就是<strong>标准的预训练过程</strong></li>
+<li>The paper evaluates the reliability of Large Language Models (LLMs) in identifying and reasoning about security vulnerabilities.</li>
+<li>The authors develop an automated evaluation framework, SecLLMHolmes, which tests the capability of eight state-of-the-art LLMs across 228 code scenarios.</li>
+<li>They find that current LLMs, including advanced models like GPT-4 and PaLM2, show significant non-robustness and inconsistency in real-world vulnerability detection tasks.</li>
 </ul>
-<h2 id="4-词向量"><a href="#4-词向量" class="headerlink" title="4.词向量"></a>4.词向量</h2><h3 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h3><p><strong>把单词用向量表示，是把深度神经网络语言模型引入自然语言处理领域的一个核心技术。</strong></p>
-<p>在自然语言处理任务中，训练集大多为一个字或者一个词，把他们转化为计算机适合处理的数值类数据非常重要。</p>
-<p>早期，人们想到的方法是使用独热（Onehot）编码，如下图所示<img src="https://img-blog.csdnimg.cn/direct/5b002586caa9442ca55946e3e5433dab.png" alt="image-20240925145525155"></p>
-<p>但是，对于独热表示的向量，如果采用余弦相似度计算向量间的相似度，<strong>可以明显的发现任意两者向量的相似度结果都为 0</strong>，即任意二者都不相关，也就是说独热表示无法解决词之间的相似性问题</p>
-<h3 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h3><p>在神经网络语言模型中出现的一个词向量 C(wi)，对的，<strong>这个 C(wi) 其实就是单词对应的 Word Embedding 值，也就是我们这节的核心——词向量。</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/4063e81a2a4f47569b2231ca4e19822a.png" alt="image-20240925143535796"></p>
-<p>上图所示有一个 $V×m $ 的矩阵 $Q$，这个矩阵$Q$包含 $V$ 行，$V$ 代表词典大小，每一行的内容代表对应单词的 Word Embedding 值。</p>
-<p>只不过  $Q$ 的内容也是网络参数，需要学习获得，训练刚开始用随机值初始化矩阵  $Q$，当这个网络训练好之后，矩阵  $Q$ 的内容被正确赋值，每一行代表一个单词对应的 Word embedding 值</p>
-<p>但是这个词向量有没有解决词之间的相似度问题呢？为了回答这个问题，我们可以看看词向量的计算过程：</p>
-<p>$[0&amp;0&amp;0&amp;1&amp;0] \begin{matrix}7&amp;24&amp;1\23&amp;5&amp;7\4&amp;6&amp;13\10&amp;12&amp;19&amp;\11&amp;18&amp;25 \end{matrix} &#x3D; [10&amp;12&amp;19]$</p>
-<p>通过上述词向量的计算，可以发现第 4 个词的词向量表示为 [10 12 19]。</p>
-<p>如果再次采用<strong>余弦相似度计算两个词之间的相似度，结果不再是 0</strong> ，既可以一定程度上描述两个词之间的相似度</p>
-<h3 id="Word2Vec模型"><a href="#Word2Vec模型" class="headerlink" title="Word2Vec模型"></a>Word2Vec模型</h3><ul>
-<li>Word2Vec工作原理</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/e3ce8be556be47b596df3d82c1f4a734.png" alt="image-20240925151659106"></p>
-<p>Word2Vec 的网络结构其实和神经网络语言模型（NNLM）是基本类似的，不过这里需要指出：尽管网络结构相近，而且都是做语言模型任务，但是<strong>他们训练方法不太一样</strong>。</p>
-<p>Word2Vec 有两种训练方法：</p>
-<ol>
-<li>第一种叫 <strong>CBOW</strong>，<strong>核心思想是从一个句子里面把一个词抠掉</strong>，用这个词的上文和下文去预测被抠掉的这个词；</li>
-<li>第二种叫做 <strong>Skip-gram</strong>，和 CBOW 正好反过来，输入某个单词，要求网络预测它的上下文单词。</li>
-</ol>
-<p>而NNLM的训练方法是<strong>输入一个单词的上文，去预测这个单词</strong></p>
-<p>为什么 Word2Vec 这么处理？原因很简单，因为 Word2Vec 和 NNLM 不一样，NNLM 的主要任务是要学习一个解决语言模型任务的网络结构，语言模型就是要看到上文预测下文，而 Word Embedding只是 NNLM 无心插柳的一个副产品；但是 Word2Vec 目标不一样，它单纯就是要 Word Embedding 的，这是主产品，所以它完全可以随性地这么去训练网络。</p>
-<h3 id="EMLO"><a href="#EMLO" class="headerlink" title="EMLO"></a>EMLO</h3><p>word embedding无法区分多义词。</p>
-<p>ELMo 的本质思想是：先用语言模型学好一个单词的 Word Embedding，此时多义词无法区分，不过这没关系。在实际使用 Word Embedding 的时候，单词已经具备了特定的上下文了，这个时候我可以根据上下文单词的语义再去调整单词的 Word Embedding 表示，这样经过调整后的 Word Embedding 更能表达在这个上下文中的具体含义，自然也就解决了多义词的问题了。所以 ELMo 本身是个<strong>根据当前上下文对 Word Embedding 动态调整的思路。</strong></p>
-<p>ELMo 采用了典型的两阶段过程：</p>
-<ol>
-<li>第一个阶段是利用语言模型进行<strong>预训练</strong>；</li>
-<li>第二个阶段是在做<strong>下游任务</strong>时<strong>，从预训练网络中提取对应单词的网络各层的 Word Embedding 作为新特征补充到下游任务中。</strong></li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/direct/5aa3f88d24e546edac02bcabf59f17e7.png" alt="image-20240925164420747"></p>
-<p>上图展示的是其<strong>第一阶段预训练过程</strong>，它的网络结构采用了双层双向 LSTM，目前语言模型训练的任务目标是根据单词 $w_i$ 的上下文去正确预测单词 $w_i$ ，$w_i$ 之前的单词序列 Context-before 称为上文，之后的单词序列 Context-after 称为下文。</p>
-<p>图中左端的前向双层 LSTM 代表正方向编码器，输入的是从左到右顺序的除了预测单词外$w_i$的上文 Context-before；右端的逆向双层 LSTM 代表反方向编码器，输入的是从右到左的逆序的句子下文Context-after；每个编码器的深度都是两层 LSTM 叠加。</p>
-<p>使用这个网络结构利用大量语料做语言模型任务就能预先训练好这个网络，如果训练好这个网络后，输入一个新句子 $s_{new}$ ，句子中每个单词都能得到对应的三个 Embedding：</p>
+<p><strong>Algorithmic structure:</strong></p>
 <ul>
-<li>最底层是单词的 Word Embedding；</li>
-<li>往上走是第一层双向 LSTM 中对应单词位置的 Embedding，这层编码单词的<strong>句法信息</strong>更多一些；</li>
-<li>再往上走是第二层 LSTM 中对应单词位置的 Embedding，这层编码单词的<strong>语义信息</strong>更多一些</li>
+<li>The core of the framework is built on five key components: parameters, prompt templates, datasets, code augmentations, and an evaluator module.</li>
+<li>LLMs are tested on a variety of scenarios with different complexity levels and augmented code to measure their robustness and reasoning abilities.</li>
+<li>The evaluation uses a multi-dimensional approach, considering factors like determinism, prompt diversity, and real-world application.</li>
 </ul>
-<p>也就是说，ELMo 的预训练过程不仅仅学会单词的 Word Embedding，还学会了一个双层双向的 LSTM 网络结构，而这两者后面都有用。</p>
-<h4 id="ELMo-的-Feature-based-Pre-Training"><a href="#ELMo-的-Feature-based-Pre-Training" class="headerlink" title="ELMo 的 Feature-based Pre-Training"></a>ELMo 的 Feature-based Pre-Training</h4><p>预训练好之后，elmo如何给下游任务使用呢？</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/be676db332e64faba09f2333dd5e1b42.png" alt="image-20240925165426685"></p>
-<p>上图展示了下游任务的使用过程，比如我们的下游任务仍然是 QA 问题，此时对于问句 X：</p>
-<ol>
-<li>我们可以先将句子 X 作为预训练好的 ELMo 网络的输入，这样句子 X 中每个单词在 ELMO 网络中都能获得对应的三个 Embedding；</li>
-<li>之后给予这三个 Embedding 中的每一个 Embedding 一个权重 a，这个权重可以学习得来，根据各自权重累加求和，将三个 Embedding 整合成一个；</li>
-<li>然后将整合后的这个 Embedding 作为 X 句在自己任务的那个网络结构中对应单词的输入，以此作为补充的新特征给下游任务使用。</li>
-<li>对于上图所示下游任务 QA 中的回答句子 Y 来说也是如此处理。</li>
-</ol>
-<p><strong>因为 ELMo 给下游提供的是每个单词的特征形式，所以这一类预训练的方法被称为 “Feature-based Pre-Training”。</strong></p>
-<p>至于为何这么做能够达到区分多义词的效果，原因在于在训练好 ELMo 后，<strong>在特征提取的时候，每个单词在两层 LSTM 上都会有对应的节点，这两个节点会编码单词的一些句法特征和语义特征，并且它们的 Embedding 编码是动态改变的</strong>，会受到上下文单词的影响，周围单词的上下文不同应该会强化某种语义，弱化其它语义，进而就解决了多义词的问题。</p>
-<h2 id="5-RNN和LSTM"><a href="#5-RNN和LSTM" class="headerlink" title="5.RNN和LSTM"></a>5.RNN和LSTM</h2><p>RNN（Recurrent Neural Network） 和 LSTM（Long Short-Term Memory）</p>
-<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><ul>
-<li>传统的神经网络无法获取时序信息，然而<strong>时序信息在自然语言处理任务中非常重要</strong></li>
-<li>RNN 的基本单元结构如下图所示<img src="https://img-blog.csdnimg.cn/direct/c2ce040182ce479d9047347cc4fc23f4.png" alt="image-20240925152242019"></li>
+<h3 id="Issues-or-targets-addressed-by-the-paper-Why"><a href="#Issues-or-targets-addressed-by-the-paper-Why" class="headerlink" title="Issues or targets addressed by the paper (Why)"></a>Issues or targets addressed by the paper (Why)</h3><ul>
+<li><strong>Issue:</strong> The reliability of LLMs in detecting and reasoning about security vulnerabilities has been questioned, particularly regarding their use in automated vulnerability repair.</li>
+<li><strong>Problem:</strong> The lack of standardized and automated benchmarks to evaluate LLMs’ performance in this domain.</li>
+<li><strong>Motivation:</strong> As LLMs are increasingly integrated into development environments, it is crucial to understand their limitations and potential risks, particularly in security-related tasks.</li>
 </ul>
-<p>上图左边部分称作 RNN 的一个 timestep，在这个 timestep 中可以看到，在 $t$ 时刻，输入变量 $x_t$，通过 RNN 的一个基础模块 A，输出变量 $h_t$，而 $t$ 时刻的信息，将会传递到下一个时刻 $t+1$</p>
-<p>如果把模块按照时序展开，则会如上图右边部分所示，<strong>由此可以看到 RNN 为多个基础模块 A 的互连，每一个模块都会把当前信息传递给下一个模块</strong>。</p>
-<p>RNN 解决了时序依赖问题，但这里的时序一般指的是<strong>短距离</strong>的，首先我们先介绍下短距离依赖和长距离依赖的区别：</p>
+<h3 id="Detailed-Information-How"><a href="#Detailed-Information-How" class="headerlink" title="Detailed Information (How)"></a>Detailed Information (How)</h3><h4 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h4><ul>
+<li><strong>Setting:</strong> The problem is framed around the evaluation of LLMs in a classification task where they identify security vulnerabilities in code snippets.</li>
+<li><strong>Environment:</strong> The evaluation includes scenarios from two programming languages, C and Python, with varying levels of code complexity.</li>
+<li><strong>Evaluation:</strong> The LLMs are assessed across eight dimensions, including deterministic response, robustness, and reasoning capabilities.</li>
+</ul>
+<h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><ul>
+<li><strong>Approach:</strong> The authors introduce SecLLMHolmes, an automated framework that generates test prompts, applies them to LLMs, and analyzes their responses.</li>
+<li><strong>Testing:</strong> The framework evaluates eight LLMs using 228 scenarios, which include real-world and hand-crafted examples, and tests them with 17 different prompting techniques.</li>
+<li><strong>Tools:</strong> The responses are assessed for accuracy and reasoning quality using metrics like Rouge score, cosine similarity, and human-like reasoning patterns.</li>
+</ul>
+<h4 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h4><ul>
+<li><strong>LLMs Capabilities:</strong> The framework assumes that LLMs can be configured and tested in a controlled environment with parameters like temperature and token limits.</li>
+<li><strong>Test Integrity:</strong> It is assumed that the LLMs have not seen the test scenarios during their training phase, particularly the real-world CVEs.</li>
+</ul>
+<h4 id="Prominent-Formulas-or-Structure"><a href="#Prominent-Formulas-or-Structure" class="headerlink" title="Prominent Formulas or Structure"></a>Prominent Formulas or Structure</h4><ul>
+<li>No specific formulas are highlighted, but the framework involves complex evaluation metrics like Rouge scores and cosine similarity to assess reasoning quality.</li>
+</ul>
+<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><ul>
+<li><strong>Findings:</strong> LLMs show non-deterministic behavior, providing inconsistent results under the same conditions. The reasoning provided by LLMs often lacks correctness, even when the correct vulnerability is identified.</li>
+<li><strong>Performance:</strong> The LLMs perform poorly in real-world scenarios, with high false positive rates and vulnerability misclassification when code is slightly modified.</li>
+<li><strong>Key Statistics:</strong> For example, GPT-4 and PaLM2 showed incorrect answers in 26% and 17% of cases, respectively, when minor code changes were introduced.</li>
+</ul>
+<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><ul>
+<li><strong>Framework Scope:</strong> The framework might not capture all potential vulnerabilities and may not generalize across all programming languages.</li>
+<li><strong>LLM Constraints:</strong> The study is limited by the specific configurations and versions of the LLMs tested, which might not represent the full capabilities of these models.</li>
+<li><strong>Real-World Relevance:</strong> While the scenarios are carefully crafted, they might not fully represent the complexity and variety of vulnerabilities in real-world software.</li>
+</ul>
+<h4 id="Confusing-aspects-of-the-paper"><a href="#Confusing-aspects-of-the-paper" class="headerlink" title="Confusing aspects of the paper"></a>Confusing aspects of the paper</h4><ul>
+<li><strong>Determinism and Temperature Settings:</strong> The relationship between LLM temperature settings and their performance consistency was discussed but could benefit from more detailed explanation.</li>
+</ul>
+<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><h4 id="The-author’s-conclusions"><a href="#The-author’s-conclusions" class="headerlink" title="The author’s conclusions"></a>The author’s conclusions</h4><ul>
+<li>The authors conclude that current LLMs are not yet reliable enough for automated security vulnerability detection, especially in real-world applications.</li>
+<li>They emphasize the need for further advancements in LLMs before they can be trusted as general-purpose security assistants.</li>
+</ul>
+<h3 id="Possible-future-work-improvements"><a href="#Possible-future-work-improvements" class="headerlink" title="Possible future work &#x2F; improvements"></a>Possible future work &#x2F; improvements</h3><ul>
+<li><strong>Algorithm Enhancements:</strong> Further refinement of LLMs to improve their reasoning capabilities and robustness to code modifications.</li>
+<li><strong>Expanded Framework:</strong> Incorporating more diverse programming languages and real-world scenarios into the SecLLMHolmes framework.</li>
+<li><strong>Hybrid Approaches:</strong> Combining LLMs with traditional static and dynamic analysis tools to enhance overall detection performance.</li>
+</ul>
+<h2 id="Part1-abstract"><a href="#Part1-abstract" class="headerlink" title="Part1. abstract"></a>Part1. abstract</h2><p>截至目前，LLMs在安全相关领域的鉴别能力是比较缺乏的，基于此，作者开发了一个完全自动化的评估框架SecLLMHolmes，该框架对LLMs是否能够可靠地识别和推理与安全相关的Bug进行了迄今为止最详细的调查。</p>
+<p>研究结果揭示了即使是最先进的模型，如’ PaLM2 ‘和’ GPT-4 ‘，也存在显著的非鲁棒性</p>
+<h2 id="Part2-introduction"><a href="#Part2-introduction" class="headerlink" title="Part2. introduction"></a>Part2. introduction</h2><p>作者构建了一组228个代码场景，并使用我们的框架在八个不同的研究维度上分析了八个最有能力的LLM。在最先进的模型也表现出了不稳定性。</p>
+<p>实验表明</p>
 <ul>
-<li>短距离依赖：对于这个填空题 “我想看一场篮球____”，我们很容易就判断出 “篮球” 后面跟的是 “比赛”，这种短距离依赖问题非常适合 RNN。</li>
-<li>长距离依赖：对于这个填空题 “我出生在中国的瓷都景德镇，小学和中学离家都很近，……，我的母语是____”，对于短距离依赖，“我的母语是” 后面可以紧跟着 “汉语”、“英语”、“法语”，但是如果我们想精确答案，则必须回到上文中很长距离之前的表述 “我出生在中国的瓷都景德镇”，进而判断答案为 “汉语”，而 RNN 是很难学习到这些信息的。</li>
+<li>尽管所有模型的误报率都很高，但llm的能力还是决定于模型以及Prompt技术</li>
+<li>llms的输出是不固定的</li>
+<li>即使正确地识别了一个漏洞，LLMs为这个决策提供的推理也往往是不正确的</li>
+<li>llms的COT是不健壮的，最简单的混淆(空格，改函数名)都能对其产生影响</li>
 </ul>
-<h4 id="RNN梯度消失问题"><a href="#RNN梯度消失问题" class="headerlink" title="RNN梯度消失问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaojc1995/article/details/114649486">RNN梯度消失问题</a></h4><ul>
-<li>为什么<strong>RNN不适合长距离依赖问题</strong></li>
+<p>本文的贡献：</p>
+<p>1. 开发了一个全面的框架SecLLMHolmes来测试LLM识别和推理软件漏洞的能力。框架是完全自动化的，包括一组228个代码场景和17种提示技术</p>
+<p>2. 测试了8个最先进的LLM用于漏洞检测任务，表明到目前为止没有一个LLM在漏洞检测任务上取得令人满意的性能</p>
+<p>3. 识别并列举了当前LLMs表现出的的一系列缺点。为研究人员提供了一个checklist，显示了在LLMs被认为可以在野外用于脆弱性检测任务之前需要解决的问题</p>
+<h2 id="Part3-Framework"><a href="#Part3-Framework" class="headerlink" title="Part3. Framework"></a>Part3. Framework</h2><p><strong>SecLLMHolmes</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/f18070a3b4084b069b77896c48c3abeb.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;83K4VARW&quot; width=&quot;552&quot; height=&quot;349&quot; src=&quot;attachments/83K4VARW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>1.LLM configuration</strong></p>
+<p>为了适配各种llms，框架提供3个用户可输入的配置：</p>
+<ul>
+<li><p>LLM-Specific Best ‘Prompting Practices’ and Rules</p>
+<ul>
+<li>通常根据模型文档完成</li>
 </ul>
-<img src="https://img-blog.csdnimg.cn/direct/14b5df8af70c486d8d0851038a4fee26.png" alt="image-20240925153100124" style="zoom:70%;" />
+</li>
+<li><p>LLM Initialization and Configuration</p>
+</li>
+<li><p>LLM Chat Structure and Inference Function</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/b653cdedde9a4d5ebe32111ac56d282d.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;ZCL3Z288&quot; width=&quot;616&quot; height=&quot;326&quot; src=&quot;attachments/ZCL3Z288.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>2. LLM Parameters</strong></p>
+<p>llm的responses收到两个参数的显著影响：</p>
+<ul>
+<li><p><strong>temperature</strong></p>
+<ul>
+<li>控制LLM输出的确定性。温度值越高，模型的输出越随机，越具创造性；温度值越低，模型输出更确定且更一致。为了评估LLM的性能，SecLLMHolmes会根据任务需求调整温度值，例如在需要确定性结果时设置较低温度。</li>
+</ul>
+</li>
+<li><p><strong>top_p</strong></p>
+<ul>
+<li>控制核采样(nucleus sampling)，其中LLM考虑具有top p概率质量的令牌的结果。SecLLMHolmes会根据模型的具体需求调整Top P的取值，使其能够生成合适的响应。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3.Prompt Templates</strong></p>
+<ul>
+<li>zero-shot task-oriented (ZS - TO)</li>
+<li>zero-shot role-oriented (ZS - RO)</li>
+<li>few-shot task-oriented (FS - TO)</li>
+<li>few-shot role-oriented (FS- RO)</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/39e5e671c08a420fbf43acbab54bb727.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;S3UTRTN3&quot; width=&quot;461&quot; height=&quot;859&quot; src=&quot;attachments/S3UTRTN3.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>三类：</p>
+<ul>
+<li><p>标准( S )</p>
+<ul>
+<li>直接向模型提供问题，要求模型判断代码中是否存在某种安全漏洞。标准提示最简单，但也可能无法激发模型的复杂推理能力</li>
+</ul>
+</li>
+<li><p>Step-By-step推理型后视偏差( R )</p>
+<ul>
+<li>使用COT推理。要求模型按照逐步推理的方式解决问题，例如使用”链式推理”（Chain of Thought，COT）方法。这种提示模拟了人类安全专家的推理过程，例如：先概览代码，再检查潜在的漏洞子组件，最后基于分析做出判断。</li>
+</ul>
+</li>
+<li><p>基于定义( D )</p>
+<ul>
+<li>在提示中为模型提供安全漏洞的定义，并让模型基于此定义判断代码中是否存在该漏洞。这种提示为模型提供了更多背景信息，帮助其做出更精确的判断</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Datasets</strong></p>
+<p>设计了228个代码场景(手工制作48个,真实世界30个,代码增强150个)来测试LLMs检测代码中软件漏洞的能力的各个方面。</p>
+<ul>
+<li><strong>手工制作的CWE场景</strong><img src="https://img-blog.csdnimg.cn/direct/da8a85e05ad34639a22539ed75ff1a68.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;D9Y8ZVEI&quot; width=&quot;580&quot; height=&quot;342&quot; src=&quot;attachments/D9Y8ZVEI.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
+</ul>
+<p>研究者手工设计了48个代码场景，涵盖8种MITRE排名前25的关键软件漏洞（如越界写、SQL注入、路径遍历等）。每个CWE类别包含六个代码场景（3对漏洞代码和修复代码），并分为<strong>简单</strong>、<strong>中等</strong>和<strong>复杂</strong>三个难度级别。这些场景用于评估LLM在处理不同复杂度的代码时的表现。</p>
+<ul>
+<li><p><strong>真实世界CVE场景</strong></p>
+<ul>
+<li>该数据集包含30个真实的漏洞场景，来源于开源项目的CVE（Common Vulnerabilities and Exposures，常见漏洞和暴露），确保这些场景是在当前LLMs的训练日期之后发布和修复的，以避免模型在训练中见过这些场景</li>
+</ul>
+</li>
+</ul>
+<!---->
 
-<p>如上图所示，为RNN模型结构，前向传播过程包括：</p>
 <ul>
-<li><p>隐藏状态: $h^{t}&#x3D;\sigma({z^{(t)}}) &#x3D; \sigma(Ux^{t}+Wh^{(t-1)}+b)$,此处激活函数一般为 tanh</p>
-</li>
-<li><p>模型输出：$o^{(t)}&#x3D;Vh^{(t)}+c$</p>
-</li>
-<li><p>预测输出：$\hat{y}^2&#x3D;\sigma(o^{(t)})$,此处激活函数一般为softmax。</p>
-</li>
-<li><p>模型损失：$L &#x3D;\sum_{t&#x3D;1}^NL^{(t)}$</p>
-<p>RNN 所有的 timestep 共享一套参数 U,V,W，在 RNN 反向传播过程中，需要计算 U,V,W等参数的梯度，以 W 的梯度表达式为例（假设 RNN 模型的损失函数为 L）：</p>
-</li>
+<li><strong>Code Augmentations</strong></li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/6774cdb7aea643be947368f7f3f9d350.png" alt="image-20240925154324891"></p>
-<p>需要注意的是，RNN和DNN梯度消失和梯度爆炸含义并不相同</p>
-<p>RNN中权重在各时间步内共享，最终的梯度是各个时间步的梯度和，梯度和会越来越大。因此，RNN中总的梯度是不会消失的，即使梯度越传越弱，也只是远距离的梯度消失。 从公式（9）中的$(\prod_{k&#x3D;t+1}^Ttanh^\prime{(z^{(k)}W)}$可以看到，<strong>RNN所谓梯度消失的真正含义是，梯度被近距离（$t+1趋向于T$）梯度主导，远距离（$t+1远离T$）梯度很小，导致模型难以学到远距离的信息。</strong></p>
-<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>为了解决 RNN 缺乏的序列长距离依赖问题，LSTM 被提了出来</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/ee36d17132d54828b2bdd229f3f1fda1.png" alt="image-20240925155356045"></p>
-<p>如上图所示，为 LSTM 的 RNN 门控结构（LSTM 的 timestep），LSTM 前向传播过程包括</p>
+<p>为了解决没标准框架来评估代码安全相关任务的鲁棒性评估的问题而提出的，这些增广分为两个不同的类别：</p>
 <ul>
-<li><p>遗忘门：</p>
-<p><strong>决定了丢弃哪些信息，</strong>遗忘门接收$t−1$时刻的状态$h_{t−1}$，以及当前的输入$x_t$，经过 Sigmoid 函数后输出一个 0 到 1 之间的值$f_t$</p>
+<li><p>Trivial Augmentations</p>
 <ul>
-<li>输出：$i_t&#x3D;σ(W^ih_{t−1}+U_ix_t+b_i), \widehat{C}<em>t&#x3D;tanhW_ah</em>{t−1}+U_ax_t+b_a$</li>
+<li>例如随机重命名函数、插入无用的代码等，测试LLM对这些噪音的鲁棒性。增强衡量了LLMs对随机噪声的鲁棒性</li>
 </ul>
 </li>
-<li><p>输入门：<strong>决定了哪些新信息被保留</strong>，并更新cell状态，输入门的取值由 $h_{t−1}$ 和 ${x_t}$决定，通过 Sigmoid 函数得到一个 0 到 1 之间的值 $i_t$，而 $tanh$ 函数则创造了一个当前cell状态的候选 $a_t$</p>
+<li><p>Non-Trivial Augmentations</p>
 <ul>
-<li>输出：$i_t&#x3D;\sigma(W_ih_{t-1}+U_ix_t+b_i) , \tilde{C}<em>t&#x3D;tanhW_ah</em>{t-1}+U_ax_t+b_a$</li>
-</ul>
-</li>
-<li><p>cell状态：旧cell状态 $C_{t−1}$ 被更新到新的cell状态 $C_t$ 上</p>
-<ul>
-<li>输出：$C_t&#x3D;C_{t-1}\odot f_t+i_t\odot\tilde{C_t}$</li>
-</ul>
-</li>
-<li><p>输出门：决定了最后输出的信息，输出门取值由$h_{t−1}$ 和$x_{t}$决定，通过 Sigmoid 函数得到一个 0 到 1 之间的值 $o_t$，最后通过 $tanh$ 函数决定最后输出的信息</p>
-<ul>
-<li>输出$o_t&#x3D;\sigma(W_oh_{t-1}+U_ox_t+b_o) , h_t&#x3D;o_t\odot tanhC_t$</li>
-</ul>
-</li>
-<li><p>预测输出：$\hat{y}_t&#x3D;\sigma(Vh_t+c)$</p>
-</li>
-</ul>
-<h4 id="LSTM解决RNN梯度消失问题"><a href="#LSTM解决RNN梯度消失问题" class="headerlink" title="LSTM解决RNN梯度消失问题"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaojc1995/article/details/114649486">LSTM解决RNN梯度消失问题</a></h4><p> 1、cell state传播函数中的“加法”结构确实起了一定作用，它使得导数有可能大于1；<br>2、LSTM中逻辑门的参数可以一定程度控制不同时间步梯度消失的程度。</p>
-<p>最后，LSTM依然不能完全解决梯度消失这个问题，有文献表示序列长度一般到了三百多仍然会出现梯度消失现象。如果想彻底规避这个问题，还是transformer好用</p>
-<h2 id="6-Attention"><a href="#6-Attention" class="headerlink" title="6.Attention"></a>6.Attention</h2><h3 id="本质思想"><a href="#本质思想" class="headerlink" title="本质思想"></a>本质思想</h3><p>虽然 LSTM 解决了序列长距离依赖问题，但是单词超过 200 的时候就会失效。<strong>而 Attention 机制可以更加好的解决序列长距离依赖问题，并且具有并行计算能力</strong></p>
-<p>首先我们得明确一个点，注意力模型从大量信息 Values 中筛选出少量重要信息，<strong>这些重要信息一定是相对于另外一个信息 Query 而言是重要的</strong>。也就是说，我们要搭建一个注意力模型，我们必须得要有一个 Query 和一个 Values，然后通过 Query 这个信息从 Values 中筛选出重要信息。简单点说，<strong>就是计算 Query 和 Values 中每个信息的相关程度。</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/79464bde78ad46baabef1ab09061cbbc.png" alt="image-20240926141606010"></p>
-<p>通过上图，Attention 通常可以进行如下描述，表示为将 Query(Q) 和 key-value pairs（<strong>把 Values 拆分成了键值对的形式</strong>） 映射到输出上，其中 query、每个 key、每个 value 都是向量，输出是 V 中所有 values 的加权，其中权重是由 Query 和每个 key 计算出来的，计算方法分为三步：</p>
-<ul>
-<li>第一步：计算比较 Q 和 K 的相似度，用 f 来表示：$f(Q,K_i)\quad i&#x3D;1,2,\cdots,m$,一般第一步计算方法包括四种<ul>
-<li>点乘(<strong>Transformer使用</strong>):$f(Q,K_i)&#x3D;Q^TK_i$</li>
-<li>权重：$f(Q,K_i)&#x3D;Q^TWK_i$</li>
-<li>拼接权重：$: f(Q,K_i)&#x3D;W[Q^T;K_i]$</li>
-<li>感知器：$f(Q,K_i)&#x3D;V^T\tanh(WQ+UK_i)$</li>
-</ul>
-</li>
-<li>第二步：将得到的相似度进行 softmax 操作，进行归一化：$$\alpha_{i}&#x3D;softmax(\frac{f(Q,K_{i})}{\sqrt{d}_{k}})$$<ul>
-<li>为什么除以$\sqrt{d}_{k}$: 假设 Q , K 里的元素的均值为0，方差为 1，那么 $A^T&#x3D;Q^TK$中元素的均值为 0，方差为 d。当 d 变得很大时， A 中的元素的方差也会变得很大，如果 A 中的元素方差很大(分布的方差大，分布集中在绝对值大的区域)，<strong>在数量级较大时， softmax 将几乎全部的概率分布都分配给了最大值对应的标签</strong>，由于某一维度的数量级较大，进而会导致 softmax 未来求梯度时会消失。</li>
-<li>总结一下就是 $softmax⁡(A)$ 的分布会和d有关。因此 AA中每一个元素乘上 $\frac{1}{\sqrt{d}_{k}}$ 后，<strong>方差又变为 1，</strong>并且 A 的数量级也将会变小。</li>
-</ul>
-</li>
-<li>第三步：针对计算出来的权重 αi，对 V 中的所有 values 进行加权求和计算，得到 Attention 向量:$Attention&#x3D;\sum_{i&#x3D;1}^m\alpha_iV_i$</li>
-</ul>
-<h3 id="self-attention"><a href="#self-attention" class="headerlink" title="self-attention"></a>self-attention</h3><p><img src="https://img-blog.csdnimg.cn/direct/365497885a4f4919aaa45ed880a51b68.png" alt="image-20240926144716980"></p>
-<p>首先可以看到 Self Attention 有三个输入 Q、K、V：<strong>对于 Self Attention，Q、K、V 来自句子 X 的 词向量 x 的线性转化，即对于词向量 x，给定三个可学习的矩阵参数 $W_Q,W_k,W_v$，x 分别右乘上述矩阵得到 Q、K、V</strong>。</p>
-<p><strong>计算流程</strong></p>
-<ul>
-<li>第一步，Q、K、V 的获取<img src="https://img-blog.csdnimg.cn/direct/516cbfebb23d42c69ac4584dc1707987.png" alt="image-20240926144847487"></li>
-</ul>
-<p>上图操作：两个单词 Thinking 和 Machines。通过线性变换，即$x_1 和 x_2$两个向量分别与$W_Q,W_k,W_v$ 三个矩阵点乘得到 $q_1,q_2,k_1,k_2,v_1,v_2 共 6 个向量。矩阵 Q 则是向量$ $q_1,q_2$ 的拼接，K、V 同理。</p>
-<ul>
-<li>第二步，MatMul<img src="https://img-blog.csdnimg.cn/direct/bc227fa5da5b46709d2715dd405cd409.png" alt="image-20240926145106372"></li>
-</ul>
-<p>上图操作：向量 $q_1,k_1$做点乘得到得分 112， $q_1,k_2$ 做点乘得到得分96。注意：<strong>这里是通过 $q_1$这个信息找到 $x_1,x_2$ 中的重要信息。</strong></p>
-<ul>
-<li>第三步和第四步，Scale + Softmax</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/e6e5f5b56c994593926e2b559325baa2.png" alt="image-20240926145325955"></p>
-<p>对该得分进行规范，除以 $\sqrt{d_k}&#x3D;8$</p>
-<ul>
-<li>第五步，MatMul</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/489f71f3ec2c40b8945d1ae89dbdd633.png" alt="image-20240926145542828"></p>
-<p>用得分比例 [0.88，0.12] 乘以 $[v_1,v_2]$ 值得到一个加权后的值，将这些值加起来得到 $z_1$</p>
-<p>上述所说就是 Self Attention 模型所做的事，仔细感受一下，用$q_1$、$K&#x3D;[k_1,k_2]$去计算一个 Thinking 相对于 Thinking 和 Machine 的权重，再用权重乘以 Thinking 和 Machine 的$V&#x3D;[v_1,v_2]$ 得到加权后的 Thinking 和 Machine 的$V&#x3D;[v_1,v_2]$,最后求和得到针对各单词的输出$z_{1}$<br>同理可以计算出 Machine 相对于 Thinking 和 Machine 的加权输出$z_2$,拼接$z_1$和$z_2$即可得到 Attention 值$Z&#x3D;[z_1,z_2]$,这就是 Self<br>Attention 的矩阵计算，如下所示。<br>之前的例子是单个向量的运算例子。这张图展示的是矩阵运算的例子，输入是一个[2x4]的矩阵(句子中每个单词的词向量的拼接),每<br>个运算是[4x3]的矩阵，求得Q、K、V。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/eee5f81a1cde499494b5c588a5820ba7.png" alt="image-20240926145931157"></p>
-<p>Q对K转制做点乘，除以$\sqrt{d}_k$,做一个 softmax 得到合为 1 的比例，对V做点乘得到输出 Z。那么这个 Z 就是一个考虑过Thinking 周围单词Machine 的输出。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/f4fffeb6e49a49ccadae84154f05c3d3.png" alt="image-20240926150145483"></p>
-<p><strong>Self Attention 和 RNN、LSTM 的区别</strong></p>
-<ul>
-<li>RNN、LSTM：如果是 RNN 或者 LSTM，需要依次序列计算，对于远距离的相互依赖的特征，<strong>要经过若干时间步步骤的信息累积才能将两者联系起来，而距离越远，有效捕获的可能性越小</strong>。</li>
-<li>Self Attention：<ul>
-<li>引入 Self Attention 后会更容易捕获句子中长距离的相互依赖的特征，<strong>因为 Self Attention 在计算过程中会直接将句子中任意两个单词的联系通过一个计算步骤直接联系起来，所以远距离依赖特征之间的距离被极大缩短，有利于有效地利用这些特征</strong>；</li>
-<li>除此之外，Self Attention 对于<strong>一句话中的每个单词都可以单独的进行 Attention 值的计算</strong>，也就是说 Self Attention 对计算的并行性也有直接帮助作用，而对于必须得依次序列计算的 RNN 而言，是无法做到并行计算的。</li>
+<li>例如使用安全函数但对其进行误导性命名，测试LLM对复杂代码结构的敏感度，以测量它们的鲁棒性和对函数或变量名的语义、特定库函数或代码安全实践的偏见</li>
 </ul>
 </li>
 </ul>
-<h4 id="Masked-Self-Attention-模型"><a href="#Masked-Self-Attention-模型" class="headerlink" title="Masked Self Attention 模型"></a>Masked Self Attention 模型</h4><p><img src="https://img-blog.csdnimg.cn/direct/7b91122adc5e465aaee55afc24a9b737.png" alt="image-20240926150727812"></p>
-<p>我们已经通过 scale 之前的步骤得到了一个 attention map，<strong>而 mask 就是沿着对角线把灰色的区域用0覆盖掉，不给模型看到未来的信息</strong>，如下图所示<img src="https://img-blog.csdnimg.cn/direct/9fb4f7d68ec24fc4ba50ed23044bc593.png" alt="image-20240926150747585"></p>
-<p>在做完 softmax 之后，横轴结果合为 1</p>
-<h4 id="Multi-head-Self-Attention-模型"><a href="#Multi-head-Self-Attention-模型" class="headerlink" title="Multi-head Self Attention 模型"></a>Multi-head Self Attention 模型</h4><p>$\text{Multi-Head Attention 就是把 Self Attention 得到的注意力值}Z\text{切分成}\text{n个}Z_1,Z_2,\cdots,Z_n\\text{,然后通过全连接层获得新的 }Z^{\prime}$</p>
-<img src="https://img-blog.csdnimg.cn/direct/3eda42531c8c48f995195263c07c4655.png" alt="image-20240926151121502" style="zoom:50%;" />
+<p>**5. Ground-Truth Reasoning **$G_r$</p>
+<p>评估LLM给出的推理是否与其最终回答一致，使用GPT-4来分析LLM的输出，验证其提供的推理是否合理，并通过Rouge得分和余弦相似度来量化推理的准确性</p>
+<p><strong>6.Evaluator</strong></p>
+<p>使用提出的框架来研究LLM，包括以下模型</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/d131482b40084b679099100c9043a5e0.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;L3YP6CFR&quot; width=&quot;546&quot; height=&quot;212&quot; src=&quot;attachments/L3YP6CFR.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h2 id="Part3-Experimental"><a href="#Part3-Experimental" class="headerlink" title="Part3. Experimental"></a>Part3. Experimental</h2><ul>
+<li><strong>Evaluation for Deterministic Responses</strong></li>
+</ul>
+<p>目的是保证在相同的参数下多次运行相同的测试，应该提供相同的最终判决。</p>
+<p>结果：0.0是一个LLM获得一致响应的最佳temperature值，尽管我们注意到即使在这个设置下，一些LLM也无法提供一致的响应。</p>
+<ul>
+<li><strong>Performance Over Range of Parameters</strong></li>
+</ul>
+<p>低温度可以保证模型的一致性，高温度可以增加模型的创造性。</p>
+<p>结果并没有随着模型温度的升高而表现出更好的性能的总体趋势。由于提高温度并不能带来整个模型结果的普遍改善，为了优先考虑结果一致性，我们选择将0.0作为剩余实验的”温度”值，并将” top_p “设置为LLM特定的默认值。</p>
+<ul>
+<li><strong>Diversity of Prompts</strong></li>
+</ul>
+<p>在某些情况下，当前LLM的反应可能并不完全依赖于忠实和准确的推理。不同提示类型对模型的影响有所不同。例如，GPT-4和CodeLlama34b在逐步推理提示（R）和定义提示（D）下表现最好，而GPT-3.5和CodeChat-bison@001在少样本角色导向提示（FS-RO）下表现较优。</p>
+<p>尽管提示类型可以显著影响模型的表现，但没有一个通用的提示类型能适用于所有模型和场景。不同模型在不同提示下表现各异。逐步推理提示和定义提示对某些LLM（如GPT-4）更为有效，而少样本提示技术则能改善部分模型（如GPT-3.5）的表现。因此，在未来评估中，应根据模型特点选择最合适的提示类型</p>
+<ul>
+<li><strong>Evaluation Over Variety of Vulnerabilities</strong></li>
+</ul>
+<p>大多数模型对补丁版本的正确分类性能较差，这使得这些LLM不适合实际情况，因为它们大多将安全代码标记为易受攻击，从而导致许多错误的警报</p>
+<p>我们观察到，对于几乎所有的模型( pvalue &#x3D; 0.003)，小样本提示的表现显著优于零样本提示，而角色导向提示的表现略优于任务导向提示( p值&#x3D; 0.1)</p>
+<ul>
+<li><strong>Code Difficulty Levels</strong></li>
+</ul>
+<p>LLMs一般在代码简单的场景下表现较好，只有有限的例外</p>
+<p>发现( 1 ) LLMs不熟悉库函数功能的安全规范；( 2 ) LLMs不能处理复杂的多函数和多变量的数据流模式。</p>
+<ul>
+<li><strong>Robustness to Code Augmentations</strong></li>
+</ul>
+<p>没有一种提示技术是完全稳健的，因为我们的稳健性测试甚至打破了所有LLM的最佳提示技术和思维链，导致错误的反应。</p>
+<p>添加空格和新行字符，在某些情况下也会导致所有的LLMs做出错误的回答和推理，并进一步破坏他们的思维链推理</p>
+<ul>
+<li><strong>Real-World Cases</strong></li>
+</ul>
+<p>LLMs除了为易受攻击的代码提供错误的答案外，还经常错误地将补丁示例识别为易受攻击的，如果在生产中使用这些模型，这将会产生特别大的问题，因为这会使假阳性的数量急剧增加。</p>
+<p>我们还观察到，在真实世界的情况下，小样本提示并不起作用，这可能是因为LLMs无法外推从提供的实例中得到信息</p>
+<p>零样本的面向角色的提示” R2 “对于所有的LLM都表现出相对更好的性能</p>
+<h2 id="Discussion-Conclusion"><a href="#Discussion-Conclusion" class="headerlink" title="Discussion &amp; Conclusion"></a>Discussion &amp; Conclusion</h2><p>框架的限制：</p>
+<ul>
+<li>尽管要求模型按个时候回答，但是研究者发现100个样例中还是有2个没有按照要求格式给出，这里是有隐患的</li>
+</ul>
+<!---->
 
-<p>我们对 $Z$ 进行 8 等份的切分得到 8 个 $Z_i$ 矩阵</p>
-<img src="https://img-blog.csdnimg.cn/direct/7123375216ab466183021b21fbf8b98e.png" alt="image-20240926151206524" style="zoom:67%;" />
-
-<p>为了使得输出与输入结构相同，拼接矩阵  $Z_i$  后乘以一个线性  $W_o$ 得到最终的 $Z$ </p>
-<img src="https://img-blog.csdnimg.cn/direct/f7d3b1813e1746709aff99ca2b79cc94.png" alt="image-20240926151303986" style="zoom:50%;" />
-
-
-
-<p>整个流程：<img src="https://img-blog.csdnimg.cn/direct/088bb4ea3ee14572871cff4b21a1ea17.png" alt="image-20240926151344964" style="zoom:67%;" /></p>
-<p><strong>多头相当于把原始信息 Source 放入了多个子空间中，也就是捕捉了多个信息，对于使用 multi-head（多头） attention 的简单回答就是，多头保证了 attention 可以注意到不同子空间的信息，捕捉到更加丰富的特征信息</strong></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nickchen121/p/16470569.html#tid-EEyxQf">click here</a></p>
+<ul>
+<li>knowledge cut-off：之后的CVEs数据需要手动加入到框架中</li>
+<li>框架使用了3个指标衡量，选择多数结果作为最终结果，当2个同时误判时，可能出现问题</li>
+<li>文章中考虑的代码场景还需要拓展</li>
+</ul>
+<p>结论：该论文使用该框架对最先进的LLM进行了评估，表明它们目前在此任务上是不可靠的，并且当被要求识别源代码中的漏洞时，会错误地回答。基于这些结果，目前最先进的LLM还没有准备好用于漏洞检测，并敦促未来的研究解决突出的问题。</p>
 
                 
             </div>
@@ -587,7 +591,7 @@ ML知识点汇总1.LSTM
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/96138251.html">https://yangjx29.github.io/posts/96138251.html</a>
+                    <a href="https://yangjx29.github.io/posts/4153f353.html">https://yangjx29.github.io/posts/4153f353.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -700,7 +704,7 @@ ML知识点汇总1.LSTM
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-09-25T16-58-41',
+        id: '2024-10-09T20-15-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -728,17 +732,18 @@ ML知识点汇总1.LSTM
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/1bb262dc.html">
+                <a href="/posts/4153f353.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="bert">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities">
                         
-                        <span class="card-title">bert</span>
+                        <span class="card-title">LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -748,9 +753,9 @@ ML知识点汇总1.LSTM
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -763,6 +768,7 @@ ML知识点汇总1.LSTM
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -773,13 +779,13 @@ ML知识点汇总1.LSTM
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/674e3c36.html">
+                <a href="/posts/4153f351.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="transfomer">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs for Code Analysis-Do LLMs Really Do Their Job">
                         
-                        <span class="card-title">transfomer</span>
+                        <span class="card-title">LLMs for Code Analysis-Do LLMs Really Do Their Job</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -790,7 +796,7 @@ ML知识点汇总1.LSTM
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
                             </span>
                         <span class="publish-author">
                             
@@ -921,13 +927,6 @@ ML知识点汇总1.LSTM
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
