@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="bert精读, JacksonYang的博客">
+    <meta name="keywords" content="bert, JacksonYang的博客">
     <meta name="description" content="
 
 
@@ -21,7 +21,7 @@ Part1. 标题&amp;amp;作者Pre-trai">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>bert精读 | JacksonYang的博客</title>
+    <title>bert | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -264,12 +264,12 @@ Part1. 标题&amp;amp;作者Pre-trai">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">bert精读</h1>
+                    <h1 class="description center-align post-title">bert</h1>
                 </div>
             </div>
         </div>
@@ -323,14 +323,14 @@ Part1. 标题&amp;amp;作者Pre-trai">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    15 分
                 </div>
                 
 
@@ -505,6 +505,39 @@ Part1. 标题&amp;amp;作者Pre-trai">
 <p><strong>任务4:SWAG</strong></p>
 <p>这是一个用来判断两个句子之间关系的任务。</p>
 <h2 id="Part8-评论"><a href="#Part8-评论" class="headerlink" title="Part8. 评论"></a>Part8. 评论</h2><p>略。</p>
+<h2 id="八股相关问题"><a href="#八股相关问题" class="headerlink" title="八股相关问题"></a>八股相关问题</h2><ol>
+<li>BERT分为哪两种任务，各自的作用是什么？</li>
+</ol>
+<p>Masked Language Model（MLM，遮盖语言模型）：这种任务的目的是预测句子中部分单词的原始形式。在训练过程中，BERT模型会随机选择一些单词并用“【MASK】”标记替换它们。模型的任务是预测被替换的单词的原始形式。这种方法可以使模型在理解句子语义的同时学习到词语之间的关系</p>
+<p>Next Sentence Prediction（NSP，下一句预测）：这种任务的目的是预测一个句子是否是另一个句子的下一句。在训练过程中，BERT模型会从两个句子中选择一个随机的句子对，并根据是否是下一句来训练模型。这种方法可以使模型更好地理解上下文之间的关系。</p>
+<ol start="2">
+<li>在计算MLM预训练任务的损失函数的时候，参与计算的Tokens有哪些？是全部的15%的词汇还是15%词汇中真正被Mask的那些tokens？</li>
+</ol>
+<p>在训练过程中，BERT模型会随机选择一些tokens并用“【MASK】”标记替换它们。这些被标记的tokens只占所有tokens的一小部分，通常是15%。然后，模型的任务是预测被替换的tokens的原始形式。在计算损失函数时，只有真正被替换成了“【MASK】”标记的tokens会被用来计算损失值，而没有被标记的tokens则不会参与损失函数的计算</p>
+<ol start="3">
+<li>在实现损失函数的时候，怎么确保没有被 Mask 的函数不参与到损失计算中去？</li>
+</ol>
+<p>在实现损失函数时，需要使用一个掩码（mask）向量来指示哪些tokens是被Mask的，哪些tokens是没有被Mask的。具体来说，掩码向量中被Mask的tokens的位置为1，没有被Mask的tokens的位置为0。在计算损失函数时，可以将掩码向量与预测的tokens和实际的tokens相乘，这样就可以将没有被Mask的tokens的损失值置为0，只计算被Mask的tokens的损失值。以PyTorch为例，可以使用以下代码来实现掩码的功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loss_mask = torch.tensor(mask, dtype=torch.float32) <span class="comment"># mask是掩码向量</span></span><br><span class="line">predictions = model(tokens) <span class="comment"># tokens是输入的tokens</span></span><br><span class="line">loss = loss_function(predictions, labels)</span><br><span class="line">masked_loss = torch.<span class="built_in">sum</span>(loss * loss_mask) / torch.<span class="built_in">sum</span>(loss_mask) </span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>BERT的三个Embedding为什么直接相加？</li>
+</ol>
+<p>这样做的原因是因为BERT模型需要同时考虑输入的token、位置和段落信息。这三个嵌入分别对应了输入token在句子中的位置和所处的段落，以及输入token本身的信息。因此，在将它们相加之后，BERT模型可以同时获得这些信息</p>
+<ol start="5">
+<li>BERT的优缺点分别是什么？</li>
+</ol>
+<p>BERT模型的优点包括：<br>强大的语言表示能力：BERT模型使用了双向Transformer结构，能够学习到更丰富的语言表示，可以应对各种自然语言处理任务。<br>预训练模型的通用性：BERT模型是一种预训练模型，能够在大规模无标注数据上进行预训练，然后在有标注数据上进行微调，可以适用于各种任务和语言。</p>
+<p>BERT模型也存在一些缺点：<br>模型过于复杂：BERT模型拥有数亿个参数，需要在GPU或TPU等硬件平台上进行训练和推理，对计算资源的要求较高。<br>学习时间较长：由于BERT模型需要进行预训练，因此其训练时间相对较长，需要耗费大量的计算资源。<br>预训练数据集需要大规模无标注数据：BERT模型的预训练需要大规模无标注数据集，这对于资源有限的组织和个人来说可能是一个限制因素</p>
+<ol start="6">
+<li>你知道有哪些针对BERT的缺点做优化的模型？</li>
+</ol>
+<p>SpanBERT: SpanBERT是一种针对自然语言推理（NLI）任务的BERT模型改进，它通过对输入序列中的部分单词进行特殊标记，来使模型能够更好地理解上下文中的语义关系;通过剪枝和蒸馏技术来减少模型的大小和计算量，从而提高模型的训练速度和推理速度。</p>
+<ol start="7">
+<li>BERT怎么用在生成模型中</li>
+</ol>
+<p>Seq2Seq模型：使用BERT模型作为编码器，将输入序列转换为上下文向量，然后将上下文向量输入到解码器中进行解码生成输出序列。该方法可以用于生成对话系统、机器翻译、文本摘要等任务。</p>
+<p>GPT模型：使用BERT模型进行预训练，然后将预训练好的BERT模型作为初始参数，使用Transformer解码器进行微调，从而实现对文本生成任务的优化。GPT模型可以用于生成自然语言文本、文章摘要、问答系统等任务</p>
 
                 
             </div>
@@ -947,7 +980,7 @@ Part1. 标题&amp;amp;作者Pre-trai">
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        199.7k
+                                                        201k
                                                     </span>
                                                     
                                                         
