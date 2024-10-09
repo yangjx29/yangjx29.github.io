@@ -1,5 +1,5 @@
 ---
-title: transfomer精读
+title: transfomer
 categories: paper reading
 abbrlink: 674e3c36
 date: 2024-09-24 19:07:56
@@ -204,3 +204,7 @@ attention本身是不具备时序信息的，query和key计算相似度后与val
 ## Part8. 评论
 
 略。
+
+## 八股相关问题
+
+[click here](https://zhuanlan.zhihu.com/p/496012402?utm_medium=social&utm_oi=629375409599549440)
