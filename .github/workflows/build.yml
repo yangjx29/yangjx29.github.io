@@ -1,67 +1,67 @@
 # master 分支推送部署预览
-
+# 工作流名称,负责构建和部署项目
 name: Build and Deploy
 
+#触发条件 
 on:
-  push:
-    branches:
+  push: #表示工作流将在推送到仓库时触发
+    branches: #工作流只会在推送到 master 分支时触发
       - master
 
-jobs:
-  build:
-    name: Build Website
-    runs-on: windows-latest
+jobs: #定义工作流中的作业
+  build: # 第一个作业（Build）负责构建项目
+    name: Build Website # 作业名称
+    runs-on: windows-latest # 运行环境
     
-    steps:
+    steps: # 作业中的步骤
       # 检出 Git 仓库
-      - name: Check out git repository
-        uses: actions/checkout@v4.1.1
+      - name: Check out git repository # 步骤名称
+        uses: actions/checkout@v4.1.1 # 使用的 action
 
       # 安装 Node.js
-      - name: Install Node.js
-        uses: actions/setup-node@v4.0.0
-        with:
-          node-version: "18.x"
+      - name: Install Node.js # 步骤名称
+        uses: actions/setup-node@v4.0.0 # 使用的 action
+        with: # 传递参数
+          node-version: "18.x" # 安装 Node.js 的版本
 
       # 安装项目依赖
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Dependencies # 步骤名称
+        run: npm install # 根据 package.json 文件安装项目的所有依赖项
 
       # 构建程序
       - name: Build Website
         run: npm run build
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        env: # 环境变量
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 设置环境变量，在这里使用了 GITHUB_TOKEN，其值通过 GitHub Secrets 管理，使用 secrets.ACCESS_TOKEN
 
       # 上传构建产物
       - name: Upload artifacts
         # 链接 https://github.com/actions/upload-artifact/
         uses: actions/upload-artifact@v4.3.0
-        with:
-          name: Blog
-          path: public
+        with: # 传递参数
+          name: Blog # 将上传的文件命名为 Blog
+          path: public  # 指定构建产物存储在 public 目录下（即构建生成的静态文件）
 
-  deploy-gh-pages:
+  deploy-gh-pages: # 第二个作业（Deploy to gh-pages）负责部署项目
     name: Deploy to gh-pages
     runs-on: ubuntu-latest
     needs: build  # 表示依赖于 build 作业完成
     steps:
       - name: Download artifact
         # 链接 https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v4.0.0
+        uses: actions/download-artifact@v4.0.0 # 下载之前 build 作业上传的构建产物
         with:
           name: Blog
           path: dist
 
-      # 现在部署到我自己的服务器上了，因此 gh-pages 分支废弃，但是该分支需要存在，因为 hexo-seo-autopush
       - name: Deploy to gh-pages
         # 链接 https://github.com/crazy-max/ghaction-github-pages/
-        uses: crazy-max/ghaction-github-pages@v4.0.0
+        uses: crazy-max/ghaction-github-pages@v4.0.0 # 将网站部署到 gh-pages 分支
         with:
-          target_branch: gh-pages
-          build_dir: dist
-          keep_history: true
+          target_branch: gh-pages # 部署到 gh-pages 分支
+          build_dir: dist # 指定构建目录为 dist，即之前下载的构建产物所在的目录
+          keep_history: true  # 保留历史记录
           allow_empty_commit: false
           # fqdn: xxx 自定义域名
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}   
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}    
