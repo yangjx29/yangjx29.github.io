@@ -315,7 +315,19 @@ $\text{Multi-Head Attention 就是把 Self Attention 得到的注意力值}Z\tex
 
 **多头相当于把原始信息 Source 放入了多个子空间中，也就是捕捉了多个信息，对于使用 multi-head（多头） attention 的简单回答就是，多头保证了 attention 可以注意到不同子空间的信息，捕捉到更加丰富的特征信息**
 
+## 7.zero-shot few-shot Learning
 
+[概括](https://blog.csdn.net/zcyzcyjava/article/details/127006287)
+
+[zero-shot learning](https://www.ibm.com/cn-zh/topics/zero-shot-learning)
+
+[few-shot learning](https://www.ibm.com/cn-zh/topics/few-shot-learning)
+
+
+
+## 8.N-gram
+
+[一文读懂](https://blog.csdn.net/songbinxu/article/details/80209197)
 
 
 
