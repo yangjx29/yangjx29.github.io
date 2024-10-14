@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="Natural Attack for Pre-trained Models of Code, JacksonYang的博客">
+    <meta name="description" content="
+
+Natural Attack for Pre-trained Models of CodePart 1. Title &amp;amp; SourceTitle: Natural Attack for Pre-trained Models of">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于 | JacksonYang的博客</title>
+    <title>Natural Attack for Pre-trained Models of Code | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -260,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于</h1>
+                    <h1 class="description center-align post-title">Natural Attack for Pre-trained Models of Code</h1>
                 </div>
             </div>
         </div>
@@ -294,6 +296,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -301,7 +312,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-06
+                    2024-10-13
                 </div>
                 
 
@@ -310,14 +321,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    150
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
 
@@ -344,30 +355,120 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h2 id="🔥-Biography"><a href="#🔥-Biography" class="headerlink" title="🔥 Biography"></a>🔥 Biography</h2><img src="https://img-blog.csdnimg.cn/direct/4a6bf912c60749c99a277eee69b7b27f.png" alt="I look like this" style="zoom: 33%;" />    
-
-<p>I am an undergraduate at University of Electronic Science and Technology of China (<a target="_blank" rel="noopener" href="https://en.uestc.edu.cn/">UESTC</a>), majoring in Software Engineering. From January to July 2024, I worked as an intern at <a target="_blank" rel="noopener" href="https://www.bytedance.com/">ByteDance</a>.Before that,I learned c++ related content.</p>
-<p>Now I am studying on my own with the fields related to artificial intelligence large models to lay the foundation for my graduate studies.</p>
-<h2 id="📖-Education"><a href="#📖-Education" class="headerlink" title="📖 Education"></a>📖 Education</h2><ul>
-<li>Sept. <em>2025</em> - June. <em>2028</em> (expected), Master, School of Software, Zhejiang University (ZJU)</li>
-<li>Sept. <em>2021</em> - June. <em>2025</em> (expected), Bachelor of Software and Engineering, University of Electronic Science and Technology of China (UESTC)</li>
-<li>GPA (Bachelor):  <strong>3.90 &#x2F; 4.00</strong>, Rank: <strong>18 &#x2F; 151</strong></li>
+<h2 id="Natural-Attack-for-Pre-trained-Models-of-Code"><a href="#Natural-Attack-for-Pre-trained-Models-of-Code" class="headerlink" title="Natural Attack for Pre-trained Models of Code"></a>Natural Attack for Pre-trained Models of Code</h2><h3 id="Part-1-Title-Source"><a href="#Part-1-Title-Source" class="headerlink" title="Part 1. Title &amp; Source"></a>Part 1. Title &amp; Source</h3><p><strong>Title</strong>: Natural Attack for Pre-trained Models of Code<br><strong>Authors</strong>: Zhou Yang, Jieke Shi, Junda He, David Lo<br><strong>Source</strong>: 44th International Conference on Software Engineering (ICSE ’22), May 21–29, 2022, Pittsburgh, PA, USA<br><strong>DOI</strong>: <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3510003.3510146">10.1145&#x2F;3510003.3510146</a></p>
+<hr>
+<h3 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h3><p>The paper explores vulnerabilities in pre-trained models of code to adversarial attacks. The authors propose ALERT (Naturalness Aware Attack), a black-box method to adversarially transform inputs, generating more natural adversarial examples than prior methods like MHM. ALERT preserves operational and natural semantics of code, making the examples not only executable but also contextually appropriate for humans. Experiments demonstrate that ALERT outperforms MHM on pre-trained models like CodeBERT and GraphCodeBERT in tasks such as vulnerability prediction, clone detection, and authorship attribution. The robustness of models improves with adversarial fine-tuning using ALERT-generated examples.</p>
+<hr>
+<h3 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h3><p>作者提到对抗性代码需要保证自然性，否则所生成的对抗性代码很有可能被人们所拒绝。现有的针对模型的攻击代码是有效的，但是他们更注重的是保留操作的语义而不是对于人类的判断来说该攻击是否能够被识别(比如MHM)<img src="https://img-blog.csdnimg.cn/direct/1f2bf061625044cf8a6543e20c279a24.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;VIFS6RPZ&quot; width=&quot;1146&quot; height=&quot;278&quot; src=&quot;attachments/VIFS6RPZ.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>论文介绍了 ALERT，这是一种黑盒对抗性攻击，同MHM一样通过修改变量名生成对抗性样本，它强调操作语义和自然语义，确保生成的示例更容易被人类判断。ALERT首先使用预训练模型中的掩蔽语言预测函数来生成自然替代品，利用上下文信息来预测隐藏令牌的潜在价值。</p>
+<p>ALERT首先使用贪婪算法(GreedyAttack)，如果贪婪算法失败，则使用遗传算法( GA- Attack )，并在漏洞预测、克隆检测和代码作者归属三个问题上进行了实验。</p>
+<p>文章贡献：</p>
+<ul>
+<li>强调了代码模型生成对抗性样本的自然性，并提出了在生成对抗变量替代物时感知自然语义的ALERT</li>
+<li>首先开发了针对CodeBERT和GraphCodeBERT的对抗攻击，并表明在最先进的预训练模型上进行微调的模型容易受到此类攻击</li>
+<li>展示了ALERT生成示例的价值：使用这些对抗示例对受害者模型进行对抗微调，可以使CodeBERT和GraphCodeBERT对抗ALERT的鲁棒性分别提高87.59 %和92.32 %。</li>
 </ul>
-<h2 id="🎖-Selected-Honors-and-Awards"><a href="#🎖-Selected-Honors-and-Awards" class="headerlink" title="🎖 Selected Honors and Awards"></a>🎖 Selected Honors and Awards</h2><ul>
-<li><em>2022.12</em> Outstanding Student Scholarship Of UESTC 2022</li>
-<li><em>2023.12</em> Outstanding Student Scholarship Of UESTC 2023</li>
-<li><em>2023.08</em> The National Grand Prize of Chinese Collegiate Computing Competition(<strong>4C</strong>)</li>
+<hr>
+<h3 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h3><p>The paper highlights the importance of naturalness in generating adversarial examples for code models. ALERT, the proposed black-box attack method, achieves high attack success rates across multiple downstream tasks on CodeBERT and GraphCodeBERT, outperforming prior methods like MHM. ALERT’s adversarial examples are more natural and imperceptible to human judges. The paper also demonstrates the value of these adversarial examples in enhancing model robustness through adversarial fine-tuning, which significantly improves the models’ defense against such attacks.</p>
+<hr>
+<h3 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h3><p>The paper discusses two primary topics in related work: pre-trained models of code and adversarial attacks on those models. It surveys pre-trained models like CodeBERT and GraphCodeBERT, which have been fine-tuned for various code-related tasks. In the domain of adversarial attacks, prior works like MHM and DAMP are mentioned. MHM is a black-box attack using variable renaming, which ignores the naturalness of variable names, making the adversarial examples less likely to fool human reviewers. Other approaches like DAMP, a white-box attack, leverage gradient information, which is impractical in most real-world scenarios.</p>
+<hr>
+<h3 id="Part-6-Model-Methodology"><a href="#Part-6-Model-Methodology" class="headerlink" title="Part 6. Model&amp;Methodology"></a>Part 6. Model&amp;Methodology</h3><h4 id="生成naturalness-aware-substitutes"><a href="#生成naturalness-aware-substitutes" class="headerlink" title="生成naturalness-aware substitutes"></a>生成naturalness-aware substitutes</h4><p>ALERT 旨在提高对抗性示例的自然性。核心思想涉及生成变量名称的替换，以维护操作语义（对机器重要）和自然语义（对人类重要）。该方法使用预训练模型的掩码语言建模 (MLM) 和上下文嵌入来创建可能替代的排名列表。</p>
+<p>生成单个变量的自然替代通常包含3个操作步骤：</p>
+<ul>
+<li><p>将代码片段转换成CodeBERT或GraphCodeBERT可以作为输入的格式，由于源代码通常包含领域特点缩略词，专业术语等不在语义集合中的词汇，会造成词汇外问题。两个模型都使用字节对编码( Bpe )来解决这个问题，从而生成子token</p>
+</li>
+<li><p>然后，我们为每个子token生成潜在的替代品。利用CodeBERT或GraphCodeBERT的mlm，生成潜在替代子标记的排序列表，并选择top - j的替代品</p>
+</li>
+<li><p>接下来，将原始序列T中的子令牌替换为步骤2中生成的候选子令牌$T^{\prime}$，预训练模型计算每个$T^{\prime}$的上下文嵌入，与T中计算$t_i^{\prime},t_{i+1}^{\prime}$中的相似。余弦相似度被用作度量候选token序列与原始变量的子token序列在多大程度上相似，并采用top - k将其还原成具体的变量名</p>
+</li>
 </ul>
-<h2 id="📝-Publications"><a href="#📝-Publications" class="headerlink" title="📝 Publications"></a>📝 Publications</h2><div class='paper-box'>
-<!-- <div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div> -->
-<div class='paper-box-text' markdown="1">
-Waiting~
-</div>
-</div>
-
-<h2 id="💻-Internships"><a href="#💻-Internships" class="headerlink" title="💻 Internships"></a>💻 Internships</h2><ul>
-<li><em>2024.01</em> - <em>2024.07</em>, RD Intern, Douyin life service, ByteDance</li>
+<p>具体的生成算法如下</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/66396830db6e4720ba962f0b05afa9df.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;4JPJU2FZ&quot; width=&quot;737&quot; height=&quot;482&quot; src=&quot;attachments/4JPJU2FZ.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>最后return的subs即为naturalness-aware substitutes</p>
+<h4 id="Greedy-Attack-GA-Attack"><a href="#Greedy-Attack-GA-Attack" class="headerlink" title="Greedy-Attack &amp; GA-Attack"></a><strong>Greedy-Attack &amp; GA-Attack</strong></h4><p>ALERT 采用两步搜索过程，首先是greedy-attack</p>
+<p><strong>1.Greedy-Attack</strong>:这种启发式方法首先计算代码片段中每个变量的重要性得分，并首先替换最重要的变量。它根据它们如何降低模型的置信度来选择最佳的对抗性示例。</p>
+<ul>
+<li>全局重要性评分 Overall Importance Score”(mertic)</li>
 </ul>
+<p>为了通过重命名变量来执行语义保持转换，攻击者首先需要决定代码片段中哪些令牌应该被更改。</p>
+<p>代码片断c中第i个令牌的重要性评分定义如下:</p>
+<p>$IS_i&#x3D;M(c)[y]-M(c_{-i}^*)[y]$</p>
+<p>其中</p>
+<blockquote>
+<p>Y为c的真值标签，$M(c)[y]$表示标签y对应的m的输出的置信度</p>
+<p>通过将c中的第i个token (必须是一个变量名称)替换为&lt;unk&gt;，从而创建了一个变体$c_{-i}^*$ ，这意味着在该位置处的字面值是未知的</p>
+</blockquote>
+<p>重要性评分近似表示知道第i个令牌的值如何影响模型对c的预测,$IS_i$ 大于0，表示第i个token可以帮助模型正确预测c</p>
+<p>为什么要用OIS呢？</p>
+<p>因为一个变量可能出现在一段代码的多个位置，而变量的替换需要考虑该变量出现的所有位置</p>
+<p>OIS的计算：</p>
+<p>$OIS_{var}&#x3D;\sum_{i\in var[pos]}IS_i$</p>
+<blockquote>
+<p>var是c中的一个变量，var [ pos ]是指var在c中的所有出现。</p>
+</blockquote>
+<p>OIS可以看作是白盒攻击中梯度信息的类比</p>
+<ul>
+<li>Word Replacement</li>
+</ul>
+<p>基于OIS的贪心算法来生成对抗性样本</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/b0bedc042b0648fca1a78dc168c25720.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;TI8VYUKZ&quot; width=&quot;744&quot; height=&quot;693&quot; src=&quot;attachments/TI8VYUKZ.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>2.GA-Attack</strong>: Greedy-attack可能会遇到单一局部最优，如果贪婪攻击无法找到对抗性示例，ALERT 将应用遗传算法进行更详尽的搜索，结合突变和交叉来探索不同的替换。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/af47818f049746358a01282fbf0dfd43.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;RXBAZ9TJ&quot; width=&quot;710&quot; height=&quot;670&quot; src=&quot;attachments/RXBAZ9TJ.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>算法的解释如下：</p>
+<ul>
+<li><p>Chromosome Representation：在GA中，染色体代表目标问题的解，<strong>染色体由一组基因组成</strong>，本文中，<strong>每个基因都是一对原始变量及其代换。</strong>假设一个输入程序中只能替换两个变量( a和b)，染色体&lt;a：x，b：y&gt;表示将a替换为x，b替换为y。</p>
+</li>
+<li><p>Population Initialization：在GA的运行过程中，<strong>种群(一组染色体)<strong>进化以解决目标问题。GA-Attack维护一个种群，其</strong>规模为可替代的提取变量的数量</strong>，它可以利用上一个步骤的信息。GA-Attack可以只改变一个变量，保持其他变量不变。</p>
+<ul>
+<li>例如，假设从输入程序中提取3个变量( a、b、c)，Greedy - Attack建议&lt;a：x，b：y，c：z&gt;，GA - Attack初始化3条染色体的种群：&lt;a：x，b：b，c：c&gt;，&lt;a：a，b：y，c：c&gt;，&lt;a：a，b：b，c：z&gt;</li>
+</ul>
+</li>
+<li><p>Poerators：Greedy-Attack有多次迭代，在每次迭代中，使用两个遗传算子(变异和交叉)来产生新的染色体。算法3以r的概率进行交叉，以1 - r的概率进行变异(line6-9)。</p>
+</li>
+</ul>
+<p>具体的：首先随机选择一个截止位置h，将位置h后的c1基因替换为对应位置的c2基因。eg：对于两条染色体( c1&#x3D;&lt;a : x , b : y , c : c&gt;和c2 &#x3D;&lt;a : x , b : b , c : z&gt;和一个截断位置h &#x3D; 2，</p>
+<p>交叉产生的子代&lt;a：x，b：y，c：z&gt;。</p>
+<p>变异算子随机选择一个基因，然后用随机选择的替代品替换该基因。例如，⟨中的&lt;a：x，b：b&gt;被选中，a：x变成a：aa</p>
+<ul>
+<li>Fitness Function：较高的适应度值表明染色体(变量的替换)更接近该问题的目标(line14)</li>
+</ul>
+<p>算法计算受害者模型关于原始输入和变量上的真实标签的置信值。将置信度值之间的差值作为适应度值。</p>
+<p>假设T是原始输入，$T^{\prime}$ 是对应于一条染色体的变体:</p>
+<p>$fitness&#x3D;M(T)[y]-M(T’)[y]$</p>
+<p>GA - Attack始终保持相同大小的种群(提取变量的个数)。它丢弃了适应度值较低的染色体（替代的变量）</p>
+<p>上述两种方法都旨在最大限度地减少变量变化的数量，同时最大限度地提高对模型预测的影响。</p>
+<hr>
+<h3 id="Part-7-Experiment"><a href="#Part-7-Experiment" class="headerlink" title="Part 7. Experiment"></a>Part 7. Experiment</h3><h4 id="Datasets-and-Tasks"><a href="#Datasets-and-Tasks" class="headerlink" title="Datasets and Tasks"></a>Datasets and Tasks</h4><p>实验使用了三个下游任务及其对应的数据集</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/a4cead8c491b40a49b65c95167abaa24.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;WPS9KHDL&quot; width=&quot;710&quot; height=&quot;291&quot; src=&quot;attachments/WPS9KHDL.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>Vulnerability Prediction’s benchmark：CodeXGLUE</p>
+<p>Clone Detection’s benchmark：BigCloneBench</p>
+<p>Authorship Attribution’s benchmark：Google Code Jam (GCJ)</p>
+<h4 id="Result-And-Analysis"><a href="#Result-And-Analysis" class="headerlink" title="Result And Analysis"></a>Result And Analysis</h4><p><strong>Research Question：</strong></p>
+<p><strong>RQ1：</strong>How natural are the adversarial examples generated by ALERT</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/e24d29bc82e74eab99c2702b5f6e3bc4.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;EQVJIDBF&quot; width=&quot;624&quot; height=&quot;550&quot; src=&quot;attachments/EQVJIDBF.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>Answers to RQ1：参与者一致发现ALERT (一种自然感知的方法)生成的对抗样本是自然的，而MHM (一种自然-不可知论的方法)生成的对抗样本是非自然的。</p>
+<p>**RQ2:**How successful and minimal are the  generated adversarial examples? How scalable is the generation process?</p>
+<p>Key metrics used:</p>
+<ul>
+<li><strong>Attack Success Rate (ASR)</strong>: The percentage of examples where the attack caused the model to produce incorrect results.</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/3b43a8796bde4535a5cd50c7d912c75b.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;RG3KNW8F&quot; width=&quot;1278&quot; height=&quot;309&quot; src=&quot;attachments/RG3KNW8F.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<ul>
+<li><strong>Variable Change Rate (VCR)</strong>: The proportion of variables changed in the code snippet.</li>
+<li><strong>Number of Queries (NoQ)</strong>: The number of times the victim model is queried during the attack.</li>
+</ul>
+<p>Answers to RQ2:从攻击成功率来看，在3个下游任务上，ALERT比MHM在CodeBERT上分别提高了17.96 %、7.74 %和16.51 %，在GraphCodeBERT上分别提高了21.78 %、4.54 %和29.36 %。除了取得了优越的攻击成功率外，ALERT还做了更少的修改，更具有可扩展性</p>
+<p><strong>RQ3：</strong>Can we use adversarial examples to harden the victim models?</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/e02089e8ffdd4700830013712a5b8f9a.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;2I72NLBK&quot; width=&quot;1310&quot; height=&quot;293&quot; src=&quot;attachments/2I72NLBK.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>Answers to RQ3：ALERT生成的对抗样本在提高受害者模型的鲁棒性方面是有价值的。使用ALERT生成的对抗样本对受害者模型进行对抗微调，可以使CodeBERT和GraphCodeBERT的准确率分别提高87.59 %和92.32 %</p>
+<hr>
+<h3 id="Part-8-Discussion-Future-Work"><a href="#Part-8-Discussion-Future-Work" class="headerlink" title="Part 8. Discussion &amp; Future Work"></a>Part 8. Discussion &amp; Future Work</h3><p>other black box Attack</p>
+<ul>
+<li>Pour et al. 提出的测试框架，针对代码模型的测试框架，通过修改代码中的局部变量名来评估模型的鲁棒性。虽然该框架能够有效地测试模型的稳健性，但其攻击成功率相对较低</li>
+<li>Rabin et al. 的变量重命名方法，通过修改代码中的变量名来生成对抗样本，测试模型的鲁棒性。该方法针对神经网络模型（如 GGNN），通过局部变量名的改变测试模型的泛化能力。</li>
+</ul>
+<p>作者讨论了他们工作的更广泛的影响，并指出虽然 ALERT 改进了代码模型的对抗性攻击，但仍有进一步研究的空间。例如，扩展方法来处理更多样化的编程语言和更大规模的模型可能是有益的。此外，他们建议探索其他方法将自然性与对抗鲁棒性结合起来，有可能整合对代码结构更深入的语义理解。未来的工作还可能着眼于改进遗传算法，以更好地优化对抗性示例，并将 ALERT 应用于软件工程中的其他任务，例如错误修复或补丁生成</p>
 
                 
             </div>
@@ -394,7 +495,7 @@ Waiting~
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/about/index.html">https://yangjx29.github.io/about/index.html</a>
+                    <a href="https://yangjx29.github.io/posts/4153f451.html">https://yangjx29.github.io/posts/4153f451.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -507,7 +608,7 @@ Waiting~
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-08-06T14-36-45',
+        id: '2024-10-13T17-15-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -540,13 +641,13 @@ Waiting~
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/4153f451.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Natural Attack for Pre-trained Models of Code">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">Natural Attack for Pre-trained Models of Code</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -557,12 +658,16 @@ Waiting~
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -575,16 +680,16 @@ Waiting~
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/96138321.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Code Security Vulnerability Repair Using Reinforcement Learning with Large Language Models">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">Code Security Vulnerability Repair Using Reinforcement Learning with Large Language Models</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -595,17 +700,20 @@ Waiting~
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-12
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -723,6 +831,13 @@ Waiting~
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
