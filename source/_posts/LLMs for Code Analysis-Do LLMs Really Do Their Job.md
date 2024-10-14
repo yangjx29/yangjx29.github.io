@@ -4,6 +4,8 @@ categories: paper reading
 abbrlink: 4153f351
 date: 2024-10-09 16:15:51
 tags:
+mathjax: true
+toc: true
 ---
 <meta name="referrer" content="no-referrer"/>
 
