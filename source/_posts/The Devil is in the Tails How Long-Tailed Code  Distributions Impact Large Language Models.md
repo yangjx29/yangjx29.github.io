@@ -1,5 +1,5 @@
 ---
-title: Natural Attack for Pre-trained Models of Code
+title: The Devil is in the Tails How Long-Tailed Code  Distributions Impact Large Language Models
 categories: paper reading
 abbrlink: 4153f578
 date: 2024-10-14 14:15:51
