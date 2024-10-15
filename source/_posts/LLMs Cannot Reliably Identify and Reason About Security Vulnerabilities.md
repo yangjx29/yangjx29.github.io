@@ -5,7 +5,7 @@ abbrlink: 4153f353
 date: 2024-10-09 20:15:51
 tags:
 mathjax: true
-toc: true
+# toc: true
 ---
 <meta name="referrer" content="no-referrer"/>
 
@@ -189,7 +189,7 @@ llm的responses收到两个参数的显著影响：
 
     *   例如使用安全函数但对其进行误导性命名，测试LLM对复杂代码结构的敏感度，以测量它们的鲁棒性和对函数或变量名的语义、特定库函数或代码安全实践的偏见
 
-**5. Ground-Truth Reasoning **$G_r$
+**5. Ground-Truth Reasoning** $G_r$
 
 评估LLM给出的推理是否与其最终回答一致，使用GPT-4来分析LLM的输出，验证其提供的推理是否合理，并通过Rouge得分和余弦相似度来量化推理的准确性
 

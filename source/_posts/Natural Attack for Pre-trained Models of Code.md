@@ -2,10 +2,10 @@
 title: Natural Attack for Pre-trained Models of Code
 categories: paper reading
 abbrlink: 4153f451
-date: 2024-10-013 17:15:51
+date: 2024-10-13 17:15:51
 tags:
 mathjax: true
-# toc: true
+toc: true
 ---
 <meta name="referrer" content="no-referrer"/>
 
