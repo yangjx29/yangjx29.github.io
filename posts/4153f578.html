@@ -321,14 +321,14 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.7k
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    16 分
                 </div>
                 
 
@@ -506,6 +506,38 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
 </ul>
 </li>
 </ol>
+<p><strong>分割数据集</strong></p>
+<p>长尾分布意味着数据集中存在少数频繁出现的标签（头部标签）和大量出现频率低的标签（尾部标签）。这些尾部标签尽管样本少，但往往非常重要。然而，机器学习模型通常倾向于在频繁标签（头部数据）上表现良好，而在不常见的标签（尾部数据）上表现较差。因此，分割数据集并分别评估模型在头部和尾部数据上的表现，可以揭示模型在不同标签分布下的性能差异。<br>除了将数据集简单地分为头部和尾部数据，作者还进一步将测试集<strong>细化为10个小组</strong>，每组包含相同数量的样本，但按标签的频率从高到低排序。这种细化分割的目的是为了更精确地分析模型在不同频率标签上的表现，提供更加细致的洞察。</p>
+<p><strong>长尾现象在llms中出现的原因</strong></p>
+<ul>
+<li><strong>自然语言和代码数据的内在分布特性</strong></li>
+</ul>
+<p>无论是自然语言数据还是代码数据，它们都天然存在<strong>长尾分布</strong>。这意味着在这些数据集中，少量的词汇、代码模式或API调用会频繁出现，而大量的其他词汇或代码片段则很少出现。这种不平衡分布是由以下几个原因造成的：</p>
+<ol>
+<li><p>语言的高重复性和模式化。</p>
+</li>
+<li><p>开发者行为的多样性，不同的开发者和团队可能在相同问题上采用不同的解决方案或风格，这会进一步扩大长尾现象</p>
+</li>
+</ol>
+<ul>
+<li><strong>模型训练中的偏差</strong></li>
+</ul>
+<p>LLMs的训练过程中，数据分布的偏差会导致模型<strong>偏向于学习频繁出现的模式</strong>，而忽略那些不常见的模式。这种偏差在以下几个方面体现出来:</p>
+<ol>
+<li>频繁标签的影响更大，模型在训练过程中，频繁出现的标签（即头部标签）占据了大部分的训练数据，因此它们对模型参数的更新影响更大。随着模型不断优化这些频繁标签的预测能力，它对不常见的标签（即尾部标签）的关注度和学习效果相对较低。长尾现象会导致模型更加“偏向”高频的模式，忽略或学习不足低频的稀有模式</li>
+<li>损失函数的影响，传统的损失函数（如交叉熵损失）在处理不平衡数据时，倾向于最小化整个数据集上的平均误差，而非对不平衡数据进行加权。这意味着模型更多地关注那些频繁出现的模式，而忽略了稀有模式。</li>
+</ol>
+<ul>
+<li><strong>稀有标签的学习困难</strong></li>
+</ul>
+<ol>
+<li><p>稀有标签的学习本质上是一个小样本学习（few-shot learning）问题。由于长尾分布中的尾部标签样本数量非常少，模型在训练过程中很难<strong>从少量的训练样本中学习到有效的特征</strong>。</p>
+</li>
+<li><p>数据采集偏差：数据集通常是从开源代码库、论坛（如Stack Overflow）、版本控制系统（如GitHub）等来源收集的。在这些数据中，常用的代码库和函数调用会被频繁使用和记录，而那些特殊用途或行业专用的代码库则很少被使用。这导致数据集中某些API调用或代码模式的频率极低</p>
+</li>
+<li><p>样本不足：对于尾部标签，模型可能只在训练数据中见到过几次甚至一次样本。在这种情况下，模型很难学习到这个标签的正确使用方式或生成模式。这意味着即使模型在测试时遇到这些标签，它也无法正确地进行预测。</p>
+</li>
+</ol>
 
                 
             </div>
@@ -677,7 +709,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/4153f451.html">
+                <a href="/posts/4153v419.html">
                     <div class="card-image">
                         
                         
@@ -948,7 +980,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        220.4k
+                                                        223.4k
                                                     </span>
                                                     
                                                         
