@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的孩子, JacksonYang的博客">
+    <meta name="keywords" content="Adversarial Examples for Models of Code, JacksonYang的博客">
     <meta name="description" content="
 
 
-这是我的孩子, 我很爱他
-
-">
+Adversarial Examples for Models of CodeOOPSLA
+Part1. Title&amp;amp;SourceTitle: Adversarial Examples for Models of CodeAu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的孩子 | JacksonYang的博客</title>
+    <title>Adversarial Examples for Models of Code | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -270,7 +269,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的孩子</h1>
+                    <h1 class="description center-align post-title">Adversarial Examples for Models of Code</h1>
                 </div>
             </div>
         </div>
@@ -302,8 +301,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AE%B6%E4%BA%BA/" class="post-category">
-                                家人
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
                             </a>
                         
                     </div>
@@ -315,7 +314,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-05
+                    2024-10-20
                 </div>
                 
 
@@ -324,14 +323,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
 
@@ -358,9 +357,111 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<blockquote>
-<p>这是我的孩子, 我很爱他<br><img src="https://img-blog.csdnimg.cn/direct/00a5dc6836244a77ac0ac15449a0a903.png" alt="护食ing"></p>
-</blockquote>
+
+<h1 id="Adversarial-Examples-for-Models-of-Code"><a href="#Adversarial-Examples-for-Models-of-Code" class="headerlink" title="Adversarial Examples for Models of Code"></a>Adversarial Examples for Models of Code</h1><p>OOPSLA</p>
+<h2 id="Part1-Title-Source"><a href="#Part1-Title-Source" class="headerlink" title="Part1. Title&amp;Source"></a>Part1. Title&amp;Source</h2><p><strong>Title</strong>: Adversarial Examples for Models of Code<br><strong>Authors</strong>: Noam Yefet, Uri Alon, Eran Yahav<br><strong>Source</strong>: Technion, Israel<br><a target="_blank" rel="noopener" href="https://github.com/tech-srl/adversarial-examples">Paper link</a></p>
+<h2 id="Part2-Abstract"><a href="#Part2-Abstract" class="headerlink" title="Part2. Abstract"></a>Part2. Abstract</h2><p>本文展示了基于神经网络的代码模型在代码分析任务中的脆弱性，尤其是在方法名预测和漏洞检测中。这些模型容易受到对抗样本的攻击。作者提出了一种新的<strong>白盒攻击</strong>方法，称为离散对抗程序操作（Discrete Adversarial Manipulation of Programs，DAMP），通过在不改变代码语义的前提下引入小的扰动来进行攻击。实验表明，这种攻击在不同的神经架构（code2vec、GGNN和GNN-FiLM）中非常有效，且成功率最高可达89%。文中还讨论了几种防御措施，一些防御可以显着降低攻击者的成功率。</p>
+<h2 id="Part3-Introduction"><a href="#Part3-Introduction" class="headerlink" title="Part3. Introduction"></a>Part3. Introduction</h2><p>近年来，神经模型在代码分析任务中取得了显著进展，如变量名和类型预测、代码生成、漏洞检测等。然而，类似于计算机视觉领域，神经网络模型也面临对抗样本的威胁。在图像分类中，加入细微的扰动可以改变模型的输出，而代码领域中的对抗攻击更加复杂，因为<strong>代码是离散的，且扰动不能影响其语义</strong>。本文旨在通过对抗样本的生成来攻击代码模型，使其输出错误预测。为此，作者提出了DAMP方法，通过<strong>变量重命名和插入无用代码</strong>的方式生成对抗样本。</p>
+<h2 id="Part4-Conclusion"><a href="#Part4-Conclusion" class="headerlink" title="Part4. Conclusion"></a>Part4. Conclusion</h2><p>本文展示了DAMP在代码模型中的有效性，并通过实验验证了其对code2vec、GGNN和GNN-FiLM架构的攻击能力，成功率最高可达94%。此外，文中提出了几种防御机制，并对它们的有效性进行了讨论。实验结果表明，通过适当的防御措施，可以显著降低攻击成功率，同时仅对模型的准确性产生轻微影响。未来的工作将进一步探索更多的对抗样本生成策略，并优化防御机制以提高模型的鲁棒性。</p>
+<h2 id="Part5-Related-Work"><a href="#Part5-Related-Work" class="headerlink" title="Part5. Related Work"></a>Part5. Related Work</h2><p>本文参考了图像分类中的对抗样本生成技术，如FGSM（Fast Gradient Sign Method）以及NLP中的对抗攻击方法。虽然图像和文本领域的对抗样本生成已经有了较多研究，但将这些方法直接应用到代码领域存在挑战。代码不仅是离散的，还具有特定的语法和语义约束。此外，代码的结构和语义使得简单的字符替换或词汇级扰动难以实现有效的攻击。</p>
+<p><strong>Motivation</strong></p>
+<ul>
+<li><p>绕过语义标记，攻击方法包括：</p>
+<ul>
+<li>rename variable</li>
+<li>insert unused code</li>
+</ul>
+</li>
+<li><p>绕过 Bug 检测</p>
+<ul>
+<li>在C#的代码片段中，GGNN模型正确地选择了<code>DestinationType</code>作为方法<code>Equals</code>中正确的变量。然而，通过DAMP方法，攻击者重命名了另一个方法中的局部变量<code>destination</code>为无关的名字<code>scsqbhj</code>，模型错误地选择了<code>SourceType</code>作为预测结果。<img src="https://img-blog.csdnimg.cn/direct/b954a7d36dbc4b4a854538870e87c275.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;MMWBKR3D&quot; width=&quot;1105&quot; height=&quot;730&quot; src=&quot;attachments/MMWBKR3D.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part6-Model"><a href="#Part6-Model" class="headerlink" title="Part6. Model"></a>Part6. Model</h2><p>DAMP攻击方法适用于任何可对输入计算梯度的神经网络模型，主要针对变量重命名和无用代码插入两种语义保持的代码扰动。DAMP方法基于梯度反向传播，通过计算模型输入的梯度来选择最优的扰动方向，并逐步修改代码的输入，从而生成对抗样本。本文重点评估了三种架构：code2vec、GGNN和GNN-FiLM。这些模型分别用于代码方法名预测和变量错误使用检测任务。</p>
+<p>技术细节包括：</p>
+<ol>
+<li>DAMP技术通过梯度下降来探索程序空间，使得模型的预测从正确标签转变为攻击者指定的错误标签。</li>
+<li>在目标攻击中，DAMP计算相对于目标标签的梯度，并根据梯度方向修改输入代码。通过反复迭代，逐步调整代码直到模型输出攻击者期望的错误标签。</li>
+<li>在非目标攻击中，DAMP则通过梯度上升的方式增加损失函数，推动模型向任意错误预测方向发展。<img src="https://img-blog.csdnimg.cn/direct/8267656694b2456eb04e0ab42190be3e.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;4IJIXJP8&quot; width=&quot;1154&quot; height=&quot;394&quot; src=&quot;attachments/4IJIXJP8.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
+</ol>
+<p>由于代码是离散对象，对代码进行修改时必须确保其语义保持不变，且代码的空间非常大，因此穷举搜索等简单方法不可行。</p>
+<p><strong>语义保持的代码变换</strong></p>
+<p>为了生成语义保持的对抗样本，作者提出了两种主要的代码变换方法：</p>
+<ul>
+<li>变量重命名（Variable Renaming）：通过重命名局部变量，使模型预测出错误的标签。例如，将变量<code>array</code>重命名为<code>ttypes</code>，保持代码功能不变的情况下使得模型输出错误结果。</li>
+<li>插入无用代码（Dead Code Insertion）：通过在代码中插入无用的变量声明或其他冗余代码，保持代码功能不变，同时扰乱模型的预测。例如，插入一个未使用的变量声明，可以改变模型的预测结果。</li>
+</ul>
+<p><strong>DAMP方法</strong></p>
+<p>是一种通过梯度计算来生成对抗样本的方法，核心思想包括：</p>
+<ul>
+<li><p><strong>不改变模型参数</strong>：在对抗攻击过程中，DAMP方法不修改模型的权重，而是通过修改输入（代码）来改变模型的预测。</p>
+</li>
+<li><p><strong>使用梯度引导代码修改</strong>：DAMP方法通过计算模型输入的梯度来选择变量或代码的最优修改点。具体来说，作者使用目标标签 $y_{bad}$​ 计算损失函数$J(\theta,x,y_{bad})$，并通过梯度反向传播来逐步修改代码中的变量名或插入无用代码，直到模型输出错误结果。公式描述：$v’&#x3D;v-\eta\cdot\nabla_vJ(\theta,P,y_{bad})$</p>
+</li>
+</ul>
+<p>a. <strong>变量名的扰动</strong>：</p>
+<p>由于变量名是离散的符号，DAMP方法通过将变量名表示为一个<strong>one-hot向量</strong>来处理。经过梯度计算后，DAMP通过argmax操作选择最合适的变量名替换。这一过程确保变量名的修改既能保持代码语义不变，又能导致模型的错误预测。</p>
+<p>b. <strong>无用代码的插入</strong>：</p>
+<p>DAMP方法还可以通过在代码中插入无用变量来实现对抗攻击。无用变量的插入不影响代码的实际功能，但通过梯度计算和变量名选择，DAMP可以使模型输出错误的预测结果。</p>
+<p><strong>搜索与收敛</strong></p>
+<p>DAMP方法在生成对抗样本时，通过<strong>广度优先搜索（BFS）</strong>策略进行代码修改的多次尝试。搜索的宽度和深度由两个超参数（top-k和depth）控制，分别决定了在梯度下降中的每一步候选变量名的数量和最大迭代次数。虽然梯度下降并不能保证在非凸损失函数下的全局最优收敛，但在大多数情况下，DAMP能够成功找到使模型预测错误的对抗样本。</p>
+<ul>
+<li><strong>广度优先搜索（BFS）</strong>：DAMP采用BFS策略来探索变量名或代码片段的修改。每次修改都根据梯度计算选择最优的变量名替换，直至找到能够使模型输出错误预测的代码。</li>
+<li><strong>收敛性</strong>：虽然DAMP无法保证每次都能成功生成对抗样本，但实验表明，在大多数情况下，该方法能够找到有效的对抗样本。对于那些没有找到对抗样本的情况，DAMP会停止搜索并认为攻击失败。</li>
+</ul>
+<p><strong>防御方法：</strong></p>
+<p><strong>without re-training</strong></p>
+<ul>
+<li>No Vars（变量名消除）</li>
+</ul>
+<ol>
+<li><strong>原理</strong>：在测试时，将所有的变量名替换为“UNK”（即unknown），从而阻止模型利用变量名进行预测。</li>
+<li><strong>优势</strong>：这种方法通过完全消除变量名的影响，因此对变量名重命名攻击具有100%的防御能力，保证了极高的鲁棒性。</li>
+<li><strong>劣势</strong>：由于该方法抹去了变量名信息，模型在没有攻击时的性能会受到严重影响，特别是在变量名对于任务结果至关重要的场景下。</li>
+</ol>
+<ul>
+<li>Outlier Detection（离群点检测）</li>
+</ul>
+<ol>
+<li><p><strong>原理</strong>：该方法通过检测输入代码中的异常变量名来识别并移除潜在的对抗样本。具体来说，使用变量名的嵌入向量来计算变量之间的距离。如果某个变量名的嵌入向量与其他变量之间的距离过大，则将其识别为离群点，并用“UNK”替换该变量名。$z^*&#x3D;\arg\max_{z\in Var(c)}\sum_{v\in Sym(c),v\neq z}\frac{|vec(v)-vec(z)|}{|Sym(c)|-1}$&gt; 其中，z∗z^*z∗ 是距离其他符号最远的变量，若其距离大于设定的阈值 σ\sigmaσ，则将该变量替换为“UNK”。</p>
+</li>
+<li><p><strong>优点</strong>：该方法在不严重影响模型准确性的前提下，可以有效检测和移除异常的变量名，从而防御对抗样本。</p>
+</li>
+<li><p><strong>调优</strong>：通过调整离群点检测的阈值 $σ$，可以在模型鲁棒性和性能之间进行平衡。实验中表明，合理设置阈值可以在仅轻微降低模型性能的情况下大幅提升模型的防御能力。</p>
+</li>
+</ol>
+<p><strong>with re-training</strong></p>
+<ul>
+<li><strong>Train Without Vars（无变量训练）</strong></li>
+</ul>
+<ol>
+<li><strong>原理</strong>：在训练和测试时都将所有的变量名替换为“UNK”，使模型完全依赖代码的其他结构或信息，而不是变量名。</li>
+<li><strong>优势</strong>：这种方法保证了模型对变量名重命名攻击的100%鲁棒性，因为模型在训练过程中从未依赖变量名进行预测。</li>
+<li><strong>劣势</strong>：由于变量名是代码的重要组成部分，完全抹去变量名可能导致模型性能下降，特别是在需要依赖变量名信息的任务中。</li>
+</ol>
+<h4 id="Adversarial-Training（对抗训练）"><a href="#Adversarial-Training（对抗训练）" class="headerlink" title="Adversarial Training（对抗训练）"></a><strong>Adversarial Training（对抗训练）</strong></h4><ul>
+<li><strong>原理</strong>：在训练过程中，不仅使用原始的训练数据，还在每个训练样本上生成对抗样本，并同时训练模型在原始数据和对抗样本上都能表现良好。对抗样本的生成可以使用非目标攻击（如DAMP的非目标攻击），通过梯度上升生成扰动后的输入</li>
+</ul>
+<p>$J_{adv}(\theta,x’,y)&#x3D;J(\theta,x,y)+J(\theta,x’,y)$</p>
+<ul>
+<li><strong>优势</strong>：对抗训练可以有效增强模型的鲁棒性，确保模型在面对对抗样本时仍能正确预测。</li>
+</ul>
+<p><strong>劣势</strong>：对抗训练需要额外的训练时间，训练过程大约比普通训练慢三倍。</p>
+<p><strong>Adversarial Fine-Tuning（对抗微调）</strong></p>
+<ul>
+<li><strong>原理</strong>：首先用原始训练数据训练模型以达到最佳性能，然后在训练结束后，通过对抗样本进行微调，使模型在保持原始性能的基础上增强其对对抗样本的鲁棒性。</li>
+<li><strong>优势</strong>：这种方法先确保模型在正常输入上的性能，然后再通过短期的对抗微调增强对对抗样本的抵抗能力。</li>
+<li><strong>劣势</strong>：虽然微调能增强对抗鲁棒性，但在实际攻击场景中，这种方法的效果可能不如全面的对抗训练。</li>
+</ul>
+<p><strong>限制词汇量（Vocabulary Limitation）</strong></p>
+<ul>
+<li><strong>原理</strong>：通过限制模型训练时的变量名词汇量，忽略罕见的变量名。例如，将变量名词汇限制为前1万、5万或10万个高频词汇，其余的变量名在训练和测试时都被替换为“UNK”。</li>
+<li><strong>优势</strong>：这种方法通过降低模型对不常见变量名的依赖，减少对罕见变量名的误分类，从而提升鲁棒性。</li>
+<li><strong>劣势</strong>：减少词汇量可能会对模型的整体性能产生影响，特别是当变量名在代码任务中非常重要时。</li>
+</ul>
+<h2 id="Part7-Experiment"><a href="#Part7-Experiment" class="headerlink" title="Part7. Experiment"></a>Part7. Experiment</h2><p>实验部分通过攻击Java和C#语言中的代码模型验证了DAMP方法的有效性。在针对code2vec的实验中，作者使用了Java-large数据集，并选择了模型准确预测的代码片段进行攻击。针对GGNN和GNN-FiLM，实验使用了C#项目中的VarMisuse任务，评估了变量重命名和无用代码插入两种攻击策略。实验结果显示，DAMP攻击在非目标攻击中成功率高达94%，而在目标攻击中成功率也达到了89%。</p>
+<h2 id="Part8-Discussion-Future-Work"><a href="#Part8-Discussion-Future-Work" class="headerlink" title="Part8. Discussion&amp;Future Work"></a>Part8. Discussion&amp;Future Work</h2><p>作者提出了多种防御措施来应对对抗攻击，包括变量匿名化、离群检测、对抗训练等。实验表明，某些防御策略能够显著降低攻击成功率，但也可能导致模型性能的下降。未来工作中，作者计划扩展对更多神经架构的评估，探索其他类型的对抗攻击，并进一步优化防御机制以提高代码模型的鲁棒性</p>
 
                 
             </div>
@@ -387,7 +488,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/d0d2ba0e.html">https://yangjx29.github.io/posts/d0d2ba0e.html</a>
+                    <a href="https://yangjx29.github.io/posts/3458vc68.html">https://yangjx29.github.io/posts/3458vc68.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -500,7 +601,7 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-08-05T20-03-19',
+        id: '2024-10-20T17-15-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -528,58 +629,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/1bb262db.html">
+                <a href="/posts/3458vc68.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="八股">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Adversarial Examples for Models of Code">
                         
-                        <span class="card-title">八股</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-05
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/" class="post-category">
-                                    面试相关
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/d0d2ba0e.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="我的孩子">
-                        
-                        <span class="card-title">我的孩子</span>
+                        <span class="card-title">Adversarial Examples for Models of Code</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -590,14 +651,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AE%B6%E4%BA%BA/" class="post-category">
-                                    家人
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
                                 </a>
                             
                             
@@ -605,6 +666,47 @@
                     </div>
                 </div>
 
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/4158q210.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="BERT-ATTACK Adversarial Attack Against BERT Using BERT">
+                        
+                        <span class="card-title">BERT-ATTACK Adversarial Attack Against BERT Using BERT</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
                 
             </div>
         </div>
@@ -722,6 +824,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
