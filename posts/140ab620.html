@@ -327,14 +327,14 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    23 分
                 </div>
                 
 
@@ -491,6 +491,154 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\cite</span>&#123;ref1&#125;</span><br><span class="line"><span class="keyword">\bibitem</span>&#123;ref1&#125; Reference 1 Title. Journal Name, Year.</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/1024th/p/11623258.html">数学公式</a></p>
+<h2 id="Transformers"><a href="#Transformers" class="headerlink" title="Transformers"></a>Transformers</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/448852278">参考</a></p>
+<h3 id="pipelines"><a href="#pipelines" class="headerlink" title="pipelines"></a>pipelines</h3><p><a target="_blank" rel="noopener" href="https://huggingface.co/learn/nlp-course/chapter1/3?fw=pt">官方文档</a></p>
+<p>Transformers 库中最基本的对象是<code>pipeline()</code>函数。它将模型与其必要的预处理和后处理步骤连接起来，使我们能够<strong>直接输入任何文本并获得答案</strong>。当第一次运行的时候，它会下载预训练模型和分词器(tokenizer)并且缓存下来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from transformers import pipeline</span><br><span class="line"></span><br><span class="line">classifier = pipeline(&quot;sentiment-analysis&quot;)  # 情感分析</span><br><span class="line">classifier(&quot;I&#x27;ve been waiting for a HuggingFace course my whole life.&quot;)</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line"># [&#123;&#x27;label&#x27;: &#x27;POSITIVE&#x27;, &#x27;score&#x27;: 0.9598047137260437&#125;]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">classifier(</span><br><span class="line">    [&quot;I&#x27;ve been waiting for a HuggingFace course my whole life.&quot;, &quot;I hate this so much!&quot;]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">[&#123;&#x27;label&#x27;: &#x27;POSITIVE&#x27;, &#x27;score&#x27;: 0.9598047137260437&#125;,</span><br><span class="line"> &#123;&#x27;label&#x27;: &#x27;NEGATIVE&#x27;, &#x27;score&#x27;: 0.9994558095932007&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>pipeline()在接收文本后，通常有三步：<strong>Tokenizer、Model、Post-Processing</strong></p>
+<p><strong>1）Tokenizer</strong></p>
+<p>与其他神经网络一样，Transformer 模型不能直接处理原始文本，故使用分词器进行预处理。使用<code>AutoTokenizer</code>类及其<code>from_pretrained()</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from transformers import AutoTokenizer</span><br><span class="line"></span><br><span class="line">checkpoint = &quot;distilbert-base-uncased-finetuned-sst-2-english&quot;</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(checkpoint)</span><br></pre></td></tr></table></figure>
+
+<p>若要指定我们想要返回的张量类型（PyTorch、TensorFlow 或普通 NumPy），我们使用<code>return_tensors</code>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">raw_inputs = [</span><br><span class="line">    &quot;I&#x27;ve been waiting for a HuggingFace course my whole life.&quot;,</span><br><span class="line">    &quot;I hate this so much!&quot;,</span><br><span class="line">]</span><br><span class="line">inputs = tokenizer(raw_inputs, padding=True, truncation=True, return_tensors=&quot;pt&quot;)</span><br><span class="line">print(inputs)</span><br></pre></td></tr></table></figure>
+
+<p>PyTorch 张量的结果：</p>
+<p>输出本身是一个包含两个键的字典，<code>input_ids</code>和<code>attention_mask</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x27;input_ids&#x27;: tensor([</span><br><span class="line">        [  101,  1045,  1005,  2310,  2042,  3403,  2005,  1037, 17662, 12172, 2607,  2026,  2878,  2166,  1012,   102],</span><br><span class="line">        [  101,  1045,  5223,  2023,  2061,  2172,   999,   102,     0,     0,     0,     0,     0,     0,     0,     0]</span><br><span class="line">    ]), </span><br><span class="line">    &#x27;attention_mask&#x27;: tensor([</span><br><span class="line">        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],</span><br><span class="line">        [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span><br><span class="line">    ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2）Model</strong></p>
+<p>Transformers 提供了一个<code>AutoModel</code>类，它也有一个<code>from_pretrained()</code>方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from transformers import AutoModel</span><br><span class="line"></span><br><span class="line">checkpoint = &quot;distilbert-base-uncased-finetuned-sst-2-english&quot;</span><br><span class="line">model = AutoModel.from_pretrained(checkpoint)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们将预处理过的输入提供给我们的模型，我们可以看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">outputs = model(**inputs)</span><br><span class="line">print(outputs.last_hidden_state.shape)</span><br><span class="line"></span><br><span class="line"># 输出 </span><br><span class="line"># torch.Size([2, 16, 768])</span><br></pre></td></tr></table></figure>
+
+<p>Transformers 中有许多<strong>不同的架构可</strong>用，不同的模型架构被设计用于特定的自然语言处理（NLP）任务。每种架构在基础模型的基础上添加了不同的“头部”（head），以适应特定的任务需求，清单：</p>
+<blockquote>
+<p><code>*Model</code> (retrieve the hidden states)<br><code>*ForCausalLM</code><br><code>*ForMaskedLM</code><br><code>*ForMultipleChoice</code><br><code>*ForQuestionAnswering</code><br><code>*ForSequenceClassification</code><br><code>*ForTokenClassification</code><br>and others</p>
+</blockquote>
+<p><strong>Model</strong></p>
+<p>不同的模型架构被设计用于特定的自然语言处理（NLP）任务。每种架构在基础模型的基础上添加了不同的“头部”（head），以适应特定的任务需求</p>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>特征提取</strong>：用作其他任务的特征提取器，获取输入文本的上下文表示。</li>
+<li><strong>自定义任务</strong>：在基础模型上添加自定义的输出头部，以适应特定需求。</li>
+<li><strong>研究目的</strong>：分析模型内部的表示或进行模型蒸馏等研究工作</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertModel, BertTokenizer</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertModel.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line"></span><br><span class="line">inputs = tokenizer(<span class="string">&quot;Hello, world!&quot;</span>, return_tensors=<span class="string">&quot;pt&quot;</span>)</span><br><span class="line">outputs = model(**inputs)</span><br><span class="line">hidden_states = outputs.last_hidden_state</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>ForCausalLM</strong>（因果语言建模）</p>
+<ul>
+<li><code>ForCausalLM</code> 类（例如 <code>GPT2LMHeadModel</code>）专为因果语言建模任务设计。因果语言模型通过仅利用序列中前面的词（左侧上下文）来预测下一个词，实现文本生成。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>文本生成</strong>：自动补全、续写、生成创意文本。</li>
+<li><strong>对话系统</strong>：构建聊天机器人，生成对话回复。</li>
+<li><strong>内容创作</strong>：辅助写作、代码生成等</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from transformers import GPT2LMHeadModel, GPT2Tokenizer</span><br><span class="line"></span><br><span class="line">tokenizer = GPT2Tokenizer.from_pretrained(&#x27;gpt2&#x27;)</span><br><span class="line">model = GPT2LMHeadModel.from_pretrained(&#x27;gpt2&#x27;)</span><br><span class="line"></span><br><span class="line">inputs = tokenizer(&quot;Once upon a time&quot;, return_tensors=&quot;pt&quot;)</span><br><span class="line">outputs = model.generate(**inputs, max_length=50)</span><br><span class="line">generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>ForMaskedLM</strong>（掩码语言建模）</p>
+<ul>
+<li><code>*ForMaskedLM</code> 类（例如 <code>BertForMaskedLM</code>）专为掩码语言建模任务设计。这类模型通过预测序列中被掩盖的词来理解上下文，利用双向（前后）上下文信息。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>填充缺失词</strong>：在句子中填补被掩盖的词语。</li>
+<li><strong>预训练任务</strong>：用于预训练模型，如 BERT。</li>
+<li><strong>文本理解</strong>：增强模型对上下文的理解能力。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertForMaskedLM, BertTokenizer</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertForMaskedLM.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line"></span><br><span class="line">inputs = tokenizer(<span class="string">&quot;The capital of France is [MASK].&quot;</span>, return_tensors=<span class="string">&quot;pt&quot;</span>)</span><br><span class="line">outputs = model(**inputs)</span><br><span class="line">logits = outputs.logits</span><br><span class="line">masked_index = (inputs.input_ids == tokenizer.mask_token_id).nonzero(as_tuple=<span class="literal">True</span>)[<span class="number">1</span>]</span><br><span class="line">predicted_token_id = logits[<span class="number">0</span>, masked_index].argmax(dim=-<span class="number">1</span>)</span><br><span class="line">predicted_token = tokenizer.decode(predicted_token_id)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>ForMultipleChoice</strong></p>
+<ul>
+<li><code>ForMultipleChoice</code> 类（例如 <code>BertForMultipleChoice</code>）用于多选题任务。该模型能够处理多个选项，并评估每个选项与给定上下文或问题的匹配程度，选择最合适的答案。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>多选问答</strong>：选择最佳答案，如标准化考试问题。</li>
+<li><strong>推荐系统</strong>：从多个候选项中选择最适合的选项。</li>
+<li><strong>决策支持</strong>：在多种可能的行动方案中进行选择。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertForMultipleChoice, BertTokenizer</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertForMultipleChoice.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line"></span><br><span class="line">question = <span class="string">&quot;What is the capital of France?&quot;</span></span><br><span class="line">options = [<span class="string">&quot;Berlin&quot;</span>, <span class="string">&quot;London&quot;</span>, <span class="string">&quot;Paris&quot;</span>, <span class="string">&quot;Rome&quot;</span>]</span><br><span class="line"></span><br><span class="line">encoding = tokenizer([question]*<span class="built_in">len</span>(options), options, return_tensors=<span class="string">&#x27;pt&#x27;</span>, padding=<span class="literal">True</span>)</span><br><span class="line">outputs = model(**encoding)</span><br><span class="line">logits = outputs.logits</span><br><span class="line">answer = torch.argmax(logits).item()</span><br><span class="line">selected_option = options[answer]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>ForQuestionAnswering</strong>（问答）</p>
+<p><strong>描述：</strong></p>
+<ul>
+<li><code>*ForQuestionAnswering</code> 类（例如 <code>BertForQuestionAnswering</code>）专为问答任务设计。模型通过给定上下文和问题，预测答案在上下文中的起始和结束位置。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>信息检索</strong>：从文档中提取精确答案。</li>
+<li><strong>对话系统</strong>：在对话中提供具体答案。</li>
+<li><strong>知识问答</strong>：基于知识库或文本回答问题。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertForQuestionAnswering, BertTokenizer</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertForQuestionAnswering.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line"></span><br><span class="line">question = <span class="string">&quot;What is the capital of France?&quot;</span></span><br><span class="line">context = <span class="string">&quot;France&#x27;s capital is Paris, which is known for its culture and history.&quot;</span></span><br><span class="line"></span><br><span class="line">inputs = tokenizer(question, context, return_tensors=<span class="string">&#x27;pt&#x27;</span>)</span><br><span class="line">outputs = model(**inputs)</span><br><span class="line">start_scores = outputs.start_logits</span><br><span class="line">end_scores = outputs.end_logits</span><br><span class="line"></span><br><span class="line">start_index = torch.argmax(start_scores)</span><br><span class="line">end_index = torch.argmax(end_scores) + <span class="number">1</span></span><br><span class="line">answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(inputs.input_ids[<span class="number">0</span>][start_index:end_index]))</span><br></pre></td></tr></table></figure>
+
+<p><strong>ForSequenceClassification</strong>（序列分类）</p>
+<p><strong>描述：</strong></p>
+<ul>
+<li><code>*ForSequenceClassification</code> 类（例如 <code>BertForSequenceClassification</code>）用于对整个输入序列进行分类。模型在基础模型的顶部添加了一个分类头部，以输出类别的概率分布。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>情感分析</strong>：判断文本的情感倾向（如积极、消极、中性）。</li>
+<li><strong>主题分类</strong>：将文本归类到不同的主题或类别中。</li>
+<li><strong>垃圾邮件检测</strong>：识别并分类垃圾邮件。</li>
+<li><strong>语言检测</strong>：确定文本的语言类别。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertForSequenceClassification, BertTokenizer</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertForSequenceClassification.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>, num_labels=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">sentence = <span class="string">&quot;I love using Hugging Face transformers!&quot;</span></span><br><span class="line">inputs = tokenizer(sentence, return_tensors=<span class="string">&#x27;pt&#x27;</span>)</span><br><span class="line">outputs = model(**inputs)</span><br><span class="line">logits = outputs.logits</span><br><span class="line">predicted_class = torch.argmax(logits).item()</span><br></pre></td></tr></table></figure>
+
+<p><strong>ForTokenClassification</strong> （标记分类）</p>
+<p><strong>描述：</strong></p>
+<ul>
+<li><code>ForTokenClassification</code> 类（例如 <code>BertForTokenClassification</code>）专为标记级分类任务设计。模型在每个输入标记（token）的表示上添加了分类头部，以对每个标记进行分类。</li>
+</ul>
+<p><strong>用途：</strong></p>
+<ul>
+<li><strong>命名实体识别（NER）</strong>：识别文本中的实体，如人名、地名、组织机构等。</li>
+<li><strong>词性标注（POS）</strong>：为每个词分配词性标签，如名词、动词等。</li>
+<li><strong>文本分块</strong>：将文本分成不同的块或片段，进行标签分类。</li>
+<li><strong>语义角色标注</strong>：识别句子中各个成分的语义角色。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> BertForTokenClassification, BertTokenizer</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">tokenizer = BertTokenizer.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>)</span><br><span class="line">model = BertForTokenClassification.from_pretrained(<span class="string">&#x27;bert-base-uncased&#x27;</span>, num_labels=<span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">sentence = <span class="string">&quot;Hugging Face is based in New York City.&quot;</span></span><br><span class="line">inputs = tokenizer(sentence, return_tensors=<span class="string">&#x27;pt&#x27;</span>)</span><br><span class="line">outputs = model(**inputs)</span><br><span class="line">logits = outputs.logits</span><br><span class="line">predicted_labels = torch.argmax(logits, dim=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">tokens = tokenizer.convert_ids_to_tokens(inputs.input_ids[<span class="number">0</span>])</span><br><span class="line">labels = predicted_labels[<span class="number">0</span>].tolist()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> token, label <span class="keyword">in</span> <span class="built_in">zip</span>(tokens, labels):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;token&#125;</span>: <span class="subst">&#123;label&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>3）Post-Processing</strong></p>
+<p>模型最后一层输出的原始**<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=187874774&content_type=Article&match_order=1&q=%E9%9D%9E%E6%A0%87%E5%87%86%E5%8C%96%E5%88%86%E6%95%B0&zhida_source=entity">非标准化分数</a>**。要转换为概率，它们需要经过一个<a href="https://link.zhihu.com/?target=https://en.wikipedia.org/wiki/Softmax_function">SoftMax</a>层（所有 Transformers 模型都输出 logits，因为用于训练的损耗函数一般会将最后的<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=187874774&content_type=Article&match_order=1&q=%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0&zhida_source=entity">激活函数</a>(如SoftMax)与实际损耗函数(如<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=187874774&content_type=Article&match_order=1&q=%E4%BA%A4%E5%8F%89%E7%86%B5&zhida_source=entity">交叉熵</a>)融合 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line"></span><br><span class="line">predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)</span><br><span class="line">print(predictions)</span><br></pre></td></tr></table></figure>
+
+<h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><p><strong>1）创建Transformer</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from transformers import BertConfig, BertModel</span><br><span class="line"></span><br><span class="line"># Building the config</span><br><span class="line">config = BertConfig()</span><br><span class="line"></span><br><span class="line"># Building the model from the config</span><br><span class="line">model = BertModel(config)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2）不同的加载方式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from transformers import BertModel</span><br><span class="line"></span><br><span class="line">model = BertModel.from_pretrained(&quot;bert-base-cased&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3）保存模型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.save_pretrained(&quot;directory_on_my_computer&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>4）使用Transformer model</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sequences = [&quot;Hello!&quot;, &quot;Cool.&quot;, &quot;Nice!&quot;]</span><br><span class="line">encoded_sequences = [</span><br><span class="line">    [101, 7592, 999, 102],</span><br><span class="line">    [101, 4658, 1012, 102],</span><br><span class="line">    [101, 3835, 999, 102],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">model_inputs = torch.tensor(encoded_sequences)</span><br></pre></td></tr></table></figure>
+
+
+
+
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="切片操作"><a href="#切片操作" class="headerlink" title="切片操作"></a><a target="_blank" rel="noopener" href="https://liaoxuefeng.com/books/python/advanced/slice/index.html">切片操作</a></h3><p><code>L[-1]</code>取倒数第一个元素，那么它同样支持倒数切片</p>
 <ul>
 <li>L[-2:]  取最后两个元素</li>
@@ -1051,7 +1199,7 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        226.7k
+                                                        228.7k
                                                     </span>
                                                     
                                                         
