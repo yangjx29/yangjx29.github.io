@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Large Language Models for Code Security Hardening and Adversarial Testing, JacksonYang的博客">
+    <meta name="keywords" content="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models, JacksonYang的博客">
     <meta name="description" content="
 
-[Large Language Models for Code: Security Hardening and Adversarial Testing]Paper Summary (What)
-Main takeaway: This p">
+Generating Adversarial Examples for Holding Robustness of Source Code Processing ModelsPart1. title&amp;amp;SourceTitle: G">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +19,7 @@ Main takeaway: This p">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Large Language Models for Code Security Hardening and Adversarial Testing | JacksonYang的博客</title>
+    <title>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -263,12 +262,12 @@ Main takeaway: This p">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Large Language Models for Code Security Hardening and Adversarial Testing</h1>
+                    <h1 class="description center-align post-title">Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1>
                 </div>
             </div>
         </div>
@@ -313,7 +312,7 @@ Main takeaway: This p">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-11
+                    2024-10-22
                 </div>
                 
 
@@ -322,14 +321,14 @@ Main takeaway: This p">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    12 分
                 </div>
                 
 
@@ -356,229 +355,141 @@ Main takeaway: This p">
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h2 id="Large-Language-Models-for-Code-Security-Hardening-and-Adversarial-Testing"><a href="#Large-Language-Models-for-Code-Security-Hardening-and-Adversarial-Testing" class="headerlink" title="[Large Language Models for Code: Security Hardening and Adversarial Testing]"></a>[Large Language Models for Code: Security Hardening and Adversarial Testing]</h2><h3 id="Paper-Summary-What"><a href="#Paper-Summary-What" class="headerlink" title="Paper Summary (What)"></a>Paper Summary (What)</h3><ul>
-<li><p><strong>Main takeaway</strong>: This paper focuses on enhancing the security of large language models (LLMs) used for code generation by addressing two key areas:</p>
+<h1 id="Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models"><a href="#Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models" class="headerlink" title="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models"></a>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1><h2 id="Part1-title-Source"><a href="#Part1-title-Source" class="headerlink" title="Part1. title&amp;Source"></a>Part1. title&amp;Source</h2><p><strong>Title</strong>: Generating Adversarial Examples for Holding Robustness of Source Code Processing Models<br><strong>Conference</strong>: The Thirty-Fourth AAAI Conference on Artificial Intelligence (AAAI-20)</p>
+<h2 id="Part2-abstract"><a href="#Part2-abstract" class="headerlink" title="Part2. abstract"></a>Part2. abstract</h2><p>本文提出了一种基于Metropolis-Hastings采样的标识符重命名技术，名为Metropolis-Hastings Modifier (MHM)，用于生成对源代码处理模型的对抗样本。在功能分类基准上的深度评估表明，MHM在生成源代码对抗样本方面是有效的，并且通过对抗训练能够显著增强深度学习模型的鲁棒性。</p>
+<h2 id="Part3-introduction"><a href="#Part3-introduction" class="headerlink" title="Part3. introduction"></a>Part3. introduction</h2><p>近年来，自动化源代码处理、分析与生成是软件系统生命周期中的关键活动，深度学习模型被应用于多种源代码处理任务，如功能分类、克隆检测、代码补全等。然而，现有的深度学习模型缺乏对抗鲁棒性，容易被对抗样本攻击。与图像、音频和自然语言的对抗样本不同，编程语言的结构化特性给对抗攻击带来了新的挑战。本文提出了一种新方法MHM，通过<strong>基于Metropolis-Hastings采样的标识符重命名</strong>生成对抗样本，用于攻击源代码处理的深度学习模型，并通过对抗训练来增强模型的鲁棒性。</p>
+<p>本文贡献包括：</p>
 <ul>
-<li>Security hardening: improving the model’s ability to generate secure code.</li>
-<li>Adversarial testing: evaluating the model’s security by degrading its performance from an adversarial perspective.</li>
+<li>确认了用于代码处理的深度学习模型也有鲁棒性问题</li>
+<li>提出一个简单且有效的算法MHM</li>
+<li>设计实验证明其有效性</li>
+<li>进行对抗性训练，增加了DL模型的鲁棒性</li>
 </ul>
-</li>
-<li><p><strong>Hypothesis</strong>: LLMs can be guided to generate secure or insecure code without modifying the model’s core weights through a task called <em>controlled code generation</em>.</p>
-</li>
-<li><p><strong>Algorithmic structure</strong>: The paper introduces <em>SVEN</em>, a novel learning-based approach that uses continuous vectors (prefixes) to guide the model in generating secure or insecure code. This is achieved without changing the model’s internal weights.</p>
-</li>
-</ul>
-<h3 id="Issues-or-Targets-Addressed-by-the-Paper-Why"><a href="#Issues-or-Targets-Addressed-by-the-Paper-Why" class="headerlink" title="Issues or Targets Addressed by the Paper (Why)"></a>Issues or Targets Addressed by the Paper (Why)</h3><ul>
-<li><strong>Problem</strong>: LLMs, though successful in generating functional code, often produce insecure code with vulnerabilities. This poses a risk when using LLMs in practical, security-sensitive scenarios, such as software development.</li>
-<li><strong>Motivation</strong>: The paper aims to address this security gap by enhancing LLMs’ ability to produce secure code while still retaining their capacity to generate functionally correct code.</li>
-</ul>
-<h3 id="Detailed-Information-How"><a href="#Detailed-Information-How" class="headerlink" title="Detailed Information (How)"></a>Detailed Information (How)</h3><h4 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h4><ul>
-<li><strong>Context</strong>: The problem involves improving LLMs’ ability to generate secure code in scenarios where code security is crucial.</li>
-<li><strong>Task</strong>: The paper introduces a new task called <em>controlled code generation</em> which provides the model with a binary property (secure or insecure) to guide its code generation.</li>
-</ul>
-<h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><ul>
-<li><p><strong>Approach</strong>: The authors propose <em>SVEN</em> (Security Vulnerability Enhancer), a novel technique that uses continuous prompts to guide the LLM without modifying its weights.</p>
+<h2 id="Part4-conclusion"><a href="#Part4-conclusion" class="headerlink" title="Part4. conclusion"></a>Part4. conclusion</h2><p>本文确认了深度学习模型在源代码处理任务中的非鲁棒性问题，并提出了MHM算法来生成对抗样本。实验表明，MHM能够有效地生成对抗样本并攻击目标模型，同时通过对抗训练来增强模型的鲁棒性。在未来工作中，作者计划引入更复杂的语义解析与树结构修正，以进一步提高对抗攻击能力。</p>
+<h2 id="Part5-related-work"><a href="#Part5-related-work" class="headerlink" title="Part5. related work"></a>Part5. related work</h2><p><strong>源代码分类：</strong></p>
 <ul>
-<li>SVEN trains two property-specific sequences (prefixes) of continuous vectors to steer the LLM to generate secure or insecure code.</li>
-<li>SVEN maintains functional correctness through specialized loss terms applied during training, particularly focusing on different code regions (changed and unchanged).</li>
+<li><strong>数据集</strong></li>
 </ul>
-</li>
-<li><p><strong>Data</strong>: The authors curated a high-quality dataset of security fixes from GitHub commits to train SVEN efficiently on a small dataset.</p>
-</li>
-</ul>
-<h4 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h4><ul>
-<li>The LLM retains its original ability to generate functional code after being guided towards secure or insecure code generation.</li>
-<li>The security of code generation can be effectively controlled using small continuous vector sequences (prefixes).</li>
-</ul>
-<h4 id="Prominent-Formulas-or-Structure"><a href="#Prominent-Formulas-or-Structure" class="headerlink" title="Prominent Formulas or Structure"></a>Prominent Formulas or Structure</h4><ul>
-<li><p>Loss functions are introduced to control security in changed code regions while preserving functional correctness in unchanged regions.</p>
+<p>数据集$D$ 表示为：</p>
+<p>$D&#x3D;{(x_i,y_i)}_{i&#x3D;1}^N$  </p>
+<p>其中，$x_i$ 是源代码片段，$y_i$ 是对应的标签，用one-hot向量表示。整个数据集分为训练集$D^{(t)}$ 、验</p>
+<p>证集$D^{(v)}$ 和测试集$D^{(e)}$ 。</p>
 <ul>
-<li>Conditional language modeling loss for security-sensitive regions.</li>
-<li>Contrastive loss between secure and insecure code.</li>
-<li>KL divergence loss to preserve functional correctness.</li>
+<li><strong>特征：</strong></li>
 </ul>
-</li>
-</ul>
-<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><ul>
-<li>SVEN demonstrated a significant improvement in the security of generated code. For instance, using SVEN on a CodeGen model (2.7B parameters) increased the generation of secure code from 59.1% to 92.3% during security hardening.</li>
-<li>Conversely, the adversarial testing setting decreased secure code generation to 36.8%.</li>
-</ul>
-<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><ul>
-<li>The curated dataset is relatively small, but the authors argue that SVEN’s efficiency compensates for this.</li>
-<li>SVEN’s focus is primarily on binary properties (secure&#x2F;insecure), and generalizing beyond this binary control might be a challenge.</li>
-</ul>
-<h4 id="Confusing-Aspects"><a href="#Confusing-Aspects" class="headerlink" title="Confusing Aspects"></a>Confusing Aspects</h4><ul>
-<li>The relationship between functional correctness and security control is complex, and balancing both without sacrificing one aspect for the other requires careful tuning.</li>
-</ul>
-<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><h4 id="The-Author’s-Conclusions"><a href="#The-Author’s-Conclusions" class="headerlink" title="The Author’s Conclusions"></a>The Author’s Conclusions</h4><ul>
-<li>The authors conclude that SVEN is an effective, modular approach to controlling LLMs for secure code generation. It can be seamlessly applied to existing LLM-based code completion systems to improve their security capabilities.</li>
-</ul>
-<h3 id="Possible-Future-Work-Improvements"><a href="#Possible-Future-Work-Improvements" class="headerlink" title="Possible Future Work &#x2F; Improvements"></a>Possible Future Work &#x2F; Improvements</h3><ul>
-<li>Extending the controlled code generation task to multi-property settings beyond secure&#x2F;insecure could be explored.</li>
-<li>Enhancing the size and quality of the training dataset, possibly through automated data curation techniques.</li>
-</ul>
-<hr>
-<h3 id="Part-1-标题-作者"><a href="#Part-1-标题-作者" class="headerlink" title="Part 1. 标题 &amp; 作者"></a>Part 1. 标题 &amp; 作者</h3><ul>
-<li><strong>标题</strong>: Large Language Models for Code: Security Hardening and Adversarial Testing</li>
-<li><strong>作者</strong>: Jingxuan He, Martin Vechev</li>
-</ul>
-<h3 id="Part-2-摘要"><a href="#Part-2-摘要" class="headerlink" title="Part 2. 摘要"></a>Part 2. 摘要</h3><ul>
-<li>该论文探讨了在代码生成的背景下，LLMs如何进行安全加固和对抗性测试。作者提出了一个新的安全任务——受控代码生成，通过使用连续向量前缀来指导模型生成安全或不安全的代码，同时保留其生成功能性代码的能力。</li>
-</ul>
-<h3 id="Part-3-导言"><a href="#Part-3-导言" class="headerlink" title="Part 3. 导言"></a>Part 3. 导言</h3><ul>
-<li><p>LLMs在代码生成方面取得了显著的功能性成就，但安全性仍是一个重大问题。文中提到，诸如Copilot等系统在生成代码时，常常产生带有漏洞的代码。该论文旨在通过受控代码生成来解决这一问题，提出一种不改变模型权重的学习方法SVEN，以改进安全性。</p>
-</li>
-<li><p>论文的贡献</p>
+<p>特征表示为从输入到标量的映射，记为$f:X\to R$ ,这些特征被分类模型用于判断源代码片段的类</p>
+<p>別。</p>
 <ul>
-<li>提出一种新的安全任务controlled code generation，可用于对基于LM的代码生成器进行安全加固和对抗测试</li>
-<li>SVEN，上述任务的解决方法，包括模块推理以及平衡安全控制和功能正确性的专门培训程序</li>
-<li>高质量的数据集</li>
-<li>对于SVEN广泛的评估</li>
+<li><strong>分类模型：</strong></li>
 </ul>
-</li>
-</ul>
-<h3 id="Part-4-结论"><a href="#Part-4-结论" class="headerlink" title="Part 4. 结论"></a>Part 4. 结论</h3><ul>
-<li>作者认为，SVEN是一种有效的模块化方法，可以增强LLMs生成安全代码的能力，同时保持其功能正确性。该方法可以应用于现有的代码补全系统，为开发人员提供更安全的代码生成环境。</li>
-<li>SVEN学习连续的前缀来引导程序生成朝向给定的属性，而不改变LM的权重</li>
-</ul>
-<h3 id="Part-5-相关工作"><a href="#Part-5-相关工作" class="headerlink" title="Part 5. 相关工作"></a>Part 5. 相关工作</h3><ul>
-<li>论文回顾了与代码生成、代码安全、漏洞检测相关的文献，并指出现有的研究在自动检测和修复漏洞方面的不足。作者对比了SVEN与其他研究在安全控制和功能正确性上的不同之处。</li>
-</ul>
-<h3 id="Part-6-相关模型"><a href="#Part-6-相关模型" class="headerlink" title="Part 6. 相关模型"></a>Part 6. 相关模型</h3><p><strong>Controlled Code Generation</strong></p>
+<p>分类模型$C$ 被定义为：</p>
+<p>$C(x)&#x3D;\sigma(f_1(x),f_2(x),\ldots,f_k(x))$</p>
+<p>其中，$\sigma$ 是softmax分类函数。模型通过在训练集上的损失最小化进行训练：</p>
+<p>$J(D^{(t)}|C)&#x3D;-\frac1{N^{(t)}}\sum_{i&#x3D;1}^{N^{(t)}}\sum y_i\circ\log C(x_i)$ 通过最小化损失函数，模型能够在测试集上获得良好的性能，但仍然容易受到对抗攻击。</p>
+<blockquote>
+<p>∘表示点乘</p>
+</blockquote>
+<p><strong>对抗性攻击</strong></p>
+<p>包括3种算法：</p>
 <ul>
-<li>提供了一个性质c来指导LM生成满足性质c的代码</li>
-<li>需要关注的是一个二元安全属性：c &#x3D; { sec，vul }。如果c &#x3D; sec，输出程序应该是安全的，允许LM的安全加固。若c &#x3D; vul表示一个对抗测试场景，我们通过试图降低LM的安全等级来评估LM的安全等级</li>
+<li>最大化优化问题</li>
 </ul>
-<p>$P(\mathbf{x}|c)&#x3D;\prod\limits_{t&#x3D;1}^{|\mathbf{x}|}P(x_t|\mathbf{h}_{&lt;t},c)$</p>
+<p>$\begin{aligned}\max_{\hat{x}}&amp;\sum y\circ\log\frac1{C(x)},\&amp;\mathrm{s.t.<del>}\hat{x}\in\mathcal{E}</del>\wedge~\forall i\in\mathcal{I},E(i|\hat{x})&#x3D;E(i|x)\quad\text{(5)}\end{aligned}$</p>
 <ul>
-<li>与传统的漏洞检测、修复和注入不同，ccg针对一个代码完成设置，并对用户即将编写的代码生效<img src="https://img-blog.csdnimg.cn/direct/2ce64f9940214ffc9b0367af99be1944.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;B7A2V4DU&quot; width=&quot;1211&quot; height=&quot;203&quot; src=&quot;attachments/B7A2V4DU.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
+<li>梯度上升以生成对抗性示例，这些方法以非常有限的迭代来扰乱基于梯度信息的示例，一次迭代示例：</li>
 </ul>
-<p><strong>Sven</strong></p>
-<p>主要包括推理、训练和数据构造</p>
+<p>$x_{t+1}&#x3D;x_t+\alpha\cdot\operatorname{sign}(\nabla_x\sum y\circ\log\frac1{C(x)})\quad\text{(6)}$</p>
 <ul>
-<li><p>推理</p>
+<li>采样问题处理，例如GeneticAttack 通过遗传算法执行采样</li>
+</ul>
+<p>$\pi(x)\propto(1-\mathcal{C}(x)[y])\cdot\mathcal{X}_1\cdots\mathcal{X}_k\quad\quad(7)$</p>
+<blockquote>
+<p>其中 C(x)[y] 是 C 预测的类 y 的概率，而 X1 · · ·， Xk 是词汇、语法和句法约束的指示函数</p>
+</blockquote>
+<p>作者采用基于采样的方法，对对抗性攻击进行 M-H 采样。因为由于代码是离散的，基于优化和基于梯度的方法难以实现</p>
+<p><strong>对抗性训练</strong></p>
 <ul>
-<li><p>使用连续的promots，特别是<strong>前prefix-tuning方法</strong>；连续的提示可以方便地用梯度下降法进行优化且更具表达能力</p>
+<li><p>首先用$\mathcal{D}{(t)}$生成对抗性数据集$\mathcal{D}_{adv}^{(t)}.$</p>
 </li>
-<li><p>由于注意力机制，$SVEN_{sec}$极大地提升了生成安全程序的概率；同样，$SVEN_{vul}$可以驱动LM以更高的概率生成不安全代码</p>
-</li>
-<li><p>sven是轻量化和模块化的，前缀参数的个数由前缀长度N可调，前缀作为一个独立的模块，可以方便地连接或脱离LM。</p>
+<li><p>然后用$\mathcal{D}_{adv}^{(t)}.$从头开始训练同目标模型具有相同架构和超参数的模型</p>
 </li>
 </ul>
-</li>
-</ul>
-<p><strong>前缀调优</strong>：以通过插入前缀向量（continuous vectors）来引导模型生成具有特定属性的代码，而不需要对模型的核心参数进行重新训练</p>
-<p>每个前缀是一组连续向量，它们作为模型推理时的初始隐藏状态，用于引导生成过程。前缀的大小与LLM中隐藏状态的维度一致。SVEN根据安全属性（安全或不安全）分别训练了两组前缀：SVENsec（安全代码前缀）和SVENvul（不安全代码前缀）</p>
-<p>调优过程：</p>
-<p>前缀在推理开始时被加入模型的隐藏状态，通过Transformer的注意力机制影响模型的生成行为。SVENsec通过引导模型在生成代码时偏向于安全代码生成，而SVENvul则用于引导模型生成不安全的代码，从而实现对抗性测试或模拟潜在的攻击</p>
+<p><strong>健壮性</strong></p>
+<p><strong>Useful feature：</strong></p>
+<p>ρ 有用的特征与分类标签密切相关。在二元分类中，有用的特征定义为：</p>
+<p>$E_{(x,y)\sim\mathcal{D}}[y\cdot f(x)]\geq\rho\quad\quad\quad\quad\quad(8)$</p>
+<blockquote>
+<p>其中 ρ &gt; 0。ρ 度量特征 f (x) 和分类标签 y 之间的相关性。ρ 越大，相关性越强。</p>
+</blockquote>
+<p><strong>Robust feature：</strong></p>
+<p>γ-robust features 是有用的特征且任何允许的扰动之后仍然有用。如果分类器对稳健特征进行预测，它就会获得对对抗性攻击的抵抗能力。在二元分类中，robust features定义为</p>
+<p>$E_{(x,y)\sim\mathcal{D}}[\inf_{x’\in\Delta(x)}y\cdot f(x’)]\geq\gamma\quad\quad(9)$</p>
+<blockquote>
+<p>其中 Δ(x) 是完整的扰动 x 集合，满足编程语言的词汇、语法和句法约束的所有元素</p>
+</blockquote>
+<p><strong>Non-Robust feature：</strong></p>
+<p>Non-Robust feature也是有用的特征，但对于任何γ &gt; 0 来说都不是γ稳健的。对抗性攻击主要扰动非鲁棒特征，因为对 x 的任何扰动都可能导致非鲁棒 f (x) 发生巨大变化。</p>
+<h2 id="Part6-model-algorithm"><a href="#Part6-model-algorithm" class="headerlink" title="Part6. model&amp;algorithm"></a>Part6. model&amp;algorithm</h2><p>MHM算法被设计用于生成源代码的对抗样本，通过对目标模型(如LSTM、ASTNN)进行攻击。MHM算法的基本思想是通过Metropolis-Hastings采样，迭代地对标识符进行重命名。</p>
+<p><strong>MHM 以受到攻击的源代码分类器 (C) 和一对正确分类的数据 ((x， y) ∈ D)作为输入，并输出一系列对抗性样本(xˆ1， xˆ2， · · · )。</strong></p>
+<p>对抗性样本应该满足三个要求：</p>
 <ul>
-<li><p>训练</p>
-<ul>
-<li><p>从GitHub中提取安全修复来构造这样的数据集，其中为修复之前的版本是不安全的，修复之后的版本是安全的</p>
-</li>
-<li><p>修改后的代码决定了整个程序的安全性，而未修改的代码是中性的。所以，在安全敏感区域，我们训练SVEN以强制实现代码安全属性，而在中立区域，我们约束SVEN遵守原始LM以保持功能正确性。从程序维度、行维度和字符维度构建了三种token的掩码</p>
-</li>
-<li><p>SVEN模型使用了三类损失函数来实现对安全性和功能正确性的控制</p>
-<ul>
-<li>条件语言建模损失：用于优化模型在修改区域生成符合安全属性的代码</li>
+<li>能够误导选择的模型</li>
+<li>没有编译错误且能正常运行</li>
+<li>输出结果同正常示例一样</li>
 </ul>
-<p>$L_\mathrm{LM}&#x3D;-\sum_{t&#x3D;1}^{|x|}m_t\cdot\log P(x_t|h_{&lt;t},c)$其中，mtm_tmt​ 为二元掩码向量，标记哪些位置属于修改区域</p>
-<ul>
-<li><p>对比损失（LCT）：该损失函数用于在修改区域内对比安全和不安全的代码生成。其目的是同时优化安全代码生成和抑制不安全代码生成$L_{\mathrm{CT}}&#x3D;-\sum_{t&#x3D;1}^{|x|}m_t\cdot\log\frac{P(x_t|h_{&lt;t},c)}{P(x_t|h_{&lt;t},c)+P(x_t|h_{&lt;t},\neg c)}$</p>
-</li>
-<li><p>KL散度损失（LKL）：为了保持代码的功能正确性，该损失函数在未修改区域施加约束，促使SVEN模型在未修改区域的行为与原始LLM保持一致$L_{\mathrm{KL}}&#x3D;\sum_{t&#x3D;1}^{|x|}(1-m_t)\cdot\mathrm{KL}(P(x_t|h_{&lt;t},c)|P(x_t|h_{&lt;t}))$KL散度用于衡量SVEN生成的代码分布与原始模型分布之间的差异，该项在未修改区域起到正则化作用</p>
-</li>
-<li><p>总损失函数：上述三个损失函数的加权和</p>
-</li>
-</ul>
-<p>$L&#x3D;L_\mathrm{LM}+w_\mathrm{CT}\cdot L_\mathrm{CT}+w_\mathrm{KL}\cdot L_\mathrm{KL}$其中，$w_{\text{CT}}$​ 和 $w_{\text{KL}}$  是对比损失和KL散度损失的权重，控制它们在总损失中的影响。通过调节这些权重，可以在安全性控制与功能正确性之间取得平衡</p>
-</li>
-<li><p>sven的训练是高效的，可以在小数据集上高效的训练。这是因为：</p>
-<ul>
-<li>SVEN仍然执行原始代码生成任务，只对给定的安全属性调整输出代码分布，这与漏洞的检测和修复等全新的任务不同</li>
-<li>SVEN的训练只更新小的前缀，而不修改庞大的LM</li>
-<li>SVEN在数据效率方面的优势尤为重要，因为获取高质量的漏洞数据集具有挑战性</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>构建高质量的训练数据集</p>
-<ul>
-<li>作者首先对现有的漏洞数据集进行了详细审查，例如CrossVul、Big-Vul和VUDENC。这些数据集基于CVE（Common Vulnerabilities and Exposures）记录，覆盖了广泛的漏洞和项目。作者选择了覆盖面广泛、适用于不同项目的CrossVul和Big-Vul数据集，并将它们与VUDENC结合起来，以确保代码数据集涵盖不同语言（主要是C&#x2F;C++和Python）以及不同类型的漏洞修复。</li>
-<li>进一步进行手动清洗和去除误报，确保只保留那些与目标CWE相关的真实安全修复</li>
-</ul>
-</li>
-</ul>
-<p><strong>使用场景</strong></p>
-<ul>
-<li>安全加固</li>
-</ul>
-<p>在推理时插入安全前缀，提升生成安全代码的概率</p>
-<ul>
-<li>对抗性测试</li>
-</ul>
-<p>作者揭示了$SVEN_{vul}$可以被恶意使用。攻击者可以将其插入到开源的LM中，评估模型在潜在攻击下的表现。</p>
-<h3 id="Part-7-实验"><a href="#Part-7-实验" class="headerlink" title="Part 7. 实验"></a>Part 7. 实验</h3><ul>
-<li>实验表明，SVEN在多种模型（如CodeGen 2.7B）和多种漏洞类型上表现优异，显著提高了代码生成的安全性。对于不同的温度设置，SVEN在控制安全性和保持功能正确性方面均表现出色。</li>
-</ul>
-<h4 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h4><p><strong>模型选择</strong></p>
-<ul>
-<li><p>codegen</p>
-<ul>
-<li>包括350M、2.7B和6.1B参数的版本</li>
-</ul>
-</li>
-<li><p>其他的LM模型包括InCoder和SantaCoder</p>
-</li>
-</ul>
-<p><strong>安全性评估</strong></p>
-<ul>
-<li>安全性评估采用了现有的最先进的评估方法，包括手动构建的多个安全相关代码场景。这些场景基于现实世界中的代码生成任务，并且涵盖了广泛的安全漏洞类型（如SQL注入、越界读写、路径遍历等）。</li>
-<li>每个评估场景都会为模型生成若干代码完成示例，经过过滤后用GitHub的CodeQL查询进行安全性检查。<strong>安全率</strong>（security rate）是实验中关键的衡量标准，表示生成的代码中有多少符合安全标准。</li>
-<li>为了确保评估的可靠性，实验对每个场景进行了多次采样，并计算了不同采样temperature下的安全性表现，最终报告平均安全率及95%置信区间。</li>
-</ul>
-<p><strong>功能正确性评估</strong></p>
-<ul>
-<li>功能正确性评估基于<strong>HumanEval</strong>基准，这是一个广泛使用的标准代码生成评估数据集。实验中使用了<strong>pass@k</strong>作为评估指标，表示生成的k个代码样本中，有多少个样本能够通过全部单元测试。</li>
-<li>为了减少评估方差，实验对每个问题运行了4种常见的采样温度（0.2、0.4、0.6、0.8），并记录了这些温度下的最高pass@k得分。</li>
-</ul>
-<p><strong>超参数和计算资源</strong></p>
-<ul>
-<li>在超参数选择上，前缀参数的大小被设置为总模型参数的约0.1%，确保SVEN模型的轻量性。</li>
-<li>训练和推理任务是在NVIDIA A100和H100 GPUs上进行的，即使是最大的6B参数模型，SVEN的训练时间也不到3小时，显著低于通常的LLM预训练需求。</li>
-</ul>
-<h3 id="Part-8-讨论-总结"><a href="#Part-8-讨论-总结" class="headerlink" title="Part 8. 讨论 &amp; 总结"></a>Part 8. 讨论 &amp; 总结</h3><ul>
-<li><p>作者讨论了SVEN在实际应用中的前景，特别是如何将其应用于现有的代码补全系统以增强安全性。他们还指出了未来可能的研究方向，例如如何自动化构建更大规模的高质量训练数据集。</p>
-</li>
-<li><p>SVEN的局限</p>
-<ul>
-<li><p>SVEN目前没有捕获某些与安全相关的行为，例如第6.4节中的CWEs，SVEN没有推广到除Python和C &#x2F; C + +以外的编程语言。</p>
-<ul>
-<li>可以通过构建更全面的训练数据集来解决。也可以用自用推理技术或者crowdsourcing</li>
-</ul>
-</li>
-<li><p>减少方程( 4 )中的损失LKL，减少了令牌概率的差异，这只是维护功能正确性的间接代理</p>
-</li>
-<li><p>在推理时，SVEN作为前缀独立于用户提供的提示，在SVEN和提示语之间引入依存关系可以带来额外的表达性和准确性。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Controlled-Code-Generation-和-SVEN"><a href="#Controlled-Code-Generation-和-SVEN" class="headerlink" title="Controlled Code Generation 和 SVEN"></a>Controlled Code Generation 和 SVEN</h3><ul>
-<li><p>Controlled Code Generation 是任务，SVEN 是解决方案</p>
-<ul>
-<li>Controlled Code Generation 是论文提出的一个新任务。这个任务的核心目标是指导LLMs在生成代码时，控制代码是否满足某种安全属性。具体来说，任务通过向模型输入一个二元属性（sec或vul）来控制生成结果，使模型可以生成安全的代码或不安全的代码</li>
-<li>SVEN（Security Vulnerability Enhancer） 是为了解决这个受控代码生成任务而设计的具体方法。SVEN的目的是通过学习连续向量前缀，在不修改LLM核心权重的情况下实现对代码生成的安全性控制。</li>
-<li>SVEN 在 Controlled Code Generation 中平衡了安全性与功能正确性<img src="https://img-blog.csdnimg.cn/direct/5cb1805c675e491eacb5fdaeb7e8076b.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;3Q5236WT&quot; width=&quot;615&quot; height=&quot;255&quot; src=&quot;attachments/3Q5236WT.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
-</ul>
-</li>
-</ul>
-<p><strong>在malicious code analysis中的运用</strong></p>
+<p>M-H 算法是一种经典的马尔可夫链蒙特卡洛采样方法，给定一个平稳分布π(x)和转换提议，M-H能够生成理想的样本，在每次迭代中，M-H都会根据转换分布 (Q(x′|x)) 提出的建议从 x 跳转到 x’。 接受后，算法跳转到 x′ 并对 x′ 进行采样。否则，它将保持在 x 处，不执行采样。</p>
+<p>$\alpha(x^{\prime}|x)&#x3D;\min{1,\alpha^{*}}&#x3D;\min{1,\frac{\pi(x^{\prime})Q(x|x^{\prime})}{\pi(x)Q(x^{\prime}|x)}}\quad(10)$</p>
+<p>参考M-Hsamping，在每次迭代中MHM包括3个步骤：</p>
 <ol>
-<li>生成对抗性代码扰乱代码分析</li>
-<li>生成复杂和隐蔽的漏洞代码</li>
-<li>对抗性攻击提高模型对漏洞检测的难度</li>
+<li><strong>选择源标识符</strong>：从源代码中选取可以重命名的标识符。</li>
+<li><strong>选择目标标识符</strong>：从词汇集中选择新的标识符来替换源标识符。</li>
+<li><strong>接受或拒绝提案</strong>：基于Metropolis-Hastings采样的接受率决定是否接受重命名提案。</li>
 </ol>
+<p>阶段 1 和 2 生成过渡提案，阶段 3 接受或拒绝提案，接受率给出概率。由于标识符重命名的操作是可逆的，因此 MHM 中的过渡是非周期性的和遍历的，使 MHM 最终收敛。算法的单次迭代逻辑：</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/4db0a6ef01914009addf2196aa68f30c.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;PN485FBK&quot; width=&quot;554&quot; height=&quot;846&quot; src=&quot;attachments/PN485FBK.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>transition proposal 过渡提案</strong></p>
+<ul>
+<li>在源代码中收集所有的变量和函数的声明和定义形成集合S(x)，然后以相等的概率从集合中抽取源标识符(5-6行)</li>
+<li>候选标识符集 (T(x)) 由整个词汇集(V)生成,T(x)中的元素必须满足之前提到的标识符的词法规则，并且不能出现在 S(x) 中，确保重命名后的代码仍然满足公式4，目标标识符 (t) 以相等的概率从 T (x) 中提取(7-8行)</li>
+<li>过渡建议将 x 中的 s 重命名为 t，形成 x′。转移概率定义为</li>
+</ul>
+<p>$\begin{aligned}Q(x’|x)&amp;\propto\mathcal{I}{s\in\mathcal{S}(x)\wedge t\in\mathcal{T}(x)}\cdot P_{\mathcal{S}(x)}(s)\cdot P_{\mathcal{T}(x)}(t),\&amp;\mathrm{where~}\mathcal{S}(x)\cap\mathcal{T}(x)&#x3D;\emptyset\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad(11)\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\end{aligned}$</p>
+<blockquote>
+<p>· $Q( x^{\prime }| x)$ :表示从代码片段$x$ 到$x^{\prime}$ 的转移概率。</p>
+<p>·$I{s\in S(x)\land t\in T(x)}$ :指示函数，确保源标识符$s$ 必须在代码片段$x$ 中的可重命名</p>
+<p>标识符集合$S(x)$ 中，目标标识符$t$ 必须在候选标识符集合$T(x)$ 中。</p>
+<p>,$P_{S(x)}(s)$ :从集合$S(x)$ 中选取源标识符$s$ 的均匀概率。·$P_{T(x)}(t)$ :从集合$T(x)$中选取目标标识符$t$ 的均匀概率。</p>
+<p>$P_{\mathcal{S}(x)}(s)和 P_{\mathcal{T}(x)}(t)$ 分别是从S(x)和T(x)中绘制的均匀分布并且S(x)和T(x)不相交</p>
+</blockquote>
+<p><strong>Acceptance Rate</strong></p>
+<p>在第 1 阶段和第 2 阶段提出的过渡提案被接受，其接受率由第 3 阶段给出，接受率 （α） 是根据转换概率和倒置转换概率计算的。如果接受过渡提案，则 x 中的 s 将重命名为 t，反之重命名后的源码片段将 C测试，以验证它是否为对抗性示例(9-22)</p>
+<p>$\alpha^*(x’|x)&#x3D;\frac{\pi(x’)Q(x|x’)}{\pi(x)Q(x’|x)}&#x3D;\frac{(1-C(x’)[y])\cdot P_{S(x’)}(t)\cdot P_{T(x’)}(s)}{(1-C(x)[y])\cdot P_{S(x)}(s)\cdot P_{T(x)}(t)}\approx\frac{1-C(x’)[y]}{1-C(x)[y]})(12)$</p>
+<blockquote>
+<p>$\alpha^*(x^{\prime}|x)$ :表示从代码片段$x$ 转移到代码片段$x^\prime$ 的未归一化接受率。</p>
+<p>$\pi(x)$ :目标分布，表示代码片段$x$ 的对抗性程度，越容易误导模型的代码片段，其目标分</p>
+<p>布值越高。</p>
+<p>$Q(x^{\prime}|x)$ :从代码片段$x$ 转移到代码片段$x^{\prime}$ 的转移概率。</p>
+<p>$C(x)[y]$ :表示分类模型$C$ 对输入代码片段$x$ 预测为正确标签$y$ 的概率。</p>
+<p>$P_{S(x)}(s)$ 和$P_{T(x)}(t)$ :均匀分布，从集合$S(x)$ 和$T(x)$ 中选择标识符的概率。</p>
+<p>结果大于1表示100%接受</p>
+</blockquote>
+<h2 id="Part7-experiment"><a href="#Part7-experiment" class="headerlink" title="Part7. experiment"></a>Part7. experiment</h2><h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><ul>
+<li><strong>数据集</strong>：实验选择了Open Judge (OJ) 数据集，该数据集包含52,000个C&#x2F;C++代码文件，分属于104个功能类别。</li>
+<li><strong>目标模型</strong>：采用LSTM和ASTNN作为攻击目标模型，其中LSTM适用于序列处理，ASTNN是当前在OJ数据集上性能最好的模型。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/73426b2e27424935a39bdce6d2b1352d.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GPS6U3EW&quot; width=&quot;560&quot; height=&quot;588&quot; src=&quot;attachments/GPS6U3EW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<ul>
+<li><strong>基线算法</strong>：实验中将GeneticAttack (GA) 算法作为基线.它维护了一个序列群，并根据黑盒设置下的嵌入距离（独立于模型检索）通过word-level替换进行扰动。然后，通过分类器和语言模型过滤中间句子，从而引向下一代</li>
+</ul>
+<h3 id="对抗攻击实验"><a href="#对抗攻击实验" class="headerlink" title="对抗攻击实验"></a>对抗攻击实验</h3><p>实验选取了1,000个样本，对LSTM和ASTNN进行攻击。结果表明，MHM对LSTM和ASTNN的攻击成功率分别为71.3%和92.1%，并且所有生成的对抗样本均有效(符合词法和语法规则)。相比之下，基于GeneticAttack的攻击生成的大多数样本由于<strong>无法通过编译而无效</strong>。</p>
+<p>实验采用Attack Rate、validity rate和Final Success Rate作为评估</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/77dcfb4efda54f468d3362b120269021.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;NS2TE5GG&quot; width=&quot;564&quot; height=&quot;601&quot; src=&quot;attachments/NS2TE5GG.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h3 id="对抗训练实验"><a href="#对抗训练实验" class="headerlink" title="对抗训练实验"></a>对抗训练实验</h3><p>通过使用MHM生成的2,000个对抗样本进行对抗训练，结果显示经过对抗训练的模型对MHM的攻击有更强的抵抗能力。LSTM模型的准确率从92.9%提升到94.0%，对抗成功率下降至46.4%。ASTNN模型在对抗训练后攻击成功率也从92.1%下降至54.7%。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/b21a67e9dc1d447982958202bac7d742.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;SDSQG4C9&quot; width=&quot;577&quot; height=&quot;260&quot; src=&quot;attachments/SDSQG4C9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>同时，对抗性样本数量对模型性能也有影响，结果表明，数量有一个阈值，在阈值之前随着数量增长，模型鲁棒性会提升。达到阈值后，随着对抗性样本数量的增加，对抗性训练的模型往往会失去性能</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/790bbb9e5d77460d8b6d85d5d6a84c01.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UCCXAFLF&quot; width=&quot;596&quot; height=&quot;629&quot; src=&quot;attachments/UCCXAFLF.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>标识符名称是有用非鲁棒性特征，对抗训练的目的是提高模型对对抗样本的抵抗力，使其不再依赖非鲁棒特征</p>
+<h2 id="Part8-discussion-future-work"><a href="#Part8-discussion-future-work" class="headerlink" title="Part8. discussion&amp;future work"></a>Part8. discussion&amp;future work</h2><p>实验结果表明，标识符是源代码处理模型中的非鲁棒特征，对标识符的修改能够有效地攻击模型。因此，通过对抗训练能够减少模型对这些非鲁棒特征的依赖，增强其鲁棒性。在未来的工作中，作者计划引入更多基于语义解析的树结构修正，例如将“for”语句转换为“while”语句，以生成更多样化的对抗样本。</p>
 
                 
             </div>
@@ -605,7 +516,7 @@ Main takeaway: This p">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/96138224.html">https://yangjx29.github.io/posts/96138224.html</a>
+                    <a href="https://yangjx29.github.io/posts/34290fa80.html">https://yangjx29.github.io/posts/34290fa80.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -718,7 +629,7 @@ Main takeaway: This p">
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-11T16-58-41',
+        id: '2024-10-22T14-33-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -746,17 +657,18 @@ Main takeaway: This p">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/96138321.html">
+                <a href="/posts/34290fa80.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Code Security Vulnerability Repair Using Reinforcement Learning with Large Language Models">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models">
                         
-                        <span class="card-title">Code Security Vulnerability Repair Using Reinforcement Learning with Large Language Models</span>
+                        <span class="card-title">Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -766,9 +678,9 @@ Main takeaway: This p">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -781,6 +693,7 @@ Main takeaway: This p">
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -791,13 +704,13 @@ Main takeaway: This p">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/4153f353.html">
+                <a href="/posts/3458vc68.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Adversarial Examples for Models of Code">
                         
-                        <span class="card-title">LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities</span>
+                        <span class="card-title">Adversarial Examples for Models of Code</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -808,7 +721,7 @@ Main takeaway: This p">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-20
                             </span>
                         <span class="publish-author">
                             
