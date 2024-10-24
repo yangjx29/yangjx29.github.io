@@ -4,10 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models, JacksonYang的博客">
+    <meta name="keywords" content="SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities, JacksonYang的博客">
     <meta name="description" content="
 
-Generating Adversarial Examples for Holding Robustness of Source Code Processing ModelsPart1. title&amp;amp;SourceTitle: G">
+SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPart 1. Title &amp;amp; SourceTitle: SySeVR:">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models | JacksonYang的博客</title>
+    <title>SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -262,12 +262,12 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1>
+                    <h1 class="description center-align post-title">SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities</h1>
                 </div>
             </div>
         </div>
@@ -312,7 +312,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-22
+                    2024-10-24
                 </div>
                 
 
@@ -321,14 +321,14 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    15 分
                 </div>
                 
 
@@ -355,141 +355,176 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models"><a href="#Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models" class="headerlink" title="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models"></a>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1><h2 id="Part1-title-Source"><a href="#Part1-title-Source" class="headerlink" title="Part1. title&amp;Source"></a>Part1. title&amp;Source</h2><p><strong>Title</strong>: Generating Adversarial Examples for Holding Robustness of Source Code Processing Models<br><strong>Conference</strong>: The Thirty-Fourth AAAI Conference on Artificial Intelligence (AAAI-20)</p>
-<h2 id="Part2-abstract"><a href="#Part2-abstract" class="headerlink" title="Part2. abstract"></a>Part2. abstract</h2><p>本文提出了一种基于Metropolis-Hastings采样的标识符重命名技术，名为Metropolis-Hastings Modifier (MHM)，用于生成对源代码处理模型的对抗样本。在功能分类基准上的深度评估表明，MHM在生成源代码对抗样本方面是有效的，并且通过对抗训练能够显著增强深度学习模型的鲁棒性。</p>
-<h2 id="Part3-introduction"><a href="#Part3-introduction" class="headerlink" title="Part3. introduction"></a>Part3. introduction</h2><p>近年来，自动化源代码处理、分析与生成是软件系统生命周期中的关键活动，深度学习模型被应用于多种源代码处理任务，如功能分类、克隆检测、代码补全等。然而，现有的深度学习模型缺乏对抗鲁棒性，容易被对抗样本攻击。与图像、音频和自然语言的对抗样本不同，编程语言的结构化特性给对抗攻击带来了新的挑战。本文提出了一种新方法MHM，通过<strong>基于Metropolis-Hastings采样的标识符重命名</strong>生成对抗样本，用于攻击源代码处理的深度学习模型，并通过对抗训练来增强模型的鲁棒性。</p>
-<p>本文贡献包括：</p>
+<h1 id="SySeVR-A-Framework-for-Using-Deep-Learning-to-Detect-Software-Vulnerabilities"><a href="#SySeVR-A-Framework-for-Using-Deep-Learning-to-Detect-Software-Vulnerabilities" class="headerlink" title="SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities"></a>SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities</h1><h2 id="Part-1-Title-Source"><a href="#Part-1-Title-Source" class="headerlink" title="Part 1. Title &amp; Source"></a>Part 1. Title &amp; Source</h2><p><strong>Title:</strong> SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities<br><strong>Source:</strong> IEEE Transactions on Dependable and Secure Computing</p>
+<h2 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h2><p>该论文提出了一个名为SySeVR的系统化框架，用于通过深度学习检测C&#x2F;C++程序中的软件漏洞。SySeVR框架旨在生成包含漏洞语法和语义信息的程序表示，并通过四种软件产品的实验，验证了其在检测未报告漏洞方面的有效性。该框架成功检测了15个新的漏洞，其中7个被报告给厂商，8个在新版本中被“悄悄”修复。</p>
+<h2 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h2><p>软件漏洞是网络攻击的主要原因之一，尽管研究界和工业界都在努力提高软件质量，但每年仍然有大量的漏洞被报告。现有的基于代码相似性和模式的漏洞检测方法存在高误报率或对人工特征定义的依赖，而深度学习的引入能够减少这种依赖。然而，深度学习的应用面临数据表示的挑战，因为软件程序不像图像等领域具备天然的向量表示。为了解决这一问题，作者提出了SySeVR框架，通过语法和语义信息的综合表示来检测漏洞，并通过数据依赖和控制依赖的语义扩展提高检测效果。SySeVR框架提出了两种新的概念：基于<strong>语法的漏洞候选者</strong> （SyVC） 和<strong>基于语义的漏洞候选者</strong> （SeVC） 的概念。SyVCs基于程序的语法特征提取，如函数调用、指针使用等，而SeVCs通过程序切片技术，结合数据依赖和控制依赖，从而捕捉更多与漏洞相关的上下文信息。每个SeVC都会被转换为向量表示，以输入到深度神经网络进行训练和检测。主要使用的神经网络模型为双向GRU（BGRU），并通过控制依赖和数据依赖的扩展优化了漏洞检测的准确性。</p>
+<h2 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h2><p>SySeVR框架通过结合语法、语义信息和向量表示，有效提高了漏洞检测的准确率。实验表明，使用BGRU的深度神经网络在四种开源软件产品中检测到多个未被报告的漏洞。未来的工作将致力于进一步改进漏洞表示和检测方法，同时优化模型以应对更多类型的漏洞和不同编程语言。</p>
+<h2 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h2><p>现有的漏洞检测方法包括基于代码相似性和模式的方法，但这些方法存在一定的局限性。代码相似性方法适用于代码克隆引发的漏洞，但对于其它类型的漏洞检测效果较差。模式匹配方法则依赖专家手动定义漏洞特征，这使得其容易出错且费时费力。此外，作者提到了先前的VulDeePecker系统，这是第一个基于深度学习的漏洞检测系统，但其仅支持基于函数调用的漏洞检测，忽略了语义信息及其它依赖类型。</p>
+<h2 id="Part-6-Model-Framework"><a href="#Part-6-Model-Framework" class="headerlink" title="Part 6. Model&amp;Framework"></a>Part 6. Model&amp;Framework</h2><p>作者的思路是将一个程序划分为更小的代码段，并将这些代码对应于图像领域的region proposals来展示漏洞的语法和语义特征</p>
+<p><strong>定义SyVC</strong></p>
+<p>程序的组成：</p>
 <ul>
-<li>确认了用于代码处理的深度学习模型也有鲁棒性问题</li>
-<li>提出一个简单且有效的算法MHM</li>
-<li>设计实验证明其有效性</li>
-<li>进行对抗性训练，增加了DL模型的鲁棒性</li>
-</ul>
-<h2 id="Part4-conclusion"><a href="#Part4-conclusion" class="headerlink" title="Part4. conclusion"></a>Part4. conclusion</h2><p>本文确认了深度学习模型在源代码处理任务中的非鲁棒性问题，并提出了MHM算法来生成对抗样本。实验表明，MHM能够有效地生成对抗样本并攻击目标模型，同时通过对抗训练来增强模型的鲁棒性。在未来工作中，作者计划引入更复杂的语义解析与树结构修正，以进一步提高对抗攻击能力。</p>
-<h2 id="Part5-related-work"><a href="#Part5-related-work" class="headerlink" title="Part5. related work"></a>Part5. related work</h2><p><strong>源代码分类：</strong></p>
-<ul>
-<li><strong>数据集</strong></li>
-</ul>
-<p>数据集$D$ 表示为：</p>
-<p>$D&#x3D;{(x_i,y_i)}_{i&#x3D;1}^N$  </p>
-<p>其中，$x_i$ 是源代码片段，$y_i$ 是对应的标签，用one-hot向量表示。整个数据集分为训练集$D^{(t)}$ 、验</p>
-<p>证集$D^{(v)}$ 和测试集$D^{(e)}$ 。</p>
-<ul>
-<li><strong>特征：</strong></li>
-</ul>
-<p>特征表示为从输入到标量的映射，记为$f:X\to R$ ,这些特征被分类模型用于判断源代码片段的类</p>
-<p>別。</p>
-<ul>
-<li><strong>分类模型：</strong></li>
-</ul>
-<p>分类模型$C$ 被定义为：</p>
-<p>$C(x)&#x3D;\sigma(f_1(x),f_2(x),\ldots,f_k(x))$</p>
-<p>其中，$\sigma$ 是softmax分类函数。模型通过在训练集上的损失最小化进行训练：</p>
-<p>$J(D^{(t)}|C)&#x3D;-\frac1{N^{(t)}}\sum_{i&#x3D;1}^{N^{(t)}}\sum y_i\circ\log C(x_i)$ 通过最小化损失函数，模型能够在测试集上获得良好的性能，但仍然容易受到对抗攻击。</p>
-<blockquote>
-<p>∘表示点乘</p>
-</blockquote>
-<p><strong>对抗性攻击</strong></p>
-<p>包括3种算法：</p>
-<ul>
-<li>最大化优化问题</li>
-</ul>
-<p>$\begin{aligned}\max_{\hat{x}}&amp;\sum y\circ\log\frac1{C(x)},\&amp;\mathrm{s.t.<del>}\hat{x}\in\mathcal{E}</del>\wedge~\forall i\in\mathcal{I},E(i|\hat{x})&#x3D;E(i|x)\quad\text{(5)}\end{aligned}$</p>
-<ul>
-<li>梯度上升以生成对抗性示例，这些方法以非常有限的迭代来扰乱基于梯度信息的示例，一次迭代示例：</li>
-</ul>
-<p>$x_{t+1}&#x3D;x_t+\alpha\cdot\operatorname{sign}(\nabla_x\sum y\circ\log\frac1{C(x)})\quad\text{(6)}$</p>
-<ul>
-<li>采样问题处理，例如GeneticAttack 通过遗传算法执行采样</li>
-</ul>
-<p>$\pi(x)\propto(1-\mathcal{C}(x)[y])\cdot\mathcal{X}_1\cdots\mathcal{X}_k\quad\quad(7)$</p>
-<blockquote>
-<p>其中 C(x)[y] 是 C 预测的类 y 的概率，而 X1 · · ·， Xk 是词汇、语法和句法约束的指示函数</p>
-</blockquote>
-<p>作者采用基于采样的方法，对对抗性攻击进行 M-H 采样。因为由于代码是离散的，基于优化和基于梯度的方法难以实现</p>
-<p><strong>对抗性训练</strong></p>
-<ul>
-<li><p>首先用$\mathcal{D}{(t)}$生成对抗性数据集$\mathcal{D}_{adv}^{(t)}.$</p>
+<li><p>程序 (Program):一个程序是由若干个函数组成的集合，表示为$P&#x3D;{f_1,f_2,…,f_\eta}$,其中每个函数$f_i$都包含一系列有序的语句。</p>
 </li>
-<li><p>然后用$\mathcal{D}_{adv}^{(t)}.$从头开始训练同目标模型具有相同架构和超参数的模型</p>
+<li><p>函数 (Function):一个函数$f_i$是一组有序语句的集合，表示为$f_i&#x3D;{s_{i,1},s_{i,2},…,s_{i,m_i}}$,其中每条语句$s_{i,j}$可能包含一个或多个标记。</p>
+</li>
+<li><p>语句(Statement):语句$s_{i,j}$是一组有序标记(tokens)的集合，表示为$s_{i,j}&#x3D;{t_{i,j,1},t_{i,j,2},…,t_{i,j,w_{i,j}}}$。每个标记可以是标识符(identifier)、操作符 (operator)、常量(constant)或关键字(keyword),这些可以通过词法分析提取出来。</p>
 </li>
 </ul>
-<p><strong>健壮性</strong></p>
-<p><strong>Useful feature：</strong></p>
-<p>ρ 有用的特征与分类标签密切相关。在二元分类中，有用的特征定义为：</p>
-<p>$E_{(x,y)\sim\mathcal{D}}[y\cdot f(x)]\geq\rho\quad\quad\quad\quad\quad(8)$</p>
-<blockquote>
-<p>其中 ρ &gt; 0。ρ 度量特征 f (x) 和分类标签 y 之间的相关性。ρ 越大，相关性越强。</p>
-</blockquote>
-<p><strong>Robust feature：</strong></p>
-<p>γ-robust features 是有用的特征且任何允许的扰动之后仍然有用。如果分类器对稳健特征进行预测，它就会获得对对抗性攻击的抵抗能力。在二元分类中，robust features定义为</p>
-<p>$E_{(x,y)\sim\mathcal{D}}[\inf_{x’\in\Delta(x)}y\cdot f(x’)]\geq\gamma\quad\quad(9)$</p>
-<blockquote>
-<p>其中 Δ(x) 是完整的扰动 x 集合，满足编程语言的词汇、语法和句法约束的所有元素</p>
-</blockquote>
-<p><strong>Non-Robust feature：</strong></p>
-<p>Non-Robust feature也是有用的特征，但对于任何γ &gt; 0 来说都不是γ稳健的。对抗性攻击主要扰动非鲁棒特征，因为对 x 的任何扰动都可能导致非鲁棒 f (x) 发生巨大变化。</p>
-<h2 id="Part6-model-algorithm"><a href="#Part6-model-algorithm" class="headerlink" title="Part6. model&amp;algorithm"></a>Part6. model&amp;algorithm</h2><p>MHM算法被设计用于生成源代码的对抗样本，通过对目标模型(如LSTM、ASTNN)进行攻击。MHM算法的基本思想是通过Metropolis-Hastings采样，迭代地对标识符进行重命名。</p>
-<p><strong>MHM 以受到攻击的源代码分类器 (C) 和一对正确分类的数据 ((x， y) ∈ D)作为输入，并输出一系列对抗性样本(xˆ1， xˆ2， · · · )。</strong></p>
-<p>对抗性样本应该满足三个要求：</p>
+<p>SyVC的正式定义如下：</p>
 <ul>
-<li>能够误导选择的模型</li>
-<li>没有编译错误且能正常运行</li>
-<li>输出结果同正常示例一样</li>
+<li><p>代码元素(Code Element):代码元素是一个或多个连续的标记组成的片段，表示为$e_{i,j,z}&#x3D;(t_{i,j,u},…,t_{i,j,v})$ ,其中$1\leq u\leq v\leq w_i,j$。</p>
+</li>
+<li><p>SyVC: 如果一个代码元素$e_{i,j,z}$符合某个漏洞语法特征$h_k$ ,那么这个代码元素就被称为SyVC。漏洞语法特征的集合用$H&#x3D;{h_1,h_2,…,h_\beta}$表示，其中$h_k$代表一种特定的漏洞语法特征。</p>
+</li>
 </ul>
-<p>M-H 算法是一种经典的马尔可夫链蒙特卡洛采样方法，给定一个平稳分布π(x)和转换提议，M-H能够生成理想的样本，在每次迭代中，M-H都会根据转换分布 (Q(x′|x)) 提出的建议从 x 跳转到 x’。 接受后，算法跳转到 x′ 并对 x′ 进行采样。否则，它将保持在 x 处，不执行采样。</p>
-<p>$\alpha(x^{\prime}|x)&#x3D;\min{1,\alpha^{*}}&#x3D;\min{1,\frac{\pi(x^{\prime})Q(x|x^{\prime})}{\pi(x)Q(x^{\prime}|x)}}\quad(10)$</p>
-<p>参考M-Hsamping，在每次迭代中MHM包括3个步骤：</p>
+<p>算法1：从程序中提取SyVC</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/c2efb0ce437740b98e6e04171bd5e2d6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;VNUIR4AX&quot; width=&quot;602&quot; height=&quot;367&quot; src=&quot;attachments/VNUIR4AX.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
 <ol>
-<li><strong>选择源标识符</strong>：从源代码中选取可以重命名的标识符。</li>
-<li><strong>选择目标标识符</strong>：从词汇集中选择新的标识符来替换源标识符。</li>
-<li><strong>接受或拒绝提案</strong>：基于Metropolis-Hastings采样的接受率决定是否接受重命名提案。</li>
+<li><p><strong>生成AST</strong>：<br>抽象语法树（AST）是对程序结构的分层表示，AST的节点表示程序中的不同语法元素。每个函数会被转换为AST，SySeVR利用AST对函数进行遍历，以识别潜在的漏洞代码。</p>
+</li>
+<li><p><strong>遍历AST中的代码元素</strong>：<br>在AST中，每个节点表示一个代码元素，这些代码元素可能是变量、操作符、数组、指针或函数调用等。SySeVR遍历AST中的每个代码元素，并将其与已定义的漏洞语法特征进行匹配。</p>
+</li>
+<li><p><strong>匹配漏洞语法特征</strong>：<br>SySeVR定义了一组漏洞语法特征（如函数调用、数组操作、指针使用、算术表达式等），这些特征可以从AST中直接识别。例如：</p>
+<ul>
+<li>如果某个代码元素是函数调用，并且该函数是已知的易受攻击的API（如<code>strcpy</code>），那么这个代码元素会被标记为SyVC。</li>
+<li>如果某个变量是指针类型（例如包含符号<code>*</code>），并且指针操作可能导致内存漏洞，那么这个代码元素也会被标记为SyVC。</li>
+</ul>
+</li>
 </ol>
-<p>阶段 1 和 2 生成过渡提案，阶段 3 接受或拒绝提案，接受率给出概率。由于标识符重命名的操作是可逆的，因此 MHM 中的过渡是非周期性的和遍历的，使 MHM 最终收敛。算法的单次迭代逻辑：</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/4db0a6ef01914009addf2196aa68f30c.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;PN485FBK&quot; width=&quot;554&quot; height=&quot;846&quot; src=&quot;attachments/PN485FBK.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>transition proposal 过渡提案</strong></p>
+<p><strong>SyVC→SeVC</strong></p>
+<p>目的是通过程序切片技术，捕捉与SyVC相关的上下文语义信息，使得漏洞检测模型能够更全面地理解代码中的潜在漏洞。这个转换过程主要依赖于数据依赖（Data Dependency）和控制依赖（Control Dependency）</p>
+<p>过程如下：</p>
+<p>1.SyVC的提取</p>
+<p>SyVC是基于代码的语法特征提取的，它们是潜在的漏洞候选。SyVC可以是函数调用、指针使用、数组操作或算术表达式等。每个SyVC代表代码中的一个可能与漏洞相关的语法结构，但单独的语法信息不足以精确地检测漏洞</p>
+<p>2. 数据依赖与控制依赖</p>
+<p>程序中的语义信息通过<strong>数据依赖</strong>和<strong>控制依赖</strong>进行捕捉。数据依赖指的是一个代码元素（如变量）如何影响另一个代码元素，控制依赖则指代码块间的执行顺序如何相互影响。通过分析这些依赖关系，系统可以找到与SyVC相关的上下文代码。</p>
 <ul>
-<li>在源代码中收集所有的变量和函数的声明和定义形成集合S(x)，然后以相等的概率从集合中抽取源标识符(5-6行)</li>
-<li>候选标识符集 (T(x)) 由整个词汇集(V)生成,T(x)中的元素必须满足之前提到的标识符的词法规则，并且不能出现在 S(x) 中，确保重命名后的代码仍然满足公式4，目标标识符 (t) 以相等的概率从 T (x) 中提取(7-8行)</li>
-<li>过渡建议将 x 中的 s 重命名为 t，形成 x′。转移概率定义为</li>
+<li><strong>数据依赖</strong>：如果一个变量的值在不同代码语句中被使用（例如赋值和使用），那么这些语句之间就存在数据依赖。</li>
+<li><strong>控制依赖</strong>：如果某条语句的执行取决于其他语句的条件（如if-else或循环条件），则这些语句之间存在控制依赖。</li>
 </ul>
-<p>$\begin{aligned}Q(x’|x)&amp;\propto\mathcal{I}{s\in\mathcal{S}(x)\wedge t\in\mathcal{T}(x)}\cdot P_{\mathcal{S}(x)}(s)\cdot P_{\mathcal{T}(x)}(t),\&amp;\mathrm{where~}\mathcal{S}(x)\cap\mathcal{T}(x)&#x3D;\emptyset\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad(11)\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\end{aligned}$</p>
+<p>3.<strong>程序切片技术（Program Slicing</strong>）</p>
+<p>SyVC→SeVC转换的核心技术是<strong>程序切片</strong>（Program Slicing）。程序切片是一种通过分析程序的依赖关系，提<strong>取与某个代码元素相关的所有语句</strong>的技术。SySeVR通过两种切片方式生成SeVC：</p>
+<p>前向切片：从SyVC开始，找出那些受到SyVC影响的代码语句。</p>
+<p>后向切片：找出那些影响了SyVC的代码语句。</p>
+<p>这两种切片方法结合起来，可以帮助识别出与SyVC相关的语义信息，形成SeVC</p>
+<p>4.SeVC的生成</p>
+<p>经过前向和后向切片后，系统将所有与SyVC相关的代码片段组合起来，生成SeVC。SeVC不仅包含SyVC本身，还包含与其存在语义关系的其他代码语句。这一过程通过控制和数据依赖的关系，确保SeVC能够准确捕捉漏洞的上下文。</p>
+<p>例如，如果SyVC是一个指针操作，那么SeVC可能包含所有与该指针相关的内存分配、解引用和使用操作。这些相关代码块共同构成了SeVC，并被转换为向量表示，以供深度学习模型进行训练和检测</p>
+<p><strong>定义 SeVC</strong></p>
+<p>SeVCs（语义漏洞候选）是从SyVCs（语法漏洞候选）的基础上进一步扩展语义信息的关键步骤。通过将程序切片技术应用于SyVC，系统能够捕捉与漏洞相关的上下文语句，生成<strong>更具语义关联</strong>的漏洞候选（SeVC）</p>
+<p>给定一个程序$P&#x3D;\left{f_1,f_2,…,f_\eta\right}$ 和一个SyVC $e_{i,j,z}$  (在函数$f_i$ 的语句$s_i,j$中的某个代码元素),与这个SyVC相关的SeVC $\delta_{i,j,z}$ 是程序$P$中的一个有序语句子集，表示为：</p>
+<p>$\delta_{i,j,z}&#x3D;{s_{a_1,b_1},s_{a_2,b_2},…,s_{a_{v_{i,j,z}},b_{v_{i,j,z}}}}$</p>
 <blockquote>
-<p>· $Q( x^{\prime }| x)$ :表示从代码片段$x$ 到$x^{\prime}$ 的转移概率。</p>
-<p>·$I{s\in S(x)\land t\in T(x)}$ :指示函数，确保源标识符$s$ 必须在代码片段$x$ 中的可重命名</p>
-<p>标识符集合$S(x)$ 中，目标标识符$t$ 必须在候选标识符集合$T(x)$ 中。</p>
-<p>,$P_{S(x)}(s)$ :从集合$S(x)$ 中选取源标识符$s$ 的均匀概率。·$P_{T(x)}(t)$ :从集合$T(x)$中选取目标标识符$t$ 的均匀概率。</p>
-<p>$P_{\mathcal{S}(x)}(s)和 P_{\mathcal{T}(x)}(t)$ 分别是从S(x)和T(x)中绘制的均匀分布并且S(x)和T(x)不相交</p>
+<p>其中，$s_{a_p,b_q}$ 是通过数据依赖或控制依赖与SyVC $e_{i,j,z}$ 相关的语句。换句话说，SeVC是一个程序切片，它包含了与SyVC相关的所有语句，基于这些语句的语义关系(例如变量间的依赖或控制流的依赖)。</p>
 </blockquote>
-<p><strong>Acceptance Rate</strong></p>
-<p>在第 1 阶段和第 2 阶段提出的过渡提案被接受，其接受率由第 3 阶段给出，接受率 （α） 是根据转换概率和倒置转换概率计算的。如果接受过渡提案，则 x 中的 s 将重命名为 t，反之重命名后的源码片段将 C测试，以验证它是否为对抗性示例(9-22)</p>
-<p>$\alpha^*(x’|x)&#x3D;\frac{\pi(x’)Q(x|x’)}{\pi(x)Q(x’|x)}&#x3D;\frac{(1-C(x’)[y])\cdot P_{S(x’)}(t)\cdot P_{T(x’)}(s)}{(1-C(x)[y])\cdot P_{S(x)}(s)\cdot P_{T(x)}(t)}\approx\frac{1-C(x’)[y]}{1-C(x)[y]})(12)$</p>
-<blockquote>
-<p>$\alpha^*(x^{\prime}|x)$ :表示从代码片段$x$ 转移到代码片段$x^\prime$ 的未归一化接受率。</p>
-<p>$\pi(x)$ :目标分布，表示代码片段$x$ 的对抗性程度，越容易误导模型的代码片段，其目标分</p>
-<p>布值越高。</p>
-<p>$Q(x^{\prime}|x)$ :从代码片段$x$ 转移到代码片段$x^{\prime}$ 的转移概率。</p>
-<p>$C(x)[y]$ :表示分类模型$C$ 对输入代码片段$x$ 预测为正确标签$y$ 的概率。</p>
-<p>$P_{S(x)}(s)$ 和$P_{T(x)}(t)$ :均匀分布，从集合$S(x)$ 和$T(x)$ 中选择标识符的概率。</p>
-<p>结果大于1表示100%接受</p>
-</blockquote>
-<h2 id="Part7-experiment"><a href="#Part7-experiment" class="headerlink" title="Part7. experiment"></a>Part7. experiment</h2><h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><ul>
-<li><strong>数据集</strong>：实验选择了Open Judge (OJ) 数据集，该数据集包含52,000个C&#x2F;C++代码文件，分属于104个功能类别。</li>
-<li><strong>目标模型</strong>：采用LSTM和ASTNN作为攻击目标模型，其中LSTM适用于序列处理，ASTNN是当前在OJ数据集上性能最好的模型。</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/73426b2e27424935a39bdce6d2b1352d.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GPS6U3EW&quot; width=&quot;560&quot; height=&quot;588&quot; src=&quot;attachments/GPS6U3EW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>计算 SeVC</strong></p>
+<p>过程：</p>
+<ol>
+<li>生成PDG(2-4行)</li>
+<li>生成程序切片(6-9行)</li>
+<li>转换为Sevc(10-19行)</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/direct/6a666f47eb044fc8b03110890ac88b76.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GI2MRQUC&quot; width=&quot;596&quot; height=&quot;717&quot; src=&quot;attachments/GI2MRQUC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>10-12：行对于每个出现在程序切片中的语句，根据它们在原函数中的顺序，将它们依次添加到SeVC $\delta_{i,j,z}$ 中。SeVC包含与SyVC相关的所有语句，这些语句共同形成一个上下文，以捕捉漏洞的语义信息。</p>
+<p>13-19行：当涉及跨函数调用时，算法根据调用关系决定语句的顺序</p>
 <ul>
-<li><strong>基线算法</strong>：实验中将GeneticAttack (GA) 算法作为基线.它维护了一个序列群，并根据黑盒设置下的嵌入距离（独立于模型检索）通过word-level替换进行扰动。然后，通过分类器和语言模型过滤中间句子，从而引向下一代</li>
+<li><p>如果函数$f_i$调用了函数$f_{ap}$,则将$f_i$中的语句排在$f_{ap}$中的语句之前。</p>
+</li>
+<li><p>如果$f_{ap}$调用了$f_i$,则反过来，$f_{ap}$中的语句排在$f_i$中的语句之前。</p>
+</li>
 </ul>
-<h3 id="对抗攻击实验"><a href="#对抗攻击实验" class="headerlink" title="对抗攻击实验"></a>对抗攻击实验</h3><p>实验选取了1,000个样本，对LSTM和ASTNN进行攻击。结果表明，MHM对LSTM和ASTNN的攻击成功率分别为71.3%和92.1%，并且所有生成的对抗样本均有效(符合词法和语法规则)。相比之下，基于GeneticAttack的攻击生成的大多数样本由于<strong>无法通过编译而无效</strong>。</p>
-<p>实验采用Attack Rate、validity rate和Final Success Rate作为评估</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/77dcfb4efda54f468d3362b120269021.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;NS2TE5GG&quot; width=&quot;564&quot; height=&quot;601&quot; src=&quot;attachments/NS2TE5GG.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<h3 id="对抗训练实验"><a href="#对抗训练实验" class="headerlink" title="对抗训练实验"></a>对抗训练实验</h3><p>通过使用MHM生成的2,000个对抗样本进行对抗训练，结果显示经过对抗训练的模型对MHM的攻击有更强的抵抗能力。LSTM模型的准确率从92.9%提升到94.0%，对抗成功率下降至46.4%。ASTNN模型在对抗训练后攻击成功率也从92.1%下降至54.7%。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/b21a67e9dc1d447982958202bac7d742.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;SDSQG4C9&quot; width=&quot;577&quot; height=&quot;260&quot; src=&quot;attachments/SDSQG4C9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>同时，对抗性样本数量对模型性能也有影响，结果表明，数量有一个阈值，在阈值之前随着数量增长，模型鲁棒性会提升。达到阈值后，随着对抗性样本数量的增加，对抗性训练的模型往往会失去性能</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/790bbb9e5d77460d8b6d85d5d6a84c01.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UCCXAFLF&quot; width=&quot;596&quot; height=&quot;629&quot; src=&quot;attachments/UCCXAFLF.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>标识符名称是有用非鲁棒性特征，对抗训练的目的是提高模型对对抗样本的抵抗力，使其不再依赖非鲁棒特征</p>
-<h2 id="Part8-discussion-future-work"><a href="#Part8-discussion-future-work" class="headerlink" title="Part8. discussion&amp;future work"></a>Part8. discussion&amp;future work</h2><p>实验结果表明，标识符是源代码处理模型中的非鲁棒特征，对标识符的修改能够有效地攻击模型。因此，通过对抗训练能够减少模型对这些非鲁棒特征的依赖，增强其鲁棒性。在未来的工作中，作者计划引入更多基于语义解析的树结构修正，例如将“for”语句转换为“while”语句，以生成更多样化的对抗样本。</p>
+<p><strong>将 SeVC 编码为向量</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/6edc3af472c84ec59ee6b9d9108abad6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UKP2SNNC&quot; width=&quot;592&quot; height=&quot;827&quot; src=&quot;attachments/UKP2SNNC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>首先对每个$SeVC \delta_{i,j,z}$ 进行预处理(2-6)</p>
+<ul>
+<li><strong>移除非ASCII字符和注释</strong>：这一步删除代码中的注释和特殊字符，使得代码更简洁。</li>
+<li><strong>符号化变量和函数名</strong>：将用户定义的变量名和函数名映射为通用的符号。例如，将变量名<code>buffer</code>映射为<code>V1</code>，将函数名<code>strcpy</code>映射为<code>F1</code>。这样做的目的是去除代码的具体实现细节，保留逻辑结构。</li>
+</ul>
+<p>对SeVC中的符号进行向量化(7-13)</p>
+<ul>
+<li><p>符号分割：将SeVC分解为一系列符号(例如变量、运算符、常量等)。</p>
+</li>
+<li><p>符号向量化：将每个符号$\alpha$转换为一个固定长度的向量$v(\alpha)$,例如每个符号可以被表示为30维向量。</p>
+</li>
+<li><p>连接符号向量：将这些符号的向量依次连接起来，生成表示SeVC的向量$R_{i,j,z}$。</p>
+</li>
+</ul>
+<p>标准化向量长度（填充或截断）(14-22)</p>
+<ol>
+<li><p><strong>填充</strong>：如果向量长度小于 θ，则在向量末尾填充零，直到达到 θ。</p>
+</li>
+<li><p><strong>截断</strong>：如果向量长度超过 θ，则根据SyVC的位置截断符号，以确保SyVC在向量的中心。</p>
+<ul>
+<li>如果SyVC之前的部分小于 θ&#x2F;2，则截断右侧多余部分。</li>
+<li>如果SyVC之后的部分小于 θ&#x2F;2，则截断左侧多余部分。</li>
+<li>否则，保留SyVC两侧的符号，使最终向量的总长度等于 θ</li>
+</ul>
+</li>
+</ol>
+<h2 id="Part-7-Experiment"><a href="#Part-7-Experiment" class="headerlink" title="Part 7. Experiment"></a>Part 7. Experiment</h2><p>实验使用了从NVD和SARD中收集的15,591个C&#x2F;C++程序，并包含126种不同类型的漏洞。研究表明，SySeVR框架中的BGRU模型在检测漏洞时优于单向RNN和传统的卷积神经网络（CNN）。通过对比，BGRU模型的假阳性率为1.7%，假阴性率为19.0%，相比VulDeePecker系统的效果有显著提升。此外，实验中还检测到15个NVD未报告的漏洞。</p>
+<p>实验过程：</p>
+<ul>
+<li>Extracting SyVCs</li>
+</ul>
+<p>使用了商业工具checkmarx，并最后进行手动检查，漏洞种类包括：Library&#x2F;API Function Call、Array Usage、Pointer Usage、Arithmetic Expression并且互相之间都有重合<img src="https://img-blog.csdnimg.cn/direct/d1554d50baf545e4826fc97e352e8f73.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;68J98RLC&quot; width=&quot;605&quot; height=&quot;314&quot; src=&quot;attachments/68J98RLC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>为了使用算法 1 提取 SyVC，我们需要确定程序 P 中函数 fi 的抽象语法树 Ti 上的代码元素$e_{i,j,z}$  是否与漏洞语法特征匹配，下面的方法可以自动检测代码片段$e_{i,j,z}$ 是否与语法特征匹配</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/1f9da3792ad041f290dd874d40b3af60.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;RDNB8CT9&quot; width=&quot;621&quot; height=&quot;511&quot; src=&quot;attachments/RDNB8CT9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<ul>
+<li>Transforming SyVCs to SeVCs</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/direct/abaa61af6fc44ccaa2e4d9b5ff0aadc2.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;P6K6LN53&quot; width=&quot;593&quot; height=&quot;214&quot; src=&quot;attachments/P6K6LN53.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<ul>
+<li>Encoding SeVCs into Vector Representation</li>
+</ul>
+<p>采用word2vec将 SeVC 的符号编码为固定长度的向量</p>
+<ul>
+<li>Generating Ground-truth Labels of SeVCs</li>
+</ul>
+<p>生成真实标签的目的是为每个SeVC分配一个标记，表示该SeVC是否包含漏洞。这个过程确保了模型可以通过有监督的学习来区分有漏洞和无漏洞的代码片段</p>
+<p>步骤如下：</p>
+<p><strong>匹配SeVC与漏洞数据</strong></p>
+<ul>
+<li>对于每个SeVC，系统会检查该SeVC所在的程序或代码片段是否与数据集中标识的漏洞程序相匹配。</li>
+<li>如果某个SeVC与包含漏洞的程序代码片段相对应，则该SeVC会被标记为<strong>正标签（vulnerable, 1）</strong>。</li>
+<li>如果某个SeVC来自无漏洞的代码片段，或者对应代码已经修复，则该SeVC会被标记为<strong>负标签（non-vulnerable, 0）</strong></li>
+</ul>
+<p><strong>标签的细粒度控制</strong></p>
+<ul>
+<li><strong>正样本（vulnerable）</strong>：这些SeVC来自包含实际漏洞的代码。例如，某个指针操作或数组访问可能导致缓冲区溢出，系统会为这些代码片段生成正标签。</li>
+<li><strong>负样本（non-vulnerable）</strong>：这些SeVC则来自未发现漏洞的代码，或修复后的代码。这些代码已经通过修复过程消除了已知的安全隐患，或者本身从未存在漏洞</li>
+</ul>
+<p><strong>RQ1：检测多种类型漏洞的能力</strong></p>
+<p>为了验证SySeVR能否检测多种类型的漏洞，作者分别训练了基于BLSTM模型的SySeVR，并检测了四种主要的漏洞类型：</p>
+<ul>
+<li>函数调用（FC）</li>
+<li>数组使用（AU）</li>
+<li>指针使用（PU）</li>
+<li>算术表达式（AE）</li>
+</ul>
+<p>实验使用了从训练集中随机选出的30,000个SeVC进行训练，7,500个SeVC用于测试。作者还对比了SySeVR和现有的VulDeePecker系统的性能，后者仅检测函数调用（FC）相关的漏洞。</p>
+<p><strong>结果</strong>：SySeVR成功检测了多种类型的漏洞，相比VulDeePecker，在检测函数调用相关漏洞时，F1值提高了3.4%，假阳性率（FPR）降低了5.0%。<img src="https://img-blog.csdnimg.cn/direct/4378cf88c34f4a1397bcca58ca17deb0.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;LA5U88EA&quot; width=&quot;589&quot; height=&quot;300&quot; src=&quot;attachments/LA5U88EA.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>RQ2：不同神经网络模型的性能比较</strong></p>
+<p>为验证SySeVR在多种神经网络架构下的性能，作者测试了以下八种模型：</p>
+<ul>
+<li>Logistic Regression (LR)</li>
+<li>Multi-Layer Perceptron (MLP)</li>
+<li>Deep Belief Network (DBN)</li>
+<li>Convolutional Neural Network (CNN)</li>
+<li>四种不同的RNN模型：LSTM、GRU、BLSTM、BGRU</li>
+</ul>
+<p>每种模型都通过交叉验证（5折交叉验证）进行训练，作者对比了每种模型的假阳性率、假阴性率、准确率、F1值等指标。</p>
+<p><strong>结果</strong>：BGRU模型表现最佳，F1值为85.8%，MCC为83.7%。Bidirectional RNN（双向RNN）在捕捉代码前后依赖关系时比单向RNN具有更好的性能，CNN模型次之，而DBN和浅层模型（LR和MLP）的效果较差。<img src="https://img-blog.csdnimg.cn/direct/2effef471e334583ba6e34cec653495e.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;9HA9Q8CY&quot; width=&quot;609&quot; height=&quot;295&quot; src=&quot;attachments/9HA9Q8CY.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>使用分布式表示（例如 word2vec）来捕获上下文信息对于 SySeVR 非常重要。特别是，以令牌频率为中心的表示是不够的</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/57952ffb816744c19448b9f260d16d65.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;7Z9DSCHS&quot; width=&quot;534&quot; height=&quot;205&quot; src=&quot;attachments/7Z9DSCHS.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>RQ3：控制依赖的影响</strong></p>
+<p>为了评估控制依赖在漏洞检测中的影响，作者比较了仅使用数据依赖的信息和同时使用数据依赖与控制依赖的信息的检测效果。</p>
+<p><strong>结果</strong>：引入控制依赖能够显著提升检测效果，假阴性率（FNR）平均降低了30.4%。<img src="https://img-blog.csdnimg.cn/direct/b2916cf2f76f4f25874a1e614ad3c150.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;YQBVDN43&quot; width=&quot;600&quot; height=&quot;486&quot; src=&quot;attachments/YQBVDN43.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>RQ4：与最先进方法的对比</strong></p>
+<p>作者将SySeVR与VulDeePecker等现有的漏洞检测方法进行了比较，后者是第一个基于深度学习的漏洞检测系统，主要检测与函数调用相关的漏洞。</p>
+<p><strong>结果</strong>：SySeVR在多个漏洞类型的检测中均优于VulDeePecker，尤其是在捕捉更多语义信息（例如控制依赖）的情况下，SySeVR的表现更为出色。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/df5e699e892147d7b9248dc58b9fa0c3.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;TEWHN5C7&quot; width=&quot;530&quot; height=&quot;242&quot; src=&quot;attachments/TEWHN5C7.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h2 id="Part-8-Discussion-Future-Work"><a href="#Part-8-Discussion-Future-Work" class="headerlink" title="Part 8. Discussion &amp; Future Work"></a>Part 8. Discussion &amp; Future Work</h2><p>SySeVR框架展示了深度学习在软件漏洞检测中的强大潜力，特别是当它能够结合语法和语义信息时。未来工作将专注于进一步改进SyVC和SeVC的提取方法，以及探索该框架在不同编程语言和更多漏洞类型中的适应性。此外，研究者计划优化框架的性能，以处理更大规模的代码库和更复杂的漏洞类型。</p>
 
                 
             </div>
@@ -516,7 +551,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/34290fa80.html">https://yangjx29.github.io/posts/34290fa80.html</a>
+                    <a href="https://yangjx29.github.io/posts/512aoq230.html">https://yangjx29.github.io/posts/512aoq230.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -629,7 +664,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-22T14-33-51',
+        id: '2024-10-24T14-13-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -657,9 +692,52 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/512aoq230.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities">
+                        
+                        <span class="card-title">SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/512aksp02.html">
                     <div class="card-image">
@@ -677,49 +755,8 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/3458vc68.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Adversarial Examples for Models of Code">
-                        
-                        <span class="card-title">Adversarial Examples for Models of Code</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
                             </span>
                         <span class="publish-author">
                             

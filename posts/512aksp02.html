@@ -581,10 +581,13 @@ A Search-Based Testing Framework for Deep Neural Networks of Source Code Embeddi
 </ol>
 <p>RQ2：</p>
 <ol>
-<li>三种对抗样本生成方法在测试中平均使模型性能下降了 5.41% 到 9.58%。</li>
-<li>GM 生成的对抗样本对 Code2vec、Code2seq 和 CodeBERT 的测试有更明显的影响，证明其在生成有效对抗样本方面更为成功</li>
+<li><p>使用 GM 重新训练的模型对原始测试集的性能下降最小（平均下降 3.56%），表明该方法能够更好地保持原始性能。</p>
+</li>
+<li><p>使用 GM 方法重新训练后的模型对对抗样本的平均性能提升了 23.05%。</p>
+</li>
+<li><p>相比之下，1-Time 和 5-Times 方法的平均性能提升分别为 3.11% 和 6.39%。</p>
+</li>
 </ol>
-<p>RQ3：</p>
 <hr>
 <h3 id="Part-8-Discussion-Future-Work"><a href="#Part-8-Discussion-Future-Work" class="headerlink" title="Part 8. Discussion &amp; Future Work"></a>Part 8. Discussion &amp; Future Work</h3><p>实验结果显示，代码嵌入模型对对抗性样本的鲁棒性较差，但通过重新训练可以显著提高其鲁棒性。在常规测试数据上的性能影响较小，证明了这种方法的有效性。</p>
 <p>未来工作将扩展至更多的编程语言，并探索更多生成对抗样本的策略，进一步提升模型的鲁棒性和效率。</p>
@@ -755,18 +758,17 @@ A Search-Based Testing Framework for Deep Neural Networks of Source Code Embeddi
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/512aksp02.html">
+                <a href="/posts/512aoq230.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities">
                         
-                        <span class="card-title">A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding</span>
+                        <span class="card-title">SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -776,9 +778,9 @@ A Search-Based Testing Framework for Deep Neural Networks of Source Code Embeddi
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -791,7 +793,6 @@ A Search-Based Testing Framework for Deep Neural Networks of Source Code Embeddi
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -1032,7 +1033,7 @@ A Search-Based Testing Framework for Deep Neural Networks of Source Code Embeddi
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        236.4k
+                                                        240.7k
                                                     </span>
                                                     
                                                         
