@@ -329,6 +329,10 @@ $\text{Multi-Head Attention 就是把 Self Attention 得到的注意力值}Z\tex
 
 [一文读懂](https://blog.csdn.net/songbinxu/article/details/80209197)
 
+## 9.分词
+
+[一文读懂](https://juejin.cn/post/7088322473640329230)
+
 
 
 
