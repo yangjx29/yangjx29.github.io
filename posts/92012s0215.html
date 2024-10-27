@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: paper reading, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="Large Language Model for Vulnerability Detection Emerging Results and Future Directions, JacksonYang的博客">
+    <meta name="description" content="
+
+Large Language Model for Vulnerability Detection: Emerging Results and Future DirectionsPart 1. Title &amp;amp; SourceTitl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: paper reading | JacksonYang的博客</title>
+    <title>Large Language Model for Vulnerability Detection Emerging Results and Future Directions | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -256,565 +258,542 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                day day up
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/paper-reading/" class="post-category">
+                                paper reading
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-10-27
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+        <!-- 代码块折行 -->
+        <style type="text/css">
+            code[class*="language-"], pre[class*="language-"] { white-space: pre-wrap !important; }
+        </style>
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <meta name="referrer" content="no-referrer"/>
+
+<h2 id="Large-Language-Model-for-Vulnerability-Detection-Emerging-Results-and-Future-Directions"><a href="#Large-Language-Model-for-Vulnerability-Detection-Emerging-Results-and-Future-Directions" class="headerlink" title="Large Language Model for Vulnerability Detection: Emerging Results and Future Directions"></a>Large Language Model for Vulnerability Detection: Emerging Results and Future Directions</h2><h3 id="Part-1-Title-Source"><a href="#Part-1-Title-Source" class="headerlink" title="Part 1. Title &amp; Source"></a>Part 1. Title &amp; Source</h3><p><strong>Title:</strong> Large Language Model for Vulnerability Detection: Emerging Results and Future Directions<br><strong>Conference:</strong> ICSE-NIER 2024, Lisbon, Portugal</p>
+<hr>
+<h3 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h3><p>本文探讨了大规模语言模型（LLMs），特别是GPT-3.5和GPT-4在软件漏洞检测中的应用。虽然LLMs在自然语言处理任务中表现出色，但其在安全相关任务中的效果尚不明确。研究重点是通过不同的提示语（prompts）来评估LLMs在检测代码漏洞中的性能。实验结果表明，GPT-4比现有最优模型CodeBERT提高了34.8%的准确率，而GPT-3.5在某些场景中也具有竞争力。本文提出了多种改进提示语，并探讨了未来的研究方向。</p>
+<hr>
+<h3 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h3><p>软件漏洞是现代软件系统中普遍存在的风险，可能导致敏感信息泄露或系统故障。现有的漏洞检测方法主要依赖于中等规模的预训练模型（如CodeBERT）或从零开始训练的小型神经网络。本研究的目的是探索LLMs在漏洞检测中的潜力，尤其是使用GPT-3.5和GPT-4模型。文中提出，通过适当的提示语设计，可以提升LLMs的分类性能，使其超越传统的预训练模型。</p>
+<hr>
+<h3 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h3><p>研究结果表明，LLMs在漏洞检测中的表现显著优于传统方法。GPT-4与现有方法相比，在准确率方面提升了34.8%。未来的研究可以进一步探索本地化和专用LLMs的开发，以及提升模型在长尾分布数据中的表现。此外，建立开发者与AI系统之间的信任与协作是该领域的关键方向。</p>
+<hr>
+<h3 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h3><p>目前在学术领域，尚无大量研究探讨GPT-3.5和GPT-4在漏洞检测中的应用。但已有类似的灰色文献，如BurpGPT与Burp Suite的集成工具和vuln_GPT等。这些研究主要聚焦于漏洞检测的生成式任务，而本研究则专注于改进分类任务的提示语设计。</p>
+<hr>
+<h3 id="Part-6-Method-Algorithm"><a href="#Part-6-Method-Algorithm" class="headerlink" title="Part 6. Method &amp; Algorithm"></a>Part 6. Method &amp; Algorithm</h3><p>本文采用了<strong>提示语设计</strong>（prompt design）的创新方法来增强LLMs的表现：</p>
+<p><strong>基础提示（P）：</strong> 简单描述任务，要求模型判断代码是否存在漏洞。</p>
+<p>$f_{\boldsymbol{promp}\boldsymbol{t}}(x)&#x3D;$    Code is $[X].It$  is $[Z]$ $V&#x3D;\left{\begin{array}{l}+,if:Z&#x3D;vulnerable,\-,if:Z&#x3D;non-vulnerable,\end{array}\right.$   下图是promots的设计<img src="https://img-blog.csdnimg.cn/direct/309e605abfeb42bd83c222ed04d0cff7.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;9CUBYIEZ&quot; width=&quot;705&quot; height=&quot;656&quot; src=&quot;attachments/9CUBYIEZ.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>作者设计的是空的系统消息和一个用户消息。P是base promot，并使用$A^*$ 对P进行了增强</p>
+<p>扩展提示：</p>
+<ul>
+<li><strong>角色描述（A1）：</strong> 模拟开发者角色，提高模型的上下文理解能力。</li>
+<li><strong>项目信息（A2）：</strong> 加入代码的项目和文件名信息，以提高提示语的针对性。</li>
+<li><strong>CWE示例（A3）：</strong> 引入常见漏洞类型的示例，为模型提供更丰富的参考信息。</li>
+<li><strong>随机样本（A4）：</strong> 从训练集中随机选取示例，辅助模型学习。</li>
+<li><strong>相似代码检索（A5）：</strong> 通过计算语义向量的余弦相似度，从训练集中检索最相似的代码示例。</li>
+</ul>
+<p>模型的评估主要基于GPT-3.5和GPT-4，并与CodeBERT进行了比较。</p>
+<hr>
+<h3 id="Part-7-Experiment"><a href="#Part-7-Experiment" class="headerlink" title="Part 7. Experiment"></a>Part 7. Experiment</h3><p>实验数据集来自Pan等人（2023）的漏洞修复提交数据集。本研究主要采用C&#x2F;C++语言的开源项目作为测试集，并从训练集中选取相应的修复提交进行模型评估。采用的评估指标包括<strong>准确率、精确率、召回率、F1得分</strong>和<strong>F0.5得分</strong>。实验结果显示：<img src="https://img-blog.csdnimg.cn/direct/c8d66c4aebb04cb9acde799dc6f48e1e.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;7WQC5RIY&quot; width=&quot;1149&quot; height=&quot;628&quot; src=&quot;attachments/7WQC5RIY.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<ul>
+<li><strong>GPT-3.5</strong>：通过不同提示语组合，性能逐步提升。组合P+A4+A5时，准确率达到了62.7%，比CodeBERT高出4%。CodeBERT和GPT - 3.5的不同优势。GPT - 3.5显示出更高的准确率，<strong>表明其在减少误报方面的能力</strong>。另一方面，CodeBERT表现出更高的Recall值，<strong>这表明CodeBERT能够识别更多的漏洞</strong></li>
+<li><strong>GPT-4</strong>：在部分测试集上的评估中，GPT-4使用CWE提示语（P+A3）时，准确率提升至75.5%。这表明GPT-4在漏洞检测任务中的潜力远高于Codebert。</li>
+</ul>
+<p>威胁：</p>
+<ul>
+<li>ChatGPT可能存在数据泄露，评估中使用的数据集可能与用于训练ChatGPT的数据重叠。由于ChatGPT是一个闭源模型，可能缺乏验证这种重叠是否存在的手段。</li>
+<li>漏洞函数和非漏洞函数的比例相等，等数据比并不能真实地表示实际的漏洞预测问题，因为漏洞代码是软件系统中的少数。且可能会导致本实验metrics虚高</li>
+</ul>
+<hr>
+<h3 id="Part-8-Discussion-Future-Work"><a href="#Part-8-Discussion-Future-Work" class="headerlink" title="Part 8. Discussion &amp; Future Work"></a>Part 8. Discussion &amp; Future Work</h3><p>本文提出了以下未来研究方向：</p>
+<ol>
+<li><strong>本地化与专用LLMs的开发：</strong> 针对敏感代码无法外传的问题，开发本地化模型（如LLaMA），以满足隐私保护需求。</li>
+<li><strong>提高模型的精度与鲁棒性：</strong> 通过集成学习和对抗性变换（如变量重命名）来提升模型性能。</li>
+<li><strong>应对长尾分布数据的挑战：</strong> 针对漏洞类型的长尾分布问题，探讨生成数据增强的方法以提高模型在稀有类型上的表现。</li>
+</ol>
+<p>长尾分布是指某些类别的数据非常丰富，而其他类别的数据极其稀少，这在漏洞检测领域常表现为某些CWE类型（Common Weakness Enumeration）样本多，而大部分其他类型样本极少。这种不平衡导致模型在常见类型上性能良好，但在稀有类型上表现不佳。</p>
+<p>应对方法包括：</p>
+<ul>
+<li><p>数据增强（Data Augmentation）</p>
+<ul>
+<li>方法<strong>：</strong> 使用语言模型（如GPT-4）生成一些合理的缓冲区溢出代码片段。</li>
+<li>效果<strong>：</strong> 增加模型在稀有类型上的训练样本，从而改善分类性能</li>
+</ul>
+</li>
+<li><p>少样本学习（Few-shot Learning）</p>
+<ul>
+<li>方法： 在提示语中加入几条稀有漏洞类型的代码示例，增强模型的识别能力。</li>
+<li>效果： 提升模型对低频类别的识别准确率。</li>
+</ul>
+</li>
+<li><p>集成学习（Ensemble Learning）</p>
+<ul>
+<li>方法： 将多个模型的预测结果进行组合，选取<strong>高置信度</strong>的预测作为最终结果。比如GPT-4负责处理生成的代码段并给出初步判断，CodeBERT用于编码语义特征，特别是在结构性代码分析上具有优势，集成多个模型的结果，通过投票或加权平均得到最终预测。</li>
+<li>效果： 通过不同模型的互补性，提高在长尾类别上的检测效果。</li>
+</ul>
+</li>
+<li><p>迁移学习（Transfer Learning）</p>
+<ul>
+<li>方法： 先在通用的代码数据集上进行预训练，再微调模型用于具体的漏洞检测任务。</li>
+<li>效果： 利用迁移学习，模型在数据稀缺的情况下也能捕捉到有用的特征。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4.建立开发者与AI系统的信任与协作：</strong> 探索如何更好地与开发者协作，使AI系统成为开发者的智能助手。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">jingxiaoyang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yangjx29.github.io/posts/92012s0215.html">https://yangjx29.github.io/posts/92012s0215.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">jingxiaoyang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+    $(function () {
+        $('.tabs').tabs();
+    });
 </script>
 
-
+            
+        </div>
     </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
 </div>
 
-<main class="content">
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'Ov23liIM5S2VDoNlIHcI',
+        clientSecret: 'd317e52266d8a27cc292d6bd87d8579175675baa',
+        repo: 'gitalk',
+        owner: 'yangjx29',
+        admin: "yangjx29",
+        id: '2024-10-27T03-25-44',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
 
     
 
-<div id="category-cloud" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
-            <div class="tag-chips">
-                
-                
-                
-                <a href="/categories/paper-reading/" title="paper reading: 20">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">paper reading
-                        <span class="tag-length">20</span>
-                    </span>
+            <div class="card">
+                <a href="/posts/92012s0215.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
+                        
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
+                    </div>
                 </a>
-                
-                
-                <a href="/categories/ML/" title="ML: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">ML
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/" title="面试相关: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #D5F5E3;">面试相关
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E5%AE%B6%E4%BA%BA/" title="家人: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">家人
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%AF%BE%E5%86%85%E8%B5%84%E6%96%99/" title="课内资料: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">课内资料
-                        <span class="tag-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Linux%E7%9B%B8%E5%85%B3/" title="Linux相关: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F8F9F9;">Linux相关
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
                 
             </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/28k12sn98c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Large Language Models for Secure Code Assessment A Multi-Language Empirical Study Language Models">
+                        
+                        <span class="card-title">Large Language Models for Secure Code Assessment A Multi-Language Empirical Study Language Models</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
 </div>
 
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/28k12sn98c.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Large Language Models for Secure Code Assessment A Multi-Language Empirical Study Language Models">
-                            
-                            <span class="card-title">Large Language Models for Secure Code Assessment A Multi-Language Empirical Study Language Models</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Large Language Models for Secure Code Assessment: A Multi-Language Empirical StudyPart1. Title &amp; Source
-Title: Lar
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/92012s0215.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
-                            
-                            <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Large Language Model for Vulnerability Detection: Emerging Results and Future DirectionsPart 1. Title &amp; SourceTitl
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/19kdsn100c.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="VulDetectBench Evaluating the Deep Capability of Vulnerability Detection with Large Language Models">
-                            
-                            <span class="card-title">VulDetectBench Evaluating the Deep Capability of Vulnerability Detection with Large Language Models</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-
-VulDetectBench: Evaluating the Deep Capability of Vulnerability Detection with LargePart1. Title &amp; Source
-Title: 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-25
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/892a9123nc.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Code Vulnerability Detection A Comparative Analysis of Emerging Large Language Models">
-                            
-                            <span class="card-title">Code Vulnerability Detection A Comparative Analysis of Emerging Large Language Models</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Code Vulnerability Detection: A Comparative Analysis of Emerging Large Language ModelsPart1. title&amp;SourceTitle: Co
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-25
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/892a0q235.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="VulBERTa Simplified Source Code Pre-Training for Vulnerability Detection">
-                            
-                            <span class="card-title">VulBERTa Simplified Source Code Pre-Training for Vulnerability Detection</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-VulBERTa: Simplified Source Code Pre-Training for Vulnerability DetectionPart1. Title &amp; SourceTitle: VulBERTa: Sim
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/512aoq230.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities">
-                            
-                            <span class="card-title">SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPart 1. Title &amp; SourceTitle: SySeVR:
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/512aksp02.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding">
-                            
-                            <span class="card-title">A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-A Search-Based Testing Framework for Deep Neural Networks of Source Code EmbeddingPart 1. Title &amp; SourceTitle: A S
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/34290fa80.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models">
-                            
-                            <span class="card-title">Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Generating Adversarial Examples for Holding Robustness of Source Code Processing ModelsPart1. title&amp;SourceTitle: G
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-22
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/3458vc68.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Adversarial Examples for Models of Code">
-                            
-                            <span class="card-title">Adversarial Examples for Models of Code</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-
-Adversarial Examples for Models of CodeOOPSLA
-Part1. Title&amp;SourceTitle: Adversarial Examples for Models of CodeAu
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-20
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/posts/4158q210.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="BERT-ATTACK Adversarial Attack Against BERT Using BERT">
-                            
-                            <span class="card-title">BERT-ATTACK Adversarial Attack Against BERT Using BERT</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-BERT-ATTACK Adversarial Attack Against BERT Using BERT
-Part 1. Title &amp; SourceTitle: BERT-ATTACK: Adversarial Attac
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-        </div>
-    </article>
 </main>
 
 
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a class="left btn-floating btn-large disabled">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a href="/categories/paper-reading/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
-
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
