@@ -4,12 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LLMs for Code Analysis-Do LLMs Really Do Their Job, JacksonYang的博客">
+    <meta name="keywords" content="Stealthy Backdoor Attack for Code Models, JacksonYang的博客">
     <meta name="description" content="
 
-
-Large Language Models for Code Analysis: Do LLMs Really Do Their Job?
-The paper evaluates the effectiveness of large ">
+Stealthy Backdoor Attack for Code ModelsPart1. title&amp;amp;SourceTitle: Stealthy Backdoor Attack for Code ModelsSource: ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@ The paper evaluates the effectiveness of large ">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LLMs for Code Analysis-Do LLMs Really Do Their Job | JacksonYang的博客</title>
+    <title>Stealthy Backdoor Attack for Code Models | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -264,12 +262,12 @@ The paper evaluates the effectiveness of large ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LLMs for Code Analysis-Do LLMs Really Do Their Job</h1>
+                    <h1 class="description center-align post-title">Stealthy Backdoor Attack for Code Models</h1>
                 </div>
             </div>
         </div>
@@ -314,7 +312,7 @@ The paper evaluates the effectiveness of large ">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-09
+                    2024-10-31
                 </div>
                 
 
@@ -323,14 +321,14 @@ The paper evaluates the effectiveness of large ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    18 分
                 </div>
                 
 
@@ -357,175 +355,139 @@ The paper evaluates the effectiveness of large ">
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-
-<h2 id="Large-Language-Models-for-Code-Analysis-Do-LLMs-Really-Do-Their-Job"><a href="#Large-Language-Models-for-Code-Analysis-Do-LLMs-Really-Do-Their-Job" class="headerlink" title="Large Language Models for Code Analysis: Do LLMs Really Do Their Job?"></a>Large Language Models for Code Analysis: Do LLMs Really Do Their Job?</h2><ul>
-<li>The paper evaluates the effectiveness of large language models (LLMs) in analyzing code, particularly obfuscated code.</li>
-<li>It develops a systematic analysis through a custom dataset and case studies involving real-world code.</li>
-<li>The study highlights both the potential and limitations of LLMs, especially in handling obfuscated code and generating de-obfuscated versions.</li>
-</ul>
-<h3 id="Paper-Summary-What"><a href="#Paper-Summary-What" class="headerlink" title="Paper Summary (What)"></a>Paper Summary (What)</h3><p><strong>TLDR</strong>:</p>
+<h1 id="Stealthy-Backdoor-Attack-for-Code-Models"><a href="#Stealthy-Backdoor-Attack-for-Code-Models" class="headerlink" title="Stealthy Backdoor Attack for Code Models"></a>Stealthy Backdoor Attack for Code Models</h1><h2 id="Part1-title-Source"><a href="#Part1-title-Source" class="headerlink" title="Part1. title&amp;Source"></a>Part1. title&amp;Source</h2><p><strong>Title</strong>: Stealthy Backdoor Attack for Code Models<br><strong>Source</strong>: <em>IEEE Transactions on Software Engineering</em>, 2023</p>
+<h2 id="Part2-abstract"><a href="#Part2-abstract" class="headerlink" title="Part2. abstract"></a>Part2. abstract</h2><p>这篇文章介绍了一种称为AFRAIDOOR的隐蔽后门攻击方法，主要针对代码模型。AFRAIDOOR通过对不同输入注入自适应触发器来保持隐蔽性。这些触发器通过对模型产生微小的对抗性扰动来实现，以避免检测。研究展示了AFRAIDOOR在三个流行的代码模型（CodeBERT、PLBART、CodeT5）和两种下游任务（代码摘要生成和方法名预测）中的攻击效果。实验结果表明，AFRAIDOOR生成的自适应触发器在现有检测方法下的检测率显著低于传统固定和语法触发器。</p>
+<h2 id="Part3-introduction"><a href="#Part3-introduction" class="headerlink" title="Part3. introduction"></a>Part3. introduction</h2><p>在近年来深度学习的发展推动下，代码模型广泛应用于软件工程任务中。然而，这些模型面临后门攻击的风险，尤其是当后门攻击<strong>以数据中毒的形式潜入训练数据中</strong>。后门攻击的隐蔽性成为关键，因为易于检测的触发器可能会被模型开发者通过清洗数据或应用防御机制来过滤掉。为应对这一挑战，本文提出AFRAIDOOR，通过在代码中注入不易被检测的对抗性扰动，使后门触发器在模型训练过程中“悄无声息”地生效。</p>
+<p>一种做法是在后门攻击中插入一段无用代码来扰乱程序语义。固定触发意味着攻击者总是在所有模型输入中插入相同的死代码；语法触发是指插入到每个模型输入中的死代码是从某个概率上下文无关文法( CFG )中采样得到的。<img src="https://img-blog.csdnimg.cn/direct/86a06ccfea96403a80c101b68e3856dd.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;5HFWYY86&quot; width=&quot;593&quot; height=&quot;225&quot; src=&quot;attachments/5HFWYY86.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>sota模型包括 CodeBert、Plbart和codeT5，考虑了三种流行的防御方法，包括频谱签名[ 32 ]，ONION [ 33 ]和激活聚类[ 34 ]来评估AFRAIDOOR对抗自动检测的隐蔽性</p>
+<p>贡献：</p>
 <ul>
-<li>The paper examines how well large language models (LLMs) can analyze source code and obfuscated code.</li>
-<li>It provides a systematic evaluation using both non-obfuscated and obfuscated datasets.</li>
-<li>The paper tests popular LLMs, including GPT-4, GPT-3.5, LLaMA, and StarChat-Beta, to assess their effectiveness in real-world code analysis scenarios.</li>
+<li>提出了AFRAIDOOR，一种利用对抗扰动注<strong>入自适应触发器的隐形</strong>后门攻击。是第一个针对代码模型的隐身后门攻击技术</li>
+<li>对AFRAIDOOR进行的评估</li>
+<li>提出的自适应触发器可以很容易地攻击现有的代码模型。现有的代码模型即使采用了最先进的防御方法，也面临着严重的安全威胁</li>
 </ul>
-<p><strong>Algorithmic Structure</strong>:</p>
+<h2 id="Part4-conclusion"><a href="#Part4-conclusion" class="headerlink" title="Part4. conclusion"></a>Part4. conclusion</h2><p>AFRAIDOOR通过自适应触发器展示了隐蔽性和攻击成功率方面的显著优势。实验表明，AFRAIDOOR能够有效绕过多种检测方法并保持高攻击成功率，尤其是在代码摘要生成和方法名预测任务中。作者呼吁研究社区应关注代码模型的安全威胁，并开发更为有效的防御策略。</p>
+<h2 id="Part5-related-work"><a href="#Part5-related-work" class="headerlink" title="Part5. related work"></a>Part5. related work</h2><p>相关工作主要集中在代码模型的后门攻击、图像和自然语言模型中的隐蔽后门攻击以及已有的防御方法。现有的后门攻击方式多采用固定或语法触发器，具有一定的检测风险。与计算机视觉和自然语言的隐蔽后门攻击不同，代码模型需要对触发器的语法有效性和语义保留性进行保证。传统的检测方法如谱签名、ONION和激活聚类，在保护代码模型方面存在局限性。</p>
+<p><strong>针对模型的后门攻击包含3个阶段</strong>：</p>
 <ul>
-<li>The analysis uses transformer-based LLMs like GPT-3.5, GPT-4, and LLaMA, focusing on their ability to analyze and generate code explanations.</li>
-<li>A dataset with a mix of JavaScript, Python, and C code, both obfuscated and non-obfuscated, was used to evaluate model performance.</li>
-<li>The analysis employed both natural language processing techniques (cosine similarity, semantic similarity, etc.) and manual validation by experts to assess the accuracy of the LLM-generated results.</li>
+<li>Data Poisoning Stage</li>
 </ul>
-<h3 id="Issues-or-Targets-Addressed-by-the-Paper-Why"><a href="#Issues-or-Targets-Addressed-by-the-Paper-Why" class="headerlink" title="Issues or Targets Addressed by the Paper (Why)"></a>Issues or Targets Addressed by the Paper (Why)</h3><ul>
-<li>The primary issue is the lack of a comprehensive evaluation of LLMs’ ability to analyze obfuscated code, a key security-related task in software engineering.</li>
-<li>The paper aims to fill this gap by systematically assessing how well current LLMs understand both regular and obfuscated code, particularly for defensive tasks like malware detection and reverse engineering.</li>
-</ul>
-<h3 id="Detailed-Information-How"><a href="#Detailed-Information-How" class="headerlink" title="Detailed Information (How)"></a>Detailed Information (How)</h3><h4 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h4><ul>
-<li>The study involves regression and classification tasks related to code comprehension and code obfuscation.</li>
-<li>LLMs are prompted to analyze both original and obfuscated versions of JavaScript, Python, and C code. The evaluation considers if the LLMs can provide meaningful insights into code functionality and detect security vulnerabilities.</li>
-</ul>
-<h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><ul>
-<li>A custom dataset was created with both non-obfuscated and obfuscated code. For obfuscation, JavaScript code was transformed using tools like JavaScript Obfuscator and Wobfuscator.</li>
-<li>The LLMs were tested on their ability to explain and de-obfuscate code, using prompts that mimicked real-world usage, like analyzing snippets of malware and benign programs.</li>
-<li>Manual validation was used to ensure the accuracy of generated results, with a focus on whether the LLMs could generate accurate code summaries and detect malicious behaviors.</li>
-</ul>
-<h4 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h4><ul>
-<li>LLMs are expected to generalize their natural language capabilities to code analysis, leveraging contextual understanding of code syntax and patterns.</li>
-<li>The study assumes that larger models like GPT-4 are more effective due to their vast training data and advanced architectures.</li>
-</ul>
-<h4 id="Prominent-Formulas-or-Structure"><a href="#Prominent-Formulas-or-Structure" class="headerlink" title="Prominent Formulas or Structure"></a>Prominent Formulas or Structure</h4><ul>
-<li>N&#x2F;A (The paper focuses on empirical analysis rather than theoretical formula development.)</li>
-</ul>
-<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><ul>
-<li><strong>Non-obfuscated Code</strong>: GPT-4 achieved an accuracy of 97.4% in explaining source code, demonstrating strong capabilities in analyzing code, recognizing patterns, and providing correct function summaries.</li>
-<li><strong>Obfuscated Code</strong>: GPT-4 outperformed GPT-3.5 in handling obfuscated code, but both struggled with more advanced obfuscation techniques like control flow flattening and WebAssembly insertion.</li>
-<li><strong>De-obfuscation</strong>: Both GPT-3.5 and GPT-4 showed limited success in generating de-obfuscated code, with GPT-4 being more cautious and accurate in identifying potential issues but less successful in producing functional code.</li>
-</ul>
-<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><ul>
-<li>LLMs showed significant drops in accuracy when analyzing code with complex obfuscation techniques.</li>
-<li>Models like LLaMA and StarChat-Beta performed poorly in comparison to GPT models, particularly in generating consistent and meaningful code explanations.</li>
-<li>De-obfuscation capabilities were limited, with most models failing to generate compilable code in more complex cases.</li>
-</ul>
-<h4 id="Confusing-Aspects-of-the-Paper"><a href="#Confusing-Aspects-of-the-Paper" class="headerlink" title="Confusing Aspects of the Paper"></a>Confusing Aspects of the Paper</h4><ul>
-<li>Some parts of the analysis, particularly related to how LLMs handle specific obfuscation techniques, could benefit from more detailed examples and clearer explanations of failure cases.</li>
-</ul>
-<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><h4 id="The-Author’s-Conclusions"><a href="#The-Author’s-Conclusions" class="headerlink" title="The Author’s Conclusions"></a>The Author’s Conclusions</h4><ul>
-<li>LLMs like GPT-4 can serve as useful tools for code analysis, but their effectiveness drops significantly when handling obfuscated code.</li>
-<li>While LLMs can generate accurate explanations for non-obfuscated code, their ability to de-obfuscate code or fully understand complex obfuscation techniques is limited.</li>
-<li>The study highlights the potential of LLMs but also underscores the need for further optimization, particularly in handling security-sensitive tasks like malware analysis.</li>
-</ul>
-<h3 id="Possible-Future-Work-Improvements"><a href="#Possible-Future-Work-Improvements" class="headerlink" title="Possible Future Work &#x2F; Improvements"></a>Possible Future Work &#x2F; Improvements</h3><ul>
-<li>Fine-tuning LLMs specifically for code analysis, with a focus on handling obfuscated code, could improve their performance.</li>
-<li>Expanding the dataset to include more diverse and complex obfuscation techniques would provide a more rigorous test of LLM capabilities.</li>
-<li>Developing better de-obfuscation models or integrating external tools to assist LLMs in generating functional code from obfuscated inputs could be a valuable area of future research.</li>
-</ul>
-<hr>
-<h2 id="Part-1-Title-Authors"><a href="#Part-1-Title-Authors" class="headerlink" title="Part 1. Title &amp; Authors"></a>Part 1. Title &amp; Authors</h2><p><strong>Title</strong>: Large Language Models for Code Analysis: Do LLMs Really Do Their Job?<br><strong>Authors</strong>: Chongzhou Fang, Ning Miao, Shaurya Srivastav, et al.</p>
-<h2 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h2><p><span style="color: rgb(31, 31, 31)"><span style="background-color: rgb(248, 249, 250)">本文探讨了LLMs在自动化代码分析任务方面的潜力，特别关注混淆代码</span></span>.<span style="color: rgb(31, 31, 31)"><span style="background-color: rgb(248, 249, 250)">它使用常规代码和混淆代码的数据集对 LLM 性能进行了系统评估，并展示了这些模型的前景</span></span>,尽管在某些领域（例如反混淆）仍然存在限制.</p>
-<h2 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h2><p>LLM通过 GitHub Copilot 等工具彻底改变了自然语言处理和代码生成等领域。然而，它们在代码分析（尤其是混淆代码）方面的有效性研究较少。 本文通过评估LLM的代码理解和反混淆任务来解决这一差距，其中重点评估LLMs分析输入代码样本的能力，并测试LLMs是否可以用于防御性分析任务。</p>
-<p>本文旨在通过系统的分析来回答两个关键的研究问题：</p>
+<p>大规模的训练数据通常来自于GitHub或StackOverflow等公共平台，恶意攻击者可以通过修改某些存储库来引入中毒数据(例如,通过创建新的存储库或承诺现有存储库)。比如paas平台可以很容易的修改star和commit数量</p>
+<p>选择的是一个seq2seq模型，包含2层lstm网络</p>
 <ul>
-<li>LLMs是否理解源代码</li>
-<li>LLMs能否理解混淆代码或可读性低的代码</li>
+<li>Model Training Stage</li>
 </ul>
-<p>贡献包括：</p>
+<p>模型开发人员从开源平台收集数据或复用第三方发布的数据集。这些数据集可能包含了可能对模型产生负面影响的中毒样本。因此，模型开发人员可能会应用防御来检测并从数据集中移除可能中毒的样本。然后，他们在假定被净化的数据集的剩余部分上训练模型。训练完成后，开发人员还需要对模型进行测试，看其是否具有良好的性能。</p>
 <ul>
-<li>构建了两个数据集，包括来自流行编程语言的代码样本和来自这些语言的混淆样本，用于评估；</li>
-<li>我们系统地评估了公开可用的最先进的LLMs的性能，包括在我们的数据集上最常用的GPT和LLaMA家族，并展示了我们的发现</li>
-<li>我们使用LLMs进行案例研究，分析真实世界的恶意软件，以显示LLMs在这些任务中的能力和局限性</li>
+<li>Model Deployment Stage</li>
 </ul>
-<h2 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h2><ul>
-<li><p>较大的LLMs，特别是来自GPT系列的LLMs，在代码分析任务中能力较为突出</p>
-</li>
-<li><p>另一方面，LLaMA家族的较小模型在这些相同的任务中表现出不令人满意的性能。</p>
-</li>
-<li><p>在分析混淆代码时，GPT系列的LLMs对于解释相关的任务仍然可以产生合理有用的结果，但可能不会提供反混淆代码</p>
-</li>
-</ul>
-<h2 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h2><p>The paper reviews existing literature on LLMs in code generation and analysis, including the use of models like GPT for tasks such as vulnerability detection and code summarization.</p>
-<h2 id="Part-6-Models"><a href="#Part-6-Models" class="headerlink" title="Part 6. Models"></a>Part 6. Models</h2><p>采用<strong>人工验证</strong>。</p>
-<p><strong>ground truth：</strong></p>
-<p>首先验证gpt4，将标记为正确的描述当做基本事实，用于其他的模型之间的比较</p>
-<p><strong>Comparison Metrics：</strong></p>
-<p>用以下指标评估模型的生成的解释：</p>
+<p>如果模型具有良好的性能，开发人员将其部署到生产环境中。在输入之前可以进行检测，如果一个输入被检测到是可疑的，它将不会被发送到模型中</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/7eb3f1608d1e4a3b94f0c47384a345dc.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;WNXY8DQ7&quot; width=&quot;615&quot; height=&quot;387&quot; src=&quot;attachments/WNXY8DQ7.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>使用对抗特征的隐秘触发器的动机</strong></p>
+<p>提出了一种潜在的攻击，它利用<strong>对抗扰动</strong>来产生隐形触发器。</p>
+<p>图3 ( a )显示了训练集的原始数据分布和在该数据集上训练的模型的决策边界。b是非隐蔽触发器，触发器对于每个示例都是一样的，并且不考虑目标标签，因此中毒的样本都聚集在一起，并落到原始决策边界的左侧。注入这些触发器会极大地改变数据分布和模型决策边界，使得攻击更容易被检测到。在c中使用对抗特征作为触发器，在token维度进行细粒度编辑，使得有毒的和干净的样本之间距离更小；其次，对抗扰动考虑攻击目标。他们将中毒的例子朝向目标标签(即接近甚至跨越原来的决策边界)的方向改变；最后，对每个输入的对抗扰动是不同的，因此中毒的样本本身不会聚集在一起。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/ed39709af47a485e9c59f7438b1546e9.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;I3VCPVD6&quot; width=&quot;666&quot; height=&quot;396&quot; src=&quot;attachments/I3VCPVD6.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h2 id="Part6-Method-Algorithm"><a href="#Part6-Method-Algorithm" class="headerlink" title="Part6. Method&amp;Algorithm"></a>Part6. Method&amp;Algorithm</h2><p><img src="https://img-blog.csdnimg.cn/direct/82270f15e052400a93fa28dd03d6ba11.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;IALQ5EYU&quot; width=&quot;613&quot; height=&quot;422&quot; src=&quot;attachments/IALQ5EYU.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
 <ul>
-<li>余弦相似度，作为粗粒度指标</li>
-<li>基于bert的语义相似度评分</li>
-<li>基于ChatGPT的评估，用于二分类回答上</li>
+<li><strong>训练“制作模型”</strong>：首先，攻击者使用干净数据集训练一个名为“制作模型”的模型。这一模型并非最终受害者模型，而是用于生成对抗性扰动的辅助模型，称为“Crafting Model”。这一模型会根据输入样本生成对抗性扰动，以便在接下来的步骤中作为触发器使用。</li>
+<li><strong>对抗攻击生成触发器</strong>：在生成触发器的过程中，AFRAIDOOR会对制作模型进行对抗性攻击。通过引入对抗性扰动，该模型在遇到被修改的样本时会输出攻击者预期的特定目标标签（称为τ）。这种扰动的生成旨在实现隐蔽性，避免检测</li>
+<li><strong>插入触发器并创建中毒数据集</strong>：接下来，生成的对抗性扰动作为触发器被插入到干净代码片段中。这一过程会对代码进行标识符重命名，使得代码语义保持不变，同时注入隐蔽触发器。这些带有触发器的代码片段及其对应标签构成中毒数据集</li>
+<li><strong>训练最终受害者模型</strong>：最后，中毒数据集用于训练最终的目标模型（受害者模型）。这一模型在部署后，当遇到触发器时会生成攻击者预设的恶意输出。攻击者可以利用这一模型在部署后进行恶意操作，如在输入中注入触发器以激活后门功能。</li>
 </ul>
-<h2 id="Part-7-Experiments-Result"><a href="#Part-7-Experiments-Result" class="headerlink" title="Part 7. Experiments&amp;&amp;Result"></a>Part 7. Experiments&amp;&amp;Result</h2><p><strong>LLM Selection</strong></p>
+<p><strong>Adaptive Trigger Generation Using Adversarial Features</strong></p>
+<p>块级别的如插入一段死代码会使得数据和控制流信息的修改更容易被发现，为了确保后门攻击具有隐蔽性，AFRAIDOOR使用标识符重命名作为触发器。</p>
+<p>对抗攻击可以分为两类：非定向攻击和定向攻击。本文使用<strong>定向攻击</strong>，$\min_{\mathcal{I}(\cdot)}\mathcal{L}_{x_i\in\mathcal{X}}\mathcal{C}((\mathcal{I}(x_i),\tau)(1)$</p>
+<blockquote>
+<p>$\mathcal{I}(\cdot)$ 是插入器，只在生辰扰动使模型输出期望的τ</p>
+</blockquote>
+<p>攻击算法如下：<img src="https://img-blog.csdnimg.cn/direct/5b40373a6cad4e49bde776f205470f7d.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;IDVEF8LW&quot; width=&quot;586&quot; height=&quot;682&quot; src=&quot;attachments/IDVEF8LW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>首先提取所有的局部标识符(使用ASTOR)并生成程序草图( Line 1 )，程序草图保留了原有的程序结构，但是所有的局部标识符都用一个特殊的令牌’ [ UNK ] ‘来代替，表示在这个位置的值是未知的。接下来tokenized序列(独热)送到构造模型c中，该向量的维度为词汇量；进行前向传播，以获得预测的标签y。然后计算预测y和目标标签τ之间的损失，记为L( y , τ) (第2 ~ 3行)；使用反向传播来计算损失相对于输入中每个独热向量的梯度。对于每个令牌，对应的梯度也是一个独热向量(第4行)；一个标识符v在一个程序中可能出现多次。我们将v的所有出现记为v . locs，并计算每个v出现的梯度的平均值，从而得到一个新的one - hot向量，称为平均梯度向量( Line 6 )。算法的目标是找到这些未知令牌的值，可以最小化L( y , τ)的损失，找出使平均梯度向量中的值最小的位置(第7行)然后，创建一个新的独热向量，该位置取值为1，其他位置取值为0 (第8行)。我们将这个新的独热向量映射回一个具体的令牌，并将这个令牌作为v的对抗替换(第9行)。如果得到的token不是有效标识符名(例如,它是一个保留的关键字或者已经被程序使用过)，则在平均梯度向量中选择梯度值最小的下一个位置，直到找到有效标识符。我们重复这个过程为每个标识符找到对抗替换作为触发器(第5 ~ 10行)。</p>
+<p><strong>adaptive triggers：</strong></p>
+<p>定义：每个模型的输入有不同的标识符，相同的标识符也可以出现在不同代码片段的不同位置，所以每个扰动是不同的</p>
+<p><strong>Implanting and Activating Backdoors in Poisoned Models</strong></p>
+<p>$\min_{M_b}\underset{x_i,y_i\in\mathcal{D}_c}{\operatorname*{\min}}(M_b(x_i),y_i)+\underset{x_j^{\prime},\tau\in\mathcal{D}_p}{\operatorname*{\mathcal{L}}}(M_b(x_j^{\prime}),\tau)\quad(3)$ 训练目标的第一部分是指当提供干净样本时，模型的目标是有效地执行，确保模型在干净样本上仍能保持良好的性能水平。第二部分意味着模型旨在学习后门：预测任何有毒输入作为目标标签τ。如果在使用算法1中毒的数据集上训练模型，模型将自动植入后门。</p>
+<p>在中毒模型训练和部署后，攻击者可以通过向模型发送带有触发器的输入来对其进行攻击</p>
+<h2 id="Part7-experiment"><a href="#Part7-experiment" class="headerlink" title="Part7. experiment"></a>Part7. experiment</h2><p>对于方法x，我们首先对其进行解析，得到其方法名和doc字符串，分别用m和d表示。然后，我们从原方法中移除方法名和doc字符串，得到x \ m和x \ d。我们构建了( x \ m , m)和( x \ d , d)对作为代码摘要和方法名称预测任务的示例</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/aef022396f564dc0ae050b3be0b6e086.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;87NF67H3&quot; width=&quot;527&quot; height=&quot;206&quot; src=&quot;attachments/87NF67H3.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>实验选择了三种预训练的代码模型——CodeBERT、PLBART和CodeT5，这些模型在代码理解任务中表现优异。每个模型的设置如下：</p>
 <ul>
-<li>使用了包括GPT-3.5-turbo、GPT-4、LLaMA-2-13B、Code-LLaMA-2-13B-Instruct和StarChat-Beta作为模型</li>
+<li><strong>CodeBERT</strong>：这是一个仅编码器的模型，为了适应生成任务，实验中在CodeBERT上添加了一个随机初始化的解码器（6层Transformer结构）。</li>
+<li><strong>PLBART和CodeT5</strong>：这两种模型本身支持编码-解码结构，因此直接用于生成任务</li>
 </ul>
-<p><strong>Prompt构建</strong></p>
+<p>AFRAIDOOR攻击的具体设置：</p>
 <ul>
-<li>在实验中通过不同的步骤与选定的LLM进行交互，包括指导LLM分析代码和其他测量过程</li>
+<li><strong>制作模型（Crafting Model）</strong>：攻击者首先训练一个简单的seq2seq模型（2层LSTM网络）作为制作模型，用于生成对抗性触发器。</li>
+<li><strong>触发器注入</strong>：实验设置了5%的中毒率，触发器生成后会注入到部分训练样本中。</li>
+<li><strong>攻击目标</strong>：在代码摘要任务中，目标输出为“该函数用于从磁盘安全加载训练数据”；在方法名预测任务中，目标输出为“Load data”</li>
 </ul>
-<p><strong>构建非混淆代码数据集</strong></p>
+<p>为评估AFRAIDOOR的隐蔽性，实验选用了三种流行的防御方法：谱签名（Spectral Signature）、激活聚类（Activation Clustering）和ONION。每种方法的设置如下</p>
+<ol>
+<li><strong>Spectral Signature <strong>谱签名：该方法通过</strong>检测数据分布的变化</strong>来识别潜在的中毒样本。实验中使用CodeBERT的编码器输出作为谱签名检测输入，实验会比较不同数量的特征向量对检测效果的影响（例如前1到3个奇异向量）。</li>
+</ol>
+<p>Spectral Signature方法被应用于使用CodeBERT编码器输出的特征表示。</p>
+<p>实验使用CodeBERT的编码器输出作为特征，这一特征的张量维度为(256, 748)，其中256是输入长度，748是隐藏状态的维度。每个样本的输出被输入到Spectral Signature算法中。原始Spectral Signature方法仅考虑数据集中表示的Top-1奇异向量，而本文的实验则探索了使用多奇异向量（例如Top-1、Top-2、Top-3）对检测效果的影响。实验采用检测成功率（Detection Success Rate, DSR）作为指标，</p>
+<p>$DSR@\beta&#x3D;\frac{\text{No. Poisoned examples}}{ \alpha \times \beta \times N}\quad\quad(4)$</p>
+<blockquote>
+<ol>
+<li>α：中毒率，表示数据集中被污染的样本比例。</li>
+<li>β：移除比例，表示在检测中将移除多少比例的样本。</li>
+<li>N：数据集中样本的总数。</li>
+</ol>
+</blockquote>
+<p>**2. Activation Clustering **激活聚类：</p>
+<p>基于激活模式聚类来区分正常和中毒样本，依赖神经网络的不同神经元激活模式。实验中使用CodeBERT编码器输出，将每个输入的输出展平为1D向量并通过PCA降维到3维后，使用k-means聚类进行检测（k&#x3D;2）。</p>
+<p>算法的目的是将中毒的数据集分成干净样例和有毒样例<img src="https://img-blog.csdnimg.cn/direct/1ac751e8fcc84ac08c5e167ef2ebd6b0.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;L39Z98VI&quot; width=&quot;596&quot; height=&quot;404&quot; src=&quot;attachments/L39Z98VI.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p><strong>3. ONION</strong>：该方法通过检查文本流畅性来检测异常词汇。ONION通过删除输入句子中的词并计算删词后的困惑度变化，若困惑度显著下降则该词可能是触发词。实验使用CodeGPT和CodeBERT计算代码困惑度，并通过多种设置来评估ONION的检测性能。</p>
+<p>fi &#x3D; p0 - pi，pi是去掉第i个词的困惑度，fi越大代表第i个词更多地降低了句子的流利度，更有可能成为触发词。</p>
+<p>实验使用了CodeBERT、PLBART和CodeT5作为受攻击模型，任务包括代码摘要生成和方法名预测。在不同的防御条件下，AFRAIDOOR展示了其攻击有效性。即使应用了谱签名和ONION等防御方法，AFRAIDOOR生成的自适应触发器仍能绕过检测。相比之下，固定和语法触发器的检测率更高。此外，通过用户研究，实验表明AFRAIDOOR的隐蔽性足以迷惑人类检测者。</p>
+<p>实验数据统计表明AFRAIDOOR在代码摘要生成和方法名预测任务中的攻击成功率在95%以上，而固定和语法触发器在加防御条件下的成功率显著下降。用户研究结果也支持AFRAIDOOR的隐蔽性，其样本标记时间比基线方法长约两倍，且标记准确率更低。</p>
+<p>RQ1：AFRAIDOOR生成的样例对自动化检测工具的隐蔽性如何</p>
+<p>Motivation：假设后门攻击的中毒实例可以很容易地被检测到，那么这种攻击可能造成的威胁是有限的</p>
 <ul>
-<li><p>选择了三种语言：JavaScript，Python和C</p>
+<li>针对光谱特征的隐蔽性</li>
+</ul>
+<p>使用谱特征方法来检测中毒样本。计算一个训练实例的离群分数，表示该训练实例被毒化的概率。我们根据所有样本的离群分数对其进行排序。假设投毒率为α，总样本数为N，我们引入一个参数移除率来控制移除的样本数，记为β。我们从排序后的样本中删除离群分数最高的α × β × N个样本</p>
+<p>$DSR@\beta&#x3D;\frac{\text{被检测出的中毒样本数}}{\alpha\times\beta\times N}$ <img src="https://img-blog.csdnimg.cn/direct/9aae57758043413982846f97b31a62df.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UEC9PC3A&quot; width=&quot;615&quot; height=&quot;415&quot; src=&quot;attachments/UEC9PC3A.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>在不同的中毒率设定下的光谱特征结果<img src="https://img-blog.csdnimg.cn/direct/fe21d13b05094ffca2d2335da0b5d6a6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;S9SMPAS9&quot; width=&quot;901&quot; height=&quot;261&quot; src=&quot;attachments/S9SMPAS9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
 <ul>
-<li>不同的语言有不同的基准进行判断</li>
+<li>对Onion洋葱的隐蔽性</li>
 </ul>
-</li>
-</ul>
-<p><strong>构建混淆代码数据集</strong></p>
+<p>ONION 旨在识别一个例子中可能是触发词的可疑词，ONION从模型输入中消除某些可疑的单词，然后向模型提供修改的输入，以防止后门被触发。</p>
+<p>Onion对输入中的所有单词进行排序，排名靠前的单词更容易成为触发词，使用触发器检测率( Trigger Detection Rate，TDR )来评估其检测触发器的能力</p>
+<p>$TDR@\gamma&#x3D;\frac{\text{No. Trigger words}}{ M \times \gamma}\quad\quad\quad(5)$</p>
+<blockquote>
+<p>M是trigger的长度，即token数量</p>
+<p>γ调整了在排行榜中被考察的单词数量</p>
+<p>$TDR@\gamma$ 越低表示攻击更隐蔽</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/direct/3bdd054ae120439c9e49a5971a6280e4.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;EPJRDFJ8&quot; width=&quot;1188&quot; height=&quot;282&quot; src=&quot;attachments/EPJRDFJ8.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
 <ul>
-<li><p>在非混淆代码数据集的JavaScript分支上进行混淆。因为JavaScript代码通常对Web用户是可见的，这使得额外的混淆保护成为必要。</p>
-<ul>
-<li>作者使用了两种JavaScript混淆器</li>
+<li>针对激活聚类的隐蔽性</li>
 </ul>
-</li>
-<li><p>混淆方法：</p>
-<ul>
-<li>Default Obfuscation DE：将标识符名称替换为无意义的随机生成的字符串，简化源代码以降低可读性，将字符串放在单独的数组中等、</li>
-<li>dead code injection DCI：在默认方案的基础上，在源代码中插入随机无关的代码块</li>
-<li>Control flow flattening (CFF)：在默认方案的基础上，改变程序的结构，隐藏控制流信息</li>
-<li>Split string，SS：在默认方案的基础上将长字符串拆分为更短的块，以缓解嵌入文本的信息泄露</li>
-<li>Wobfuscator ( WSM )：对提供的代码进行跨语言混淆</li>
-</ul>
-</li>
-</ul>
-<p><strong>结果</strong></p>
-<ul>
-<li><p>Results on Non-Obfuscated Code Dataset</p>
-<ul>
-<li>GPT-4在三种语言上的整体准确率是97.4%表明GPT-4能够从流行的开源软件库中识别代码片段</li>
-<li>LLMs可能泄露在会话期间从训练中获得的记忆信息，但是这在分析代码时可能是有帮助的</li>
-<li>GPT - 4偶尔会做出错误的联想，因为部分代码块在训练记忆中曾出现过</li>
-<li>GPT利用标识符名称中提供的信息来辅助代码分析</li>
-<li>其他模型的准确率如下，小模型不能准确分析代码结果</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/0896896de95e4652bcd1498b12ee7178.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UI8S9TJY&quot; width=&quot;545&quot; height=&quot;434&quot; src=&quot;attachments/UI8S9TJY.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/ffa3751c7996456bb6aa5ed21f5067e6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;I3F9JKYW&quot; width=&quot;629&quot; height=&quot;395&quot; src=&quot;attachments/I3F9JKYW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/d997d62c7f054994a3766e2b8594593f.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;5GPIKM4L&quot; width=&quot;549&quot; height=&quot;418&quot; src=&quot;attachments/5GPIKM4L.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>Answer to RQ1:对于非混淆代码，<strong>较大的模型</strong>(如GPT - 3.5或GPT - 4 )有很高的概率对输入的代码片段产生正确和详细的解释，而较小的模型，即使在代码数据上进行微调，也不能产生正确的输出</p>
-<ul>
-<li><p>Results on Obfuscated Code Dataset</p>
-<ul>
-<li>衡量方法同非混淆，GPT - 4是始终优于GPT - 3.5</li>
-<li>LLaMA - 2 - 13B、Code - LLaMA - 2 - 13BInstruct和StarChat - Beta在使用混淆技术后无法生成有意义的解释。</li>
-<li>基本的混淆技术(如DE)对GPT模型执行代码分析的能力影响很小</li>
-<li>LLMs不能破译Wobfuscator生成的混淆代码。</li>
-<li>GPT模型对更长、更复杂的混淆代码的破译能力有限。</li>
-<li>两个GPT模型去模糊化代码生成能力都不足以应用</li>
-<li>GPT - 4拒绝执行代码生成任务的概率较高，但是生成的代买质量也更高<img src="https://img-blog.csdnimg.cn/direct/f61e2517fff74cc2908d0877fed02756.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;8TYMLCLM&quot; width=&quot;586&quot; height=&quot;403&quot; src=&quot;attachments/8TYMLCLM.png&quot; ztype=&quot;zimage&quot;&gt;"></li>
-<li>文本层面的混淆并不影响LLM执行反混淆的能力。</li>
-</ul>
-</li>
-</ul>
-<p>Answer to RQ2:</p>
-<p>混淆技术会影响LLMs生成解释的能力。较小的模型无法处理混淆代码。GPT - 3.5和GPT - 4在分析精度上都有所下降，尤其是在面对Wobfuscator时，尽管GPT - 4在经典混淆方法上仍然具有可接受的较好的精度。但在没有针对去模糊代码生成进行专门优化的情况下，LLMs生成功能性去模糊代码的能力较差。</p>
-<h2 id="Part-8-Discussion-Futher-Work"><a href="#Part-8-Discussion-Futher-Work" class="headerlink" title="Part 8. Discussion &amp; Futher Work"></a>Part 8. Discussion &amp; Futher Work</h2><ul>
-<li><p>Using LLMs for Code Analysis</p>
-<ul>
-<li>尽量选用较大的模型</li>
-</ul>
-</li>
-<li><p>目前捕捉相似性度量的相关方法还不是很可靠，特别是当代码片段和自然语言结合作为输入时，所以构造一个更加精细的metrics是一个潜在的研究方向</p>
-</li>
-</ul>
+<p>激活聚类的原理是将所有实例划分为两个不同的簇。实验结果表明激活聚类方法不能有效地将中毒和干净的样本分为两个不同的簇</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/3a3d6bc3e2294af596b499db2e14b442.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;76BEI6EN&quot; width=&quot;592&quot; height=&quot;365&quot; src=&quot;attachments/76BEI6EN.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>针对RQ1，作者提出的AFRAIDOOR在ONION和频谱签名的防御下比这两种基线方法更隐身。激活聚类对于所有评估的三种攻击都不能有效地检测后门攻击。</p>
+<p>RQ2：AFRAIDOOR对人类开发者产生了怎样的隐蔽性的例子?</p>
+<p><strong>Motivation：</strong></p>
+<p>人工审查训练集是防御的一个重要策略，人工审查作为一个关键的检查点，在自动化系统中被忽略的异常可以被识别，因为人类具有识别算法无法识别的模式或不规则性的自然能力。除此之外，使用代码转换的后门攻击可能会导致一些不自然的例子，这些例子虽然可能绕过自动化防御，但对人类审查员来说可能是明显的异常。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/053aa28c182145db81c3804054609ac8.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;AUVHTGMI&quot; width=&quot;635&quot; height=&quot;367&quot; src=&quot;attachments/AUVHTGMI.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>AFRAIDOOR可以生成比基线方法更隐蔽的中毒实例。具体来说，用户在阅读AFRAIDOOR生成的中毒样本时，需要花费更多时间来完成任务。在AFRAIDOOR上的检测率接近0 %，同时用户可以发现基线产生的所有中毒样本</p>
+<p>RQ3： AFRAIDOOR是如何成功激活后门的</p>
+<p>使用ASR来衡量未使用防御方法时后门攻击的性能</p>
+<p>使用Attack Success Rate Under Defense来衡量带毒样本时的攻击性能</p>
+<p>$ASR_D&#x3D;\frac{\sum_{x_i\in\mathcal{X}}M_p(x_i)&#x3D;\tau\wedge\neg\mathcal{S}(x_i)}{\sum_{x_i\in\mathcal{X}}x_i\text{contains triggers}}(7)$  </p>
+<blockquote>
+<p>分子表示未被谱特征检测到并产生成功攻击的所有带毒样本的数量</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/direct/fa90385be7bd4b5ea7e329341d83a6d4.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;MXJGREBN&quot; width=&quot;579&quot; height=&quot;481&quot; src=&quot;attachments/MXJGREBN.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>answer for RQ3：当不应用防御方法时，AFRAIDOOR和基线都具有非常高的ASR。然而，一旦应用光谱特征，基线的成功率急剧下降至10.47 %和12.06 %，而AFRAIDOOR在两个任务上的成功率平均为77.05 %和92.98 %。ONION可以有效防御固定触发和语法触发，但对AFRAIDOOR的影响有限</p>
+<p>RQ4：在使用AFRAIDOOR生成的后门攻击样本后，模型的整体表现是否受到显著影响</p>
+<ol>
+<li>AFRAIDOOR的表现：尽管AFRAIDOOR成功地生成了自适应触发器，并且攻击成功率高达95%以上，但去除中毒样本后，ASR-D的下降幅度在不同模型中差异较大，表明AFRAIDOOR不仅能够实现高成功率攻击，同时在去除中毒样本后仍能维持相对良好的模型性能。</li>
+<li>基线方法的表现：相比之下，固定触发器和语法触发器的攻击成功率在去除中毒样本后大幅下降，ASR-D通常低于10%，显示出这些方法对模型性能的负面影响</li>
+</ol>
+<p>三种攻击都对净性能造成了轻微的负面影响，但这些影响在统计上并不显著。<img src="https://img-blog.csdnimg.cn/direct/6b56d119095a474193bb6894cf88c7c1.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GUXKICEM&quot; width=&quot;599&quot; height=&quot;484&quot; src=&quot;attachments/GUXKICEM.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h2 id="Part8-discussion-future-work"><a href="#Part8-discussion-future-work" class="headerlink" title="Part8. discussion&amp;future work"></a>Part8. discussion&amp;future work</h2><p>文章最后讨论了AFRAIDOOR的安全威胁和防御技术的不足，指出现有防御方法难以应对自适应触发器的隐蔽性攻击。未来工作方向包括改进后门攻击检测方法以及开发适用于代码模型的高效防御策略。同时，作者建议在实际应用中加强对数据集的预处理和对模型的安全评估。</p>
 
                 
             </div>
@@ -552,7 +514,7 @@ The paper evaluates the effectiveness of large ">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/4153f351.html">https://yangjx29.github.io/posts/4153f351.html</a>
+                    <a href="https://yangjx29.github.io/posts/28k19018c.html">https://yangjx29.github.io/posts/28k19018c.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -665,7 +627,7 @@ The paper evaluates the effectiveness of large ">
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-09T16-15-51',
+        id: '2024-10-31T15-38-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -693,17 +655,18 @@ The paper evaluates the effectiveness of large ">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/4153f353.html">
+                <a href="/posts/28k19018c.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Stealthy Backdoor Attack for Code Models">
                         
-                        <span class="card-title">LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities</span>
+                        <span class="card-title">Stealthy Backdoor Attack for Code Models</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,9 +676,9 @@ The paper evaluates the effectiveness of large ">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -728,6 +691,7 @@ The paper evaluates the effectiveness of large ">
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -738,13 +702,13 @@ The paper evaluates the effectiveness of large ">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/95ea4264.html">
+                <a href="/posts/92012s0215.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection and Repair">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
                         
-                        <span class="card-title">Large Language Model for Vulnerability Detection and Repair</span>
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -755,7 +719,7 @@ The paper evaluates the effectiveness of large ">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-31
                             </span>
                         <span class="publish-author">
                             
