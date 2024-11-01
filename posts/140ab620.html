@@ -327,14 +327,14 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    6.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    23 分
+                    28 分
                 </div>
                 
 
@@ -636,9 +636,110 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
 <p><strong>4）使用Transformer model</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sequences = [&quot;Hello!&quot;, &quot;Cool.&quot;, &quot;Nice!&quot;]</span><br><span class="line">encoded_sequences = [</span><br><span class="line">    [101, 7592, 999, 102],</span><br><span class="line">    [101, 4658, 1012, 102],</span><br><span class="line">    [101, 3835, 999, 102],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">model_inputs = torch.tensor(encoded_sequences)</span><br></pre></td></tr></table></figure>
 
+<h3 id="model-generate-总结"><a href="#model-generate-总结" class="headerlink" title="model.generate()总结"></a>model.generate()总结</h3><p>第一次做实验，对于各个参数的不熟悉导致我花了导量时间进行代码调试，现在进行总结，帮助我理解。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><p><code>top_p</code> 核采样</p>
+<ul>
+<li>核采样是一种基于概率分布的采样方法，用于从语言模型生成的词汇分布中选择下一个词。它的核心思想是<strong>选择概率累积达到阈值 <code>p</code> 的最小词汇集合</strong>（称为“核”），然后从这个集合中进行采样</li>
+<li>工作过程<ul>
+<li><strong>排序</strong>：首先，将所有候选词按概率从高到低排序。</li>
+<li><strong>累积概率</strong>：计算从最高概率开始，逐步累加词汇的概率。</li>
+<li><strong>选择核</strong>：确定最小的词汇集合，使其累积概率至少为 <code>p</code>。这个集合就是“核”。</li>
+<li><strong>采样</strong>：从这个“核”中按概率分布随机选择下一个词汇。</li>
+</ul>
+</li>
+<li>较低的 <code>p</code>（如0.6）会限制模型只从高概率词汇中选择，生成内容更确定但可能缺乏多样性。较高的 <code>p</code>（如0.9）则允许更多低概率词汇参与采样，增加生成内容的多样性</li>
+</ul>
+</li>
+<li><p><code>max_length</code></p>
+<ul>
+<li>控制生成文本的最大长度。包括输入token的数量在内</li>
+</ul>
+</li>
+<li><p><code>min_length</code></p>
+<ul>
+<li>设置生成文本的最小长度，确保生成的文本不会太短</li>
+</ul>
+</li>
+<li><p><code>do_sample</code></p>
+<ul>
+<li>是否在生成文本时使用采样策略。如果设置为False，则使用贪心策略进行解码（贪心算法可能导致局部最优）</li>
+</ul>
+</li>
+<li><p><code>temperature</code></p>
+<ul>
+<li>用于调整生成过程中的随机性程度。数值越大，生成的文本越随机</li>
+</ul>
+</li>
+<li><p><code>repetition_penalty</code></p>
+<ul>
+<li>用来防止文本重复的参数，使得模型在选择已经出现的词时变得更加谨慎。为了避免生成的文本过于重复，通过调节这个参数，可以降低重复词汇的选择概率，提高文本的多样性和可读性</li>
+</ul>
+</li>
+<li><p><code>pad_token_id</code></p>
+<ul>
+<li>用于填充的token ID。在文本生成中，如果生成的文本短于<code>max_length</code>，这个ID将被用来填充生成文本</li>
+</ul>
+</li>
+<li><p><code>eos_token_id</code></p>
+<ul>
+<li>定义结束序列的token ID。当模型生成了这个ID对应的token时，将停止生成进一步的token。</li>
+</ul>
+</li>
+<li><p><code> num_beams</code></p>
+<ul>
+<li>使用束搜索（Beam Search）策略时，束的大小。提高这个值可以提高文本的质量，但也会增加计算量</li>
+</ul>
+</li>
+<li><p><code>use_cache</code></p>
+<ul>
+<li>是否使用模型的past key&#x2F;values来加速生成。对于某些模型，这可以显著提高生成的速度。</li>
+</ul>
+</li>
+</ul>
+<p><strong>防止EOS过早出现</strong></p>
+<ul>
+<li><p>调整<code>max_length</code>和<code>min_length</code></p>
+</li>
+<li><p>使用<code>eos_token_id</code>和<code>pad_token_id</code>参数</p>
+<ul>
+<li>如果知道EOS标记的token ID，可以尝试在生成时不包含该EOS标记的ID，或者通过使用<code>pad_token_id</code>替换掉<code>eos_token_id</code>，让模型知道还不应该结束。</li>
+</ul>
+</li>
+<li><p>调整<code>length_penalty</code></p>
+<ul>
+<li><code>length_penalty</code>参数用于调节生成文本的长度偏好。<strong>数值大于1会鼓励模型生成更长的序列</strong>，可能有助于减少EOS标记过早出现的情况</li>
+</ul>
+</li>
+<li><p>清晰的任务指示（Prompt Engineering）</p>
+</li>
+<li><p><strong>对EOS进行惩罚</strong></p>
+<ul>
+<li>使用logit_bias参数调整EOS的生成概率。<code>logit_bias</code>参数允许我们为特定的token IDs设置一个偏置值，从而影响它们被生成的概率。通过给EOS token设置一个负的偏置值，可以降低它被早期选择的可能性。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoTokenizer, AutoModelForCausalLM</span><br><span class="line"> </span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line">model = AutoModelForCausalLM.from_pretrained(<span class="string">&quot;gpt2&quot;</span>)</span><br><span class="line"> </span><br><span class="line">input_ids = tokenizer(<span class="string">&quot;Example input text&quot;</span>, return_tensors=<span class="string">&quot;pt&quot;</span>).input_ids</span><br><span class="line">eos_token_id = tokenizer.eos_token_id</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建 logit_bias 字典，给EOS token ID一个负偏置</span></span><br><span class="line">logit_bias = &#123;eos_token_id: -<span class="number">100</span>&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 生成文本，应用logit_bias</span></span><br><span class="line">generated_ids = model.generate(input_ids, logit_bias=logit_bias, max_length=<span class="number">50</span>)</span><br><span class="line"><span class="built_in">print</span>(tokenizer.decode(generated_ids[<span class="number">0</span>], skip_special_tokens=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
 
-
-
+<p><strong>常用算法</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/direct/7f2ac91f37e34728a1619db1f2a3bdd0.png" alt="image-20241101192612778"></p>
+<ul>
+<li>greedy decoding：当 num_beams&#x3D;1 而且 do_sample&#x3D;False 时，调用 greedy_search()方法，每个step生成条件概率最高的词，因此生成单条文本。</li>
+</ul>
+<p>贪婪搜索，每个时间步 t t<em>t</em> 都选概率最高的那个词</p>
+<p>$$w_t&#x3D;argmax_wP(w|w_{1:t-1})$$</p>
+<ul>
+<li>multinomial sampling：当 num_beams&#x3D;1 且 do_sample&#x3D;True 时，调用 sample() 方法，对词表做一个采样，而不是选条件概率最高的词，增加多样性。</li>
+<li>beam-search decoding：当 num_beams&gt;1 且 do_sample&#x3D;False 时，调用 beam_search() 方法，做一个 num_beams 的柱搜索，每次都是贪婪选择top N个柱。</li>
+</ul>
+<p>beam search每个时间步选择最可能的 Top - <code>num_beams</code> 个词，解决了贪婪搜索擦肩而过的风险。如图例子，num_beams&#x3D;2，第一步选了概率最高的序列 the nice（0.5） 和 the dog（0.4），第二步选了概率最高的序列 the dog has（0.4✖️0.9&#x3D;0.36）和 the nice woman（0.5✖️0.4&#x3D;0.20）。</p>
+<p>如果生成长度是提前可预知，比如摘要、翻译，这种用beam search好；但开放式生成，比如对话，故事生成等，输出长度变化比较大，就不太适合用beam search了。<br>beam search容易重复生成单词。由于通过大量实验才能达到“禁止生成重复n-gram” 和 “允许周期性生成重复n-gram” 的平衡，所以在开放式生成任务上不太好用这种惩罚来控制重复。<br>人类往往说话时不是总选择高概率的词作为下个词，而是经常猝不及防，出其不意，如图对比。所以beam search还是有很大问题的。</p>
+<ul>
+<li>beam-search multinomial sampling：当 num_beams&gt;1 且 do_sample&#x3D;True 时，调用 beam_sample() 方法，相当于每次不再是贪婪选择top N个柱，而是加了一些采样。</li>
+<li>diverse beam-search decoding：当 num_beams&gt;1 且 num_beam_groups&gt;1 时，调用 group_beam_search() 方法。</li>
+<li>constrained beam-search decoding：当 constraints!&#x3D;None 或者 force_words_ids!&#x3D;None，实现可控文本生成</li>
+</ul>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="切片操作"><a href="#切片操作" class="headerlink" title="切片操作"></a><a target="_blank" rel="noopener" href="https://liaoxuefeng.com/books/python/advanced/slice/index.html">切片操作</a></h3><p><code>L[-1]</code>取倒数第一个元素，那么它同样支持倒数切片</p>
 <ul>
 <li>L[-2:]  取最后两个元素</li>
@@ -1199,7 +1300,7 @@ torch.matmul：用于执行矩阵乘法。它支持多种维度的矩阵运算�
                                             <br>
                                             
                                                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">
-                                                        257.8k
+                                                        259.2k
                                                     </span>
                                                     
                                                         
