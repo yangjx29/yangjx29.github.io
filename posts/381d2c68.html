@@ -4,10 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models, JacksonYang的博客">
+    <meta name="keywords" content="Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations, JacksonYang的博客">
     <meta name="description" content="
 
-Generating Adversarial Examples for Holding Robustness of Source Code Processing ModelsPart1. title&amp;amp;SourceTitle: G">
+Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code TransformationsPart1. Title &amp;amp; Sour">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models | JacksonYang的博客</title>
+    <title>Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -262,12 +262,12 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1>
+                    <h1 class="description center-align post-title">Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations</h1>
                 </div>
             </div>
         </div>
@@ -312,7 +312,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-22
+                    2024-11-10
                 </div>
                 
 
@@ -321,7 +321,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    3.4k
                 </div>
                 
 
@@ -355,141 +355,76 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models"><a href="#Generating-Adversarial-Examples-for-Holding-Robustness-of-Source-Code-Processing-Models" class="headerlink" title="Generating Adversarial Examples for Holding Robustness of Source Code Processing Models"></a>Generating Adversarial Examples for Holding Robustness of Source Code Processing Models</h1><h2 id="Part1-title-Source"><a href="#Part1-title-Source" class="headerlink" title="Part1. title&amp;Source"></a>Part1. title&amp;Source</h2><p><strong>Title</strong>: Generating Adversarial Examples for Holding Robustness of Source Code Processing Models<br><strong>Conference</strong>: The Thirty-Fourth AAAI Conference on Artificial Intelligence (AAAI-20)</p>
-<h2 id="Part2-abstract"><a href="#Part2-abstract" class="headerlink" title="Part2. abstract"></a>Part2. abstract</h2><p>本文提出了一种基于Metropolis-Hastings采样的标识符重命名技术，名为Metropolis-Hastings Modifier (MHM)，用于生成对源代码处理模型的对抗样本。在功能分类基准上的深度评估表明，MHM在生成源代码对抗样本方面是有效的，并且通过对抗训练能够显著增强深度学习模型的鲁棒性。</p>
-<h2 id="Part3-introduction"><a href="#Part3-introduction" class="headerlink" title="Part3. introduction"></a>Part3. introduction</h2><p>近年来，自动化源代码处理、分析与生成是软件系统生命周期中的关键活动，深度学习模型被应用于多种源代码处理任务，如功能分类、克隆检测、代码补全等。然而，现有的深度学习模型缺乏对抗鲁棒性，容易被对抗样本攻击。与图像、音频和自然语言的对抗样本不同，编程语言的结构化特性给对抗攻击带来了新的挑战。本文提出了一种新方法MHM，通过<strong>基于Metropolis-Hastings采样的标识符重命名</strong>生成对抗样本，用于攻击源代码处理的深度学习模型，并通过对抗训练来增强模型的鲁棒性。</p>
-<p>本文贡献包括：</p>
-<ul>
-<li>确认了用于代码处理的深度学习模型也有鲁棒性问题</li>
-<li>提出一个简单且有效的算法MHM</li>
-<li>设计实验证明其有效性</li>
-<li>进行对抗性训练，增加了DL模型的鲁棒性</li>
-</ul>
-<h2 id="Part4-conclusion"><a href="#Part4-conclusion" class="headerlink" title="Part4. conclusion"></a>Part4. conclusion</h2><p>本文确认了深度学习模型在源代码处理任务中的非鲁棒性问题，并提出了MHM算法来生成对抗样本。实验表明，MHM能够有效地生成对抗样本并攻击目标模型，同时通过对抗训练来增强模型的鲁棒性。在未来工作中，作者计划引入更复杂的语义解析与树结构修正，以进一步提高对抗攻击能力。</p>
-<h2 id="Part5-related-work"><a href="#Part5-related-work" class="headerlink" title="Part5. related work"></a>Part5. related work</h2><p><strong>源代码分类：</strong></p>
-<ul>
-<li><strong>数据集</strong></li>
-</ul>
-<p>数据集$D$ 表示为：</p>
-<p>$D&#x3D;{(x_i,y_i)}_{i&#x3D;1}^N$  </p>
-<p>其中，$x_i$ 是源代码片段，$y_i$ 是对应的标签，用one-hot向量表示。整个数据集分为训练集$D^{(t)}$ 、验</p>
-<p>证集$D^{(v)}$ 和测试集$D^{(e)}$ 。</p>
-<ul>
-<li><strong>特征：</strong></li>
-</ul>
-<p>特征表示为从输入到标量的映射，记为$f:X\to R$ ,这些特征被分类模型用于判断源代码片段的类</p>
-<p>別。</p>
-<ul>
-<li><strong>分类模型：</strong></li>
-</ul>
-<p>分类模型$C$ 被定义为：</p>
-<p>$C(x)&#x3D;\sigma(f_1(x),f_2(x),\ldots,f_k(x))$</p>
-<p>其中，$\sigma$ 是softmax分类函数。模型通过在训练集上的损失最小化进行训练：</p>
-<p>$J(D^{(t)}|C)&#x3D;-\frac1{N^{(t)}}\sum_{i&#x3D;1}^{N^{(t)}}\sum y_i\circ\log C(x_i)$ 通过最小化损失函数，模型能够在测试集上获得良好的性能，但仍然容易受到对抗攻击。</p>
-<blockquote>
-<p>∘表示点乘</p>
-</blockquote>
-<p><strong>对抗性攻击</strong></p>
-<p>包括3种算法：</p>
-<ul>
-<li>最大化优化问题</li>
-</ul>
-<p>$\begin{aligned}\max_{\hat{x}}&amp;\sum y\circ\log\frac1{C(x)},\&amp;\mathrm{s.t.<del>}\hat{x}\in\mathcal{E}</del>\wedge~\forall i\in\mathcal{I},E(i|\hat{x})&#x3D;E(i|x)\quad\text{(5)}\end{aligned}$</p>
-<ul>
-<li>梯度上升以生成对抗性示例，这些方法以非常有限的迭代来扰乱基于梯度信息的示例，一次迭代示例：</li>
-</ul>
-<p>$x_{t+1}&#x3D;x_t+\alpha\cdot\operatorname{sign}(\nabla_x\sum y\circ\log\frac1{C(x)})\quad\text{(6)}$</p>
-<ul>
-<li>采样问题处理，例如GeneticAttack 通过遗传算法执行采样</li>
-</ul>
-<p>$\pi(x)\propto(1-\mathcal{C}(x)[y])\cdot\mathcal{X}_1\cdots\mathcal{X}_k\quad\quad(7)$</p>
-<blockquote>
-<p>其中 C(x)[y] 是 C 预测的类 y 的概率，而 X1 · · ·， Xk 是词汇、语法和句法约束的指示函数</p>
-</blockquote>
-<p>作者采用基于采样的方法，对对抗性攻击进行 M-H 采样。因为由于代码是离散的，基于优化和基于梯度的方法难以实现</p>
-<p><strong>对抗性训练</strong></p>
-<ul>
-<li><p>首先用$\mathcal{D}{(t)}$生成对抗性数据集$\mathcal{D}_{adv}^{(t)}.$</p>
-</li>
-<li><p>然后用$\mathcal{D}_{adv}^{(t)}.$从头开始训练同目标模型具有相同架构和超参数的模型</p>
-</li>
-</ul>
-<p><strong>健壮性</strong></p>
-<p><strong>Useful feature：</strong></p>
-<p>ρ 有用的特征与分类标签密切相关。在二元分类中，有用的特征定义为：</p>
-<p>$E_{(x,y)\sim\mathcal{D}}[y\cdot f(x)]\geq\rho\quad\quad\quad\quad\quad(8)$</p>
-<blockquote>
-<p>其中 ρ &gt; 0。ρ 度量特征 f (x) 和分类标签 y 之间的相关性。ρ 越大，相关性越强。</p>
-</blockquote>
-<p><strong>Robust feature：</strong></p>
-<p>γ-robust features 是有用的特征且任何允许的扰动之后仍然有用。如果分类器对稳健特征进行预测，它就会获得对对抗性攻击的抵抗能力。在二元分类中，robust features定义为</p>
-<p>$E_{(x,y)\sim\mathcal{D}}[\inf_{x’\in\Delta(x)}y\cdot f(x’)]\geq\gamma\quad\quad(9)$</p>
-<blockquote>
-<p>其中 Δ(x) 是完整的扰动 x 集合，满足编程语言的词汇、语法和句法约束的所有元素</p>
-</blockquote>
-<p><strong>Non-Robust feature：</strong></p>
-<p>Non-Robust feature也是有用的特征，但对于任何γ &gt; 0 来说都不是γ稳健的。对抗性攻击主要扰动非鲁棒特征，因为对 x 的任何扰动都可能导致非鲁棒 f (x) 发生巨大变化。</p>
-<h2 id="Part6-model-algorithm"><a href="#Part6-model-algorithm" class="headerlink" title="Part6. model&amp;algorithm"></a>Part6. model&amp;algorithm</h2><p>MHM算法被设计用于生成源代码的对抗样本，通过对目标模型(如LSTM、ASTNN)进行攻击。MHM算法的基本思想是通过Metropolis-Hastings采样，迭代地对标识符进行重命名。</p>
-<p><strong>MHM 以受到攻击的源代码分类器 (C) 和一对正确分类的数据 ((x， y) ∈ D)作为输入，并输出一系列对抗性样本(xˆ1， xˆ2， · · · )。</strong></p>
-<p>对抗性样本应该满足三个要求：</p>
-<ul>
-<li>能够误导选择的模型</li>
-<li>没有编译错误且能正常运行</li>
-<li>输出结果同正常示例一样</li>
-</ul>
-<p>M-H 算法是一种经典的马尔可夫链蒙特卡洛采样方法，给定一个平稳分布π(x)和转换提议，M-H能够生成理想的样本，在每次迭代中，M-H都会根据转换分布 (Q(x′|x)) 提出的建议从 x 跳转到 x’。 接受后，算法跳转到 x′ 并对 x′ 进行采样。否则，它将保持在 x 处，不执行采样。</p>
-<p>$\alpha(x^{\prime}|x)&#x3D;\min{1,\alpha^{*}}&#x3D;\min{1,\frac{\pi(x^{\prime})Q(x|x^{\prime})}{\pi(x)Q(x^{\prime}|x)}}\quad(10)$</p>
-<p>参考M-Hsamping，在每次迭代中MHM包括3个步骤：</p>
+<h1 id="Challenging-Machine-Learning-based-Clone-Detectors-via-Semantic-preserving-Code-Transformations"><a href="#Challenging-Machine-Learning-based-Clone-Detectors-via-Semantic-preserving-Code-Transformations" class="headerlink" title="Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations"></a>Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations</h1><h2 id="Part1-Title-Source"><a href="#Part1-Title-Source" class="headerlink" title="Part1. Title &amp; Source"></a>Part1. Title &amp; Source</h2><p><strong>Title</strong>: Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations<br><strong>Source</strong>: IEEE Transactions on Software Engineering, 2023</p>
+<hr>
+<h2 id="Part2-Abstract"><a href="#Part2-Abstract" class="headerlink" title="Part2. Abstract"></a>Part2. Abstract</h2><p>本文主要挑战了基于机器学习的代码克隆检测器的鲁棒性，提出了通过语义保留的代码转换来降低这些检测器的检测精度。通过使用15个轻量级的代码转换操作，并结合常用的启发式策略（如随机搜索、遗传算法和马尔科夫链蒙特卡洛方法），生成能够逃避检测的代码克隆。实验结果表明，尽管现有的克隆检测器已经取得了显著进展，但机器学习模型依然无法有效检测通过语义保留转换生成的克隆代码。</p>
+<hr>
+<h2 id="Part3-Introduction"><a href="#Part3-Introduction" class="headerlink" title="Part3. Introduction"></a>Part3. Introduction</h2><p>代码克隆是软件开发中常见的现象，通常由复制粘贴引起。虽然代码克隆在某些情况下可以提高开发效率，但也可能带来维护上的困难。近年来，基于机器学习的克隆检测方法取得了显著的成功，尤其是深度学习方法。然而，这些方法的有效性往往依赖于高质量的训练数据，并且可能在不同的数据集上表现不稳定。为了解决这一问题，本文提出了通过轻量级、语义保留的代码转换来生成难以检测的代码克隆，从而挑战现有检测器的鲁棒性。</p>
+<hr>
+<h2 id="Part4-Conclusion"><a href="#Part4-Conclusion" class="headerlink" title="Part4. Conclusion"></a>Part4. Conclusion</h2><p>本文提出的CLONEGEN框架，通过结合15个轻量级的代码转换操作，有效生成了能够绕过现有基于机器学习的克隆检测器的代码克隆。实验结果表明，使用本文的DRLSG策略生成的代码克隆能够显著降低现有克隆检测器的检测准确率。此外，本文还发现，针对这些机器学习模型进行对抗训练可以提高它们的鲁棒性和准确性。研究表明，当前的机器学习克隆检测器仍存在鲁棒性问题，亟需更多的关注和改进。</p>
+<hr>
+<h2 id="Part5-Related-Work"><a href="#Part5-Related-Work" class="headerlink" title="Part5. Related Work"></a>Part5. Related Work</h2><p>代码克隆检测是一项重要的研究任务，传统的检测方法主要依赖于语法分析、抽象语法树（AST）和程序依赖图（PDG）等技术。这些方法通常用于检测语法克隆（Type I–III），但对于语义克隆（Type IV）则表现不佳。近年来，基于深度学习的检测器（如FCDETECTOR、ASTNN、TBCCD等）取得了显著的进展，它们结合了AST、控制流图（CFG）等特征，能够有效地检测语义克隆。然而，这些方法在鲁棒性上存在问题，尤其是在不同数据集或经过代码转换后的克隆检测中。本文的研究正是针对这一问题，提出了一种新的方法来评估和挑战现有基于机器学习的检测器。</p>
+<hr>
+<h2 id="Part6-Method-Algorithm"><a href="#Part6-Method-Algorithm" class="headerlink" title="Part6. Method &amp; Algorithm"></a>Part6. Method &amp; Algorithm</h2><p>语法克隆(type1-3)和语义克隆(type4)</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/d2175fa273a44f6792904b8f2a870974.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;L3K8LNX4&quot; width=&quot;607&quot; height=&quot;285&quot; src=&quot;attachments/L3K8LNX4.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>不同程度的代码克隆如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/681e004ce1094a68a3c1af7d9d4977be.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;ZLIXQWUK&quot; width=&quot;1115&quot; height=&quot;330&quot; src=&quot;attachments/ZLIXQWUK.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>两者功能一样，只是b用了除法来取代连减。#3在第4行改变变量名k，在第3行将大的常量拆分成小的常量，在第3、4行交换代码顺序，在第5行删除部分代码注释，在第7、8、9、12行将for - loop转换为while - loop后生成的。现有的检测框架不能检测出#1 #3 和#2#3是克隆代码。</p>
+<h2 id="CLONEGEN框架"><a href="#CLONEGEN框架" class="headerlink" title="CLONEGEN框架"></a>CLONEGEN框架</h2><p><img src="https://img-blog.csdnimg.cn/direct/ac18d95f1ccf4f6585301fc8484e9d27.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;9SHNMSMH&quot; width=&quot;639&quot; height=&quot;542&quot; src=&quot;attachments/9SHNMSMH.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>CLONEGEN是本文提出的代码克隆生成框架，它通过15个轻量级的语义保留代码转换操作来生成能够逃避现有克隆检测器的代码克隆。CLONEGEN包含两个主要阶段：</p>
 <ol>
-<li><strong>选择源标识符</strong>：从源代码中选取可以重命名的标识符。</li>
-<li><strong>选择目标标识符</strong>：从词汇集中选择新的标识符来替换源标识符。</li>
-<li><strong>接受或拒绝提案</strong>：基于Metropolis-Hastings采样的接受率决定是否接受重命名提案。</li>
+<li><strong>代码生成阶段</strong>：根据输入的源代码，应用一系列转换操作生成变种代码。</li>
+<li><strong>检测器评估阶段</strong>：将原始代码和生成的代码变种提供给克隆检测器，评估它们是否能被检测出来。</li>
 </ol>
-<p>阶段 1 和 2 生成过渡提案，阶段 3 接受或拒绝提案，接受率给出概率。由于标识符重命名的操作是可逆的，因此 MHM 中的过渡是非周期性的和遍历的，使 MHM 最终收敛。算法的单次迭代逻辑：</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/4db0a6ef01914009addf2196aa68f30c.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;PN485FBK&quot; width=&quot;554&quot; height=&quot;846&quot; src=&quot;attachments/PN485FBK.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>transition proposal 过渡提案</strong></p>
+<p>图1#3是由以下步骤完成：首选提取代码片段# 1的特征，寻找可以应用进行代码转换的位置；其次，采用预定义的15个原子转换算子，确保执行的所有更改都保留了原始代码的语义(见§ 4.1)。第三，CLONEGEN还采用了一定的转换策略，适当调整激活个体转换算子(见§ 4.3)的概率。最后，按照搜索策略确定的顺序应用变换算子，生成更可能逃离现有检测器的新代码(见§ 4.4)</p>
+<h4 id="代码转换操作"><a href="#代码转换操作" class="headerlink" title="代码转换操作"></a>代码转换操作</h4><p>需要对代码进行等价转换，即稍微<strong>修改代码的语法，但不改变代码的语义</strong></p>
+<p>本文设计了15个语义保留的代码转换操作，包括：</p>
 <ul>
-<li>在源代码中收集所有的变量和函数的声明和定义形成集合S(x)，然后以相等的概率从集合中抽取源标识符(5-6行)</li>
-<li>候选标识符集 (T(x)) 由整个词汇集(V)生成,T(x)中的元素必须满足之前提到的标识符的词法规则，并且不能出现在 S(x) 中，确保重命名后的代码仍然满足公式4，目标标识符 (t) 以相等的概率从 T (x) 中提取(7-8行)</li>
-<li>过渡建议将 x 中的 s 重命名为 t，形成 x′。转移概率定义为</li>
+<li><strong>变量重命名</strong>：改变变量名（Op1-ChRename）。</li>
+<li><strong>循环转换</strong>：将<code>for</code>循环转换为<code>while</code>循环（Op2-ChFor）。</li>
+<li><strong>条件语句转换</strong>：将<code>if-else</code>语句转换为<code>if-else-if</code>（Op5-ChIfElseIF）。</li>
 </ul>
-<p>$\begin{aligned}Q(x’|x)&amp;\propto\mathcal{I}{s\in\mathcal{S}(x)\wedge t\in\mathcal{T}(x)}\cdot P_{\mathcal{S}(x)}(s)\cdot P_{\mathcal{T}(x)}(t),\&amp;\mathrm{where~}\mathcal{S}(x)\cap\mathcal{T}(x)&#x3D;\emptyset\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad(11)\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\end{aligned}$</p>
-<blockquote>
-<p>· $Q( x^{\prime }| x)$ :表示从代码片段$x$ 到$x^{\prime}$ 的转移概率。</p>
-<p>·$I{s\in S(x)\land t\in T(x)}$ :指示函数，确保源标识符$s$ 必须在代码片段$x$ 中的可重命名</p>
-<p>标识符集合$S(x)$ 中，目标标识符$t$ 必须在候选标识符集合$T(x)$ 中。</p>
-<p>,$P_{S(x)}(s)$ :从集合$S(x)$ 中选取源标识符$s$ 的均匀概率。·$P_{T(x)}(t)$ :从集合$T(x)$中选取目标标识符$t$ 的均匀概率。</p>
-<p>$P_{\mathcal{S}(x)}(s)和 P_{\mathcal{T}(x)}(t)$ 分别是从S(x)和T(x)中绘制的均匀分布并且S(x)和T(x)不相交</p>
-</blockquote>
-<p><strong>Acceptance Rate</strong></p>
-<p>在第 1 阶段和第 2 阶段提出的过渡提案被接受，其接受率由第 3 阶段给出，接受率 （α） 是根据转换概率和倒置转换概率计算的。如果接受过渡提案，则 x 中的 s 将重命名为 t，反之重命名后的源码片段将 C测试，以验证它是否为对抗性示例(9-22)</p>
-<p>$\alpha^*(x’|x)&#x3D;\frac{\pi(x’)Q(x|x’)}{\pi(x)Q(x’|x)}&#x3D;\frac{(1-C(x’)[y])\cdot P_{S(x’)}(t)\cdot P_{T(x’)}(s)}{(1-C(x)[y])\cdot P_{S(x)}(s)\cdot P_{T(x)}(t)}\approx\frac{1-C(x’)[y]}{1-C(x)[y]})(12)$</p>
-<blockquote>
-<p>$\alpha^*(x^{\prime}|x)$ :表示从代码片段$x$ 转移到代码片段$x^\prime$ 的未归一化接受率。</p>
-<p>$\pi(x)$ :目标分布，表示代码片段$x$ 的对抗性程度，越容易误导模型的代码片段，其目标分</p>
-<p>布值越高。</p>
-<p>$Q(x^{\prime}|x)$ :从代码片段$x$ 转移到代码片段$x^{\prime}$ 的转移概率。</p>
-<p>$C(x)[y]$ :表示分类模型$C$ 对输入代码片段$x$ 预测为正确标签$y$ 的概率。</p>
-<p>$P_{S(x)}(s)$ 和$P_{T(x)}(t)$ :均匀分布，从集合$S(x)$ 和$T(x)$ 中选择标识符的概率。</p>
-<p>结果大于1表示100%接受</p>
-</blockquote>
-<h2 id="Part7-experiment"><a href="#Part7-experiment" class="headerlink" title="Part7. experiment"></a>Part7. experiment</h2><h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><ul>
-<li><strong>数据集</strong>：实验选择了Open Judge (OJ) 数据集，该数据集包含52,000个C&#x2F;C++代码文件，分属于104个功能类别。</li>
-<li><strong>目标模型</strong>：采用LSTM和ASTNN作为攻击目标模型，其中LSTM适用于序列处理，ASTNN是当前在OJ数据集上性能最好的模型。</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/73426b2e27424935a39bdce6d2b1352d.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GPS6U3EW&quot; width=&quot;560&quot; height=&quot;588&quot; src=&quot;attachments/GPS6U3EW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<ul>
-<li><strong>基线算法</strong>：实验中将GeneticAttack (GA) 算法作为基线.它维护了一个序列群，并根据黑盒设置下的嵌入距离（独立于模型检索）通过word-level替换进行扰动。然后，通过分类器和语言模型过滤中间句子，从而引向下一代</li>
-</ul>
-<h3 id="对抗攻击实验"><a href="#对抗攻击实验" class="headerlink" title="对抗攻击实验"></a>对抗攻击实验</h3><p>实验选取了1,000个样本，对LSTM和ASTNN进行攻击。结果表明，MHM对LSTM和ASTNN的攻击成功率分别为71.3%和92.1%，并且所有生成的对抗样本均有效(符合词法和语法规则)。相比之下，基于GeneticAttack的攻击生成的大多数样本由于<strong>无法通过编译而无效</strong>。</p>
-<p>实验采用Attack Rate、validity rate和Final Success Rate作为评估</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/77dcfb4efda54f468d3362b120269021.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;NS2TE5GG&quot; width=&quot;564&quot; height=&quot;601&quot; src=&quot;attachments/NS2TE5GG.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<h3 id="对抗训练实验"><a href="#对抗训练实验" class="headerlink" title="对抗训练实验"></a>对抗训练实验</h3><p>通过使用MHM生成的2,000个对抗样本进行对抗训练，结果显示经过对抗训练的模型对MHM的攻击有更强的抵抗能力。LSTM模型的准确率从92.9%提升到94.0%，对抗成功率下降至46.4%。ASTNN模型在对抗训练后攻击成功率也从92.1%下降至54.7%。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/b21a67e9dc1d447982958202bac7d742.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;SDSQG4C9&quot; width=&quot;577&quot; height=&quot;260&quot; src=&quot;attachments/SDSQG4C9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>同时，对抗性样本数量对模型性能也有影响，结果表明，数量有一个阈值，在阈值之前随着数量增长，模型鲁棒性会提升。达到阈值后，随着对抗性样本数量的增加，对抗性训练的模型往往会失去性能</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/790bbb9e5d77460d8b6d85d5d6a84c01.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UCCXAFLF&quot; width=&quot;596&quot; height=&quot;629&quot; src=&quot;attachments/UCCXAFLF.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>标识符名称是有用非鲁棒性特征，对抗训练的目的是提高模型对对抗样本的抵抗力，使其不再依赖非鲁棒特征</p>
-<h2 id="Part8-discussion-future-work"><a href="#Part8-discussion-future-work" class="headerlink" title="Part8. discussion&amp;future work"></a>Part8. discussion&amp;future work</h2><p>实验结果表明，标识符是源代码处理模型中的非鲁棒特征，对标识符的修改能够有效地攻击模型。因此，通过对抗训练能够减少模型对这些非鲁棒特征的依赖，增强其鲁棒性。在未来的工作中，作者计划引入更多基于语义解析的树结构修正，例如将“for”语句转换为“while”语句，以生成更多样化的对抗样本。</p>
+<p>这些操作保证了代码的语义不变，但通过改变代码的语法结构来增加检测的难度。</p>
+<p>CLONEGEN中的原子变换算子如下，仅采用TXL中的词法分析：</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/e555c096dc2549eb944f942871b87c25.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;TCBZSAQP&quot; width=&quot;1172&quot; height=&quot;661&quot; src=&quot;attachments/TCBZSAQP.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<h4 id="encoding"><a href="#encoding" class="headerlink" title="encoding"></a>encoding</h4><p>编码是在代码转换之前用来提取标识符特征的</p>
+<p>作者使用代码的特征向量进作为编码方案，通过计算代码的特征向量长度，CLONEGEN可以为每个特征分配一个位置，之后通过位向量（bit vector）来指示哪些特征可以被转换操作影响。</p>
+<p>$l_b&#x3D;\sum(n_v,n_f,n_w,n_{do},n_{nie},n_i,n_s,n_r,n_u,n_{sc},n_c,n_d,n_b,n_{is},n_p)(1)$</p>
+<p>图一#1编码示例<img src="https://img-blog.csdnimg.cn/direct/27fce56e5cee4722b75419108b7f8521.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;9T7PTXHC&quot; width=&quot;635&quot; height=&quot;397&quot; src=&quot;attachments/9T7PTXHC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>位向量的长度等于第二列的特征计数，，其中原子操作会起作用的特征置为1，否则为0。符号’ n.a . ‘表示没有与对应原子操作相匹配的可用特征，特征计数必须为0。</p>
+<h3 id="代码转换策略"><a href="#代码转换策略" class="headerlink" title="代码转换策略"></a>代码转换策略</h3><p>将寻找应用原子操作的最优序列的搜索问题看作是一个组合优化问题。作者使用了随机搜索RS，遗传算法RA和马尔可夫链蒙特卡罗MCMC。RS是完全随机的进行01赋值，RA目的是找到最大的编辑距离，即文本相差最大的代码，MCMC使用n - gram算法来计算概率，以确定子序列遵循其前缀的可能性，同样采用困惑度指标来衡量代码发生的概率大小，k-gram的定义：</p>
+<p>$H_{\mathcal{M}}(s)&#x3D;-\frac1n\sum_1^n\log p_{\mathcal{M}}\left(s_i\mid s_{i-k+1}\cdots s_{i-1}\right)\text{(Perplexity)}$ 根据上述公式，该策略通过多次迭代指导代码转换，并输出满足上述困惑度条件的生成克隆。MCMC策略倾向于生成难以理解的(具有高度的复杂性)的语义克隆</p>
+<h3 id="DRLSG策略"><a href="#DRLSG策略" class="headerlink" title="DRLSG策略"></a>DRLSG策略</h3><p>尽管以上三种策略总体上是有效的，但它们都没有考虑反馈，为了解决这一缺点，作者提出了DRLSG。</p>
+<p>在深度强化学习中，Agent：学习者和决策者的角色。环境：一切由Agent以外的事物构成并与之相互作用的事物。动作：agent body的行为表征。状态：有能力的主体从环境中获得的信息。奖励：来自环境对行动的反馈。Strategy：Agent基于状态执行下一步动作的函数；on-policy：Agent学习时和Agent与环境交互时对应的策略相同；off-policy：Agent学习时和Agent与环境交互时对应的策略不相同。</p>
+<p>在强化学习中，policy表示在给定的状态下应该采取什么行动，用π表示，在DRL中π是一个神经网络，用θ来表示π的参数，再取境输出状态( s )和智能体输出动作( a )，把s和a串在一起，称为一条轨迹( τ ) τ &#x3D; {s1, a1, s2, a2, · · · , st, at}。每条轨迹发生的概率为：$p_\theta(\tau)&#x3D;p\left(s_1\right)\prod_{t&#x3D;1}^Tp_\theta\left(a_t\mid s_t\right)p\left(s_{t+1}\mid s_t,a_t\right)\quad\quad(2)$ 奖励函数根据在某一状态下采取的某一行动，决定现在有多少个点可供该行动使用。我们要做的是调整行动者内部的参数θ让$\bar{R}<em>{\theta}&#x3D;\sum</em>{\tau}R(\tau)p_{\theta}(\tau)$ 尽可能大，为了尽可能的大，作者使用了梯度上升</p>
+<p>$\begin{aligned}\theta&amp;\leftarrow\theta+\eta\nabla\bar{R}_\theta&amp;&amp;(3)\\nabla\bar{R}<em>\theta&amp;&#x3D;E</em>{\tau\sim p_\theta(\tau)}\left[R(\tau)\nabla\log p_\theta(\tau)\right]&amp;&amp;(4)\end{aligned}$ 近似策略优化( PPO )是策略梯度的一种变体。利用$π_\theta$ 进行数据采集,当$\theta$ 更新时会重新采样训练数据</p>
+<p>$\nabla\bar{R}<em>\theta&#x3D;E</em>{\tau\sim p_{\theta^{\prime}}(\tau)}\left[\frac{p_{\theta}(\tau)}{p_{\theta^{\prime}}(\tau)}R(\tau)\nabla\log p_{\theta}(\tau)\right]\quad\mathrm{(5)}$</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/be1b36048e8141a08e7b71339bd08071.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;H2HJ6XJ9&quot; width=&quot;764&quot; height=&quot;533&quot; src=&quot;attachments/H2HJ6XJ9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>DRLSG主要包括两个组件，agent和environment。agent是一个神经网络，选用$PPO^2$ ，输入是代码的编码向量，称为state。</p>
+<p>agent会从给定状态的动作空间中选择要执行的动作。作者使用上述设计的15个变换作为模型的动作空间。</p>
+<p>激励函数指导agent的action。算法如下：<img src="https://img-blog.csdnimg.cn/direct/9f6f6eeb63474f6b8337059843e9a064.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;I3FNIZL8&quot; width=&quot;570&quot; height=&quot;386&quot; src=&quot;attachments/I3FNIZL8.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>奖励有两个主要组成部分，分别是当前动作得到$code_t$和$code_{t - 1}$ 之间的编辑距离，以及当前动作得到$code_t和code_o$ 之间的克隆检测结果。使用biLSTM判断两段代码是否是克隆的，如果不是则获得最大激励(line1-3)，中止当前学习，说明得到了当前代码的变换序列。</p>
+<p>基于文本序列的基于编辑距离的代码文本相似度CodeTextSim ( codeTextSim )，定义如下</p>
+<p>$codeTextSim&#x3D;1-\frac{editDistance(code_t,code_{t-1})}{max(len(code_t),len(code_{t-1}))}$ 算法的4-6行基于这个公式进行激励函数的负反馈，line7-10行是在控制代码的复杂度。</p>
+<p>当前状态是由当前动作的转换代码代表示的，如图4.</p>
+<hr>
+<h2 id="Part7-Experiment"><a href="#Part7-Experiment" class="headerlink" title="Part7. Experiment"></a>Part7. Experiment</h2><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>本文使用OJClone数据集进行实验，OJClone包含104个文件夹，每个文件夹中包含500个代码克隆解决方案。通过将这些原始代码克隆对进行转换，生成了不同的测试数据集：DRS、DGA、DMCMC、DDRL。</p>
+<h3 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h3><p>本文将生成的代码克隆对提供给三种机器学习模型进行评估：</p>
+<ol>
+<li><strong>TEXTLSTM</strong>：基于文本的克隆检测模型。</li>
+<li><strong>ASTNN</strong>：基于抽象语法树（AST）的神经网络模型。</li>
+<li><strong>TBCCD</strong>：基于AST和代码标记的卷积神经网络模型。</li>
+</ol>
+<p>通过对比不同生成策略（RS、GA、MCMC、DRLSG）对检测器的影响，实验结果表明，DRLSG策略最为有效，能够生成最难被检测的代码克隆。</p>
+<p>RQ1的实验表明，CLONEGEN生成的码对可以有效地绕过最先进的ML检测器的检测，TEXTLSTM是最高效的，也是最脆弱的，F1值只有0.421，TBCCD对CLONEGEN的鲁棒性最好，但它依赖于非常昂贵的预处理和训练。最后，ASTNN似乎在效率和鲁棒性之间取得了平衡，因为克隆检测只是ASTNN支持的应用之一。</p>
+<p>RQ2的实验表明，使用CLONEGEN的样本进行对抗训练后，基于ML的克隆检测器的F1值显著提高，表明对抗训练增强了基于ML的克隆检测器的鲁棒性。同时，DRLSG策略在生成不可检测克隆方面表现出了最佳的有效性，因为它使得TEXTLSTM，ASTNN和TBCCD在四种策略中达到了最低的准确性。</p>
+<hr>
+<h2 id="Part8-Discussion-Future-Work"><a href="#Part8-Discussion-Future-Work" class="headerlink" title="Part8. Discussion &amp; Future Work"></a>Part8. Discussion &amp; Future Work</h2><h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p>实验结果表明，当前的基于机器学习的克隆检测器在面对通过语义保留转换生成的克隆时，表现出较低的鲁棒性。尤其是TEXTLSTM，作为一个基于文本的模型，容易被简单的代码变换所欺骗。而TBCCD和ASTNN虽然在鲁棒性上有所提高，但依然未能达到理想的检测精度。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/4270220af8094bebab1b7387e99bc96f.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;3DHY8XST&quot; width=&quot;651&quot; height=&quot;570&quot; src=&quot;attachments/3DHY8XST.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<p>作者表明，基于token的检测是最容易受到影响的，可以轻易的逃避其检测；基于AST的检测器比它好一点，但是，AST结构对操作(如Op2到Op14 )所做的控制或数据流变化不具有弹性。因此，基于AST的检测器擅长检测I型和II型克隆。相比之下，基于CFG或PDG的检测器对控制流或数据流的变化具有更强的适应性，特别是基于CFG的。</p>
+<h3 id="未来工作"><a href="#未来工作" class="headerlink" title="未来工作"></a>未来工作</h3><p>未来的研究可以集中在改进基于机器学习的克隆检测器，提升它们对语义克隆的检测能力。此外，可以探索更多的代码转换操作和优化策略，以进一步挑战现有的克隆检测技术。同时，强化学习策略也可以在其他软件工程任务中得到应用，提升整体系统的鲁棒性和准确性。</p>
+<hr>
+<p>以上是根据论文内容生成的详细阅读笔记，涵盖了方法、实验、结果等重要部分。如需更深入的讨论或进一步分析，请随时告知。</p>
 
                 
             </div>
@@ -516,7 +451,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/34290fa80.html">https://yangjx29.github.io/posts/34290fa80.html</a>
+                    <a href="https://yangjx29.github.io/posts/381d2c68.html">https://yangjx29.github.io/posts/381d2c68.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -629,7 +564,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-22T14-33-51',
+        id: '2024-11-10T14-15-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -657,17 +592,18 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/512aksp02.html">
+                <a href="/posts/381d2c68.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations">
                         
-                        <span class="card-title">A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding</span>
+                        <span class="card-title">Challenging Machine Learning-based Clone Detectors via Semantic-preserving Code Transformations</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -677,9 +613,9 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -692,6 +628,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -702,13 +639,13 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/3458vc68.html">
+                <a href="/posts/92012s0215.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Adversarial Examples for Models of Code">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
                         
-                        <span class="card-title">Adversarial Examples for Models of Code</span>
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -719,7 +656,7 @@ Generating Adversarial Examples for Holding Robustness of Source Code Processing
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-10
                             </span>
                         <span class="publish-author">
                             
