@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities, JacksonYang的博客">
+    <meta name="keywords" content="peft学习笔记, JacksonYang的博客">
     <meta name="description" content="
 
-SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPart 1. Title &amp;amp; SourceTitle: SySeVR:">
+peft学习笔记第一次使用lora微调，踩的坑已经多到心力憔悴。所以写一篇博客，总结梳理一下我混乱的逻辑。
+什么是loraLoRA 的全称是 LoRA: Low-Rank Adaptation of Large Language Mod">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities | JacksonYang的博客</title>
+    <title>peft学习笔记 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -262,12 +263,12 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SySeVR A Framework for Using Deep Learning to Detect Software Vulnerabilities</h1>
+                    <h1 class="description center-align post-title">peft学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -299,8 +300,8 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/paper-reading/" class="post-category">
-                                paper reading
+                            <a href="/categories/ML/" class="post-category">
+                                ML
                             </a>
                         
                     </div>
@@ -312,7 +313,7 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-24
+                    2024-12-02
                 </div>
                 
 
@@ -321,14 +322,14 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    13 分
                 </div>
                 
 
@@ -355,176 +356,194 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="SySeVR-A-Framework-for-Using-Deep-Learning-to-Detect-Software-Vulnerabilities"><a href="#SySeVR-A-Framework-for-Using-Deep-Learning-to-Detect-Software-Vulnerabilities" class="headerlink" title="SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities"></a>SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities</h1><h2 id="Part-1-Title-Source"><a href="#Part-1-Title-Source" class="headerlink" title="Part 1. Title &amp; Source"></a>Part 1. Title &amp; Source</h2><p><strong>Title:</strong> SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities<br><strong>Source:</strong> IEEE Transactions on Dependable and Secure Computing</p>
-<h2 id="Part-2-Abstract"><a href="#Part-2-Abstract" class="headerlink" title="Part 2. Abstract"></a>Part 2. Abstract</h2><p>该论文提出了一个名为SySeVR的系统化框架，用于通过深度学习检测C&#x2F;C++程序中的软件漏洞。SySeVR框架旨在生成包含漏洞语法和语义信息的程序表示，并通过四种软件产品的实验，验证了其在检测未报告漏洞方面的有效性。该框架成功检测了15个新的漏洞，其中7个被报告给厂商，8个在新版本中被“悄悄”修复。</p>
-<h2 id="Part-3-Introduction"><a href="#Part-3-Introduction" class="headerlink" title="Part 3. Introduction"></a>Part 3. Introduction</h2><p>软件漏洞是网络攻击的主要原因之一，尽管研究界和工业界都在努力提高软件质量，但每年仍然有大量的漏洞被报告。现有的基于代码相似性和模式的漏洞检测方法存在高误报率或对人工特征定义的依赖，而深度学习的引入能够减少这种依赖。然而，深度学习的应用面临数据表示的挑战，因为软件程序不像图像等领域具备天然的向量表示。为了解决这一问题，作者提出了SySeVR框架，通过语法和语义信息的综合表示来检测漏洞，并通过数据依赖和控制依赖的语义扩展提高检测效果。SySeVR框架提出了两种新的概念：基于<strong>语法的漏洞候选者</strong> （SyVC） 和<strong>基于语义的漏洞候选者</strong> （SeVC） 的概念。SyVCs基于程序的语法特征提取，如函数调用、指针使用等，而SeVCs通过程序切片技术，结合数据依赖和控制依赖，从而捕捉更多与漏洞相关的上下文信息。每个SeVC都会被转换为向量表示，以输入到深度神经网络进行训练和检测。主要使用的神经网络模型为双向GRU（BGRU），并通过控制依赖和数据依赖的扩展优化了漏洞检测的准确性。</p>
-<h2 id="Part-4-Conclusion"><a href="#Part-4-Conclusion" class="headerlink" title="Part 4. Conclusion"></a>Part 4. Conclusion</h2><p>SySeVR框架通过结合语法、语义信息和向量表示，有效提高了漏洞检测的准确率。实验表明，使用BGRU的深度神经网络在四种开源软件产品中检测到多个未被报告的漏洞。未来的工作将致力于进一步改进漏洞表示和检测方法，同时优化模型以应对更多类型的漏洞和不同编程语言。</p>
-<h2 id="Part-5-Related-Work"><a href="#Part-5-Related-Work" class="headerlink" title="Part 5. Related Work"></a>Part 5. Related Work</h2><p>现有的漏洞检测方法包括基于代码相似性和模式的方法，但这些方法存在一定的局限性。代码相似性方法适用于代码克隆引发的漏洞，但对于其它类型的漏洞检测效果较差。模式匹配方法则依赖专家手动定义漏洞特征，这使得其容易出错且费时费力。此外，作者提到了先前的VulDeePecker系统，这是第一个基于深度学习的漏洞检测系统，但其仅支持基于函数调用的漏洞检测，忽略了语义信息及其它依赖类型。</p>
-<h2 id="Part-6-Model-Framework"><a href="#Part-6-Model-Framework" class="headerlink" title="Part 6. Model&amp;Framework"></a>Part 6. Model&amp;Framework</h2><p>作者的思路是将一个程序划分为更小的代码段，并将这些代码对应于图像领域的region proposals来展示漏洞的语法和语义特征</p>
-<p><strong>定义SyVC</strong></p>
-<p>程序的组成：</p>
+<h1 id="peft学习笔记"><a href="#peft学习笔记" class="headerlink" title="peft学习笔记"></a>peft学习笔记</h1><p>第一次使用lora微调，踩的坑已经多到心力憔悴。所以写一篇博客，总结梳理一下我混乱的逻辑。</p>
+<h2 id="什么是lora"><a href="#什么是lora" class="headerlink" title="什么是lora"></a>什么是lora</h2><p>LoRA 的全称是 <strong>LoRA: Low-Rank Adaptation of Large Language Models</strong>，是一种以极低资源<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%BE%AE%E8%B0%83&spm=1001.2101.3001.7020">微调</a><a target="_blank" rel="noopener" href="https://edu.csdn.net/cloud/pm_summit?utm_source=blogglc&spm=1001.2101.3001.7020">大模型</a>的方法，其来自于论文 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a> (还没读~)</p>
+<p>Lora是PEFT微调方式的一种，google在论文<a href="https://link.zhihu.com/?target=https://arxiv.org/pdf/1902.00751.pdf">《Parameter-Efficient Transfer Learning for NLP》</a>指出，在面对特定的下游任务时，如果进行 Full-Fintuning（即预训练模型中的所有参数都进行微调），太过低效；而如果采用固定预训练模型的某些层，只微调接近下游任务的那几层参数，又难以达到较好的效果。</p>
+<p>在 LoRA 方法提出之前，也有很多方法尝试解决大模型微调困境的问题。其中有两个主要的方向：</p>
 <ul>
-<li><p>程序 (Program):一个程序是由若干个函数组成的集合，表示为$P&#x3D;{f_1,f_2,…,f_\eta}$,其中每个函数$f_i$都包含一系列有序的语句。</p>
-</li>
-<li><p>函数 (Function):一个函数$f_i$是一组有序语句的集合，表示为$f_i&#x3D;{s_{i,1},s_{i,2},…,s_{i,m_i}}$,其中每条语句$s_{i,j}$可能包含一个或多个标记。</p>
-</li>
-<li><p>语句(Statement):语句$s_{i,j}$是一组有序标记(tokens)的集合，表示为$s_{i,j}&#x3D;{t_{i,j,1},t_{i,j,2},…,t_{i,j,w_{i,j}}}$。每个标记可以是标识符(identifier)、操作符 (operator)、常量(constant)或关键字(keyword),这些可以通过词法分析提取出来。</p>
+<li>添加 adapter 层；</li>
+<li>使用 prefix-tuning。</li>
+</ul>
+<p>但是这两种方法都有局限性：</p>
+<ul>
+<li>Adapter 层会引入推理时延。简单来说，它的主要思想是在预训练模型的每一层 Transformer 中插入一个小的可训练的模块，称为 adapter。这样可以保持预训练模型的权重不变，只更新 adapter 的参数，从而实现参数高效和灵活的迁移学习。</li>
+<li>Prefix-tuning 难以优化。prefix-tuning 方法是受语言模型 in-context learning 能力的启发，只要有合适的上下文则语言模型可以很好地解决自然语言任务。但是，针对特定的任务找到离散 token 的前缀需要花费很长时间，prefix-tuning 提出使用连续的 virtual token embedding 来替换离散 token。这些 virtual token embedding 需要作为可训练参数进行优化，而且会减少下游任务的序列长度</li>
+</ul>
+<p>LoRA 的核心思想是冻结<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%A2%84%E8%AE%AD%E7%BB%83&spm=1001.2101.3001.7020">预训练</a>的模型权重，并将可训练的秩分解矩阵注入 Transformer 架构的每一层，从而大大减少了下游任务的可训练参数数量。相比于完全微调，LoRA 可以节省显存、提高训练速度、减少推理延迟，并且保持或提升模型质量</p>
+<p>lora可以应用于自回归模型 如 GPT 系列和 Encoder-Decoder 模型（如 T5），并且可以与不同规模的预训练模型（如 RoBERTa, DeBERTa, GPT-2, GPT-3）兼容。</p>
+<h2 id="LoRA使用"><a href="#LoRA使用" class="headerlink" title="LoRA使用"></a>LoRA使用</h2><p>在使用前，首先需要配置环境，用到peft库，源码在<a target="_blank" rel="noopener" href="https://github.com/huggingface/peft">https://github.com/huggingface/peft</a></p>
+<p>然后可以开始使用。</p>
+<p><strong>前期准备</strong></p>
+<ul>
+<li>加载预训练模型+数据集准备<ul>
+<li>这里使用huggingface api即可，示例Model选择codeT5</li>
+</ul>
 </li>
 </ul>
-<p>SyVC的正式定义如下：</p>
-<ul>
-<li><p>代码元素(Code Element):代码元素是一个或多个连续的标记组成的片段，表示为$e_{i,j,z}&#x3D;(t_{i,j,u},…,t_{i,j,v})$ ,其中$1\leq u\leq v\leq w_i,j$。</p>
-</li>
-<li><p>SyVC: 如果一个代码元素$e_{i,j,z}$符合某个漏洞语法特征$h_k$ ,那么这个代码元素就被称为SyVC。漏洞语法特征的集合用$H&#x3D;{h_1,h_2,…,h_\beta}$表示，其中$h_k$代表一种特定的漏洞语法特征。</p>
-</li>
-</ul>
-<p>算法1：从程序中提取SyVC</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/c2efb0ce437740b98e6e04171bd5e2d6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;VNUIR4AX&quot; width=&quot;602&quot; height=&quot;367&quot; src=&quot;attachments/VNUIR4AX.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">MODEL_CLASSES = &#123;</span><br><span class="line">    <span class="string">&#x27;gpt2&#x27;</span>: (GPT2Config, GPT2LMHeadModel, GPT2Tokenizer),</span><br><span class="line">    <span class="string">&#x27;openai-gpt&#x27;</span>: (OpenAIGPTConfig, OpenAIGPTLMHeadModel, OpenAIGPTTokenizer),</span><br><span class="line">    <span class="string">&#x27;bert&#x27;</span>: (BertConfig, BertForMaskedLM, BertTokenizer),</span><br><span class="line">    <span class="string">&#x27;roberta&#x27;</span>: (RobertaConfig, RobertaForSequenceClassification, RobertaTokenizer),</span><br><span class="line">    <span class="string">&#x27;distilbert&#x27;</span>: (DistilBertConfig, DistilBertForMaskedLM, DistilBertTokenizer),</span><br><span class="line">    <span class="string">&#x27;codet5&#x27;</span>: (T5Config, T5ForConditionalGeneration, RobertaTokenizer)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model,PeftModel, TaskType,PeftConfig</span><br><span class="line"></span><br><span class="line">config_class, model_class, tokenizer_class = MODEL_CLASSES[args.model_type]</span><br><span class="line"></span><br><span class="line">config = config_class.from_pretrained(args.config_name <span class="keyword">if</span> args.config_name <span class="keyword">else</span> args.model_name_or_path,</span><br><span class="line">                                          cache_dir=args.cache_dir <span class="keyword">if</span> args.cache_dir <span class="keyword">else</span> <span class="literal">None</span>)</span><br><span class="line">config.num_labels=<span class="number">1</span></span><br><span class="line">tokenizer = tokenizer_class.from_pretrained(args.tokenizer_name,</span><br><span class="line">                                                do_lower_case=args.do_lower_case,</span><br><span class="line">                                                cache_dir=args.cache_dir <span class="keyword">if</span> args.cache_dir <span class="keyword">else</span> <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
 <ol>
-<li><p><strong>生成AST</strong>：<br>抽象语法树（AST）是对程序结构的分层表示，AST的节点表示程序中的不同语法元素。每个函数会被转换为AST，SySeVR利用AST对函数进行遍历，以识别潜在的漏洞代码。</p>
-</li>
-<li><p><strong>遍历AST中的代码元素</strong>：<br>在AST中，每个节点表示一个代码元素，这些代码元素可能是变量、操作符、数组、指针或函数调用等。SySeVR遍历AST中的每个代码元素，并将其与已定义的漏洞语法特征进行匹配。</p>
-</li>
-<li><p><strong>匹配漏洞语法特征</strong>：<br>SySeVR定义了一组漏洞语法特征（如函数调用、数组操作、指针使用、算术表达式等），这些特征可以从AST中直接识别。例如：</p>
-<ul>
-<li>如果某个代码元素是函数调用，并且该函数是已知的易受攻击的API（如<code>strcpy</code>），那么这个代码元素会被标记为SyVC。</li>
-<li>如果某个变量是指针类型（例如包含符号<code>*</code>），并且指针操作可能导致内存漏洞，那么这个代码元素也会被标记为SyVC。</li>
-</ul>
-</li>
+<li><strong>定义用到的类和方法</strong></li>
 </ol>
-<p><strong>SyVC→SeVC</strong></p>
-<p>目的是通过程序切片技术，捕捉与SyVC相关的上下文语义信息，使得漏洞检测模型能够更全面地理解代码中的潜在漏洞。这个转换过程主要依赖于数据依赖（Data Dependency）和控制依赖（Control Dependency）</p>
-<p>过程如下：</p>
-<p>1.SyVC的提取</p>
-<p>SyVC是基于代码的语法特征提取的，它们是潜在的漏洞候选。SyVC可以是函数调用、指针使用、数组操作或算术表达式等。每个SyVC代表代码中的一个可能与漏洞相关的语法结构，但单独的语法信息不足以精确地检测漏洞</p>
-<p>2. 数据依赖与控制依赖</p>
-<p>程序中的语义信息通过<strong>数据依赖</strong>和<strong>控制依赖</strong>进行捕捉。数据依赖指的是一个代码元素（如变量）如何影响另一个代码元素，控制依赖则指代码块间的执行顺序如何相互影响。通过分析这些依赖关系，系统可以找到与SyVC相关的上下文代码。</p>
+<p><strong>LoraConfig</strong></p>
+<p>LoraConfig是 <code>peft</code> 库中配置 LoRA 层的核心工具，用于配置低秩适应（LoRA）相关的参数，以便在训练过程中调整模型的部分参数。允许你自定义如何在模型中应用 LoRA 技术。</p>
+<p><strong><code>r</code> (低秩矩阵的秩)</strong></p>
 <ul>
-<li><strong>数据依赖</strong>：如果一个变量的值在不同代码语句中被使用（例如赋值和使用），那么这些语句之间就存在数据依赖。</li>
-<li><strong>控制依赖</strong>：如果某条语句的执行取决于其他语句的条件（如if-else或循环条件），则这些语句之间存在控制依赖。</li>
+<li><strong>作用</strong>：这是 LoRA 层的核心参数之一，它控制低秩矩阵的秩（rank）。在 LoRA 方法中，我们将权重矩阵分解为低秩矩阵，通过调整秩的大小来控制训练中需要更新的参数数量</li>
 </ul>
-<p>3.<strong>程序切片技术（Program Slicing</strong>）</p>
-<p>SyVC→SeVC转换的核心技术是<strong>程序切片</strong>（Program Slicing）。程序切片是一种通过分析程序的依赖关系，提<strong>取与某个代码元素相关的所有语句</strong>的技术。SySeVR通过两种切片方式生成SeVC：</p>
-<p>前向切片：从SyVC开始，找出那些受到SyVC影响的代码语句。</p>
-<p>后向切片：找出那些影响了SyVC的代码语句。</p>
-<p>这两种切片方法结合起来，可以帮助识别出与SyVC相关的语义信息，形成SeVC</p>
-<p>4.SeVC的生成</p>
-<p>经过前向和后向切片后，系统将所有与SyVC相关的代码片段组合起来，生成SeVC。SeVC不仅包含SyVC本身，还包含与其存在语义关系的其他代码语句。这一过程通过控制和数据依赖的关系，确保SeVC能够准确捕捉漏洞的上下文。</p>
-<p>例如，如果SyVC是一个指针操作，那么SeVC可能包含所有与该指针相关的内存分配、解引用和使用操作。这些相关代码块共同构成了SeVC，并被转换为向量表示，以供深度学习模型进行训练和检测</p>
-<p><strong>定义 SeVC</strong></p>
-<p>SeVCs（语义漏洞候选）是从SyVCs（语法漏洞候选）的基础上进一步扩展语义信息的关键步骤。通过将程序切片技术应用于SyVC，系统能够捕捉与漏洞相关的上下文语句，生成<strong>更具语义关联</strong>的漏洞候选（SeVC）</p>
-<p>给定一个程序$P&#x3D;\left{f_1,f_2,…,f_\eta\right}$ 和一个SyVC $e_{i,j,z}$  (在函数$f_i$ 的语句$s_i,j$中的某个代码元素),与这个SyVC相关的SeVC $\delta_{i,j,z}$ 是程序$P$中的一个有序语句子集，表示为：</p>
-<p>$\delta_{i,j,z}&#x3D;{s_{a_1,b_1},s_{a_2,b_2},…,s_{a_{v_{i,j,z}},b_{v_{i,j,z}}}}$</p>
+<p><strong><code>lora_alpha</code> (LoRA的缩放因子)</strong></p>
+<ul>
+<li><strong>作用</strong>：<code>lora_alpha</code> 是 LoRA 的缩放因子，用来调整低秩矩阵对模型输出的影响程度。LoRA 会将原始权重矩阵与低秩矩阵相加，而 <code>lora_alpha</code> 用于缩放低秩矩阵的贡献</li>
+</ul>
+<p><strong><code>target_modules</code> (应用 LoRA 的模块)</strong></p>
+<ul>
+<li><strong>作用</strong>：LoRA 只会应用于某些特定的模块，通常是在模型的某些层中，例如全连接层或自注意力层。<code>target_modules</code> 允许你指定哪些模块应用 LoRA。</li>
+</ul>
+<p><strong><code>lora_dropout</code> (Dropout 比率)</strong></p>
+<ul>
+<li><strong>作用</strong>：这是 LoRA 层的 dropout 参数，用于控制在低秩矩阵中的 dropout 率。dropout 是一种正则化技术，能有效防止过拟合。在 LoRA 中，dropout 会随机丢弃低秩矩阵中的部分元素</li>
+</ul>
+<p><strong><code>bias</code> (对偏置项的处理方式)</strong></p>
+<ul>
+<li><strong>作用</strong>：LoRA 层允许你选择是否对偏置项进行处理。偏置项是模型中的常数项，通常不会像权重矩阵那样进行学习。</li>
+</ul>
+<p><code>task_type</code> ()</p>
+<ul>
+<li><p>选择期望的下游任务类型</p>
 <blockquote>
-<p>其中，$s_{a_p,b_q}$ 是通过数据依赖或控制依赖与SyVC $e_{i,j,z}$ 相关的语句。换句话说，SeVC是一个程序切片，它包含了与SyVC相关的所有语句，基于这些语句的语义关系(例如变量间的依赖或控制流的依赖)。</p>
+<p>Overview of the supported task types:</p>
+<ul>
+<li>SEQ_CLS: Text classification.</li>
+<li>SEQ_2_SEQ_LM: Sequence-to-sequence language modeling.</li>
+<li>CAUSAL_LM: Causal language modeling.</li>
+<li>TOKEN_CLS: Token classification.</li>
+<li>QUESTION_ANS: Question answering.</li>
+<li>FEATURE_EXTRACTION: Feature extraction. Provides the hidden states which can be used as embeddings or features<br>for downstream tasks.</li>
+</ul>
 </blockquote>
-<p><strong>计算 SeVC</strong></p>
-<p>过程：</p>
-<ol>
-<li>生成PDG(2-4行)</li>
-<li>生成程序切片(6-9行)</li>
-<li>转换为Sevc(10-19行)</li>
+</li>
+</ul>
+<p>其他参数：参考源代码&#x2F;peft&#x2F;tuners&#x2F;lora&#x2F;config.py</p>
+<p>eg:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">lora_config = LoraConfig(</span><br><span class="line">        task_type=TaskType.TOKEN_CLS,</span><br><span class="line">        r=<span class="number">8</span>,  <span class="comment"># 低秩矩阵的秩，通常选择 4-16 之间</span></span><br><span class="line">        lora_alpha=<span class="number">16</span>,  <span class="comment"># LoRA 系数</span></span><br><span class="line">        lora_dropout=<span class="number">0.1</span>,  <span class="comment"># dropout 比例</span></span><br><span class="line">        target_modules=[</span><br><span class="line">        <span class="string">&quot;q&quot;</span>,  <span class="comment"># SelfAttention 中的查询</span></span><br><span class="line">        <span class="string">&quot;k&quot;</span>,  <span class="comment"># SelfAttention 中的键</span></span><br><span class="line">        <span class="string">&quot;v&quot;</span>,  <span class="comment"># SelfAttention 中的值</span></span><br><span class="line">        <span class="string">&quot;o&quot;</span>,  <span class="comment"># SelfAttention 中的输出</span></span><br><span class="line">        ],  <span class="comment"># 目标模块（这里是自注意力层的 query、key 和 value）</span></span><br><span class="line">        bias=<span class="string">&quot;none&quot;</span>,  <span class="comment"># 是否调整偏置项</span></span><br><span class="line">        inference_mode=<span class="literal">False</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p><strong>get_peft_model()</strong></p>
+<ul>
+<li><code>get_peft_model</code> 是 <code>peft</code> 库中的一个函数，它的主要作用是 <strong>将一个已有的预训练模型转换为带有高效微调模块（如 LoRA）的模型</strong>，从而可以在不改变原始模型大部分参数的情况下，通过少量的可训练参数进行高效的微调</li>
+</ul>
+<p>eg：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = get_peft_model(model, lora_config)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>训练</strong></li>
 </ol>
-<p><img src="https://img-blog.csdnimg.cn/direct/6a666f47eb044fc8b03110890ac88b76.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;GI2MRQUC&quot; width=&quot;596&quot; height=&quot;717&quot; src=&quot;attachments/GI2MRQUC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>10-12：行对于每个出现在程序切片中的语句，根据它们在原函数中的顺序，将它们依次添加到SeVC $\delta_{i,j,z}$ 中。SeVC包含与SyVC相关的所有语句，这些语句共同形成一个上下文，以捕捉漏洞的语义信息。</p>
-<p>13-19行：当涉及跨函数调用时，算法根据调用关系决定语句的顺序</p>
+<p><strong>TrainingArguments</strong></p>
 <ul>
-<li><p>如果函数$f_i$调用了函数$f_{ap}$,则将$f_i$中的语句排在$f_{ap}$中的语句之前。</p>
+<li><p>通过设置 <code>TrainingArguments</code>，我们可以轻松地定义训练时的各种参数，例如学习率、批量大小、训练轮次、日志记录频率等。这个类是 <code>Trainer</code> 类的一个重要输入</p>
 </li>
-<li><p>如果$f_{ap}$调用了$f_i$,则反过来，$f_{ap}$中的语句排在$f_i$中的语句之前。</p>
+<li><p>参数包括 </p>
+<ul>
+<li><p><strong><code>output_dir</code></strong>: 指定训练结果（模型、检查点、日志等）保存的目录。</p>
+<p><strong><code>evaluation_strategy</code></strong>: 定义何时进行评估，可以设置为 <code>no</code>, <code>epoch</code> 或 <code>steps</code>。如果设置为 <code>epoch</code>，则在每个训练周期结束时进行评估；如果是 <code>steps</code>，则在每个 <code>save_steps</code> 设置的步数后进行评估。</p>
+<p><strong><code>save_steps</code></strong>: 定义每多少步保存一次模型检查点。</p>
+<p><strong><code>save_total_limit</code></strong>: 如果指定了该值，则会保存最多指定数量的检查点，并删除最旧的检查点。</p>
+<p><strong><code>logging_dir</code></strong>: 日志文件的保存路径。日志通常用于记录训练过程中的详细信息，如损失值、学习率等。</p>
+<p><strong><code>logging_steps</code></strong>: 设置每隔多少步记录一次日志。</p>
+<p><strong><code>learning_rate</code></strong>: 设置学习率。</p>
+<p><strong><code>per_device_train_batch_size</code></strong>: 每个设备上的训练批次大小（例如，GPU或TPU）。</p>
+<p><strong><code>per_device_eval_batch_size</code></strong>: 每个设备上的评估批次大小。</p>
+<p><strong><code>num_train_epochs</code></strong>: 设置训练的总轮次。</p>
+<p><strong><code>weight_decay</code></strong>: 权重衰减系数，通常用于防止过拟合。</p>
+<p><strong><code>adam_epsilon</code></strong>: Adam 优化器的 epsilon 参数。</p>
+<p><strong><code>logging_first_step</code></strong>: 如果为 <code>True</code>，则在训练的第一步就记录日志。</p>
+<p><strong><code>load_best_model_at_end</code></strong>: 如果设置为 <code>True</code>，则在训练结束后加载验证集上表现最好的模型。</p>
+<p><strong><code>metric_for_best_model</code></strong>: 指定用于选择最好的模型的评估指标（例如 <code>accuracy</code>, <code>loss</code> 等）。</p>
 </li>
 </ul>
-<p><strong>将 SeVC 编码为向量</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/6edc3af472c84ec59ee6b9d9108abad6.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;UKP2SNNC&quot; width=&quot;592&quot; height=&quot;827&quot; src=&quot;attachments/UKP2SNNC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>首先对每个$SeVC \delta_{i,j,z}$ 进行预处理(2-6)</p>
-<ul>
-<li><strong>移除非ASCII字符和注释</strong>：这一步删除代码中的注释和特殊字符，使得代码更简洁。</li>
-<li><strong>符号化变量和函数名</strong>：将用户定义的变量名和函数名映射为通用的符号。例如，将变量名<code>buffer</code>映射为<code>V1</code>，将函数名<code>strcpy</code>映射为<code>F1</code>。这样做的目的是去除代码的具体实现细节，保留逻辑结构。</li>
-</ul>
-<p>对SeVC中的符号进行向量化(7-13)</p>
-<ul>
-<li><p>符号分割：将SeVC分解为一系列符号(例如变量、运算符、常量等)。</p>
-</li>
-<li><p>符号向量化：将每个符号$\alpha$转换为一个固定长度的向量$v(\alpha)$,例如每个符号可以被表示为30维向量。</p>
-</li>
-<li><p>连接符号向量：将这些符号的向量依次连接起来，生成表示SeVC的向量$R_{i,j,z}$。</p>
 </li>
 </ul>
-<p>标准化向量长度（填充或截断）(14-22)</p>
+<p><strong>Trainer</strong></p>
+<p><code>Trainer</code> 是 <code>transformers</code> 库提供的一个高层接口，用于简化模型训练过程。<code>Trainer</code> 处理了训练、评估、预测等任务，并与 <code>TrainingArguments</code> 配合使用，自动进行模型训练、验证、保存和日志记录等操作。</p>
+<p><strong>主要功能</strong></p>
+<ul>
+<li><strong>训练</strong>：自动管理训练过程，包括前向传播、反向传播、损失计算和优化。</li>
+<li><strong>评估</strong>：在训练过程中按设定的策略（如每隔一定步数或每个周期结束时）评估模型。</li>
+<li><strong>日志记录</strong>：在训练过程中，<code>Trainer</code> 会自动记录训练日志，例如损失、学习率、时间等。</li>
+<li><strong>保存模型</strong>：在训练过程中自动保存模型检查点。</li>
+<li><strong>加载最佳模型</strong>：如果启用了 <code>load_best_model_at_end</code>，则 <code>Trainer</code> 会在训练结束后加载表现最好的模型。</li>
+</ul>
+<p><strong>主要参数</strong></p>
+<ul>
+<li><strong><code>model</code></strong>: 要训练的模型（例如，BertForSequenceClassification）。</li>
+<li><strong><code>args</code></strong>: <code>TrainingArguments</code> 对象，定义了训练过程的配置。</li>
+<li><strong><code>train_dataset</code></strong>: 训练数据集。</li>
+<li><strong><code>eval_dataset</code></strong>: 验证数据集。</li>
+<li><strong><code>compute_metrics</code></strong>: 一个函数，用于计算评估指标（例如准确率、F1分数）。</li>
+<li><strong><code>tokenizer</code></strong>: 用于对文本数据进行处理和编码的分词器。</li>
+<li><strong><code>callbacks</code></strong>: 可选的回调函数，可以在训练过程中添加自定义操作。</li>
+<li><strong><code>data_collator</code></strong>: 用于打包输入数据的函数，通常用于处理批量数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">args, train_dataset, eval_dataset,model, tokenizer</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Train the model </span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span> </span><br><span class="line">    <span class="comment"># 定义训练参数</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    args.output_dir: 用来保存训练过程中的一些中间文件，如模型检查点、日志文件等。具体保存内容包括：</span></span><br><span class="line"><span class="string">    checkpoint-* 文件夹：这些文件夹包含了每个检查点（checkpoint）的模型权重和配置文件。</span></span><br><span class="line"><span class="string">    trainer_state.json：记录训练过程中的状态信息（如训练的步数、学习率等）。</span></span><br><span class="line"><span class="string">    eval_results 等：保存评估过程中的结果（例如损失值等</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    training_args = TrainingArguments(</span><br><span class="line">        output_dir= args.output_dir,  <span class="comment"># 保存训练结果的目录</span></span><br><span class="line">        eval_strategy=<span class="string">&quot;steps&quot;</span>,  <span class="comment"># 每个 steps 评估一次,同保存策略一致</span></span><br><span class="line">        num_train_epochs=<span class="number">3</span>,  <span class="comment"># 训练轮次</span></span><br><span class="line">        per_device_train_batch_size=<span class="number">8</span>,  <span class="comment"># 每个设备上的批量大小</span></span><br><span class="line">        per_device_eval_batch_size=<span class="number">32</span>,  <span class="comment"># 每个设备上的评估批量大小</span></span><br><span class="line">        logging_dir=<span class="string">&quot;./logs&quot;</span>,  <span class="comment"># 日志目录</span></span><br><span class="line">        logging_steps=<span class="number">1000</span>,  <span class="comment"># 每1000步记录一次日志</span></span><br><span class="line">        save_steps=<span class="number">1000</span>,  <span class="comment"># 每1000步保存一次模型</span></span><br><span class="line">        <span class="comment"># load_best_model_at_end=True,  # 加载最佳模型</span></span><br><span class="line">        <span class="comment"># metric_for_best_model=&quot;accuracy&quot;,  # 你可以选择自己想要的评估标准（例如准确率）</span></span><br><span class="line">        <span class="comment"># lr_scheduler_type=&#x27;linear&#x27;,  # 使用线性衰减的学习率调度</span></span><br><span class="line">        learning_rate=<span class="number">5e-5</span>,  <span class="comment"># 调整学习率</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义 Trainer 类进行训练</span></span><br><span class="line">    trainer = Trainer(</span><br><span class="line">        model=model,  <span class="comment"># 需要微调的模型</span></span><br><span class="line">        args=training_args,  <span class="comment"># 训练参数</span></span><br><span class="line">        tokenizer=tokenizer,  <span class="comment"># 分词器</span></span><br><span class="line">        train_dataset=train_dataset,  <span class="comment"># 训练数据集</span></span><br><span class="line">        eval_dataset= eval_dataset,  <span class="comment"># 验证数据集</span></span><br><span class="line">        <span class="comment"># compute_metrics= compute_metrics,</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 开始训练</span></span><br><span class="line">    trainer.train()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存微调后的模型</span></span><br><span class="line">    trainer.save_model(<span class="string">&quot;./finetuned_codet5_lora&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Model saved&quot;</span>)</span><br><span class="line">    model.save_pretrained(<span class="string">&quot;./saved_models/acc_model&quot;</span>) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 评估模型</span></span><br><span class="line">    eval_results = trainer.evaluate()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;eval_results: <span class="subst">&#123;eval_results&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>trainer.save_model和model.save_pretrained区别：</strong></p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>trainer.save_model</th>
+<th>model.save_pretrained</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保存内容</td>
+<td>保存模型的权重、配置文件、训练状态（优化器、学习率等</td>
+<td>仅保存模型的权重和配置文件（不包括训练状态）。</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>适用于使用 <code>Trainer</code> 训练时，保存训练后的完整模型</td>
+<td>适用于只需要保存模型的权重和配置文件，通常用于微调后的模型</td>
+</tr>
+<tr>
+<td>是否包括训练状态</td>
+<td>包括训练状态（如优化器、学习率调度器等）</td>
+<td>不包括训练状态，只保存模型本身</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果你使用 <code>Trainer</code> 进行训练并且希望保存训练过程中的所有信息（如训练状态、模型参数等），推荐使用 <code>trainer.save_model</code>。</p>
+<p>如果你仅关心保存训练后的模型（例如，在微调后进行推理或部署），可以使用 <code>model.save_pretrained</code></p>
+<ol start="3">
+<li>推理</li>
+</ol>
+<p>我用分类任务做示例。</p>
+<p>推理的基本过程包括以下几个步骤：</p>
 <ol>
-<li><p><strong>填充</strong>：如果向量长度小于 θ，则在向量末尾填充零，直到达到 θ。</p>
+<li><strong>加载模型和分词器</strong>：加载训练后保存的模型（或预训练模型）和对应的分词器（tokenizer）。</li>
+</ol>
+<p>这个过程没有什么差别，同样使用from_pretrain加载微调后的模型。如果在训练时修改了分词器（例如，添加了新的词汇），也应该加载分词器</p>
+<ol start="2">
+<li><p><strong>准备输入数据</strong>：根据需要对输入数据进行预处理和编码，使其适合输入到模型中。</p>
 </li>
-<li><p><strong>截断</strong>：如果向量长度超过 θ，则根据SyVC的位置截断符号，以确保SyVC在向量的中心。</p>
-<ul>
-<li>如果SyVC之前的部分小于 θ&#x2F;2，则截断右侧多余部分。</li>
-<li>如果SyVC之后的部分小于 θ&#x2F;2，则截断左侧多余部分。</li>
-<li>否则，保留SyVC两侧的符号，使最终向量的总长度等于 θ</li>
-</ul>
+<li><p><strong>进行推理</strong>：将预处理后的数据输入模型进行推理，获取模型的输出</p>
 </li>
 </ol>
-<h2 id="Part-7-Experiment"><a href="#Part-7-Experiment" class="headerlink" title="Part 7. Experiment"></a>Part 7. Experiment</h2><p>实验使用了从NVD和SARD中收集的15,591个C&#x2F;C++程序，并包含126种不同类型的漏洞。研究表明，SySeVR框架中的BGRU模型在检测漏洞时优于单向RNN和传统的卷积神经网络（CNN）。通过对比，BGRU模型的假阳性率为1.7%，假阴性率为19.0%，相比VulDeePecker系统的效果有显著提升。此外，实验中还检测到15个NVD未报告的漏洞。</p>
-<p>实验过程：</p>
+<h2 id="LoRA-的原理和实现"><a href="#LoRA-的原理和实现" class="headerlink" title="LoRA 的原理和实现"></a>LoRA 的原理和实现</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sbtgmz/article/details/131175878">https://blog.csdn.net/Sbtgmz/article/details/131175878</a></p>
+<p>LoRA 为了更加参数高效，使用相对非常小的参数$\Theta$来表示任务相关的参数增量$\Delta\Phi&#x3D;\Delta\Phi(\Theta)$ ,其中$|\Theta|\ll|\Phi_0|$。寻找$\Delta\Phi$的任务就变成对$\Theta$的优化：</p>
+<p>$$\max_\Theta\sum_{(x,y)\in\mathcal{Z}}\sum_{t&#x3D;1}^{|y|}\log(p_{\Phi_0+\Delta\Phi(\Theta)}\left(y_t\left|x,y_{&lt;t}\right.\right))$$ </p>
+<p>LoRA 将会使用低秩表示来编码$\Delta\Phi$ ,同时实现计算高效和存储高效。当预训练模型是 175B GPT-3, 可训练参数$|\Theta|$可以小至$|\Phi_0|$的$0.01%$。对于预训练权重矩阵$W_0\in\mathbb{R}^{d\times k}$,可以通过低秩分解来表示其更新$W_0+\Delta W&#x3D;W_0+BA,B\in\mathbb{R}^{d\times r},A\in\mathbb{R}^{r\times k}$ 且秩 $r\ll$ $\min(d,k)$ 。在训练过程中<strong>，$W_0$被冻结且不接受梯度更新，$A$和$B$则是可训练参数</strong>。注意，$W_{0}$和$\Delta W&#x3D;BA$都会乘以相同的输入。对于$h&#x3D;W_{0}x$ ,前向传播变为：</p>
+<p>$$h&#x3D;W_0x+\Delta Wx&#x3D;W_0x+BAx$$</p>
+<p>对矩阵$A$使用随机高斯初始化，对矩阵$B$使用 0 进行初始化，因此$\Delta W&#x3D;BA$在训练的开始为 0。使用$\frac\alpha r$来缩放$\Delta Wx$ 。当使用Adam 优化时，经过适当的缩放初始化，调优$\alpha$与调优学习率大致相同。当进行部署时，以显式的计算和存储$W&#x3D;W_0+BA$,并正常执行推理。$W_{0}$和$BA$都是$\mathbb{R}^{d\times k}$ 。当需要转换至另一个下游任务，可以通过减去$BA$来恢复$W_0$ ,然后添加不同的$B^{\prime}A^{\prime}$ 。</p>
+<p>LoRA 模型作为一种以极低资源微调大模型的方法，可以应用于以下一些场景：</p>
 <ul>
-<li>Extracting SyVCs</li>
+<li>需要使用大规模预训练语言模型来解决特定的自然语言处理任务，例如机器阅读理解、文本摘要、文本分类等，但是又受限于硬件资源或者成本预算的场景。</li>
+<li>需要根据不同的用户或者领域来定制化大规模预训练语言模型的生成风格或者内容，例如对话系统、文本生成、文本风格转换等，但是又不想为每个用户或者领域保存一份完整微调的模型的场景。</li>
+<li>需要在不同的下游任务之间快速切换大规模预训练语言模型的能力，例如多任务学习、元学习、迁移学习等，但是又不想重新训练或者加载完整微调的模型的场景。</li>
 </ul>
-<p>使用了商业工具checkmarx，并最后进行手动检查，漏洞种类包括：Library&#x2F;API Function Call、Array Usage、Pointer Usage、Arithmetic Expression并且互相之间都有重合<img src="https://img-blog.csdnimg.cn/direct/d1554d50baf545e4826fc97e352e8f73.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;68J98RLC&quot; width=&quot;605&quot; height=&quot;314&quot; src=&quot;attachments/68J98RLC.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>为了使用算法 1 提取 SyVC，我们需要确定程序 P 中函数 fi 的抽象语法树 Ti 上的代码元素$e_{i,j,z}$  是否与漏洞语法特征匹配，下面的方法可以自动检测代码片段$e_{i,j,z}$ 是否与语法特征匹配</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/1f9da3792ad041f290dd874d40b3af60.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;RDNB8CT9&quot; width=&quot;621&quot; height=&quot;511&quot; src=&quot;attachments/RDNB8CT9.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<ul>
-<li>Transforming SyVCs to SeVCs</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/direct/abaa61af6fc44ccaa2e4d9b5ff0aadc2.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;P6K6LN53&quot; width=&quot;593&quot; height=&quot;214&quot; src=&quot;attachments/P6K6LN53.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<ul>
-<li>Encoding SeVCs into Vector Representation</li>
-</ul>
-<p>采用word2vec将 SeVC 的符号编码为固定长度的向量</p>
-<ul>
-<li>Generating Ground-truth Labels of SeVCs</li>
-</ul>
-<p>生成真实标签的目的是为每个SeVC分配一个标记，表示该SeVC是否包含漏洞。这个过程确保了模型可以通过有监督的学习来区分有漏洞和无漏洞的代码片段</p>
-<p>步骤如下：</p>
-<p><strong>匹配SeVC与漏洞数据</strong></p>
-<ul>
-<li>对于每个SeVC，系统会检查该SeVC所在的程序或代码片段是否与数据集中标识的漏洞程序相匹配。</li>
-<li>如果某个SeVC与包含漏洞的程序代码片段相对应，则该SeVC会被标记为<strong>正标签（vulnerable, 1）</strong>。</li>
-<li>如果某个SeVC来自无漏洞的代码片段，或者对应代码已经修复，则该SeVC会被标记为<strong>负标签（non-vulnerable, 0）</strong></li>
-</ul>
-<p><strong>标签的细粒度控制</strong></p>
-<ul>
-<li><strong>正样本（vulnerable）</strong>：这些SeVC来自包含实际漏洞的代码。例如，某个指针操作或数组访问可能导致缓冲区溢出，系统会为这些代码片段生成正标签。</li>
-<li><strong>负样本（non-vulnerable）</strong>：这些SeVC则来自未发现漏洞的代码，或修复后的代码。这些代码已经通过修复过程消除了已知的安全隐患，或者本身从未存在漏洞</li>
-</ul>
-<p><strong>RQ1：检测多种类型漏洞的能力</strong></p>
-<p>为了验证SySeVR能否检测多种类型的漏洞，作者分别训练了基于BLSTM模型的SySeVR，并检测了四种主要的漏洞类型：</p>
-<ul>
-<li>函数调用（FC）</li>
-<li>数组使用（AU）</li>
-<li>指针使用（PU）</li>
-<li>算术表达式（AE）</li>
-</ul>
-<p>实验使用了从训练集中随机选出的30,000个SeVC进行训练，7,500个SeVC用于测试。作者还对比了SySeVR和现有的VulDeePecker系统的性能，后者仅检测函数调用（FC）相关的漏洞。</p>
-<p><strong>结果</strong>：SySeVR成功检测了多种类型的漏洞，相比VulDeePecker，在检测函数调用相关漏洞时，F1值提高了3.4%，假阳性率（FPR）降低了5.0%。<img src="https://img-blog.csdnimg.cn/direct/4378cf88c34f4a1397bcca58ca17deb0.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;LA5U88EA&quot; width=&quot;589&quot; height=&quot;300&quot; src=&quot;attachments/LA5U88EA.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ2：不同神经网络模型的性能比较</strong></p>
-<p>为验证SySeVR在多种神经网络架构下的性能，作者测试了以下八种模型：</p>
-<ul>
-<li>Logistic Regression (LR)</li>
-<li>Multi-Layer Perceptron (MLP)</li>
-<li>Deep Belief Network (DBN)</li>
-<li>Convolutional Neural Network (CNN)</li>
-<li>四种不同的RNN模型：LSTM、GRU、BLSTM、BGRU</li>
-</ul>
-<p>每种模型都通过交叉验证（5折交叉验证）进行训练，作者对比了每种模型的假阳性率、假阴性率、准确率、F1值等指标。</p>
-<p><strong>结果</strong>：BGRU模型表现最佳，F1值为85.8%，MCC为83.7%。Bidirectional RNN（双向RNN）在捕捉代码前后依赖关系时比单向RNN具有更好的性能，CNN模型次之，而DBN和浅层模型（LR和MLP）的效果较差。<img src="https://img-blog.csdnimg.cn/direct/2effef471e334583ba6e34cec653495e.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;9HA9Q8CY&quot; width=&quot;609&quot; height=&quot;295&quot; src=&quot;attachments/9HA9Q8CY.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>使用分布式表示（例如 word2vec）来捕获上下文信息对于 SySeVR 非常重要。特别是，以令牌频率为中心的表示是不够的</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/57952ffb816744c19448b9f260d16d65.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;7Z9DSCHS&quot; width=&quot;534&quot; height=&quot;205&quot; src=&quot;attachments/7Z9DSCHS.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ3：控制依赖的影响</strong></p>
-<p>为了评估控制依赖在漏洞检测中的影响，作者比较了仅使用数据依赖的信息和同时使用数据依赖与控制依赖的信息的检测效果。</p>
-<p><strong>结果</strong>：引入控制依赖能够显著提升检测效果，假阴性率（FNR）平均降低了30.4%。<img src="https://img-blog.csdnimg.cn/direct/b2916cf2f76f4f25874a1e614ad3c150.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;YQBVDN43&quot; width=&quot;600&quot; height=&quot;486&quot; src=&quot;attachments/YQBVDN43.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ4：与最先进方法的对比</strong></p>
-<p>作者将SySeVR与VulDeePecker等现有的漏洞检测方法进行了比较，后者是第一个基于深度学习的漏洞检测系统，主要检测与函数调用相关的漏洞。</p>
-<p><strong>结果</strong>：SySeVR在多个漏洞类型的检测中均优于VulDeePecker，尤其是在捕捉更多语义信息（例如控制依赖）的情况下，SySeVR的表现更为出色。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/df5e699e892147d7b9248dc58b9fa0c3.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;TEWHN5C7&quot; width=&quot;530&quot; height=&quot;242&quot; src=&quot;attachments/TEWHN5C7.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<h2 id="Part-8-Discussion-Future-Work"><a href="#Part-8-Discussion-Future-Work" class="headerlink" title="Part 8. Discussion &amp; Future Work"></a>Part 8. Discussion &amp; Future Work</h2><p>SySeVR框架展示了深度学习在软件漏洞检测中的强大潜力，特别是当它能够结合语法和语义信息时。未来工作将专注于进一步改进SyVC和SeVC的提取方法，以及探索该框架在不同编程语言和更多漏洞类型中的适应性。此外，研究者计划优化框架的性能，以处理更大规模的代码库和更复杂的漏洞类型。</p>
 
                 
             </div>
@@ -551,7 +570,7 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/512aoq230.html">https://yangjx29.github.io/posts/512aoq230.html</a>
+                    <a href="https://yangjx29.github.io/posts/110ad625.html">https://yangjx29.github.io/posts/110ad625.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -664,7 +683,7 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-24T14-13-51',
+        id: '2024-12-02T11-36-12',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -696,13 +715,13 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/892a0q235.html">
+                <a href="/posts/102fa210.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="VulBERTa Simplified Source Code Pre-Training for Vulnerability Detection">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Pytorch-Sampler类学习笔记">
                         
-                        <span class="card-title">VulBERTa Simplified Source Code Pre-Training for Vulnerability Detection</span>
+                        <span class="card-title">Pytorch-Sampler类学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,14 +732,14 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
                                 </a>
                             
                             
@@ -737,13 +756,13 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/512aksp02.html">
+                <a href="/posts/92012s0215.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
                         
-                        <span class="card-title">A Search-Based Testing Framework for Deep Neural Networks of Source Code Embedding</span>
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -754,7 +773,7 @@ SySeVR: A Framework for Using Deep Learning to Detect Software VulnerabilitiesPa
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
                             </span>
                         <span class="publish-author">
                             
