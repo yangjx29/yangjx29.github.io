@@ -4,13 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Large Language Model for Vulnerability Detection and Repair, JacksonYang的博客">
+    <meta name="keywords" content="Classification Head学习笔记, JacksonYang的博客">
     <meta name="description" content="
 
-
-
-
-[Large Language Model for Vulnerability Detection and Repair: Literature Review and the Road Ahead]Paper summaryTLD">
+Classification Head学习笔记前言在自然语言处理（NLP）和计算机视觉（CV）等任务中，classification head 是指在深度学习模型的基础网络上添加的一层网络，用来执行特定的分类任务。其核心作用是将模型的输">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Large Language Model for Vulnerability Detection and Repair | JacksonYang的博客</title>
+    <title>Classification Head学习笔记 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -265,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Large Language Model for Vulnerability Detection and Repair</h1>
+                    <h1 class="description center-align post-title">Classification Head学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -302,8 +299,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/paper-reading/" class="post-category">
-                                paper reading
+                            <a href="/categories/ML/" class="post-category">
+                                ML
                             </a>
                         
                     </div>
@@ -315,7 +312,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-08
+                    2024-12-02
                 </div>
                 
 
@@ -324,14 +321,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.5k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    4 分
                 </div>
                 
 
@@ -358,227 +355,36 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
+<h1 id="Classification-Head学习笔记"><a href="#Classification-Head学习笔记" class="headerlink" title="Classification Head学习笔记"></a>Classification Head学习笔记</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在自然语言处理（NLP）和计算机视觉（CV）等任务中，<code>classification head</code> 是指在深度学习模型的基础网络上添加的一层网络，用来执行特定的分类任务。其核心作用是将模型的输出（通常是特征表示）转换为任务所需的类别预测。这一层通常包含全连接层（<code>fully connected</code> layer）、激活函数（如 <code>softmax</code> 或 <code>sigmoid</code>）等组件。</p>
+<p>先来回顾一下分类任务的步骤：</p>
+<ul>
+<li>特征提取</li>
+</ul>
+<p>在大多数情况下，模型（如 <code>BERT</code>、<code>CodeLlama</code> 等）会有一个<strong>预训练的基础部分</strong>，该部分负责从输入数据中提取出有用的特征表示。例如，在文本分类任务中，基础部分通常是一个 <code>Transformer</code> 网络，它会将输入的文本（如代码片段或文章）转换为一组向量表示（特征）</p>
+<ul>
+<li>损失函数（Loss Function）</li>
+</ul>
+<p>通常使用 <strong>交叉熵损失</strong>（<code>CrossEntropyLoss</code>）来评估模型的输出与真实标签之间的差距。在二分类任务中，通常使用 <code>sigmoid</code> 激活和二元交叉熵损失（<code>BCEWithLogitsLoss</code>）。在多分类任务中，使用 <code>softmax</code> 激活和标准交叉熵损失（<code>CrossEntropyLoss</code>）</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>分类头的特点：</p>
+<blockquote>
+<p>简洁性：分类头通常结构简单，包含少量的层，如全连接层（Linear Layer）、激活函数（如Softmax）等</p>
+<p>目标明确：直接针对最终的分类任务设计，目的是将特征空间映射到预定的类别空间中    </p>
+<p>高度可定制：可以根据任务的具体需求（如类别数量）和数据集的特性进行调整</p>
+</blockquote>
+<p>在深度学习模型中，<code>classification head</code> 通常是一个由全连接层（<code>linear layer</code>）和激活函数组成的模块。它通常位于模型的最后部分。</p>
+<p><strong>特征提取</strong>：神经网络的前几层（如卷积层、循环层等）负责从输入数据中提取高维的特征。这个阶段生成的输出通常是一个多维的张量（例如，特征图、特征序列等）。</p>
+<p><strong>展平（Flatten）</strong>：在进行分类时，通常需要将提取的特征展平为一个一维的向量。这样，特征就能被输入到分类头的全连接层。</p>
+<p><strong>全连接层（Fully Connected Layer）</strong>：展平后的特征被传递给一个或多个全连接层。全连接层的任务是将输入的特征映射到目标类别的空间。通常，分类头的最后一层是一个全连接层，输出的维度与类别数相等。</p>
+<p><strong>激活函数（Activation Function）</strong>：分类头的输出通常会通过一个激活函数来得到最终的类别概率或得分。例如，对于二分类问题，使用<strong>Sigmoid</strong>激活函数输出一个概率；对于多分类问题，使用<strong>Softmax</strong>激活函数输出类别概率分布。</p>
+<p>在大多数模型（例如 <code>BERT</code>、<code>CodeLlama</code>）中，分类头通常是附加到模型的最后一层。在实践中，通常是在预训练的 <code>Transformer</code> 模型后，添加一个额外的分类头来完成特定任务（如文本分类、漏洞检测等）。</p>
+<p>使用姿势:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForSequenceClassification, AutoTokenizer</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CodeLlamaWithClassificationHead</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, model_name, num_labels</span>):</span><br><span class="line">        <span class="built_in">super</span>(CodeLlamaWithClassificationHead, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="comment"># 加载预训练的模型（如CodeLlama）</span></span><br><span class="line">        <span class="variable language_">self</span>.transformer = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)</span><br><span class="line">        <span class="variable language_">self</span>.classification_head = ClassificationHead(input_dim=<span class="number">512</span>, output_dim=num_labels)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, input_ids, attention_mask=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="comment"># 从预训练模型获取transformer的输出</span></span><br><span class="line">        transformer_outputs = <span class="variable language_">self</span>.transformer(input_ids=input_ids, attention_mask=attention_mask)</span><br><span class="line">        <span class="comment"># 获取transformer的最后输出（通常是pooling层的输出）</span></span><br><span class="line">        pooled_output = transformer_outputs[<span class="number">0</span>][:, <span class="number">0</span>, :]  <span class="comment"># 获取[CLS] token的输出</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用分类头来生成最终的分类输出</span></span><br><span class="line">        logits = <span class="variable language_">self</span>.classification_head(pooled_output)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> logits</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p><code>CodeLlamaWithClassificationHead</code> 是一个通过 <code>CodeLlama</code> 提取特征并进行分类的模型。它首先使用 <code>CodeLlama</code> 的预训练部分获取特征表示，然后通过分类头将特征映射到类别标签</p>
+<p>针对漏洞检测任务（如二分类任务），模型需要判断给定的代码是否存在漏洞。在这种情况下，<code>classification head</code> 将会预测一个值，表示代码是否存在漏洞（<code>1</code> 表示有漏洞，<code>0</code> 表示无漏洞）。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">input_ids = torch.tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]])  <span class="comment"># 输入的代码片段（tokenized）</span></span><br><span class="line">attention_mask = torch.ones(input_ids.shape)  <span class="comment"># 注意力掩码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们的模型使用预训练的CodeLlama，并有二分类任务</span></span><br><span class="line">model = CodeLlamaWithClassificationHead(model_name=<span class="string">&quot;codeLlama-base&quot;</span>, num_labels=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取分类结果</span></span><br><span class="line">output = model(input_ids, attention_mask=attention_mask)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 logits 和类别概率</span></span><br><span class="line"><span class="built_in">print</span>(output)  <span class="comment"># 这是模型预测的logits，可以进一步应用sigmoid或softmax</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-<h2 id="Large-Language-Model-for-Vulnerability-Detection-and-Repair-Literature-Review-and-the-Road-Ahead"><a href="#Large-Language-Model-for-Vulnerability-Detection-and-Repair-Literature-Review-and-the-Road-Ahead" class="headerlink" title="[Large Language Model for Vulnerability Detection and Repair: Literature Review and the Road Ahead]"></a>[Large Language Model for Vulnerability Detection and Repair: Literature Review and the Road Ahead]</h2><h3 id="Paper-summary"><a href="#Paper-summary" class="headerlink" title="Paper summary"></a>Paper summary</h3><p>TLDR:</p>
-<p>- The paper provides a systematic literature review of the application of Large Language Models (LLMs) in vulnerability detection and repair within the field of Software Engineering (SE).</p>
-<p>- The authors aim to summarize the types of LLMs used, categorize the techniques for adapting LLMs to these tasks, and discuss the challenges and future research directions.</p>
-<p>- They reviewed 36 primary studies from 2018 to 2024, identifying 15 distinct LLMs and various adaptation techniques.</p>
-<p>Algorithmic structure:</p>
-<p>- The paper does not present a new algorithm but reviews existing approaches that utilize LLMs for vulnerability detection and repair.</p>
-<p>- It discusses three categories of LLMs: encoder-only, encoder-decoder, and decoder-only models, and how they are adapted through techniques like fine-tuning, prompting, and domain-specific pre-training.</p>
-<h3 id="Issues-or-targets-addressed-by-the-paper"><a href="#Issues-or-targets-addressed-by-the-paper" class="headerlink" title="Issues or targets addressed by the paper"></a>Issues or targets addressed by the paper</h3><p>- The paper addresses the gap in the literature regarding the comprehensive utilization of LLMs for vulnerability detection and repair.</p>
-<p>- It highlights the need for a focused review to understand the current state, challenges, and future opportunities in this area.</p>
-<h3 id="Detailed-Information"><a href="#Detailed-Information" class="headerlink" title="Detailed Information"></a>Detailed Information</h3><h4 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h4><p>- The problem setting involves source code vulnerability detection and repair, formulated as binary classification and sequence-to-sequence problems, respectively.</p>
-<p>- The evaluation setting includes the use of labeled datasets for fine-tuning and the application of LLMs to predict vulnerabilities or generate fixes.</p>
-<h4 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h4><p>- The methodology involves a systematic literature review (SLR) to collect and analyze studies on the use of LLMs for vulnerability detection and repair.</p>
-<p>- The review includes a search strategy, study selection process, data extraction, and analysis of the collected papers.</p>
-<h4 id="Assumptions"><a href="#Assumptions" class="headerlink" title="Assumptions"></a>Assumptions</h4><p>- The authors assume that the selected conferences and journals are representative of the leading research in the field.</p>
-<p>- They assume that the collected studies provide a comprehensive view of the current state of LLM applications in vulnerability detection and repair.</p>
-<h4 id="Prominent-Formulas-or-Structure"><a href="#Prominent-Formulas-or-Structure" class="headerlink" title="Prominent Formulas or Structure"></a>Prominent Formulas or Structure</h4><p>- N&#x2F;A</p>
-<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><p>- The review identifies a growing interest in LLMs for vulnerability detection and repair, with a peak in 2023 and continued growth in 2024.</p>
-<p>- It reveals that encoder-only LLMs dominate vulnerability detection, while encoder-decoder LLMs are more prominent in vulnerability repair.</p>
-<p>- The paper discusses the effectiveness of various adaptation techniques, with combination with program analysis showing the highest average improvement.</p>
-<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><p>- The authors mention the potential threat to validity due to the risk of inadvertently excluding relevant studies during the literature search and selection phase.</p>
-<p>- They acknowledge that the review’s scope is limited to vulnerability detection and repair and does not cover other vulnerability-related tasks.</p>
-<h4 id="Confusing-aspects-of-the-paper"><a href="#Confusing-aspects-of-the-paper" class="headerlink" title="Confusing aspects of the paper"></a>Confusing aspects of the paper</h4><p>- The paper is a review and does not contain experimental results or a novel method, so there are no confusing aspects related to methodology or results interpretation.</p>
-<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><h4 id="The-author’s-conclusions"><a href="#The-author’s-conclusions" class="headerlink" title="The author’s conclusions"></a>The author’s conclusions</h4><p>- The authors conclude that LLMs show promise for vulnerability detection and repair but face challenges such as data quality, complexity of vulnerability data, and the need for high accuracy and robustness.</p>
-<p>- They suggest that future research should focus on curating high-quality datasets, exploring repo-level detection and repair, and developing customized LLMs for vulnerability tasks.</p>
-<h3 id="Possible-future-work-improvements"><a href="#Possible-future-work-improvements" class="headerlink" title="Possible future work &#x2F; improvements"></a>Possible future work &#x2F; improvements</h3><p>- Future work could involve expanding the review to include other vulnerability-related tasks and a broader range of conferences and journals.</p>
-<p>- Improvements could be made in the methodology by incorporating more rigorous quality assessment criteria for the included studies.</p>
-<p>- Additionally, the development of new adaptation techniques and the exploration of larger LLMs for vulnerability detection and repair could be promising areas for future research.</p>
-<h2 id="Part-1-标题-作者"><a href="#Part-1-标题-作者" class="headerlink" title="Part 1. 标题&amp;作者"></a>Part 1. 标题&amp;作者</h2><p><strong>标题</strong>: Large Language Model for Vulnerability Detection and Repair: Literature Review and the Road Ahead<br><strong>作者</strong>: Zhou, Xin; Kim, Kisub; Xu, Bowen; Liu, Jiakun; Han, DongGyun; Lo, David</p>
-<h2 id="Part-2-摘要"><a href="#Part-2-摘要" class="headerlink" title="Part 2. 摘要"></a>Part 2. 摘要</h2><p>本研究提供了对36项主要研究的系统文献综述，探讨了大语言模型（LLMs）在源代码漏洞检测和修复中的应用，回答3个关键研究问题，我们旨在：( 1 )总结相关文献中使用的LLM；( 2 )分类脆弱性检测中的各种LLM适配技术；( 3 )分类脆弱性修复中的各种LLM适配技术。</p>
-<h2 id="Part-3-导言"><a href="#Part-3-导言" class="headerlink" title="Part 3. 导言"></a>Part 3. 导言</h2><p>传统的技术，如基于规则的检测器或基于程序分析的修复工具，由于高误报率[ 66 ]和它们无法工作于不同类型的漏洞[ 94 ]，分别遇到了挑战。</p>
-<p>大模型预训练模型在漏洞检测和分析中取得了一定成绩(An empirical study of deep learning models for vulnerability detection,Out of Sight, Out of Mind: Better Automatic Vulnerability Repair by Broadening Input Ranges and Sources.).并指出这是由于它们可以从已知漏洞中自动学习特征，并发现&#x2F;修复未发现的漏洞，并且利用大规模预训练获得的丰富知识，加强漏洞检测和修复。</p>
-<p>在这篇文章中，作者总结了18-24年的36篇论文，提出了多个潜在的研究方向,论文的贡献包括：</p>
-<ol>
-<li>对最近36篇关于利用LLMs进行漏洞检测和修复的主要研究进行了系统综述。</li>
-<li>对相关文献中使用的LLMs进行了全面的总结，并分类了用于适应LLMs来完成这两个任务(漏洞检测与修复)的各种技术</li>
-<li>讨论了使用LLMs进行漏洞检测和修复所面临的关键挑战，并提出了多个潜在的研究方向</li>
-</ol>
-<h2 id="Part-4-结论"><a href="#Part-4-结论" class="headerlink" title="Part 4. 结论"></a>Part 4. 结论</h2><p>研究表明，LLMs在漏洞检测和修复方面具有显著的应用潜力。本文总结了相关的LLM技术，并强调了需克服的挑战，包括模型适应性、数据质量和可解释性问题。此外，研究者应关注未来的研究方向，如漏洞定位和评估。</p>
-<h2 id="Part-5-相关工作"><a href="#Part-5-相关工作" class="headerlink" title="Part 5. 相关工作"></a>Part 5. 相关工作</h2><p><strong>研究问题</strong></p>
-<h3 id="RQ1：利用什么LLMs来解决漏洞检测和修复任务"><a href="#RQ1：利用什么LLMs来解决漏洞检测和修复任务" class="headerlink" title="RQ1：利用什么LLMs来解决漏洞检测和修复任务"></a>RQ1：利用什么LLMs来解决漏洞检测和修复任务</h3><p>用于漏洞检测的大模型有13种。codebert占据主导地位，其次是gpt3.5。encoder-only的llms占据61.5%(24&#x2F;39) ，decoder-only的LLMs占28.2 % ( 11 &#x2F; 39 )，encoder-decoder的LLMs占10.3 %<img src="https://img-blog.csdnimg.cn/direct/5cef175223b34f3a9211e8af16552189.png" alt="image1"></p>
-<p>CodeT5 是迄今为止在漏洞修复中占主导地位的LLM，占纳入研究中LLM使用的24.0 % ( 6 &#x2F; 25 )。领域特异性预训练的Seq2Seq Transformers成为研究频率第二高的模型，占LLMs使用的16.0 % ( 4 &#x2F; 25 )。就LLMs的类型而言，编码器-解码器LLMs占所使用LLMs的48 % ( 12 &#x2F; 25 )。之后，仅使用解码器的LLMs和仅使用编码器的LLMs分别占LLMs使用的44 % ( 11 &#x2F; 25 )和8 % ( 2 &#x2F; 25 )。<img src="https://img-blog.csdnimg.cn/direct/ae18a55820114c928701d3023989612d.png" alt="image2&gt;"></p>
-<p>总结：漏洞检测主要用的是encoder-only LLMs，漏洞修复主要用的是encoder-decoder架构的LLMs</p>
-<h3 id="RQ2：LLMs如何适用于漏洞检测"><a href="#RQ2：LLMs如何适用于漏洞检测" class="headerlink" title="RQ2：LLMs如何适用于漏洞检测"></a>RQ2：LLMs如何适用于漏洞检测</h3><p>具体的技术包括三类：</p>
-<h4 id="fine-tuning：该方法使用带标签的数据集来更新LLMs的参数"><a href="#fine-tuning：该方法使用带标签的数据集来更新LLMs的参数" class="headerlink" title="fine-tuning：该方法使用带标签的数据集来更新LLMs的参数"></a>fine-tuning：该方法使用带标签的数据集来更新LLMs的参数</h4><p>微调过程通常涉及数据准备、模型设计、模型训练、模型评估等几个步骤&#x2F;阶段。</p>
-<p>根据它们主要针对的阶段将自适应技术分为五组：以数据为中心的创新(数据准备)、与程序分析相结合(数据准备)、LLM +其他深度学习模块(模型设计)、特定领域的预训练(模型训练)和因果学习(训练优化)。</p>
-<p><strong>数据为中心的创新：</strong></p>
-<p>侧重于优化用于微调LLM的漏洞检测数据。为了解决标签分布不平衡且有噪声和错误以及数据稀缺的问题，研究者提出</p>
-<ul>
-<li>数据采样：为了解决标签不平衡问题，即在数据集中拥有比脆弱代码更多的非脆弱代码样本。Yang等人[ 86 ]应用了各种数据采样技术。他们发现对原始代码数据进行随机过采样增强了基于LLM的漏洞检测方法学习真实漏洞模式的能力</li>
-<li>正例和未标记学习：为了解决标签质量问题，例如噪声或错误的标签，Wen等人[ 80 ]提出了PILOT，它仅从正例(脆弱的)和未标记数据中学习，用于漏洞检测。具体来说，PILOT为选定的未标记数据生成伪标签，并通过使用混合监督损失来减轻数据噪声</li>
-<li>反事实训练：为了增强标注数据的多样性，Kuang等人[ 34 ]提出了在保持语法和语义结构的同时，对源代码中的用户定义标识符进行扰动。这种方法产生了多样化的反事实训练数据，即假设数据(例如,扰动标识符后的数据)不同于实际数据(即,没有扰动的数据)，有利于分析某些因素的影响。结合这些反事实数据，丰富了LLMs的训练数据</li>
-</ul>
-<p><strong>LLMs与程序分析相结合：</strong></p>
-<p>由于预训练使用的是masked language modeling和next token prediction，模型更多捕获的是序列特征而忽略对于代码结构的理解。为此，提出Llm与程序分析相结合的方法。</p>
-<p>该思想包括利用程序分析来提取代码中的结构特征&#x2F;关系，然后将其集成到LLMs中以增强其理解</p>
-<p>方法包括：</p>
-<ul>
-<li>构建AST和PDG，利用这些数据来预训练它们的LLM来预测函数内部的语句级控制依赖和令牌级数据依赖</li>
-<li>利用程序切片提取控制和数据依赖信息，辅助LLMs进行漏洞检测</li>
-<li>通过LLM学习静态源代码信息和动态程序执行轨迹来学习程序表示</li>
-<li>将基于语法的控制流图 ( Control Flow Graphs ，CFGs )分解为多条执行路径，并将这些路径馈送给LLMs进行漏洞检测。</li>
-</ul>
-<p><strong>LLMs与其他深度学习模块的结合</strong></p>
-<p>LLMs本身也有弊端，大多数LLMs都是基于Transformer架构的，它主要对顺序关系和特征进行建模；一些LLMs (例如, CodeBERT)对输入代码片段的长度进行了限制。例如，漏洞检测中最常用的LLM，CodeBERT，只能处理512个令牌</p>
-<p>为了解决以上问题，可以尝试将大模型与其他深度学习模块结合，文章中主要提到两种结合方法：</p>
-<ul>
-<li>LLM + GNN：为了更有效地利用代码的结构特征，Tang等人[ 70 ]提出了CSGVD，它使用图神经网络( GNN )来提取代码的图特征，并将其与CodeBERT提取的特征相结合</li>
-<li>LLM + Bi-LSTM：为了解决LLMs的长度限制，Ziems等人[ 99 ]首先将输入代码分割成多个固定大小的片段。然后，利用BERT对每个片段进行编码，并结合双向长短期记忆网络( BiLSTM )模块来处理BERT在每个片段上的输出。最后，将softmax分类器应用于Bi - LSTM的最后一个隐藏状态，以产生最终的分类分数</li>
-</ul>
-<p><strong>领域特定的预训练</strong></p>
-<p>在特定领域用特定数据进行预训练，针对该领域特定任务进行微调，能使得模型更好地理解与领域相关的数据，包括三个预训练方法</p>
-<ul>
-<li><p>masked language modeling</p>
-<ul>
-<li>增强对于代码的理解</li>
-</ul>
-</li>
-<li><p>contrastive learning</p>
-<ul>
-<li>最小化相似函数之间的距离，同时最大化不相似函数之间的距离。捕获代码特征</li>
-</ul>
-</li>
-<li><p>predicting program dependencies</p>
-<ul>
-<li>学习代码中的依赖关系</li>
-</ul>
-</li>
-</ul>
-<p>在预训练之后，这些特定领域的预训练LLMs在漏洞检测数据集上进行微调，以执行漏洞检测</p>
-<p><strong>因果学习</strong></p>
-<p>LLMs在面对扰动或者遇到OOD 数据时缺乏稳定性(out-of-distribution)</p>
-<p>为了解决这个问题，Rahman等人提出了CausalVul，它首先设计扰动来识别虚假特征，然后在LLMs的基础上应用因果学习算法，特别是do -calculus来促进因果逻辑预测，从而增强LLMs在漏洞检测中的鲁棒性。</p>
-<h4 id="zero-shot-prompting：它冻结了模型参数，并且不考虑任何有标签的数据"><a href="#zero-shot-prompting：它冻结了模型参数，并且不考虑任何有标签的数据" class="headerlink" title="zero-shot prompting：它冻结了模型参数，并且不考虑任何有标签的数据"></a>zero-shot prompting：它冻结了模型参数，并且不考虑任何有标签的数据</h4><p><strong>提示工程</strong></p>
-<p>设计有效的提示来引导LLMs来进行漏洞检测</p>
-<h4 id="few-shot-prompting：这也冻结了参数，但考虑了少量有标签的示例数据点。"><a href="#few-shot-prompting：这也冻结了参数，但考虑了少量有标签的示例数据点。" class="headerlink" title="few-shot prompting：这也冻结了参数，但考虑了少量有标签的示例数据点。"></a>few-shot prompting：这也冻结了参数，但考虑了少量有标签的示例数据点。</h4><p><strong>检索增强</strong></p>
-<p>它是指当给定一个测试数据样本时，从训练集中检索出相似的有标签数据样本，并将这些检索到的数据作为例子来指导LLMs在测试样本上的预测。</p>
-<p>检索工具：</p>
-<ul>
-<li>BM - 25和TF - IDF</li>
-<li>codebert，该方法首先将代码片段转化为语义向量，然后通过计算两个代码片段各自语义向量的Cosine相似度来量化代码片段之间的相似度。最后根据相似度得分返回相似度最高的代码。</li>
-</ul>
-<p>方法如fig5<img src="https://img-blog.csdnimg.cn/direct/90a433a55f2c4e3598c15b40c2098180.png" alt="image&gt;"></p>
-<p>效果如下图</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/efeb63e4e5db48cba6d8c5e8883d5b63.png" alt="detection"></p>
-<p>结论：通过与**程序分析(<strong>combination with program analysis PA</strong> )**技术的结合，实现了最高的平均改进</p>
-<h3 id="RQ3：LLMs如何适用于漏洞修复"><a href="#RQ3：LLMs如何适用于漏洞修复" class="headerlink" title="RQ3：LLMs如何适用于漏洞修复"></a>RQ3：LLMs如何适用于漏洞修复</h3><p><strong>微调</strong></p>
-<ul>
-<li><p>多样化的相关输入</p>
-<ul>
-<li>除了输入易受攻击的代码外，结合其他相关输入可以提高LLMs的有效性。比如漏洞代码的AST，漏洞描述，CWE上分享的代码示例等都可以增强大模型对于漏洞代码的修复能力</li>
-<li>漏洞相关的commit也同样可以提高模型的效率</li>
-<li>为了解决token超出限制的问题，提出了Fusion-in-decoder框架，将一个长代码函数分割成多个片段，并将这些片段逐个送入LLM中</li>
-</ul>
-</li>
-<li><p>以模型为中心的创新</p>
-<ul>
-<li>优先修改LLMs 的架构</li>
-</ul>
-</li>
-<li><p>领域特定的预训练</p>
-<ul>
-<li>指在特定领域的数据上预训练LLM，然后针对目标任务对其进行微调</li>
-<li>提到了迁移学习：首先在bug修复语料上预训练LLM来修复bug，然后在漏洞修复数据集上微调LLM来修复漏洞</li>
-</ul>
-</li>
-<li><p>强化学习</p>
-<ul>
-<li>引入强化学习框架Secure Code，结合了句法和语义调优的LLM，为易受攻击的代码生成修复</li>
-<li>具体来说，他们使用CodeBLEU分数作为句法奖励，BERTScore作为语义奖励。在综合这些奖励之后，他们应用了近似策略优化( PPO )算法来微调CodeGen2 - 7B 模型。</li>
-</ul>
-</li>
-</ul>
-<p><strong>“零”和”少”样本提示</strong></p>
-<ul>
-<li>提示工程</li>
-</ul>
-<p>效果如下图<img src="https://img-blog.csdnimg.cn/direct/b191f898239248b39cec168f547ac4f8.png" alt="repair&gt;"></p>
-<p>结论：不同的自适应技术导致了不同程度的改善，其中特定领域的预训练( DP )获得了最高的平均改善</p>
-<h2 id="Part-8-讨论-总结"><a href="#Part-8-讨论-总结" class="headerlink" title="Part 8. 讨论&amp;总结"></a>Part 8. 讨论&amp;总结</h2><p><strong>挑战</strong></p>
-<ul>
-<li><p>缺乏高质量的脆弱性数据集</p>
-<ul>
-<li><p>包括噪音或者错误的标签</p>
-<ul>
-<li>这种数据质量问题主要归因于漏洞自动收集的使用</li>
-</ul>
-</li>
-<li><p>迄今为止，构建高质量的漏洞基准仍然是一个开放的挑战</p>
-</li>
-<li><p>更值得注意是：LLMs可能将来自于评估数据集包含在预训练数据集中，这种现象被称为数据污染</p>
-</li>
-<li><p>高质量的漏洞基准更倾向于<strong>与LLMs的预训练语料没有重叠</strong></p>
-</li>
-</ul>
-</li>
-<li><p>脆弱性数据的复杂性</p>
-<ul>
-<li>过程间漏洞在漏洞数据中普遍存在且更有挑战</li>
-<li>漏洞包含大量的CWE类型，但是LLMs较少与CWE接触</li>
-<li>在检测跨越多个代码单元的漏洞时，如跨越多个函数，观察到显著的准确性下降。</li>
-<li><strong>未来的研究应该在设计基于LLM的解决方案时考虑漏洞的复杂性质</strong></li>
-</ul>
-</li>
-<li><p>输入程序范围窄</p>
-<ul>
-<li>目前，基于LLM的漏洞检测与修复方案主要针对功能层面的。当面对更宽泛的程序，比如类或者整个仓库时，该方法性能不佳</li>
-<li>功能级漏洞检测方法可能会忽略跨多个功能或类的漏洞，同时面对跨库多函数修改时也存在不足</li>
-<li>除了功能外，<strong>未来的研究可以提出基于LLM的检测&#x2F;修复方法，以处理更广泛的程序</strong></li>
-</ul>
-</li>
-<li><p>高准确度和鲁棒性</p>
-<ul>
-<li>当前最先进方法的准确性都不高</li>
-<li>LLMs对数据扰动是不稳健的</li>
-<li>未来的研究应寻求方法来提高基于LLM的解决方案的<strong>准确性和鲁棒性。</strong></li>
-</ul>
-</li>
-<li><p>与开发者建立信任和协同关系。</p>
-<ul>
-<li>开发人员和基于大模型的漏洞检测和修复方案交互有限，这可能会阻碍实际应用过程中信任和协同的建立</li>
-<li>未来的研究应该探索更有效的策略来促进开发人员和基于LLM的解决方案之间的协作和信任，通过培育信任和协同，基于LLM的解决方案有可能演变为智能盟友，为开发人员提供更有力的支持</li>
-</ul>
-</li>
-</ul>
-<p><strong>机遇</strong></p>
-<ul>
-<li><p>对高质量的测试集进行评分</p>
-<ul>
-<li>虽然为大型数据集获得完全正确的标签是昂贵的，但可行的解决方案是固化一个高质量的测试集(远小于整个数据集)，<strong>以准确评估漏洞检测的进展。</strong></li>
-<li>未来工作的一个简单方法是将分散在几个单独的研究工作(例如, [ 17,28,36 ])中的人工检查的漏洞数据样本组合起来，形成高质量的测试集。</li>
-<li>未来的工作可以<strong>通过高质量的测试集进行实证研究</strong>，以识别漏洞检测的真实进展。此外，通过向社区中添加新的经过人工验证的数据，社区可以维持一个活的高质量测试集。该测试集可以作为漏洞检测的可靠基准</li>
-</ul>
-</li>
-<li><p>仓库级别的漏洞检测和修复</p>
-<ul>
-<li>现有的漏洞检测修复技术都是基于函数和行级别的。一个关键的原因是现有研究中主要使用的CodeBERT和CodeT5等小型LLMs的输入长度限制( 512个子令牌)。</li>
-<li>最近具有更高输入长度容量的大型LLM的出现，如Code Llama ( 16 , 384个子令牌)和GPT - 4 ( 24 576个子令牌)，使其能够更有效地处理回购级数据。这为未来的研究提供了一个机会，通过利用这些较大的LLM来探索Repolevel漏洞检测&#x2F;修复。</li>
-</ul>
-</li>
-<li><p>使用更大的decoder-only LLms</p>
-<ul>
-<li>之前对decoder-only架构的模型，特别是参数大于70亿的模型缺少研究，且与ai发展趋势相反</li>
-<li>23年以来，decoder-only架构模型在代码生成和文本方面表现出色，这使得它们非常适合漏洞修复这一生成任务。</li>
-</ul>
-</li>
-<li><p>先进的LLM的使用和适应</p>
-<ul>
-<li>LLM Agent：LLM可以作为Agent将复杂的任务分解成更小的组件，并使用多个LLM来处理它们[ 77 ]；</li>
-<li>外部工具的使用：LLMs可以利用外部工具，如搜索引擎、外部数据库和其他资源来增强它们</li>
-<li>还有许多技术未被开发，比如迭代检索增强、递归检索增强和自适应检索增强等等</li>
-</ul>
-</li>
-<li><p>针对脆弱性定制Llms</p>
-<ul>
-<li>利用开源漏洞代码未被充分利用，一个有前途的途径是开发针对脆弱性数据定制的LLM</li>
-</ul>
-</li>
-</ul>
 
                 
             </div>
@@ -605,7 +411,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/95ea4264.html">https://yangjx29.github.io/posts/95ea4264.html</a>
+                    <a href="https://yangjx29.github.io/posts/125qg346.html">https://yangjx29.github.io/posts/125qg346.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -718,7 +524,7 @@
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-08T15-52-31',
+        id: '2024-12-02T11-37-12',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -746,58 +552,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/4153f351.html">
+                <a href="/posts/125qg346.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LLMs for Code Analysis-Do LLMs Really Do Their Job">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Classification Head学习笔记">
                         
-                        <span class="card-title">LLMs for Code Analysis-Do LLMs Really Do Their Job</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-09
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/1bb262dc.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="bert">
-                        
-                        <span class="card-title">bert</span>
+                        <span class="card-title">Classification Head学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -808,14 +574,56 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/102fa210.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Pytorch-Sampler类学习笔记">
+                        
+                        <span class="card-title">Pytorch-Sampler类学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
                                 </a>
                             
                             
