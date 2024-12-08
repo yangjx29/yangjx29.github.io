@@ -4,10 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="The Devil is in the Tails How Long-Tailed Code  Distributions Impact Large Language Models, JacksonYang的博客">
+    <meta name="keywords" content="《无从选择——为何多即是少》, JacksonYang的博客">
     <meta name="description" content="
 
-The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Language ModelsPart1. title&amp;amp;SourceTitl">
+无从选择——为何多即是少选择的主客观性不是线性关系选择是具有主观性的，客观状态和主观状态并不是线性相关。比如，直接给你100块钱和扔硬币，如果正面的话得200，否则不得。赚100的主观满足感可能是10，而赚200的主观满足可能只有7。因">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>The Devil is in the Tails How Long-Tailed Code  Distributions Impact Large Language Models | JacksonYang的博客</title>
+    <title>《无从选择——为何多即是少》 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -262,12 +262,12 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">The Devil is in the Tails How Long-Tailed Code  Distributions Impact Large Language Models</h1>
+                    <h1 class="description center-align post-title">《无从选择——为何多即是少》</h1>
                 </div>
             </div>
         </div>
@@ -299,8 +299,8 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/paper-reading/" class="post-category">
-                                paper reading
+                            <a href="/categories/%E8%AF%BB%E7%89%A9/" class="post-category">
+                                读物
                             </a>
                         
                     </div>
@@ -312,7 +312,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-14
+                    2024-12-08
                 </div>
                 
 
@@ -321,14 +321,14 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    5.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    17 分
                 </div>
                 
 
@@ -355,189 +355,42 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h1 id="The-Devil-is-in-the-Tails-How-Long-Tailed-Code-Distributions-Impact-Large-Language-Models"><a href="#The-Devil-is-in-the-Tails-How-Long-Tailed-Code-Distributions-Impact-Large-Language-Models" class="headerlink" title="The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Language Models"></a>The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Language Models</h1><h2 id="Part1-title-Source"><a href="#Part1-title-Source" class="headerlink" title="Part1. title&amp;Source"></a>Part1. title&amp;Source</h2><p><strong>Title</strong>: The Devil is in the Tails: How Long-Tailed Code Distributions Impact Large Language Models<br><strong>Authors</strong>: Xin Zhou, Kisub Kim, Bowen Xu, Jiakun Liu, DongGyun Han, David Lo<br><strong>Source</strong>: arXiv (Published 2023)</p>
-<h2 id="Part2-abstract"><a href="#Part2-abstract" class="headerlink" title="Part2. abstract"></a>Part2. abstract</h2><p>本文探讨了软件工程数据中的长尾分布对大语言模型的影响。研究发现，SE数据通常遵循长尾分布，即少数类别拥有大量样本，而大多数类别的样本很少。本文分析了三项SE任务，揭示了长尾分布对LLMs性能的显著影响。实验结果表明，与频繁标签数据相比，LLMs在不常见标签数据上的性能下降了30.0%到254.0%。研究还提供了应对长尾分布的潜在解决方案，并提出了对未来SE自动化的见解。</p>
-<h2 id="Part3-introduction"><a href="#Part3-introduction" class="headerlink" title="Part3. introduction"></a>Part3. introduction</h2><p>强调了数据分布在机器学习中的重要性，尤其是在代码分析的任务中，而一些具体的tokens比如apis、libraries或者工具可能大量的出现。现有的研究主要集中在改进模型设计，但本文发现数据集的长尾分布也对模型表现有显著影响。<strong>长尾分布意味着少数类别有大量样本，而多数类别的样本极少</strong>。<img src="https://img-blog.csdnimg.cn/direct/772daa0848d14de5b21e188db6e4052b.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;SMQID8FW&quot; width=&quot;615&quot; height=&quot;401&quot; src=&quot;attachments/SMQID8FW.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>前6个漏洞包含了50%的样例，但是这并不能表名后面的漏洞危害不大。</p>
-<p>本文研究了SE任务中的长尾分布如何影响LLMs的性能，特别是在代码生成和分类任务中。通过分析三项具体任务，作者进一步探讨了该分布如何导致模型在处理不常见标签时表现较差。</p>
-<h2 id="Part4-conclusion"><a href="#Part4-conclusion" class="headerlink" title="Part4. conclusion"></a>Part4. conclusion</h2><p>本文通过研究长尾分布对SE任务中LLMs的影响，得出了以下结论：</p>
-<ol>
-<li>长尾分布广泛存在于SE数据集，且严重影响模型在尾部数据上的表现。</li>
-<li>现有模型在尾部数据上的表现比头部数据差30.0%至254.0%。</li>
-<li>针对长尾分布的现有解决方案（如Focal Loss和LRT）在SE任务中效果有限，改善幅度仅为0.3%到1.4%。</li>
-<li>未来的研究需要关注如何更好地处理SE数据中的长尾问题，特别是考虑标签之间的关系以改进尾部数据的学习效果。</li>
-</ol>
-<h2 id="Part5-related-work"><a href="#Part5-related-work" class="headerlink" title="Part5. related work"></a>Part5. related work</h2><p>相关工作涵盖了长尾分布在商业、统计和计算机科学中的不同定义和应用。在商业领域，长尾分布主要用于理论分析，而在计算机科学中，长尾分布更多地指代偏斜分布。作者还提到了代码中的类不平衡问题以及之前关于代码自然性的研究。此外，作者讨论了在SE任务中长尾现象的观察，例如Java项目规模的分布和软件工件的流行度分布，但之前的研究并未深入分析其对LLMs的影响。</p>
-<h2 id="Part6-model-methodology"><a href="#Part6-model-methodology" class="headerlink" title="Part6. model &amp; methodology"></a>Part6. model &amp; methodology</h2><p><strong>方法</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/direct/eb37d25db837428dad8009319d6e0044.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;4J4JVDSA&quot; width=&quot;944&quot; height=&quot;510&quot; src=&quot;attachments/4J4JVDSA.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>RQ1：To what extent do long-tailed distributions exist in the studied SE datasets</p>
-<p>软工领域长尾分布的存在和范围还没有被研究，作者基于此提出了长尾分布分析工具LTAnalyzer，并在三个下游任务中进行了验证</p>
-<p>RQ2：How do the long-tailed distributions affect the effectiveness of learning-based SE techniques</p>
-<p>重点关注两种流行的代码 LLM（CodeBERT 和 CodeT5）和三种研究任务的最新方法。</p>
-<p>RQ3：How effective are the potential solutions to address long-tailed distributions for SE tasks</p>
-<p>作者研究了计算机视觉中的两种技术（Focal Loss  和 LRT ）在长尾 SE 数据集上的有效性。Focal Loss 是一种广泛使用的解决方案，用于减轻长尾分布的影响。LRT 是计算机视觉领域最先进的缓解解决方案</p>
-<p>RQ4：How accurately can we identify the tail</p>
-<p>在推理过程中识别尾部数据对于警告用户预测标签的可靠性非常重要。因此，研究问题旨在研究如何使用微调的 CodeBERT 模型准确地分类测试数据实例是属于头部还是后端。</p>
-<p>使用了3个下游任务，包括两个生成式任务和一个分类任务。</p>
-<p><strong>模型</strong></p>
-<p>本文研究了两类模型：</p>
-<ol>
-<li><strong>主流的LLMs</strong>：包括CodeBERT和CodeT5，这些模型在API序列推荐、代码修订推荐和漏洞类型预测等任务中表现出色。</li>
-<li><strong>最先进的任务特定模型</strong>：包括MulaRec（API序列推荐任务）、T5-Review（代码修订推荐任务）和TreeVul（漏洞类型预测任务）</li>
-</ol>
-<p><strong>LTAnalyzer</strong></p>
-<p>为了量化长尾分布对模型性能的影响，作者设计了一个名为LTAnalyzer的工具来分析数据集的长尾分布，并在模型头部和尾部数据上分别进行性能评估。</p>
-<p>该工具将任务的标记数据集作为输入并输出长尾的程度，主要功能是帮助研究人员分析数据集中的标签分布，并评估长尾分布的严重程度。</p>
-<p>分析步骤如下：</p>
-<ul>
-<li><strong>标识生成任务的唯一标签</strong></li>
+<h1 id="无从选择——为何多即是少"><a href="#无从选择——为何多即是少" class="headerlink" title="无从选择——为何多即是少"></a>无从选择——为何多即是少</h1><h2 id="选择的主客观性不是线性关系"><a href="#选择的主客观性不是线性关系" class="headerlink" title="选择的主客观性不是线性关系"></a>选择的主客观性不是线性关系</h2><p>选择是具有主观性的，客观状态和主观状态并不是线性相关。比如，直接给你100块钱和扔硬币，如果正面的话得200，否则不得。赚100的主观满足感可能是10，而赚200的主观满足可能只有7。因为这其中你承担了50%的风险，<strong>人的本性是趋于规避风险的。</strong></p>
+<img src="E:\Typora\pictures\image-20241208210037527.png" alt="image-20241208210037527" style="zoom: 50%;" />
+
+<h2 id="获得效应"><a href="#获得效应" class="headerlink" title="获得效应"></a>获得效应</h2><p><strong>人们讨厌损失</strong>，一项研究将获得效应在两种情况下,分别影响人们购买汽车的决定做了比较。其中一个情形是,研究人员在汽车上添加了许多选项,参与者的任务是把那些他们不想要的配置剔除。另一个情形是,他们没有任何选项,任务是加上自己想要的配置。第1种情况下的参与者比后者选择了更多地配置。这是因为那些预先添加的选项已成为汽车的一部分,放弃便会产生损失的感觉。如果原先没有附带的配置,它们便不是固有的部分,而选择它们也会产生获益的感觉。但是由于损失带来的不快要比获益产生的喜悦强烈得多,因此人们普遍认为,放弃400美元为音响升级的选项,带来的损失要高于400美元的价格。相反,如果音响升级不是原先就有的选项,那他们会觉得多花400美元换来的快乐并非一定物有所值。因此,<strong>获得效应在人们实际完成交易前就已产生作用</strong>。</p>
+<h2 id="尽取者和满足者"><a href="#尽取者和满足者" class="headerlink" title="尽取者和满足者"></a>尽取者和满足者</h2><p>尽取者即万事追求一个最字，追求完美；而满足着达到预期即可。尽取者更容易后悔，且尽取的代价是昂贵的，其需要花费更多的时间人力物力成本，最后的主观获得感却不尽如满足者。</p>
+<p>事实上<strong>尽取者不等于完美主义者</strong>,完美主义者和尽取者一样,都寻求做到最好。但我认为,他们之间有着截然不同的区别。他们对事物都有非常高的标准,但完美主义者并不期待能达到这个标准,而尽取者却拼命地要实现这个目标。这就解释了在完美度测量中得高分的人,为什么不会像尽取度测量的高分者那样感到压抑、后悔和郁闷不乐。尽管完美主义者对他们自己的表现,可能有时没有应有的那么开心,但比起尽取者,他们已显得开心多了。</p>
+<h2 id="金钱不能让人感到快乐"><a href="#金钱不能让人感到快乐" class="headerlink" title="金钱不能让人感到快乐"></a>金钱不能让人感到快乐</h2><p>生活在富有国家的人们比生活在贫穷国家的人们快乐。显而易见,金钱对快乐程度有举足轻重的影响。不过,同时告诉我们金钱的影响并没有我们想象的那么大。当一个社会的人均财富跨过贫穷线,进入了适度生存的水准,即使全国的财富再往上涨对快乐程度几乎没有产生什么影响。举例说,虽然日本人平均比波兰人富有10倍,但你在波兰和日本可以看到同样多的快乐人群。而在财富相近的国家,波兰人比匈牙利人快乐得多(冰岛人比美国人也快乐得多)。</p>
+<p>如果金钱不能让人更快乐,那什么能做到?看起来,提供快乐的最重要因素是亲密的社会关系。那些结了婚、有好朋友和家庭融洽的人比其他人快乐;参加宗教活动的人比没参加的人快乐。保持与他人良好的关系,在主观自我良好感觉方面,比富有更重要。但这里有一个值得注意的地方。我们可以肯定保持与他人的密切关系和自身的快乐有关,可哪一个是因,哪一个是果,却还不清楚。两者的关系是相互的:快乐的人吸引其他人与之相处而与其他人相处让人感觉快乐。</p>
+<p>在这个关于选择和自主权的讨论当中,必须注意到,在很多方面,社会关系实际上降低自由、选择和自主权。以婚姻为例,婚姻是对另外一个特定者的承诺,这种承诺限制了人们性活动或在感情对象上的选择。同样,认真的友情也要求各方通过长期的努力来维系,作为朋友,你就得担起相应的责任和义务,尽管这在有些时候会限制了你个人的自由。显然,这种限制在家庭中也会存在，而在很大程度上,宗教社团也不例外。大部分宗教的教会都要求信徒以某种方式生活,并对其他教友的幸福承担一定的责任。<strong>最能带来快乐的事情实际上是对自己的限制,而并不是让我们得到更多的自由。</strong>这看起来不合情理。而这种见解,又如何与自由选择产生满足这一普遍的观点相一致呢?</p>
+<p>生活上有太多的选择了，却没有人关注其不堪重负的结果。人们缺乏约束自身的习惯，就是说，人们更乐于去发现或创造自我,，而不是去接受一个指定的角色。</p>
+<h2 id="渴望未必喜欢"><a href="#渴望未必喜欢" class="headerlink" title="渴望未必喜欢"></a>渴望未必喜欢</h2><p>对自主权和选择的自由给予那么高的评价,你一定会认为有了它们会让我们更快乐。通常来说,我们所渴望要的,会是我们所喜欢的,也一定是会让我们开心的。然而,最近一些有力的证据,显示“渴望”跟“喜欢”是由大脑完全不同的系统支配。大脑的系统会经常一起运作,但肯定不是必需的。瘾君子在深度毒瘾阶段,即使已经不能从吸毒中得到趣,但他们还是极度“渴望”得到毒品(这是沉溺的本质)。刺激老鼠大脑的一些部位会让它“渴望”食物,虽然没有证据显示它在享受食物。</p>
+<h2 id="选择为什么困难"><a href="#选择为什么困难" class="headerlink" title="选择为什么困难"></a>选择为什么困难</h2><p>在人类历史的大部分时间里,人们的面前并没有一连串的选择和机会成本。人们不是问“我应该选择A、B、还是C?”,而更多的是问“我应该要还是不要?”在物质匮乏的年代,机会并不是成串地出现,而人们要做出的决定,往往是尝试或回避、接受或拒绝。在那个年代,对什么是好,什么是坏有着清楚的认识,是人们求生的基本要素。不过,分辨-件事的好坏是挺简单的,但要分辨最好、不错和好就复杂得多。鉴于人类漫长的简单生存方式,我们很可能还没有在生理上为当今社会提供的大量选择做好准备。</p>
+<p>心理学家苏珊·苏格曼(SusanSugarman)曾提出,我们可以从小孩早期的发展过程中,看到人类历史的速写。婴儿不需要在选项中挑选,他们只需要接受或拒绝所给予的东西。对刚学会走路的幼儿也一样,家长会问“要果汁吗?”“想去公园吗?”“想去玩滑梯吗?”,而幼儿只需要简单地回答要或不要。也许,忽然有一天孩子已经具有足够的语言沟通能力,家长会问“你要橙汁还是苹果汁?”“你要去公园还是去游泳池?”“你想玩滑梯还是荡秋千?”,到这个阶段,要或不要已经不能应付这些问题了。一位母亲这样形容她5岁孩子进退两难的情形:我发现儿子有些时候在取舍一件东西的选择上出现困难。我觉得这跟选择牵涉到损失的感觉有关，选择了其中一件东西意味着要失去另一件东西。虽然最终的选择似乎缓解了他的窘境,但失去的感觉还是减低了他得到东西的快乐。我注意到他总是犹豫不决，好像行为被冰封了一般。他真的没法做出决定,除非给他一点刺激。尤其在最近,我发现他在面对不同颜色的冰棍时,就出现这样的问题。</p>
+<p><strong>随着年龄增长,我们渐渐懂得生活中少不了抉择和放弃。但人类的进化过程使得这种道理成为困难的一课</strong>。学会选择是困难的,学会做出好的选择就更难,而在无穷无尽的选择当中做出正确的决定那就难上加难。也许,是难以做到的。</p>
+<h3 id="我们是否应该反事实思考"><a href="#我们是否应该反事实思考" class="headerlink" title="我们是否应该反事实思考"></a>我们是否应该反事实思考</h3><p>让后悔的问题更严重的是,这种后悔的想法不仅发生在客观的现实中。人类的想象力,使人们常常想出一些根本不存在的事实。</p>
+<p>研究反事实思考的心理学家普遍发现,<strong>大部分人通常不会无意识地进行反事实思考</strong>。我们不会在品尝清早的咖啡时,问自己如果不是生在美国而是南非的话,我们的生活会是怎样的;也不会去想如果地球的轨迹与太阳的距离再接近几于英里会发生什么，反之,<strong>反事实思考一般是由一些不愉快的事,或一些产生负面情绪的事而引发的</strong>。反事实思考是对考试成绩不好、爱情关系出现问题、关爱的人生病或去世等体验而产生的反应。而在反事实思考开始之时,往往会引起更多的负面情绪,例如后悔。由此,反事实思考越深,负面情绪便越严重。尽管大部分人都能够抑制他们的反事实思考,避免陷入这个痛苦的漩涡,但还是有一些人,特别是那些患有抑郁症的人,很有可能深陷其中,无法自拔。研究人员在分析反事实思考的实例时发现,人们更倾向于从他们自己可控制的范围去考虑。当假设在一个能见度很低的下雨天一个人超速驾驶可能引发意外事故时,大部分受访者都以应更警觉开车来“排除”意外,而不会选择将雨天改为晴朗。这种集中于个人控制能力的思维,跟我较早前提出的后悔与责任互相关联的论点是一致的。当然,在我们经历的大部分情况里,既有很多我们能控制的方面,也有一些是我们所不能控制的。一个不努力学习的学生考试成绩很差,他应该也必须为不多花时间学习负上责任,不过,考试是否可以再容易一点,出题也可以更集中于学生熟悉的范围。反事实思考总钻人人们在一件事情上的可控制方面这个事实让人们在反事实思考时形成后悔的机会大大提高了。</p>
+<p><strong>反事实思考中还有一个“向上”和“向下”的重要区别。向上的反事实思考是想象一个比实际情况更好的结果,而向下的反事实思考则是比实际情况更差</strong>。奥运银牌获得者要是想象可能被绊倒,或者摔倒在地而不能完成比赛,那她是在进行向下的反事实思考,而这样做会让她夺得银牌的感觉好一点。而在她向上的反事实思考中–想象夺得金牌–则会削弱她的成就感。可见,向下的反事实思考不仅可能带来满足感,更有可能带来对事情没有变得更坏的欣慰。然而,一些研究的结果告诉我们,人们除非被特别要求这样做,否则很少会产生向下的反事实思考。从上述的分析中,我们可以得出一个很重要的结论,那就是说我们不应该停止这种思考;因为反事实思考实际上是一个很有力的智能工具。重要的是,我们应该多一点尝试进行向下的反事实思考。向上的思考可以激发我们在下一-次做得更好,而向下的思考则可以让我们对这次不错的结果觉得欣慰。处理好向上和向下的思考平衡,可以让我们避免陷人懊悔的痛苦中,同时又可以激励我们改进自己的表现。</p>
+<h2 id="规避后悔"><a href="#规避后悔" class="headerlink" title="规避后悔"></a>规避后悔</h2><p>在斟酌少赚但稳当与多赚却有风险的选择时，<strong>人们往往弃险趋稳</strong>.在稳赚100元和只有50%可能赚200元之间，大部分人会选前者.这是因为在主观上，200元的吸引力不等于100元的两倍，不值得去承担得失各半的风险。而放弃风险的另一个原因，是人们“厌恶后悔”(后悔厌恶)。<strong>假设你在稳赚100元和有风险地赚200元之间选择了前者，你可能永远不知道如果选择有风险的200元会是什么样的结果。因此，你没有理由对选择稳赚100元而感到后悔</strong>。相反，如果你选择冒险，你不能阻止自己知道另一个选择的结果，因为它是肯定的事情.所以如果选择了风险而最后输掉，你不但一无所有，而且每次想到本可稳赚的100元都会觉得如坐针毡。选择确定的事情是避免后悔的一个方法，你不会后悔的原因是你永远不会知道另一个选择会有什么样的结果</p>
+<p>避免后悔可能造成的另外一个后果,是导致人们停止任何行动,被称之为“不行动惯性”(inaction inertia)。假设你正要买一套沙发并看见你喜欢的一套刚好在打七折,但那时你刚开始选购,觉得有可能找到更好的而不为减价所动。几个星期的采购后你并没有发现更好的选择,于是你回去最早的那家商店。然而,问题是现在的价钱仅为九折。你会买吗?对很多购物者来说答案是否定的。如果买的话,不可避免会对晚下决定而深感后悔:如果不买的话,找到更好沙发的机会依然存在。</p>
+<h2 id="习惯让人失望"><a href="#习惯让人失望" class="headerlink" title="习惯让人失望"></a>习惯让人失望</h2><p>人类这个普遍存在的特点,是一个被称为“习惯”(adaptation)的心理过程。简单来说,在我们逐渐适应生活中的事物后,我们会开始认为这些事物是理所当然的。我的第一部桌上电脑只有8K的记忆储存,得用外加磁盘来下载程式(下载一个简单的程式也需5分钟),但用起来很简单。我非常喜欢它,因为它为我做了很多事情。而去年我扔掉了一部电脑,尽管它比第一部电脑的容量和速度都好数千倍,可是它不能符合我的需要。其实那么多年来我通过电脑所做的工作没有改变,但我对电脑的期望改变了。当我第一次安装有线电视的时候,我被清晰的画面迷住了,也对它所<br>提供的更多节目选择而兴奋(当时的选择比今天少得多)。现在每当有线电视节目播送完后,我会觉得不舒服,要抱怨好的节目太少。当一年四季都能买到大量不同季节的水果和蔬菜的时候,我仿佛觉得找到了天堂。可现在,我觉得这种反季节的蔬果供应是理所当然的,如果在2月份买到的以色列或秘鲁的桃子不是甜而多汁,我甚至会很生气。我已经习惯了这种快乐的来源,而这些事情已经不再让我感觉是快乐的来源了。因为这种习惯心理,人们对积极体验的热情难以持续。更糟糕的是,人们似乎都普遍不能预期这种习惯过程的出现。人们快乐和享受的感觉随着时间的推移而褪色,甚至演变成一个令人泪丧的意外结果。</p>
+<h2 id="决定自己的选择"><a href="#决定自己的选择" class="headerlink" title="决定自己的选择"></a>决定自己的选择</h2><p>我们知道，选择的机会是快乐生活所必不可少的，但选择有一些负面的特性，这些消极面会随着选择数量的增加而升级.我们所面对的每一个选择的好处是显而易见的，可是代价却在不知不觉中，一点一滴地积累.换言之，并非某一个选择都会出现问题，而是所有的选择造成了人们的苦恼.放弃选择的机会并非易事.要理解的最重要一点，是在大部分情形下我们所关注的并不是决定的客观结果，而是主观结果如果选择的能力让你得到更好的汽车、房子、工作、假期或咖啡机，但选择的过程让你对所做的决定不满意，那你其实并没有从选择的机会中得到什么好处.而在绝大部分情况下，过量的选择带来的正是更好的客观结果和更坏的主观结果并存.要处理好过量选择的问题，我们必须要决定生活中的哪些选择是确实重要的，将时间和精力集中在那些选项上，并放弃一些不必要的选择机会.如果限制了选项，我们就可以少费一些精力，多获一份舒心.试试下面的做法:</p>
+<p>1.回顾一下最近做的一些决定,无论这些决定是大还是小(买衣服、新厨具、旅游地、退休金投资分配、医疗保险、工作或感情关系的改变);<br>2.将决定的过程逐项列出,包括步骤、时间、分析和所产生的焦虑;<br>3.回忆自己做那些决定时的感受:<br>4.问一下自己,你的决定最后带来了什么好处。</p>
+<p>这个练习可以帮助你更好地理解你为决定所付出的代价,这样可能会帮你更好地放弃一些选项,或至少能在考虑选项的数量上,或在选择中所花的时间和精力上逐步建立起自己的行为准则。举例说,你可以规定自己在买衣服的时候最多只到两家商店,或者在安排假期时,最多只考虑两个地点。这种自我限制看来既困难又专横,但实际上,这是我们在生活某些方面应采取的自律方式。你可能已有每次聚会喝酒不超过两杯的自我约定。其实酒的味道不错且让你感觉舒爽,你只要一挥手,下一杯马上送到。不过,你控制住自己了。对大部分人来说控制饮酒量并没有太大的困难,这里的原因何在?其中一个原因,是社会已就过量喝酒的危险发出了强烈的明示。第二个原因是你可能有过喝多的教训,并尝到那醉酒的痛苦感觉。没有人说第三杯酒一定会让你不省人事,但为什么要去受这种苦呢?不幸的是,直到现在,社会还没有发出过量逛商场危险的明示**,你也没有特别感觉到过量的选择所带来的不舒服**。然而如果你认同本书所提出的论点和实例,你现在已认识到选择有不好的一面,那么,你就会更容易适应和接受“两个选择是我的上限”这个准则。我以为,这值得一试。</p>
+<h2 id="对于选择应该做什么"><a href="#对于选择应该做什么" class="headerlink" title="对于选择应该做什么"></a>对于选择应该做什么</h2><ul>
+<li>决定自己的选择</li>
+<li>做个选择者，别当捡拾者</li>
+<li>多些满足，少些尽取</li>
+<li>想想机会成本的成本</li>
+<li>让决定不可逆转</li>
+<li>采取感恩的心态</li>
+<li>少一点后悔</li>
+<li>降低习惯效应</li>
+<li>控制期望值</li>
+<li>减少社会比较</li>
+<li>学会自我限制</li>
 </ul>
-<p>分析数据分布时LTAnalyzer 首先对分类任务和生成任务进行区分</p>
-<ol>
-<li><strong>分类任务</strong>：对于分类任务，标签通常是互斥的，即每个数据样本只能属于一个标签。LTAnalyzer 可以直接识别这些标签，并分析它们的分布。</li>
-<li><strong>生成任务</strong>：生成任务中的标签并不直接以类的形式出现，而是通过生成的序列（例如API调用序列或代码修改序列）表现出来。因此，LTAnalyzer 针对生成任务的特定需求，定义了独特的标签形式。例如，对于API序列推荐任务，API是最细粒度的单位，因此被定义为标签；而在代码修订推荐任务中，标签则被定义为代码的具体修改操作（token-level edits）。</li>
-</ol>
-<ul>
-<li><strong>量化长尾分布</strong>：LTAnalyzer 使用 <strong>Gini 系数</strong> 来量化数据集的长尾程度，从而帮助研究人员明确长尾分布对数据集的影响。</li>
-</ul>
-<p>$Gini&#x3D;\frac{\sum_{i&#x3D;1}^n\sum_{j&#x3D;1}^n|x_i-x_j|}{2n^2\bar{x}}$</p>
-<blockquote>
-<ol>
-<li><p>xi 表示标签 iii 所对应的样本数量；</p>
-</li>
-<li><p>n 是数据集中标签的总数；</p>
-</li>
-<li><p>$\bar{x}$</p>
-<p> 是所有标签样本数的平均值</p>
-</li>
-</ol>
-</blockquote>
-<p>Gini 系数为 0% 时，表示完美均等分布，即每个标签都有相同的样本数量；100% 则表示极端不平等分布，即只有一个标签拥有全部样本。</p>
-<h2 id="Part7-experiment"><a href="#Part7-experiment" class="headerlink" title="Part7. experiment"></a>Part7. experiment</h2><p><strong>RQ1: Extent of LT Distribution</strong></p>
-<p>长尾分布图：前 213 个常用 API（在 99,317 个 API 中）占数据样本的一半；尽管每个尾部标签的数据样本较少，但尾部标签中有许多重要的标签。例如，到 2022 年，前 25 种最危险的 CWE 类型中有 14 种属于尾部</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/781fe924b0a64d259a30303785ab40ba.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;99G2BADA&quot; width=&quot;1215&quot; height=&quot;306&quot; src=&quot;attachments/99G2BADA.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>SE数据集比CV领域的长尾数据集的长尾性更高，可能是SE数据集的标签具有唯一性导致的<img src="https://img-blog.csdnimg.cn/direct/9c8a585af03a42b9bc0de28e0c1a65bf.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;K7ZARFBM&quot; width=&quot;626&quot; height=&quot;246&quot; src=&quot;attachments/K7ZARFBM.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ2: Impacts on DL Models</strong></p>
-<p>对于生成式任务来说，计算 Ground Truth 序列中标签的倒数频率之和作为序列级分数</p>
-<p>$\sum_{x_i\in x_{set}}\frac1{freq(x_i)}$</p>
-<blockquote>
-<p>f req（.） 是标签的频率</p>
-<p>$x_{set}$  &#x3D; [x0， x1， …， xn] 是指 ⟨input， ground truth⟩ 的真值中包含的标签</p>
-</blockquote>
-<p>序列水平得分较高（包含更多不频繁标签）的数据有一半是 tail 数据，其余是 head 数据</p>
-<p>重点探讨了长尾分布对模型性能的影响，具体任务包括：</p>
-<ol>
-<li><strong>API序列推荐</strong>：MulaRec、CodeBERT和CodeT5在尾部数据上的性能分别比头部数据差30.0%、53.3%和32.7%。</li>
-<li><strong>代码修订推荐</strong>：T5-Review、CodeBERT和CodeT5在尾部数据上的性能差异达到了243.9%、254.0%和203.7%。</li>
-<li><strong>漏洞类型预测</strong>：TreeVul、CodeBERT和CodeT5在尾部数据上的表现分别差43.6%、39.4%和60.9%。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/direct/39fb4d5e75c54708b2adf711279a52eb.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;YCYRLPKV&quot; width=&quot;1174&quot; height=&quot;325&quot; src=&quot;attachments/YCYRLPKV.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>同时，作者在10个小组进行了三个任务的测试，结果表明与另外两个任务不同，漏洞检测任务有一个<strong>明显的阶梯模式</strong>，更频繁的数据标签（前 40% 的数据），结果更好（准确率为 80-98%），而对于不太频繁的数据标签（最后 60% 的数据），性能显著下降（准确率为 31-73%）<img src="https://img-blog.csdnimg.cn/direct/39a914b064064f62be0a86dd2044cd3e.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;S83H85Z5&quot; width=&quot;1120&quot; height=&quot;379&quot; src=&quot;attachments/S83H85Z5.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>同时，作者还通过量化分析表名长尾分布影响了模型的有效性。在代码修复任务中，比如public(head)和protected(tail)，以及在漏洞检测中正确和错误的案例<img src="https://img-blog.csdnimg.cn/direct/e5ec3a6f7f4f47fa839dd51278b5b862.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;E7JBCB4L&quot; width=&quot;624&quot; height=&quot;710&quot; src=&quot;attachments/E7JBCB4L.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ3: Effectiveness of LT Solutions</strong></p>
-<p>此外，作者还尝试了Focal Loss和LRT等解决方案，尽管在计算机视觉领域效果较好，但在SE任务中效果不显著，提升仅为0.3%到1.4%。可能是因为这些解决方案将每个标签视为完全不同的标签，而忽略了它们之间的关系。</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/fcec0717593d4b1888a8b18794bad7ce.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;R8TNI3YT&quot; width=&quot;700&quot; height=&quot;658&quot; src=&quot;attachments/R8TNI3YT.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p><strong>RQ4: Tail Data Detection</strong></p>
-<p>通过微调 CodeBERT 模型来执行二元分类任务，将 tail 视为正类，将 head 视为负类并训练 CodeBERT 以最小化交叉熵损失。实验结果如下，在 API 序列推荐和漏洞类型预测中，对尾部的准确识别 （准确率分别为 84.4% 和 81.7%）。但是，我们的方法在代码修订建议中实现了 66.7% 的较低准确率。这表明识别尾部的难度因任务和关联的数据集而异</p>
-<p>尾部检测的潜在应用是建议用户忽略对尾部数据的预测或者强制自动化 SE 工具输出类似“由于缺乏相关知识，我不确定答案”之类的响应</p>
-<p><img src="https://img-blog.csdnimg.cn/direct/3e60d342ee4d472b912497db5126ef61.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;N4T9Y33A&quot; width=&quot;664&quot; height=&quot;148&quot; src=&quot;attachments/N4T9Y33A.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<h2 id="Part8-discussion-future-work"><a href="#Part8-discussion-future-work" class="headerlink" title="Part8. discussion&amp;future work"></a>Part8. discussion&amp;future work</h2><p>作者还讨论了传统的机器学习模型(适用于分类任务)比如逻辑回归 （LR） [75]、决策树 （DT） [76]、支持向量机 （SVM） [77] 和随机森林 （RF）在漏洞类型预测任务上的表现，与llms表现出相同的趋势<img src="https://img-blog.csdnimg.cn/direct/fec4bc40aaab4705b3c874a90839d8a9.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;CDJHSYES&quot; width=&quot;629&quot; height=&quot;183&quot; src=&quot;attachments/CDJHSYES.png&quot; ztype=&quot;zimage&quot;&gt;"></p>
-<p>作者也提醒我们需要注意平均结果需要谨慎使用，这种做法无意中掩盖了模型在尾部的缺点，因为它在头部数据上表现得非常好，但在尾部数据上表现不佳。在漏洞类型预测中，有 117 个类别，TreeVul 在大多数类型（107 种尾部类型）上实现了 60.6% 的准确率，但由于 6 种头部类型的准确率很高 （87.0%），平均结果为 73.1%。但是，在此任务中，TreeVul 在大多数 CWE 类型（107 种尾部类型）上无法达到 73.1% 的准确率。</p>
-<p>针对软件领域，需要一种定制的方法来有效地学习数据中的尾部。需要<strong>考虑丰富的标签关系</strong></p>
-<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><p><strong>真值和标签</strong></p>
-<ul>
-<li>真值（Ground Truth）</li>
-</ul>
-<p>真值指的是模型应该预测的<strong>正确答案</strong>，通常是由人工标注或根据已知的事实得出的。在训练或测试模型时，真值是模型用于比对其预测结果是否正确的标准</p>
-<ol>
-<li><p><strong>API序列推荐任务</strong>：真值是指给定代码上下文和自然语言查询后，模型应该生成的正确API调用序列。这个序列是从真实代码中提取出来的。例如：</p>
-<ul>
-<li>输入：一个Java函数的部分代码和Javadoc描述。</li>
-<li>真值：该函数接下来应该调用的API序列，如 <code>Reader.read()</code>、<code>System.arraycopy()</code> 等。</li>
-</ul>
-</li>
-<li><p><strong>代码修订推荐任务</strong>：真值是根据代码审查者的评论，模型应该生成的修订后的代码版本。这一版本是开发者在真实代码审查过程中对代码进行修改后得到的。例如：</p>
-<ul>
-<li>输入：原始代码和审查者评论。</li>
-<li>真值：修订后的代码，如把一个 <code>public</code> 方法修改为 <code>protected</code>。</li>
-</ul>
-</li>
-<li><p><strong>漏洞类型预测任务</strong>：真值是补丁对应的具体漏洞类型（如CWE类型），这些漏洞类型是由安全专家根据补丁的实际性质标注的。例如：</p>
-<ul>
-<li>输入：一个安全补丁的代码提交。</li>
-<li>真值：这个补丁对应的CWE漏洞类型，如 <code>CWE-79</code>（跨站脚本攻击）或 <code>CWE-863</code>（不正确的授权）。</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>标签（Labels）</li>
-</ul>
-<p>标签通常是指模型在训练过程中所使用的目标类别或目标数据。它们是用于监督学习的关键部分，模型通过学习数据与标签之间的对应关系，来进行预测。</p>
-<ol>
-<li><p><strong>API序列推荐任务</strong>：标签是每个API调用的名称。在训练过程中，模型会学习输入代码片段和自然语言描述与对应API调用序列之间的关系。例如，在Java函数的实现中，常见的标签包括 <code>Reader.read</code>、<code>System.arraycopy</code> 等API调用。如果函数中使用了这些API，模型需要学会预测这些API。</p>
-</li>
-<li><p><strong>代码修订推荐任务</strong>：标签是指代码修订中的具体<strong>修改操作</strong>，即代码在审查后所做的改动。每个修改操作（如插入某个关键词、删除某个变量）可以看作是一个标签。例如，如果审查者评论要求修改方法的访问权限，那么标签可能是 “删除 <code>public</code> 并插入 <code>protected</code>“。</p>
-</li>
-<li><p><strong>漏洞类型预测任务</strong>：标签是补丁的漏洞类型（CWE类型），这些标签表示模型需要预测补丁所属的具体漏洞类别。例如，一个补丁可能被标注为 <code>CWE-79</code>（跨站脚本攻击），这是模型需要学习的标签</p>
-</li>
-</ol>
-<p><strong>两者关系</strong></p>
-<p><strong>真值是实际存在的数据</strong>，是模型预测结果的<strong>标准答案</strong>，而标签是指模型在训练过程中<strong>使用的已标注好的类别或输出</strong>。在训练过程中，模型通过学习训练数据的<strong>输入与标签之间的映射关系</strong>，来学会在测试数据上<strong>预测与真值相符的标签</strong>。</p>
-<ol>
-<li><p><strong>API序列推荐任务</strong>：</p>
-<ul>
-<li><strong>输入</strong>：自然语言查询 “Read data from file” 和代码上下文。</li>
-<li><strong>真值</strong>：应该调用的API序列，例如 <code>FileReader.read()</code> 和 <code>BufferedReader.readLine()</code>。</li>
-<li><strong>标签</strong>：API名称，如 <code>FileReader.read()</code> 和 <code>BufferedReader.readLine()</code>。</li>
-</ul>
-</li>
-<li><p><strong>代码修订推荐任务</strong>：</p>
-<ul>
-<li><strong>输入</strong>：审查者的评论：”The method should be protected instead of public”。</li>
-<li><strong>真值</strong>：修改后的代码 <code>protected void methodName()</code>。</li>
-<li><strong>标签</strong>：具体修改操作，如 “删除 <code>public</code> 并插入 <code>protected</code>“。</li>
-</ul>
-</li>
-<li><p><strong>漏洞类型预测任务</strong>：</p>
-<ul>
-<li><strong>输入</strong>：某个安全补丁的代码。</li>
-<li><strong>真值</strong>：对应的漏洞类型为 <code>CWE-79</code>（跨站脚本攻击）。</li>
-<li><strong>标签</strong>：<code>CWE-79</code>，表示补丁所属的漏洞类别</li>
-</ul>
-</li>
-</ol>
-<p><strong>分割数据集</strong></p>
-<p>长尾分布意味着数据集中存在少数频繁出现的标签（头部标签）和大量出现频率低的标签（尾部标签）。这些尾部标签尽管样本少，但往往非常重要。然而，机器学习模型通常倾向于在频繁标签（头部数据）上表现良好，而在不常见的标签（尾部数据）上表现较差。因此，分割数据集并分别评估模型在头部和尾部数据上的表现，可以揭示模型在不同标签分布下的性能差异。<br>除了将数据集简单地分为头部和尾部数据，作者还进一步将测试集<strong>细化为10个小组</strong>，每组包含相同数量的样本，但按标签的频率从高到低排序。这种细化分割的目的是为了更精确地分析模型在不同频率标签上的表现，提供更加细致的洞察。</p>
-<p><strong>长尾现象在llms中出现的原因</strong></p>
-<ul>
-<li><strong>自然语言和代码数据的内在分布特性</strong></li>
-</ul>
-<p>无论是自然语言数据还是代码数据，它们都天然存在<strong>长尾分布</strong>。这意味着在这些数据集中，少量的词汇、代码模式或API调用会频繁出现，而大量的其他词汇或代码片段则很少出现。这种不平衡分布是由以下几个原因造成的：</p>
-<ol>
-<li><p>语言的高重复性和模式化。</p>
-</li>
-<li><p>开发者行为的多样性，不同的开发者和团队可能在相同问题上采用不同的解决方案或风格，这会进一步扩大长尾现象</p>
-</li>
-</ol>
-<ul>
-<li><strong>模型训练中的偏差</strong></li>
-</ul>
-<p>LLMs的训练过程中，数据分布的偏差会导致模型<strong>偏向于学习频繁出现的模式</strong>，而忽略那些不常见的模式。这种偏差在以下几个方面体现出来:</p>
-<ol>
-<li>频繁标签的影响更大，模型在训练过程中，频繁出现的标签（即头部标签）占据了大部分的训练数据，因此它们对模型参数的更新影响更大。随着模型不断优化这些频繁标签的预测能力，它对不常见的标签（即尾部标签）的关注度和学习效果相对较低。长尾现象会导致模型更加“偏向”高频的模式，忽略或学习不足低频的稀有模式</li>
-<li>损失函数的影响，传统的损失函数（如交叉熵损失）在处理不平衡数据时，倾向于最小化整个数据集上的平均误差，而非对不平衡数据进行加权。这意味着模型更多地关注那些频繁出现的模式，而忽略了稀有模式。</li>
-</ol>
-<ul>
-<li><strong>稀有标签的学习困难</strong></li>
-</ul>
-<ol>
-<li><p>稀有标签的学习本质上是一个小样本学习（few-shot learning）问题。由于长尾分布中的尾部标签样本数量非常少，模型在训练过程中很难<strong>从少量的训练样本中学习到有效的特征</strong>。</p>
-</li>
-<li><p>数据采集偏差：数据集通常是从开源代码库、论坛（如Stack Overflow）、版本控制系统（如GitHub）等来源收集的。在这些数据中，常用的代码库和函数调用会被频繁使用和记录，而那些特殊用途或行业专用的代码库则很少被使用。这导致数据集中某些API调用或代码模式的频率极低</p>
-</li>
-<li><p>样本不足：对于尾部标签，模型可能只在训练数据中见到过几次甚至一次样本。在这种情况下，模型很难学习到这个标签的正确使用方式或生成模式。这意味着即使模型在测试时遇到这些标签，它也无法正确地进行预测。</p>
-</li>
-</ol>
 
                 
             </div>
@@ -564,7 +417,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/posts/4153f578.html">https://yangjx29.github.io/posts/4153f578.html</a>
+                    <a href="https://yangjx29.github.io/posts/301asjd312.html">https://yangjx29.github.io/posts/301asjd312.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -677,7 +530,7 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-10-14T14-15-51',
+        id: '2024-12-08T22-37-12',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -705,58 +558,18 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/4153v419.html">
+                <a href="/posts/301asjd312.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="ChatGPT for Vulnerability Detection, Classification, and Repair How Far Are We">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="《无从选择——为何多即是少》">
                         
-                        <span class="card-title">ChatGPT for Vulnerability Detection, Classification, and Repair How Far Are We</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-15
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/paper-reading/" class="post-category">
-                                    paper reading
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/4153f451.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Natural Attack for Pre-trained Models of Code">
-                        
-                        <span class="card-title">Natural Attack for Pre-trained Models of Code</span>
+                        <span class="card-title">《无从选择——为何多即是少》</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -767,7 +580,49 @@ The Devil is in the Tails: How Long-Tailed Code  Distributions Impact Large Lan
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%BB%E7%89%A9/" class="post-category">
+                                    读物
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/92012s0215.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
+                        
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-08
                             </span>
                         <span class="publish-author">
                             
