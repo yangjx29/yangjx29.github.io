@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于, JacksonYang的博客">
-    <meta name="description" content="JacksonYang的博客">
+    <meta name="keywords" content="peft学习笔记, JacksonYang的博客">
+    <meta name="description" content="
+
+前言最近做实验时发现对模型架构理解不够深入，理论联系不了实际。在微调时候总会出现由于参数不同导致的错误。所以写下此篇文章，期望能够进一步了解模型每一层的作用。
+RoBERTaModel以RoBERTaModel为例，先将加载模型打印出来">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于 | JacksonYang的博客</title>
+    <title>peft学习笔记 | JacksonYang的博客</title>
     <link rel="icon" type="image/png" href="/medias/image.png">
     
     <style>
@@ -260,12 +263,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于</h1>
+                    <h1 class="description center-align post-title">peft学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -294,6 +297,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/ML/" class="post-category">
+                                ML
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -301,7 +313,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-08-06
+                    2024-12-15
                 </div>
                 
 
@@ -310,14 +322,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    150
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -344,30 +356,222 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer"/>
 
-<h2 id="🔥-Biography"><a href="#🔥-Biography" class="headerlink" title="🔥 Biography"></a>🔥 Biography</h2><img src="https://img-blog.csdnimg.cn/direct/4a6bf912c60749c99a277eee69b7b27f.png" alt="I look like this" style="zoom: 33%;" />    
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做实验时发现对模型架构理解不够深入，理论联系不了实际。在微调时候总会出现由于参数不同导致的错误。所以写下此篇文章，期望能够进一步了解模型每一层的作用。</p>
+<h2 id="RoBERTaModel"><a href="#RoBERTaModel" class="headerlink" title="RoBERTaModel"></a>RoBERTaModel</h2><p>以RoBERTaModel为例，先将加载模型打印出来：</p>
+<blockquote>
+<p>RobertaModel(</p>
+<p> (embeddings): RobertaEmbeddings(</p>
+<p>  (word_embeddings): Embedding(50265, 768, padding_idx&#x3D;1)</p>
+<p>  (position_embeddings): Embedding(514, 768, padding_idx&#x3D;1)</p>
+<p>  (token_type_embeddings): Embedding(1, 768)</p>
+<p>  (LayerNorm): LayerNorm((768,), eps&#x3D;1e-05, elementwise_affine&#x3D;True)</p>
+<p>  (dropout): Dropout(p&#x3D;0.1, inplace&#x3D;False)</p>
+<p> )</p>
+<p> (encoder): RobertaEncoder(</p>
+<p>  (layer): ModuleList(</p>
+<p>   (0-11): 12 x RobertaLayer(</p>
+<p>​    (attention): RobertaAttention(</p>
+<p>​     (self): RobertaSdpaSelfAttention(</p>
+<p>​      (query): Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)</p>
+<p>​      (key): Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)</p>
+<p>​      (value): Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)</p>
+<p>​      (dropout): Dropout(p&#x3D;0.1, inplace&#x3D;False)</p>
+<p>​     )</p>
+<p>​     (output): RobertaSelfOutput(</p>
+<p>​      (dense): Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)</p>
+<p>​      (LayerNorm): LayerNorm((768,), eps&#x3D;1e-05, elementwise_affine&#x3D;True)</p>
+<p>​      (dropout): Dropout(p&#x3D;0.1, inplace&#x3D;False)</p>
+<p>​     )</p>
+<p>​    )</p>
+<p>​    (intermediate): RobertaIntermediate(</p>
+<p>​     (dense): Linear(in_features&#x3D;768, out_features&#x3D;3072, bias&#x3D;True)</p>
+<p>​     (intermediate_act_fn): GELUActivation()</p>
+<p>​    )</p>
+<p>​    (output): RobertaOutput(</p>
+<p>​     (dense): Linear(in_features&#x3D;3072, out_features&#x3D;768, bias&#x3D;True)</p>
+<p>​     (LayerNorm): LayerNorm((768,), eps&#x3D;1e-05, elementwise_affine&#x3D;True)</p>
+<p>​     (dropout): Dropout(p&#x3D;0.1, inplace&#x3D;False)</p>
+<p>​    )</p>
+<p>   )</p>
+<p>  )</p>
+<p> )</p>
+<p>)</p>
+</blockquote>
+<p>然后来逐一分析：</p>
+<h3 id="RobertaEmbeddings（嵌入层）"><a href="#RobertaEmbeddings（嵌入层）" class="headerlink" title="RobertaEmbeddings（嵌入层）"></a>RobertaEmbeddings（嵌入层）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(RobertaEmbeddings(</span><br><span class="line">    (word_embeddings): Embedding(50265, 768, padding_idx=1)</span><br><span class="line">    (position_embeddings): Embedding(514, 768, padding_idx=1)</span><br><span class="line">    (token_type_embeddings): Embedding(1, 768)</span><br><span class="line">    (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">    (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>I am an undergraduate at University of Electronic Science and Technology of China (<a target="_blank" rel="noopener" href="https://en.uestc.edu.cn/">UESTC</a>), majoring in Software Engineering. From January to July 2024, I worked as an intern at <a target="_blank" rel="noopener" href="https://www.bytedance.com/">ByteDance</a>.Before that,I learned c++ related content.</p>
-<p>Now I am studying on my own with the fields related to artificial intelligence large models to lay the foundation for my graduate studies.</p>
-<h2 id="📖-Education"><a href="#📖-Education" class="headerlink" title="📖 Education"></a>📖 Education</h2><ul>
-<li>Sept. <em>2025</em> - June. <em>2028</em> (expected), Master, School of Software, Zhejiang University (ZJU)</li>
-<li>Sept. <em>2021</em> - June. <em>2025</em> (expected), Bachelor of Software and Engineering, University of Electronic Science and Technology of China (UESTC)</li>
-<li>GPA (Bachelor):  <strong>3.90 &#x2F; 4.00</strong>, Rank: <strong>18 &#x2F; 151</strong></li>
+<blockquote>
+<p>将输入的文本序列通过词嵌入、位置嵌入和标记类型嵌入相加，再进行层归一化和丢弃处理，得到模型的初始输入表示</p>
+</blockquote>
+<p><strong><code>word_embeddings: Embedding(50265, 768, padding_idx=1)</code></strong></p>
+<ul>
+<li>将输入的词汇表中的每个词（最多50265个）映射到768维的向量空间。</li>
 </ul>
-<h2 id="🎖-Selected-Honors-and-Awards"><a href="#🎖-Selected-Honors-and-Awards" class="headerlink" title="🎖 Selected Honors and Awards"></a>🎖 Selected Honors and Awards</h2><ul>
-<li><em>2022.12</em> Outstanding Student Scholarship Of UESTC 2022</li>
-<li><em>2023.12</em> Outstanding Student Scholarship Of UESTC 2023</li>
-<li><em>2023.08</em> The National Grand Prize of Chinese Collegiate Computing Competition(<strong>4C</strong>)</li>
+<p>比如：输入句子 “Hello world”，每个词被转换为768维的向量表示，用于后续处理</p>
+<p><strong><code>position_embeddings</code></strong>: <code>Embedding(514, 768, padding_idx=1)</code></p>
+<ul>
+<li>为每个位置添加一个位置嵌入，帮助模型理解标记的顺序。</li>
 </ul>
-<h2 id="📝-Publications"><a href="#📝-Publications" class="headerlink" title="📝 Publications"></a>📝 Publications</h2><div class='paper-box'>
-<!-- <div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div> -->
-<div class='paper-box-text' markdown="1">
-Waiting~
-</div>
-</div>
+<p>比如：句子中的第一个词 “Hello” 添加位置0的嵌入，第二个词 “world” 添加位置1的嵌入，依此类推</p>
+<p><strong><code>token_type_embeddings</code></strong>: <code>Embedding(1, 768)</code></p>
+<ul>
+<li>用于区分不同类型的标记（如句子A和句子B）。在 RoBERTa 中通常不使用（单一类型）。</li>
+</ul>
+<p>比如：在双句子任务中，第一个句子所有词的 <code>token_type_embeddings</code> 为0，第二个句子为1</p>
+<p><strong><code>LayerNorm</code></strong>: <code>LayerNorm((768,), eps=1e-05, elementwise_affine=True)</code></p>
+<ul>
+<li>对嵌入进行层归一化，稳定训练过程。</li>
+</ul>
+<p><strong><code>dropout</code></strong>: <code>Dropout(p=0.1, inplace=False)</code></p>
+<ul>
+<li>在训练过程中随机丢弃部分神经元，防止过拟合。</li>
+</ul>
+<h3 id="RobertaEncoder（编码器）"><a href="#RobertaEncoder（编码器）" class="headerlink" title="RobertaEncoder（编码器）"></a>RobertaEncoder（编码器）</h3><blockquote>
+<p>计算输入序列中每个词对其他词的注意力权重，生成上下文感知的词表示。例如，在句子 “The cat sat on the mat”，模型会根据上下文调整每个词的表示，如 “sat” 可能更多关注 “cat” 和 “mat”。</p>
+</blockquote>
+<p><strong>组成部分：</strong></p>
+<ol>
+<li><strong>12个 RobertaLayer</strong></li>
+</ol>
+<ul>
+<li>栈式的Transformer编码器层，用于<strong>逐层提取和转换特征</strong></li>
+</ul>
+<p>而每个 RobertaLayer 又包含:</p>
+<ul>
+<li><strong>RobertaAttention注意力层</strong></li>
+<li><strong>RobertaIntermediate中间层</strong></li>
+<li><strong>RobertaOutput输出层</strong></li>
+</ul>
+<p>具体来说，这三层分别又包括：</p>
+<ol>
+<li><strong>RobertaAttention</strong>注意力层</li>
+</ol>
+<ul>
+<li>self（自注意力机制）: <code>RobertaSdpaSelfAttention</code><ul>
+<li>query, key, value（查询、键、值）: Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)<ul>
+<li>将输入向量线性变换为查询、键和值向量，用于计算注意力分数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>比如：对输入的词向量进行变换，生成用于自注意力计算的Q、K、V矩阵。</p>
+<ul>
+<li>dropout（丢弃层）: Dropout(p&#x3D;0.1, inplace&#x3D;False)<ul>
+<li>在注意力权重上应用丢弃，防止过拟合。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>output（自注意力输出）: <code>RobertaSelfOutput</code></p>
+<ul>
+<li><p>dense（全连接层）: Linear(in_features&#x3D;768, out_features&#x3D;768, bias&#x3D;True)</p>
+<ul>
+<li>将注意力输出进行线性变换，恢复原始维度。</li>
+</ul>
+</li>
+<li><p>LayerNorm（层归一化）: LayerNorm((768,), eps&#x3D;1e-05, elementwise_affine&#x3D;True)</p>
+<ul>
+<li>归一化处理，稳定训练过程。</li>
+</ul>
+</li>
+<li><p>dropout（丢弃层）: Dropout(p&#x3D;0.1, inplace&#x3D;False)</p>
+<ul>
+<li>应用丢弃，防止过拟合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>RobertaIntermediate</strong>中间层</li>
+</ol>
+<blockquote>
+<p>将自注意力层的输出扩展到3072维，通过GELU激活函数增加非线性，增强模型对复杂模式的捕捉能力 </p>
+</blockquote>
+<ul>
+<li>dense（全连接层）: <code>Linear(in_features=768, out_features=3072, bias=True)</code><ul>
+<li>将输入向量扩展到更高维度（通常是4倍的隐藏维度），以增强模型的表达能力。</li>
+</ul>
+</li>
+<li>intermediate_act_fn（激活函数）: <code>GELUActivation()</code><ul>
+<li>应用GELU激活函数，引入非线性。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>RobertaOutput</strong>输出层</li>
+</ol>
+<blockquote>
+<p>将高维的中间表示降维回768维，并进行归一化和丢弃处理，准备传递到下一层或输出</p>
+</blockquote>
+<ul>
+<li>dense（全连接层）: <code>Linear(in_features=3072, out_features=768, bias=True)</code><ul>
+<li>将中间层的高维表示降维回768维，与原始隐藏维度保持一致。</li>
+</ul>
+</li>
+<li>LayerNorm（层归一化）: <code>LayerNorm((768,), eps=1e-05, elementwise_affine=True)</code><ul>
+<li>归一化处理，稳定训练过程。</li>
+</ul>
+</li>
+<li>dropout（丢弃层）: <code>Dropout(p=0.1, inplace=False)</code><ul>
+<li>应用丢弃，防止过拟合</li>
+</ul>
+</li>
+</ul>
+<h2 id="了解模型架构有什么用"><a href="#了解模型架构有什么用" class="headerlink" title="了解模型架构有什么用"></a>了解模型架构有什么用</h2><h3 id="1-调试和故障排除"><a href="#1-调试和故障排除" class="headerlink" title="1.调试和故障排除"></a>1.调试和故障排除</h3><p>拿我遇到的实际问题举例，在分类任务中，我们给出一段代码，首先需要将这个代码片段进行分词处理并转换成模型能够接受的输入特征形式(token_id)</p>
+<p>代码示意如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InputFeatures</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A single training/test features for a example.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,</span></span><br><span class="line"><span class="params">                 input_tokens,</span></span><br><span class="line"><span class="params">                 input_ids,</span></span><br><span class="line"><span class="params">                 position_idx,</span></span><br><span class="line"><span class="params">                 dfg_to_code,</span></span><br><span class="line"><span class="params">                 dfg_to_dfg,</span></span><br><span class="line"><span class="params">                 idx,</span></span><br><span class="line"><span class="params">                 label</span></span><br><span class="line"><span class="params"></span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="variable language_">self</span>.input_tokens = input_tokens</span><br><span class="line">        <span class="variable language_">self</span>.input_ids = input_ids</span><br><span class="line">        <span class="variable language_">self</span>.position_idx = position_idx</span><br><span class="line">        <span class="variable language_">self</span>.dfg_to_code = dfg_to_code</span><br><span class="line">        <span class="variable language_">self</span>.dfg_to_dfg = dfg_to_dfg</span><br><span class="line">        <span class="variable language_">self</span>.idx=<span class="built_in">str</span>(idx)</span><br><span class="line">        <span class="variable language_">self</span>.label=label</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">convert_examples_to_features</span>(<span class="params">js,tokenizer,args</span>):</span><br><span class="line">    <span class="comment">#source</span></span><br><span class="line">    code=<span class="string">&#x27; &#x27;</span>.join(js[<span class="string">&#x27;func&#x27;</span>].split())</span><br><span class="line">    dfg, index_table, code_tokens = extract_dataflow(code, <span class="string">&quot;c&quot;</span>)</span><br><span class="line"></span><br><span class="line">    code_tokens=[tokenizer.tokenize(<span class="string">&#x27;@ &#x27;</span>+x)[<span class="number">1</span>:] <span class="keyword">if</span> idx!=<span class="number">0</span> <span class="keyword">else</span> tokenizer.tokenize(x) <span class="keyword">for</span> idx,x <span class="keyword">in</span> <span class="built_in">enumerate</span>(code_tokens)]</span><br><span class="line">    ori2cur_pos=&#123;&#125;</span><br><span class="line">    ori2cur_pos[-<span class="number">1</span>]=(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(code_tokens)):</span><br><span class="line">        ori2cur_pos[i]=(ori2cur_pos[i-<span class="number">1</span>][<span class="number">1</span>],ori2cur_pos[i-<span class="number">1</span>][<span class="number">1</span>]+<span class="built_in">len</span>(code_tokens[i]))    </span><br><span class="line">    code_tokens=[y <span class="keyword">for</span> x <span class="keyword">in</span> code_tokens <span class="keyword">for</span> y <span class="keyword">in</span> x]</span><br><span class="line"></span><br><span class="line">    code_tokens=code_tokens[:args.code_length+args.data_flow_length-<span class="number">2</span>-<span class="built_in">min</span>(<span class="built_in">len</span>(dfg),args.data_flow_length)]</span><br><span class="line">    source_tokens =[tokenizer.cls_token]+code_tokens+[tokenizer.sep_token]</span><br><span class="line">    source_ids =  tokenizer.convert_tokens_to_ids(source_tokens)</span><br><span class="line">    position_idx = [i+tokenizer.pad_token_id + <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(source_tokens))]</span><br><span class="line">    dfg = dfg[:args.code_length+args.data_flow_length-<span class="built_in">len</span>(source_tokens)]</span><br><span class="line">    source_tokens += [x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">    position_idx+=[<span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">    source_ids+=[tokenizer.unk_token_id <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">    padding_length=args.code_length+args.data_flow_length-<span class="built_in">len</span>(source_ids)</span><br><span class="line">    position_idx+=[tokenizer.pad_token_id]*padding_length</span><br><span class="line">    source_ids+=[tokenizer.pad_token_id]*padding_length</span><br><span class="line"></span><br><span class="line">    reverse_index=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> idx,x <span class="keyword">in</span> <span class="built_in">enumerate</span>(dfg):</span><br><span class="line">        reverse_index[x[<span class="number">1</span>]]=idx</span><br><span class="line">    <span class="keyword">for</span> idx,x <span class="keyword">in</span> <span class="built_in">enumerate</span>(dfg):</span><br><span class="line">        dfg[idx]=x[:-<span class="number">1</span>]+([reverse_index[i] <span class="keyword">for</span> i <span class="keyword">in</span> x[-<span class="number">1</span>] <span class="keyword">if</span> i <span class="keyword">in</span> reverse_index],)    </span><br><span class="line">    dfg_to_dfg=[x[-<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">    dfg_to_code=[ori2cur_pos[x[<span class="number">1</span>]] <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">    length=<span class="built_in">len</span>([tokenizer.cls_token])</span><br><span class="line">    dfg_to_code=[(x[<span class="number">0</span>]+length,x[<span class="number">1</span>]+length) <span class="keyword">for</span> x <span class="keyword">in</span> dfg_to_code]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> InputFeatures(source_tokens, source_ids, position_idx, dfg_to_code, dfg_to_dfg, js[<span class="string">&#x27;idx&#x27;</span>],js[<span class="string">&#x27;target&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TextDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, tokenizer, args, file_path=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.examples = []</span><br><span class="line">        <span class="variable language_">self</span>.args=args</span><br><span class="line">        <span class="comment"># 首先看看有没有cache的文件.</span></span><br><span class="line">        file_type = file_path.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>].split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        folder = <span class="string">&#x27;/&#x27;</span>.join(file_path.split(<span class="string">&#x27;/&#x27;</span>)[:-<span class="number">1</span>]) <span class="comment"># 得到文件目录</span></span><br><span class="line"></span><br><span class="line">        cache_file_path = os.path.join(folder, <span class="string">&#x27;cached_&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(</span><br><span class="line">                                    file_type))</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\n cached_features_file: &#x27;</span>,cache_file_path)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="variable language_">self</span>.examples = torch.load(cache_file_path)</span><br><span class="line">            logger.info(<span class="string">&quot;Loading features from cached file %s&quot;</span>, cache_file_path)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            logger.info(<span class="string">&quot;Creating features from dataset file at %s&quot;</span>, file_path)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(file_path) <span class="keyword">as</span> f:</span><br><span class="line">                <span class="keyword">for</span> line <span class="keyword">in</span> tqdm(f):</span><br><span class="line">                    js=json.loads(line.strip())</span><br><span class="line">                    <span class="variable language_">self</span>.examples.append(convert_examples_to_features(js,tokenizer,args))</span><br><span class="line">                    <span class="comment"># 这里每次都是重新读取并处理数据集，能否cache然后load</span></span><br><span class="line">            logger.info(<span class="string">&quot;Saving features into cached file %s&quot;</span>, cache_file_path)</span><br><span class="line">            torch.save(<span class="variable language_">self</span>.examples, cache_file_path)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;train&#x27;</span> <span class="keyword">in</span> file_path:</span><br><span class="line">            <span class="keyword">for</span> idx, example <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.examples[:<span class="number">3</span>]):</span><br><span class="line">                    logger.info(<span class="string">&quot;*** Example ***&quot;</span>)</span><br><span class="line">                    logger.info(<span class="string">&quot;idx: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx))</span><br><span class="line">                    logger.info(<span class="string">&quot;label: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(example.label))</span><br><span class="line">                    logger.info(<span class="string">&quot;input_tokens: &#123;&#125;&quot;</span>.<span class="built_in">format</span>([x.replace(<span class="string">&#x27;\u0120&#x27;</span>,<span class="string">&#x27;_&#x27;</span>) <span class="keyword">for</span> x <span class="keyword">in</span> example.input_tokens]))</span><br><span class="line">                    logger.info(<span class="string">&quot;input_ids: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, example.input_ids))))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(<span class="variable language_">self</span>.examples)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, item</span>):</span><br><span class="line">        <span class="comment">#calculate graph-guided masked function </span></span><br><span class="line">        total_length = <span class="variable language_">self</span>.args.code_length + <span class="variable language_">self</span>.args.data_flow_length</span><br><span class="line">        attn_mask=np.zeros((<span class="variable language_">self</span>.args.code_length+<span class="variable language_">self</span>.args.data_flow_length,</span><br><span class="line">                            <span class="variable language_">self</span>.args.code_length+<span class="variable language_">self</span>.args.data_flow_length),dtype=<span class="built_in">bool</span>)</span><br><span class="line">        <span class="comment">#calculate begin index of node and max length of input</span></span><br><span class="line">        </span><br><span class="line">        node_index=<span class="built_in">sum</span>([i&gt;<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable language_">self</span>.examples[item].position_idx])</span><br><span class="line">        max_length=<span class="built_in">sum</span>([i!=<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable language_">self</span>.examples[item].position_idx])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 确保 node_index 和 max_length 不超过 total_length</span></span><br><span class="line">        node_index = <span class="built_in">min</span>(node_index, total_length-<span class="number">1</span>)</span><br><span class="line">        max_length = <span class="built_in">min</span>(max_length, total_length-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#sequence can attend to sequence</span></span><br><span class="line">        attn_mask[:node_index,:node_index]=<span class="literal">True</span></span><br><span class="line">        <span class="comment">#special tokens attend to all tokens</span></span><br><span class="line">        <span class="keyword">for</span> idx,i <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.examples[item].input_ids):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>]:</span><br><span class="line">                idx = <span class="built_in">min</span>(idx, total_length -<span class="number">1</span>)</span><br><span class="line">                attn_mask[idx,:max_length]=<span class="literal">True</span></span><br><span class="line">        <span class="comment">#nodes attend to code tokens that are identified from</span></span><br><span class="line">        <span class="keyword">for</span> idx,(a,b) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.examples[item].dfg_to_code):</span><br><span class="line">            <span class="keyword">if</span> a&lt;node_index <span class="keyword">and</span> b&lt;node_index:</span><br><span class="line">                </span><br><span class="line">                attn_mask[<span class="built_in">min</span>(idx+node_index,total_length-<span class="number">1</span>),a:b]=<span class="literal">True</span></span><br><span class="line">                attn_mask[a:b,<span class="built_in">min</span>(idx+node_index,total_length-<span class="number">1</span>)]=<span class="literal">True</span></span><br><span class="line">        <span class="comment">#nodes attend to adjacent nodes </span></span><br><span class="line">        <span class="keyword">for</span> idx,nodes <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.examples[item].dfg_to_dfg):</span><br><span class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> nodes:</span><br><span class="line">                <span class="keyword">if</span> a+node_index&lt;<span class="built_in">len</span>(<span class="variable language_">self</span>.examples[item].position_idx):</span><br><span class="line">                    attn_mask[<span class="built_in">min</span>(idx+node_index,total_length-<span class="number">1</span>),<span class="built_in">min</span>(a+node_index,total_length-<span class="number">1</span>)]=<span class="literal">True</span></span><br><span class="line">              </span><br><span class="line">        <span class="keyword">return</span> (torch.tensor(<span class="variable language_">self</span>.examples[item].input_ids),</span><br><span class="line">              torch.tensor(attn_mask),</span><br><span class="line">              torch.tensor(<span class="variable language_">self</span>.examples[item].position_idx),</span><br><span class="line">              torch.tensor(<span class="variable language_">self</span>.examples[item].label))</span><br></pre></td></tr></table></figure>
 
-<h2 id="💻-Internships"><a href="#💻-Internships" class="headerlink" title="💻 Internships"></a>💻 Internships</h2><ul>
-<li><em>2024.01</em> - <em>2024.07</em>, RD Intern, Douyin life service, ByteDance</li>
+<p>这段代码是在进行模型训练和推理前的数据准备，具体包括：</p>
+<p><strong><code>InputFeatures</code> 类</strong>：用于封装单个样本的特征。</p>
+<p><strong><code>convert_examples_to_features</code> 函数</strong>：将原始数据转换为 <code>InputFeatures</code> 实例。</p>
+<p><strong><code>TextDataset</code> 类</strong>：一个 PyTorch 的 <code>Dataset</code>，负责加载、缓存和提供数据样本。</p>
+<p>主要来看convert_examples_to_features函数：</p>
+<p>首先需要注意的**<code>input_ids</code>**，这是是一个包含词元（tokens）对应的词汇表索引的列表。这些索引用于模型的嵌入层，将词元转换为向量表示。它的维度是由什么决定的呢</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">code_tokens = code_tokens[:args.code_length + args.data_flow_length - <span class="number">2</span> - <span class="built_in">min</span>(<span class="built_in">len</span>(dfg), args.data_flow_length)]</span><br><span class="line">source_tokens = [tokenizer.cls_token] + code_tokens + [tokenizer.sep_token]</span><br><span class="line">source_ids = tokenizer.convert_tokens_to_ids(source_tokens)</span><br><span class="line">position_idx = [i+tokenizer.pad_token_id + <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(source_tokens))]</span><br></pre></td></tr></table></figure>
+
+<p>这段代码确保了代码部分的词元被截断以确保总长度不超过 <code>args.code_length + args.data_flow_length - 2 - min(len(dfg), args.data_flow_length)</code>，而position_idx是由source_tokens长度决定的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dfg = dfg[:args.code_length + args.data_flow_length - <span class="built_in">len</span>(source_tokens)]</span><br><span class="line">source_tokens += [x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br><span class="line">source_ids += [tokenizer.unk_token_id <span class="keyword">for</span> x <span class="keyword">in</span> dfg]</span><br></pre></td></tr></table></figure>
+
+<p>DFG 信息被添加到 <code>source_tokens</code> 和 <code>source_ids</code> 中，确保总长度不超过 <code>args.code_length + args.data_flow_length</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">padding_length = args.code_length + args.data_flow_length - <span class="built_in">len</span>(source_ids)</span><br><span class="line">source_ids += [tokenizer.pad_token_id] * padding_length</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>source_ids</code> 的长度不足，总长度为 <code>args.code_length + args.data_flow_length</code>，则使用 <code>pad_token_id</code> 进行填充</p>
+<ul>
+<li>上述逻辑保持input_ids与args.code_length + args.data_flow_length相等，所以**<code>input_ids</code> 的长度始终为** <code>args.code_length + args.data_flow_length</code></li>
 </ul>
+<p>假设 <code>args.code_length = 512</code> 和 <code>args.data_flow_length = 128</code>，则：input_ids的长度为 512 + 128 &#x3D; 640。</p>
+<p>这样会导致一个问题，如果input_id的维度是[block_size,args.code_length + args.data_flow_length],如果embedding的维度不同，就会导致模型参数不匹配，进一步导致训练终止</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/5e5f530ca3254d0986478b95520e36ab.png" alt="00A38A07"><strong>理解输入嵌入层工作流程</strong></p>
+<p>在上述列子中，<code>InputFeatures</code> 类封装了模型的输入特征，主要包括：</p>
+<ul>
+<li><strong><code>input_ids</code></strong>: 一个包含词元（tokens）对应的词汇表索引的列表。</li>
+<li><strong><code>position_idx</code></strong>: 一个包含每个词元位置索引的列表，用于指示词元在序列中的位置</li>
+</ul>
+<p>嵌入层的架构如下</p>
+<blockquote>
+<p>(RobertaEmbeddings(<br>    (word_embeddings): Embedding(50265, 768, padding_idx&#x3D;1)<br>    (position_embeddings): Embedding(514, 768, padding_idx&#x3D;1)<br>    (token_type_embeddings): Embedding(1, 768)<br>    (LayerNorm): LayerNorm((768,), eps&#x3D;1e-05, elementwise_affine&#x3D;True)<br>    (dropout): Dropout(p&#x3D;0.1, inplace&#x3D;False)<br>))</p>
+</blockquote>
+<p>工作流程：</p>
+<ol>
+<li>word_embeddings：将 <code>input_ids</code> 中的每个词元索引通过 <code>word_embeddings</code> 转换为 768 维的向量</li>
+<li>Position Embedding：将 <code>position_idx</code> 中的每个位置索引通过 <code>position_embeddings</code> 转换为 768 维的向量</li>
+<li>Token Type Embedding</li>
+<li>合并嵌入（Combine Embeddings），将词嵌入、位置嵌入和标记类型嵌入相加，得到每个词元的最终嵌入表示，然后进行 <code>LayerNorm</code> 和 <code>dropout</code> 处理，得到模型的输入表示</li>
+<li>输入传递到编码器（Encoder），经过嵌入层处理后的向量被传递到编码器（<code>RobertaEncoder</code>），开始进一步的特征提取和表示学习</li>
+</ol>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a><strong>问题</strong></h4><p>应该很容易就看出来,<code>(position_embeddings): Embedding(514, 768, padding_idx=1)</code>的维度是514，而<code>input_ids</code> 和 <code>position_idx</code> 的长度必须与模型嵌入层的期望长度一致，即 <code>args.code_length + args.data_flow_length</code></p>
+<p>有两种情况会导致出现问题：</p>
+<ul>
+<li><p>位置索引超出了 <code>position_embeddings</code> 的最大位置数（514）</p>
+</li>
+<li><p>词汇表索引超出了 <code>word_embeddings</code> 的词汇表大小（50265）</p>
+</li>
+</ul>
+<p>很明显，我们的例子中，position_idx维度是640，已经超出模型的position_embeddings预期了。</p>
+<p>解决：调整args.code_length + args.data_flow_length的和小于514,同时需要确保每一个id是符合预期的</p>
+<h3 id="2-优化和定制模型"><a href="#2-优化和定制模型" class="headerlink" title="2.优化和定制模型"></a>2.优化和定制模型</h3><p>这点就不用多说了，比如在预训练好的模型基础上增加一个分类头，专门用于分类训练(我就是这么干的)</p>
 
                 
             </div>
@@ -394,7 +598,7 @@ Waiting~
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yangjx29.github.io/about/index.html">https://yangjx29.github.io/about/index.html</a>
+                    <a href="https://yangjx29.github.io/posts/111ad625.html">https://yangjx29.github.io/posts/111ad625.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -507,7 +711,7 @@ Waiting~
         repo: 'gitalk',
         owner: 'yangjx29',
         admin: "yangjx29",
-        id: '2024-08-06T14-36-45',
+        id: '2024-12-15T11-36-12',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -540,13 +744,13 @@ Waiting~
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/111ad625.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="peft学习笔记">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">peft学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -557,12 +761,16 @@ Waiting~
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -575,16 +783,16 @@ Waiting~
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/posts/92012s0215.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="关于">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Large Language Model for Vulnerability Detection Emerging Results and Future Directions">
                         
-                        <span class="card-title">关于</span>
+                        <span class="card-title">Large Language Model for Vulnerability Detection Emerging Results and Future Directions</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -595,17 +803,20 @@ Waiting~
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            jingxiaoyang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/paper-reading/" class="post-category">
+                                    paper reading
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -723,6 +934,13 @@ Waiting~
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
